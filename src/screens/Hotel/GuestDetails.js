@@ -160,13 +160,13 @@ function GuestDetails() {
               <View style={commonStyle.marginVertical(5)}>
                 <Accordion
                   title="Room 2: (1 Adult)"
-                  Content={<View style={commonStyle.marginVertical(30)}></View>}
+                  Content={<View style={commonStyle.marginVertical(30)} />}
                 />
               </View>
               <View style={commonStyle.marginVertical(5)}>
                 <Accordion
                   title="Room 3: (1 Adult)"
-                  Content={<View style={commonStyle.marginVertical(30)}></View>}
+                  Content={<View style={commonStyle.marginVertical(30)} />}
                 />
               </View>
             </View>

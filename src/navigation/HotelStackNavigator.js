@@ -6,9 +6,11 @@ import SearchResult from '../screens/Hotel/SearchResult';
 import Checkout from '../screens/Flight/Checkout';
 import BookingStatus from '../screens/Hotel/BookingStatus';
 import GuestDetails from '../screens/Hotel/GuestDetails';
+import Payment from '../screens/Hotel/Payment';
 const Stack = createStackNavigator();
 const HotelStackNavigator = () => (
   <Stack.Navigator screenOptions={{headerShown: false}}>
+    <Stack.Screen name={'Payment'} component={Payment} />
     <Stack.Screen name={'GuestDetails'} component={GuestDetails} />
     <Stack.Screen name={'Home'} component={Home} />
     <Stack.Screen name={'BookingStatus'} component={BookingStatus} />
