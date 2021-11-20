@@ -1,0 +1,20 @@
+import React from 'react';
+import {createStackNavigator} from '@react-navigation/stack';
+
+import Home from '../screens/Hotel/Home';
+import SearchResult from '../screens/Hotel/SearchResult';
+import Checkout from '../screens/Flight/Checkout';
+import BookingStatus from '../screens/Hotel/BookingStatus';
+import GuestDetails from '../screens/Hotel/GuestDetails';
+const Stack = createStackNavigator();
+const HotelStackNavigator = () => (
+  <Stack.Navigator screenOptions={{headerShown: false}}>
+    <Stack.Screen name={'GuestDetails'} component={GuestDetails} />
+    <Stack.Screen name={'Home'} component={Home} />
+    <Stack.Screen name={'BookingStatus'} component={BookingStatus} />
+    <Stack.Screen name={'Checkout'} component={Checkout} />
+    <Stack.Screen name={'SearchResult'} component={SearchResult} />
+  </Stack.Navigator>
+);
+
+export default HotelStackNavigator;

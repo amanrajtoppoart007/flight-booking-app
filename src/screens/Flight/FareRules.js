@@ -1,0 +1,193 @@
+import React, {useState} from 'react';
+import {Pressable, StyleSheet, Text, View, ScrollView} from 'react-native';
+import Colors from '../../layout/Colors';
+import {Icon} from 'react-native-elements';
+import Font from '../../layout/Font';
+
+function ExpandableSection({children, name}) {
+  const [open, setOpen] = useState(false);
+  return (
+    <View>
+      <View style={styles.expandableSections}>
+        <Text style={styles.expandableSectionsText}>{name}</Text>
+        <Icon
+          name={open ? 'up' : 'down'}
+          onPress={() => setOpen(!open)}
+          type={'antdesign'}
+          size={22}
+          color={Colors.primary}
+        />
+      </View>
+      <View style={styles.divider} />
+      {open && <View style={{marginHorizontal: 10}}>{children}</View>}
+    </View>
+  );
+}
+
+export default function FareRules() {
+  const [tabbar, setTabbar] = useState('DOH-DXB');
+  const d = [
+    'Penalties',
+    'Minimun Stay',
+    'Maximum Stay',
+    'Seasonality',
+    'Blackout Date',
+  ];
+  return (
+    <ScrollView>
+      <View
+        style={{
+          flex: 1,
+          marginHorizontal: 5,
+        }}>
+        <Text style={styles.textbold}>Flight Long Fare Rules</Text>
+        <View style={styles.warningBackground}>
+          <Text style={[styles.text, {color: 'tomato', marginBottom: 5}]}>
+            Tickets are non-refundable
+          </Text>
+          <Text style={[styles.text]}>
+            We Kindly remind that you may need visa for the following countries:
+            United Arab Emirates.+
+            {'\n\n'}
+            Additional baggage fee may apply,{' '}
+            <Text style={{color: Colors.primary}}>click here</Text> for more
+            information.
+          </Text>
+        </View>
+        <View style={styles.termsContainer}>
+          <Text style={[styles.textbold, {color: Colors.primary}]}>
+            Terms & Policies
+          </Text>
+          <Icon
+            name={'minus'}
+            type={'antdesign'}
+            size={22}
+            color={Colors.primary}
+          />
+        </View>
+        <View style={styles.itemContainer}>
+          <Pressable
+            onPress={() => setTabbar('DOH-DXB')}
+            style={styles.item(tabbar, 'DOH-DXB')}>
+            <Text style={styles.text}>DOH-DXB</Text>
+          </Pressable>
+          <Pressable
+            onPress={() => setTabbar('DXB-DOH')}
+            style={styles.item(tabbar, 'DXB-DOH')}>
+            <Text style={styles.text}>DXB-DOH</Text>
+          </Pressable>
+        </View>
+        {d.map(item => (
+          <ExpandableSection key={item} name={item}>
+            <Text style={[styles.text]}>
+              PE.PENALTIES
+              {'\n\n\t\t\t'}
+              CANCELLATIONS
+              {'\n\n\t\t\t\t'}
+              CHARGE QAR 800 FOR NO-SHOW.
+              {'\n\n\t\t\t\t\t'}
+              NOTE
+              {'\n\t\t\t\t\t'}
+              IN CASE OF NO-SHOW ONLY ONE FEE IS TO BE
+              {'\n\n'}C{'\n\n\t\t\t\t\t'}
+              LE EITHER THE NO-SHOW FEE OR THE
+              {'\n\n'}
+              REFUND F{'\n\n\t\t\t\t\t\t\t'}
+              WHICHEVER IS HIGHER
+              {'\n\n\t\t\t\t\t'}
+              BEFORE DEPARTURE
+              {'\n\n\t\t\t\t\t\t'}
+              CHARGE OAR 400 FOR REFUND.
+              {'\n\n\n\t\t\t\t\t\t'}
+              CHILD/INFANT DISCOUNTS APPLY.
+            </Text>
+          </ExpandableSection>
+        ))}
+      </View>
+    </ScrollView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: Colors.background,
+  },
+  margin: {
+    padding: 15,
+  },
+  input: {
+    color: 'black',
+    marginHorizontal: 5,
+    flex: 1,
+  },
+  divider: {
+    borderWidth: 0.5,
+    borderColor: '#D9D9D9',
+    marginVertical: 10,
+    marginHorizontal: 10,
+  },
+  headerText: {
+    color: 'black',
+    fontSize: 20,
+    fontWeight: 'bold',
+    margin: 10,
+  },
+  itemContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    marginHorizontal: 10,
+    borderBottomWidth: 1,
+    borderColor: '#D9D9D9',
+  },
+  item(value, name) {
+    return {
+      borderBottomWidth: value === name ? 1.2 : 0,
+      borderColor: Colors.primary,
+      paddingBottom: 10,
+      marginRight: 15,
+      marginTop: 10,
+    };
+  },
+  textbold: {
+    color: 'black',
+    fontSize: 18,
+    fontFamily: Font.AvenirMedium,
+  },
+  text: {
+    fontSize: 13,
+    color: 'black',
+    fontFamily: Font.AvenirRegular,
+  },
+  itemtext: {
+    color: 'gray',
+    fontSize: 14,
+    fontFamily: Font.AvenirMedium,
+  },
+  expandableSections: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginHorizontal: 10,
+    marginTop: 10,
+  },
+  expandableSectionsText: {
+    fontSize: 18,
+    color: Colors.primary,
+    marginRight: 5,
+  },
+  warningBackground: {
+    backgroundColor: 'rgba(150,150,150,0.1)',
+    marginHorizontal: 10,
+    borderRadius: 5,
+    marginVertical: 5,
+    padding: 10,
+  },
+  termsContainer: {
+    backgroundColor: 'rgba(61, 181, 255, 0.15)',
+    padding: 10,
+    marginVertical: 5,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+});

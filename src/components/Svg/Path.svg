@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="8.63" height="35" viewBox="0 0 8.63 35">
+  <g id="Group_3856" data-name="Group 3856" transform="translate(-43 -452)">
+    <circle id="Ellipse_466" data-name="Ellipse 466" cx="2.5" cy="2.5" r="2.5" transform="translate(45 452)" fill="#e77629"/>
+    <circle id="Ellipse_467" data-name="Ellipse 467" cx="2.5" cy="2.5" r="2.5" transform="translate(45 482)" fill="#e77629"/>
+    <path id="ic20-plane" d="M5.8,0a.737.737,0,0,0-.521.216L4.394,1.1a.305.305,0,0,1-.29.08L.61.305.3.616A.305.305,0,0,0,.379,1.1L3.051,2.441l-1.22,1.22H.494a.305.305,0,0,0-.273.169L0,4.271H0l1.22.61h0l.61,1.22.442-.221a.305.305,0,0,0,.169-.273V4.271l1.22-1.22L5,5.723a.305.305,0,0,0,.489.079L5.8,5.492,4.924,2A.305.305,0,0,1,5,1.708L5.886.826A.737.737,0,0,0,6.1.305.305.305,0,0,0,5.8,0Z" transform="translate(51.63 469.314) rotate(135)" fill="#e77629" fill-rule="evenodd"/>
+    <g id="Rectangle_960" data-name="Rectangle 960" transform="translate(47 460)" fill="#fff" stroke="#e77629" stroke-width="1">
+      <rect width="1" height="3" stroke="none"/>
+      <rect x="0.5" y="0.5" height="2" fill="none"/>
+    </g>
+    <g id="Rectangle_961" data-name="Rectangle 961" transform="translate(47 477)" fill="#fff" stroke="#e77629" stroke-width="1">
+      <rect width="1" height="3" stroke="none"/>
+      <rect x="0.5" y="0.5" height="2" fill="none"/>
+    </g>
+  </g>
+</svg>
