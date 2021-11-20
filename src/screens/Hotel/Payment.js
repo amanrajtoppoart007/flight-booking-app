@@ -56,41 +56,7 @@ function Payment({navigation}) {
                 <StatusStepBar activeIndex={2} />
               </View>
             </LinearGradient>
-            <View
-              style={[
-                commonStyle.paddingHorizontal(8),
-                commonStyle.paddingVertical(15),
-              ]}>
-              <View style={[commonStyle.rowSpaceBetween]}>
-                <View>
-                  <Text style={styles.dataDefinition}>
-                    Doha (DOH) → Dubai (DXB)
-                  </Text>
-                </View>
-                <View>
-                  <Text style={styles.priceTitle}>Total Price</Text>
-                </View>
-              </View>
-              <View style={[commonStyle.rowSpaceBetween]}>
-                <View>
-                  <Text style={styles.mutedText}>
-                    Wed, 15 Sep, 4 Travellers
-                  </Text>
-                </View>
-                <View style={commonStyle.rowSpaceBetween}>
-                  <Text>QAR </Text>
-                  <Text style={styles.priceTitle}>170.00</Text>
-                </View>
-              </View>
-              <View>
-                <Text style={styles.dataDefinition}>
-                  Dubai (DXB) → Doha (DOH)
-                </Text>
-              </View>
-              <View>
-                <Text style={styles.mutedText}>Mon, 20 Sep, 4 Travellers</Text>
-              </View>
-            </View>
+
             <View>
               <View
                 style={[
