@@ -7,10 +7,7 @@ import {
   View,
   ScrollView,
 } from 'react-native';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import Colors from '../../layout/Colors';
 import commonStyle from '../../layout/Style';
 import LinearGradient from 'react-native-linear-gradient';
