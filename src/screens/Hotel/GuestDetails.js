@@ -23,6 +23,10 @@ import CustomTextInput from '../../components/Common/CustomTextInput';
 import StatusStepBar from '../../components/Hotel/Checkout/StatusStepBar';
 import StarRating from '../../components/StarRating';
 import Pin from '../../components/Svg/Hotel/Pin.svg';
+import Info from '../../components/Svg/Hotel/Info.svg';
+import InfoBlue from '../../components/Svg/Hotel/InfoBlue.svg';
+import Line from '../../components/Svg/Hotel/Line.svg';
+
 import User from '../../components/Svg/Profile/User.svg';
 
 import Ratings from '../../components/Svg/Hotel/Ratings.svg';
@@ -31,12 +35,14 @@ import LoginLock from '../../components/Svg/Hotel/LoginLock.svg';
 import PhoneBook from '../../components/Svg/PhoneBook.svg';
 import {ScrollView} from 'react-native-gesture-handler';
 import Accordion from '../../components/Hotel/Checkout/Accordion';
+import BookingSummary from '../../components/Hotel/Checkout/BookingSummary';
 
 function GuestDetails() {
   const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [mobileNumber, setMobileNumber] = useState('');
   const [phoneCode, setPhoneCode] = useState('');
+  const [bookingSummary, setBookingSummary] = useState(true);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -160,16 +166,61 @@ function GuestDetails() {
               <View style={commonStyle.marginVertical(5)}>
                 <Accordion
                   title="Room 2: (1 Adult)"
-                  Content={<View style={commonStyle.marginVertical(30)} />}
+                  Content={<AccordionContent />}
                 />
               </View>
               <View style={commonStyle.marginVertical(5)}>
                 <Accordion
                   title="Room 3: (1 Adult)"
-                  Content={<View style={commonStyle.marginVertical(30)} />}
+                  Content={<AccordionContent />}
                 />
               </View>
             </View>
+            <BookingSummary
+              isBookingSummaryVisible={bookingSummary}
+              setIsBookingSummaryVisible={setBookingSummary}
+            />
+            <LinearGradient
+              colors={['#242A37', '#3C4250']}
+              style={styles.bottomCanvas}>
+              <View>
+                <Text
+                  style={[
+                    styles.textNormalWhite,
+                    commonStyle.marginBottom(10),
+                  ]}>
+                  Your total stay price
+                </Text>
+                <View style={[styles.rowFlexStart]}>
+                  <Text style={styles.textBigWhite}>
+                    <Text style={[styles.textNormalLight]}>QAR</Text> 10,790.00
+                  </Text>
+                  <Icon
+                    name={'down'}
+                    type={'antdesign'}
+                    size={18}
+                    style={commonStyle.marginHorizontal(10)}
+                    color={Colors.lightText}
+                  />
+                </View>
+              </View>
+              <View
+                style={[
+                  commonStyle.rowCenter,
+                  commonStyle.marginHorizontal(5),
+                ]}>
+                <TouchableOpacity style={styles.continueButton}>
+                  <Text style={styles.textNormalWhite}>Continue</Text>
+                  <Icon
+                    name={'arrowright'}
+                    type={'antdesign'}
+                    size={18}
+                    style={styles.marginLeft(5)}
+                    color={Colors.white}
+                  />
+                </TouchableOpacity>
+              </View>
+            </LinearGradient>
           </View>
         </View>
       </ScrollView>
@@ -219,6 +270,52 @@ function AccordionContent() {
           />
         </View>
       </View>
+      <View
+        style={[
+          commonStyle.rowSpaceBetween,
+          commonStyle.marginTop(15),
+          commonStyle.marginHorizontal(5),
+        ]}>
+        <View style={commonStyle.rowFlexStart}>
+          <Text style={[AStyles.blueText, styles.marginRight(5)]}>
+            Cancellation Policy
+          </Text>
+          <InfoBlue />
+        </View>
+        <View style={commonStyle.rowFlexStart}>
+          <Text style={[AStyles.secondaryText, styles.marginRight(5)]}>
+            Important Info
+          </Text>
+          <Info />
+        </View>
+        <View style={commonStyle.rowFlexStart}>
+          <Text style={[AStyles.blueText, styles.marginRight(5)]}>Extras</Text>
+          <Icon
+            name={'caretdown'}
+            type={'antdesign'}
+            size={15}
+            color={Colors.primary}
+          />
+        </View>
+      </View>
+      <Line />
+      <View style={AStyles.borderConatiner}>
+        <Text style={AStyles.lightText}>
+          Please enter any special request that you may have.
+        </Text>
+        <Text style={AStyles.lightText}>(Eg: Late Check-In, VIP Pax)</Text>
+      </View>
+      <View
+        style={[
+          commonStyle.marginHorizontal(10),
+          commonStyle.marginVertical(5),
+        ]}>
+        <Text style={AStyles.lightText}>
+          Note: Special requests are not guaranteed and are at the hotel’s
+          discretion. Additional charges may apply depending on the hotel’s
+          policies.
+        </Text>
+      </View>
     </View>
   );
 }
@@ -253,6 +350,29 @@ const AStyles = StyleSheet.create({
     marginRight: 8,
     paddingVertical: 3,
   },
+  blueText: {
+    fontSize: 14,
+    fontFamily: Font.AvenirLight,
+    color: '#26698E',
+  },
+  lightText: {
+    fontSize: 12,
+    fontFamily: Font.AvenirLight,
+    color: Colors.lightText,
+  },
+  secondaryText: {
+    fontSize: 14,
+    fontFamily: Font.AvenirLight,
+    color: Colors.secondary,
+  },
+  borderConatiner: {
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: '#DDDDDD',
+    padding: 10,
+    marginHorizontal: 5,
+    marginVertical: 10,
+  },
 });
 
 const styles = StyleSheet.create({
@@ -270,6 +390,15 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderColor: Colors.secondary,
   },
+  continueButton: {
+    padding: 8,
+    paddingHorizontal: 8,
+    borderRadius: 5,
+    backgroundColor: Colors.secondary,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
   wrapper: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -280,6 +409,14 @@ const styles = StyleSheet.create({
   canvas: {
     width: '100%',
     height: hp('20%'),
+  },
+  bottomCanvas: {
+    width: '100%',
+    height: hp('10%'),
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: 10,
+    paddingHorizontal: 10,
   },
   rowCenter: {
     flexDirection: 'row',
@@ -308,6 +445,11 @@ const styles = StyleSheet.create({
     color: Colors.black,
     fontFamily: Font.AvenirRegular,
   },
+  textNormalWhite: {
+    fontSize: 14,
+    color: Colors.white,
+    fontFamily: Font.AvenirRegular,
+  },
   textNormalLight: {
     fontSize: 14,
     color: Colors.lightText,
@@ -316,6 +458,11 @@ const styles = StyleSheet.create({
   textBig: {
     fontSize: 16,
     color: Colors.black,
+    fontFamily: Font.AvenirMedium,
+  },
+  textBigWhite: {
+    fontSize: 16,
+    color: Colors.white,
     fontFamily: Font.AvenirMedium,
   },
   ButtonText: {
@@ -378,6 +525,11 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     marginHorizontal: 10,
+  },
+  rowFlexStart: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-end',
   },
 });
 export default GuestDetails;
