@@ -36,6 +36,7 @@ import PhoneBook from '../../components/Svg/PhoneBook.svg';
 import {ScrollView} from 'react-native-gesture-handler';
 import Accordion from '../../components/Hotel/Checkout/Accordion';
 import BookingSummary from '../../components/Hotel/Checkout/BookingSummary';
+import Footer from '../../components/Hotel/Footer';
 
 function GuestDetails() {
   const navigation = useNavigation();
@@ -180,47 +181,11 @@ function GuestDetails() {
               isBookingSummaryVisible={bookingSummary}
               setIsBookingSummaryVisible={setBookingSummary}
             />
-            <LinearGradient
-              colors={['#242A37', '#3C4250']}
-              style={styles.bottomCanvas}>
-              <View>
-                <Text
-                  style={[
-                    styles.textNormalWhite,
-                    commonStyle.marginBottom(10),
-                  ]}>
-                  Your total stay price
-                </Text>
-                <View style={[styles.rowFlexStart]}>
-                  <Text style={styles.textBigWhite}>
-                    <Text style={[styles.textNormalLight]}>QAR</Text> 10,790.00
-                  </Text>
-                  <Icon
-                    name={'down'}
-                    type={'antdesign'}
-                    size={18}
-                    style={commonStyle.marginHorizontal(10)}
-                    color={Colors.lightText}
-                  />
-                </View>
-              </View>
-              <View
-                style={[
-                  commonStyle.rowCenter,
-                  commonStyle.marginHorizontal(5),
-                ]}>
-                <TouchableOpacity style={styles.continueButton}>
-                  <Text style={styles.textNormalWhite}>Continue</Text>
-                  <Icon
-                    name={'arrowright'}
-                    type={'antdesign'}
-                    size={18}
-                    style={styles.marginLeft(5)}
-                    color={Colors.white}
-                  />
-                </TouchableOpacity>
-              </View>
-            </LinearGradient>
+            <Footer
+              handleBottomSheetPress={() => setBookingSummary(true)}
+              title="Your total stay price"
+              price="10,790.00"
+            />
           </View>
         </View>
       </ScrollView>
