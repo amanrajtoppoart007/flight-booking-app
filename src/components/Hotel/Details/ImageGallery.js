@@ -1,11 +1,16 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, ImageBackground, StyleSheet, Text, View} from 'react-native';
+import {widthPercentageToDP} from 'react-native-responsive-screen';
+import Font from '../../../layout/Font';
+import Colors from '../../../layout/Colors';
 
 function ImageGallery() {
   return (
     <View style={styles.card}>
       <View>
         <Image
+          style={styles.previewImg}
+          borderRadius={8}
           source={require('../../../assets/images/temp/slider/slider-primary-image.png')}
         />
       </View>
@@ -13,6 +18,7 @@ function ImageGallery() {
         <View style={styles.miniGalleryContent}>
           <Image
             style={styles.miniImage}
+            resizeMode={'contain'}
             source={require('../../../assets/images/temp/slider/slider-mini-image-one.png')}
           />
         </View>
@@ -23,10 +29,13 @@ function ImageGallery() {
           />
         </View>
         <View style={styles.miniGalleryContent}>
-          <Image
-            style={styles.miniImage}
-            source={require('../../../assets/images/temp/slider/slider-mini-image-three.png')}
-          />
+          <ImageBackground
+            style={[styles.miniImage, styles.extraImageSection]}
+            source={require('../../../assets/images/temp/slider/slider-mini-image-three.png')}>
+            <View>
+              <Text style={styles.extraImageCounter}>+20</Text>
+            </View>
+          </ImageBackground>
         </View>
       </View>
     </View>
@@ -36,14 +45,17 @@ function ImageGallery() {
 const styles = StyleSheet.create({
   card: {
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
     alignItems: 'center',
   },
   miniGallery: {
-    flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  previewImg: {
+    width: widthPercentageToDP('75%'),
+    height: 210,
   },
   miniImage: {
     width: 65,
@@ -51,6 +63,17 @@ const styles = StyleSheet.create({
   },
   miniGalleryContent: {
     marginVertical: 3.5,
+  },
+  extraImageSection: {
+    backgroundColor: 'rgba(44,40,40,0.6)',
+    opacity: 0.8,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  extraImageCounter: {
+    fontFamily: Font.AvenirBlack,
+    fontSize: 16,
+    color: Colors.white,
   },
 });
 

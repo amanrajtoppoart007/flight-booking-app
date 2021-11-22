@@ -11,8 +11,9 @@ import HotelDetails from '../screens/Hotel/HotelDetails';
 const Stack = createStackNavigator();
 const HotelStackNavigator = () => (
   <Stack.Navigator screenOptions={{headerShown: false}}>
-    <Stack.Screen name={'GuestDetails'} component={GuestDetails} />
     <Stack.Screen name={'HotelDetails'} component={HotelDetails} />
+    <Stack.Screen name={'GuestDetails'} component={GuestDetails} />
+
     <Stack.Screen name={'Payment'} component={Payment} />
     <Stack.Screen name={'Home'} component={Home} />
     <Stack.Screen name={'BookingStatus'} component={BookingStatus} />

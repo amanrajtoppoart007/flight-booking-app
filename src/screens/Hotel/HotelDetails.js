@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {
   Animated,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -18,15 +19,18 @@ import Colors from '../../layout/Colors';
 import CustomStatusBar from '../../components/CustomStatusBar';
 import Font from '../../layout/Font';
 
-import EditSvg from '../../components/Svg/Hotel/Edit.svg';
-import FilterSvg from '../../components/Svg/Hotel/Filter.svg';
-import ImageGallery from '../../components/Hotel/Details/ImageGallery';
-import FlightSvg from '../../components/Svg/Profile/Flight.svg';
-import HotelSvg from '../../components/Svg/Profile/Hotel.svg';
-
 import ChooseRooms from '../../components/Hotel/Details/ChooseRooms';
 import OverView from '../../components/Hotel/Details/OverView';
 import {TabView} from 'react-native-tab-view';
+import ImageGallery from '../../components/Hotel/Details/ImageGallery';
+import StarRating from '../../components/StarRating';
+
+import EditSvg from '../../components/Svg/Hotel/Edit.svg';
+import FilterSvg from '../../components/Svg/Hotel/Filter.svg';
+import FlightSvg from '../../components/Svg/Profile/Flight.svg';
+import MapSvg from '../../components/Svg/Hotel/Map.svg';
+import TurnRightSvg from '../../components/Svg/Hotel/TurnRight.svg';
+import PlaneSvg from '../../components/Svg/Hotel/Plane.svg';
 
 function HotelDetails() {
   const [index, setIndex] = useState(0);
@@ -80,75 +84,127 @@ function HotelDetails() {
   return (
     <SafeAreaView style={commonStyle.container}>
       <CustomStatusBar backgroundColor={Colors.primary} />
-      <View style={commonStyle.wrapper}>
-        <View style={commonStyle.content}>
-          <LinearGradient colors={['#1C8CCC', '#015F95']} style={styles.canvas}>
-            <View style={styles.headerSection}>
-              <View style={commonStyle.rowSpaceBetween}>
-                <View>
-                  <Icon
-                    name={'md-arrow-back-sharp'}
-                    type={'ionicon'}
-                    style={styles.icon}
-                    color={Colors.white}
-                  />
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={commonStyle.wrapper}>
+          <View style={commonStyle.content}>
+            <LinearGradient
+              colors={['#1C8CCC', '#015F95']}
+              style={styles.canvas}>
+              <View style={styles.contentWrapper}>
+                <View style={styles.headerSection}>
+                  <View style={commonStyle.rowSpaceBetween}>
+                    <View>
+                      <Icon
+                        name={'md-arrow-back-sharp'}
+                        type={'ionicon'}
+                        style={styles.icon}
+                        color={Colors.white}
+                      />
+                    </View>
+                    <View style={commonStyle.marginHorizontal(10)}>
+                      <Text style={styles.title}>Doha, Qatar</Text>
+                    </View>
+                  </View>
+                  <View style={commonStyle.rowSpaceBetween}>
+                    <View>
+                      <EditSvg />
+                    </View>
+                    <View>
+                      <FilterSvg />
+                    </View>
+                  </View>
                 </View>
-                <View style={commonStyle.marginHorizontal(10)}>
-                  <Text style={styles.title}>Payment</Text>
+                <View>
+                  <Text>15 Sep - 20 Sep | Room 1 | 2 Guests</Text>
                 </View>
               </View>
-              <View style={commonStyle.rowSpaceBetween}>
+            </LinearGradient>
+            <View>
+              <View style={styles.contentWrapper}>
                 <View>
-                  <EditSvg />
-                </View>
-                <View>
-                  <FilterSvg />
+                  <View style={commonStyle.marginVertical(8)}>
+                    <View style={commonStyle.rowSpaceBetween}>
+                      <View>
+                        <View style={commonStyle.rowSpaceBetween}>
+                          <View>
+                            <Text style={styles.placeTitle}>W Doha</Text>
+                          </View>
+                          <View>
+                            <StarRating rating={4} size={15} />
+                          </View>
+                        </View>
+                        <View
+                          style={[
+                            commonStyle.rowFlexStart,
+                            commonStyle.marginVertical(3),
+                          ]}>
+                          <View>
+                            <MapSvg />
+                          </View>
+                          <View style={commonStyle.marginHorizontal(5)}>
+                            <Text style={styles.placeText}>
+                              West Bay, Doha, QA
+                            </Text>
+                          </View>
+                        </View>
+                      </View>
+                      <View>
+                        <View style={commonStyle.rowSpaceBetween}>
+                          <View>
+                            <PlaneSvg />
+                          </View>
+                          <View>
+                            <Text style={styles.ratingCountText}>4.5/5</Text>
+                          </View>
+                        </View>
+                        <View>
+                          <Text style={styles.ratingText}>Excellent</Text>
+                        </View>
+                      </View>
+                    </View>
+                    <View>
+                      <View style={commonStyle.rowFlexStart}>
+                        <View>
+                          <TurnRightSvg />
+                        </View>
+                        <View style={commonStyle.marginHorizontal(5)}>
+                          <Text style={styles.addressText}>
+                            Fire Station Art Gallery - 2.1 km / 1.3 mi… I
+                          </Text>
+                        </View>
+                      </View>
+                    </View>
+                  </View>
+                  <View>
+                    <ImageGallery />
+                  </View>
                 </View>
               </View>
-            </View>
-            <View>
-              <Text>15 Sep - 20 Sep | Room 1 | 2 Guests</Text>
-            </View>
-          </LinearGradient>
-          <View>
-            <View>
-              <View style={commonStyle.rowSpaceBetween}>
-                <View>
-                  <Text>W Doha</Text>
-                  <Text>West Bay, Doha, QA</Text>
+              <View style={styles.contentWrapper}>
+                <View style={commonStyle.rowSpaceEven}>
+                  <View>
+                    <Text>Check-In: 03:00 PM</Text>
+                  </View>
+                  <View>
+                    <Text>Check-Out: 12:00 PM</Text>
+                  </View>
                 </View>
               </View>
               <View>
-                <Text>Fire Station Art Gallery - 2.1 km / 1.3 mi… I</Text>
-              </View>
-            </View>
-            <View>
-              <ImageGallery />
-            </View>
-            <View>
-              <View style={commonStyle.rowSpaceEven}>
-                <View>
-                  <Text>Check-In: 03:00 PM</Text>
+                <View style={{height: hp('100%')}}>
+                  <TabView
+                    navigationState={{index, routes}}
+                    renderScene={renderScene}
+                    renderTabBar={_renderTabBar}
+                    onIndexChange={_handleIndexChange}
+                    initialLayout={{width: wp('100%')}}
+                  />
                 </View>
-                <View>
-                  <Text>Check-Out: 12:00 PM</Text>
-                </View>
-              </View>
-            </View>
-            <View>
-              <View style={{height: hp('100%')}}>
-                <TabView
-                  navigationState={{index, routes}}
-                  renderScene={renderScene}
-                  renderTabBar={_renderTabBar}
-                  onIndexChange={_handleIndexChange}
-                  initialLayout={{width: wp('100%')}}
-                />
               </View>
             </View>
           </View>
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -159,6 +215,9 @@ const styles = StyleSheet.create({
     height: hp('15%'),
     justifyContent: 'center',
   },
+  contentWrapper: {
+    paddingHorizontal: 12,
+  },
   icon: {
     fontFamily: Font.AvenirHeavy,
     fontSize: 18,
@@ -168,6 +227,31 @@ const styles = StyleSheet.create({
     fontFamily: Font.AvenirHeavy,
     fontSize: 18,
     color: Colors.white,
+  },
+  placeTitle: {
+    fontFamily: Font.AvenirHeavy,
+    fontSize: 14,
+    color: '#242A37',
+  },
+  placeText: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 12,
+    color: '#6C6C6C',
+  },
+  addressText: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 12,
+    color: '#26698E',
+  },
+  ratingCountText: {
+    fontFamily: Font.AvenirHeavy,
+    fontSize: 11,
+    color: '#1DAD81',
+  },
+  ratingText: {
+    fontFamily: Font.AvenirHeavy,
+    fontSize: 11,
+    color: '#475F7B',
   },
   headerSection: {
     flexDirection: 'row',

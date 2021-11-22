@@ -85,6 +85,7 @@ const styles = StyleSheet.create({
       borderColor: isActive ? '#F15922' : '#242A37',
       justifyContent: 'center',
       alignItems: 'center',
+      paddingHorizontal: 8,
     };
   },
   title(isActive) {
