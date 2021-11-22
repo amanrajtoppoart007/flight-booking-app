@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {
-  Pressable,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
+  ScrollView,
 } from 'react-native';
 import {BottomSheet, Icon} from 'react-native-elements';
 import Colors from '../../../layout/Colors';
@@ -13,15 +13,15 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import Font from '../../../layout/Font';
-
-function TravellerandClass({
-  isBookingSummaryVisible,
-  setIsBookingSummaryVisible,
-}) {
+import commonStyle from '../../../layout/Style';
+import HotelImage from '../../Svg/Hotel/HotelImage.svg';
+import Pin from '../../Svg/Hotel/Pin.svg';
+import StarRating from '../../StarRating';
+function BookingSummary({isBookingSummaryVisible, setIsBookingSummaryVisible}) {
   return (
     <BottomSheet isVisible={isBookingSummaryVisible}>
-      <View style={styles.bottomSheet}>
-        <View style={{flex: 1}}>
+      <ScrollView style={styles.bottomSheet}>
+        <View style={commonStyle.marginBottom(30)}>
           <View
             style={{
               flexDirection: 'row',
@@ -31,19 +31,129 @@ function TravellerandClass({
             <View>
               <Text style={styles.title}>Booking Summary</Text>
             </View>
-            <View>
+            <TouchableOpacity onPress={() => setIsBookingSummaryVisible(false)}>
               <Icon
-                onPress={() => setIsBookingSummaryVisible(false)}
                 name={'close'}
                 type={'antdesign'}
                 size={18}
                 color={Colors.lightText}
               />
+            </TouchableOpacity>
+          </View>
+          <View
+            style={[commonStyle.rowFlexStart, commonStyle.marginVertical(10)]}>
+            <HotelImage />
+            <View style={{alignSelf: 'flex-start'}}>
+              <View style={styles.rowWrapper}>
+                <Text style={[styles.textNormal, styles.marginRight(5)]}>
+                  W Doha
+                </Text>
+                <StarRating size={15} rating={4} />
+              </View>
+              <View style={styles.rowWrapper}>
+                <Pin />
+                <Text style={[styles.textLight, styles.marginLeft(5)]}>
+                  West Bay, Doha, QA
+                </Text>
+              </View>
             </View>
           </View>
+          <View style={styles.divider} />
+          <View
+            style={[
+              commonStyle.rowSpaceBetween,
+              commonStyle.marginVertical(5),
+            ]}>
+            <Text style={styles.textNormal}>
+              Check-In: {'\n'}15-10-2021
+              <Text style={styles.textNormalSecondary}> 03:00 PM</Text>
+            </Text>
+            <View style={styles.dividerVertical} />
+            <Text style={styles.textNormal}>
+              Check-In: {'\n'}15-10-2021
+              <Text style={styles.textNormalSecondary}> 12:00 PM</Text>
+            </Text>
+          </View>
+          <View style={styles.divider} />
+          <Card
+            title="Room 1: (1 Adult, 2 Children)"
+            subtitle="Spectacular Room, 2 Double…"
+            price="3395.00"
+            tax="0.00"
+            baseFare="3,399.00"
+            discount="5.00"
+          />
+          <Card
+            title="Room 2: (1 Adult, 2 Children)"
+            subtitle="Spectacular Room, 1 King…"
+            price="3395.00"
+            tax="0.00"
+            baseFare="3,399.00"
+            discount="5.00"
+          />
+          <Card
+            title="Room 3: (1 Adult, 2 Children)"
+            subtitle="Spectacular Room, 1 King…"
+            price="3395.00"
+            tax="0.00"
+            baseFare="3,399.00"
+            discount="5.00"
+          />
         </View>
-      </View>
+      </ScrollView>
     </BottomSheet>
+  );
+}
+function Card({title, subtitle, price, baseFare, tax, discount}) {
+  const [isOpen, setOpen] = useState(false);
+  return (
+    <View style={styles.card}>
+      <View
+        style={[
+          commonStyle.rowSpaceBetween,
+          {alignItems: 'flex-end'},
+          commonStyle.padding(10),
+        ]}>
+        <View>
+          <Text style={styles.textNormalBlue}>{title}</Text>
+          <Text style={styles.textNormalPrimary}>{subtitle}</Text>
+        </View>
+        <TouchableOpacity onPress={() => setOpen(!isOpen)}>
+          <Icon
+            name={!isOpen ? 'down' : 'up'}
+            type={'antdesign'}
+            size={18}
+            color={Colors.lightText}
+          />
+        </TouchableOpacity>
+        <Text style={styles.textBold}>
+          <Text style={styles.textLight}>QAR</Text> {price}
+        </Text>
+      </View>
+      {isOpen && (
+        <>
+          <View style={styles.divider} />
+          <View
+            style={[
+              commonStyle.paddingHorizontal(10),
+              commonStyle.paddingVertical(5),
+            ]}>
+            <View style={commonStyle.rowSpaceBetween}>
+              <Text style={styles.textNormalLight}>Base Fare</Text>
+              <Text style={styles.textNormalLight}>QAR {baseFare}</Text>
+            </View>
+            <View style={commonStyle.rowSpaceBetween}>
+              <Text style={styles.textNormalLight}>Taxes & Fee</Text>
+              <Text style={styles.textNormalLight}>QAR {tax}</Text>
+            </View>
+            <View style={commonStyle.rowSpaceBetween}>
+              <Text style={styles.textNormalLight}>Discount</Text>
+              <Text style={styles.textNormalLight}>QAR {discount}</Text>
+            </View>
+          </View>
+        </>
+      )}
+    </View>
   );
 }
 
@@ -56,9 +166,55 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 10,
     padding: 20,
   },
+  card: {
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#DDDDDD',
+    marginVertical: 5,
+  },
   title: {
     fontSize: 18,
     color: Colors.black,
+    fontFamily: Font.AvenirRegular,
+  },
+  divider: {
+    borderBottomWidth: 1,
+    marginVertical: 5,
+    borderColor: '#DDDDDD',
+  },
+  dividerVertical: {
+    height: '80%',
+    borderRightWidth: 1,
+    borderColor: '#DDDDDD',
+  },
+  textNormal: {
+    fontSize: 13,
+    color: Colors.black,
+    fontFamily: Font.AvenirRegular,
+  },
+  textBold: {
+    fontSize: 13,
+    color: Colors.black,
+    fontFamily: Font.AvenirHeavy,
+  },
+  textNormalBlue: {
+    fontSize: 13,
+    color: '#26698E',
+    fontFamily: Font.AvenirRegular,
+  },
+  textNormalLight: {
+    fontSize: 13,
+    color: Colors.lightText,
+    fontFamily: Font.AvenirRegular,
+  },
+  textNormalPrimary: {
+    fontSize: 13,
+    color: Colors.primary,
+    fontFamily: Font.AvenirRegular,
+  },
+  textNormalSecondary: {
+    fontSize: 13,
+    color: Colors.secondary,
     fontFamily: Font.AvenirRegular,
   },
   helper: {
@@ -66,7 +222,27 @@ const styles = StyleSheet.create({
     color: Colors.black,
     fontFamily: Font.AvenirRegular,
   },
-
+  textLight: {
+    fontSize: 12,
+    color: Colors.lightText,
+    fontFamily: Font.AvenirLight,
+  },
+  rowWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    marginHorizontal: 10,
+  },
+  marginRight(t) {
+    return {
+      marginRight: t,
+    };
+  },
+  marginLeft(t) {
+    return {
+      marginLeft: t,
+    };
+  },
   button: {
     height: 45,
     borderRadius: 6,
@@ -114,4 +290,4 @@ const buttonStyle = StyleSheet.create({
     fontFamily: Font.AvenirLight,
   },
 });
-export default TravellerandClass;
+export default BookingSummary;
