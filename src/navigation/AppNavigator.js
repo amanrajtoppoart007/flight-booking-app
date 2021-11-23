@@ -1,7 +1,7 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import ScreenSettings from './ScreenSettings';
-import Home from '../screens/Home';
+import HomeNavigator from './HomeNavigator';
 import Auth from '../screens/Auth/Auth';
 const Stack = createNativeStackNavigator();
 
@@ -13,8 +13,8 @@ const AppNavigator = () => (
       gestureEnabled: true,
       ...ScreenSettings,
     }}>
-    <Stack.Screen name={'Home'} component={Home} />
     <Stack.Screen name={'Auth'} component={Auth} />
+    <Stack.Screen name={'HomeStack'} component={HomeNavigator} />
   </Stack.Navigator>
 );
 

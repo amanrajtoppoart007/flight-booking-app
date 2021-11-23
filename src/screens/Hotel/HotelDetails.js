@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import commonStyle from '../../layout/Style';
 import {
+  heightPercentageToDP,
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
@@ -85,7 +86,7 @@ function HotelDetails() {
     <SafeAreaView
       style={[commonStyle.container, commonStyle.backgroundColor('F5F7FB')]}>
       <CustomStatusBar backgroundColor={Colors.primary} />
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView showsVerticalScrollIndicator={true}>
         <View style={commonStyle.wrapper}>
           <View style={commonStyle.content}>
             <LinearGradient
@@ -205,13 +206,13 @@ function HotelDetails() {
                 </View>
               </View>
               <View>
-                <View style={{height: hp('100%')}}>
+                <View style={{height: hp('400%')}}>
                   <TabView
                     navigationState={{index, routes}}
                     renderScene={renderScene}
                     renderTabBar={_renderTabBar}
                     onIndexChange={_handleIndexChange}
-                    initialLayout={{width: wp('100%')}}
+                    initialLayout={{width: wp('100%'), height: hp('300%')}}
                   />
                 </View>
               </View>

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-
-import HomeNavigator from './HomeNavigator';
-import FlightNavigator from './FlightNavigator';
-import AccountNavigator from './AccountNavigator';
+import Home from '../screens/Home';
+import FlightHome from '../screens/Flight/Home';
+import Account from '../screens/Account/Account';
+import Offer from '../screens/Offer';
 
 import HomeSvg from '../components/Svg/Tab/Home.svg';
 import FlightSvg from '../components/Svg/Tab/Flight.svg';
@@ -15,25 +15,24 @@ import Colors from '../layout/Colors';
 import commonStyle from '../layout/Style';
 import {useState} from 'react';
 import TrackFlightModal from '../components/TrackFlight/TrackFlightModal';
-import Offer from '../screens/Offer';
 
 const Tab = createBottomTabNavigator();
 
 const menus = [
   {
-    title: 'HomeStack',
+    title: 'Home',
     svgIcon: HomeSvg,
   },
   {
-    title: 'FlightStack',
+    title: 'Flight',
     svgIcon: FlightSvg,
   },
   {
-    title: 'OfferStack',
+    title: 'Offer',
     svgIcon: OfferSvg,
   },
   {
-    title: 'AccountStack',
+    title: 'Account',
     svgIcon: UserSvg,
   },
 ];
@@ -63,7 +62,7 @@ function MyTabBar({state, descriptors, navigation}) {
         const isFocused = state.index === index;
 
         const onPress =
-          route.name === 'FlightStack'
+          route.name === 'Flight'
             ? () => setIsVisible(!isVisible)
             : () => {
                 const event = navigation.emit({
@@ -136,16 +135,16 @@ const styles = StyleSheet.create({
 export default function TabNavigator() {
   return (
     <Tab.Navigator
-      initialRouteName={'HomeStack'}
+      initialRouteName={'Home'}
       screenOptions={{headerShown: false}}
       tabBar={props => <MyTabBar {...props} />}>
-      <Tab.Screen name="HomeStack" component={HomeNavigator} />
-      <Tab.Screen name="FlightStack" component={FlightNavigator} />
-      <Tab.Screen name="OfferStack" component={Offer} />
+      <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="Flight" component={FlightHome} />
+      <Tab.Screen name="Offer" component={Offer} />
       <Tab.Screen
-        name="AccountStack"
+        name="Account"
         options={{headerShown: false}}
-        component={AccountNavigator}
+        component={Account}
       />
     </Tab.Navigator>
   );

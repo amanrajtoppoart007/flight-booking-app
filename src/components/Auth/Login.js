@@ -141,7 +141,7 @@ function Login({jumpTo}) {
 
           <View style={[commonStyle.center, commonStyle.marginVertical(20)]}>
             <TouchableOpacity
-              onPress={() => navigation.navigate('HomeTabs')}
+              onPress={() => navigation.navigate('HomeStack')}
               style={styles.signInButton}>
               <Text style={styles.signInButtonText}>Sign In</Text>
             </TouchableOpacity>
