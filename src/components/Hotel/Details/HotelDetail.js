@@ -1,32 +1,61 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import commonStyle from '../../../layout/Style';
-
-import PriceSection from './PriceSection';
-
 import WifiSvg from '../../Svg/Hotel/Wifi.svg';
 import PoolSvg from '../../Svg/Hotel/Pool.svg';
 import MealSvg from '../../Svg/Hotel/Meal.svg';
 import GymSvg from '../../Svg/Hotel/Gym.svg';
+import PriceGrid from './PriceGrid';
+import {Icon} from 'react-native-elements';
+import Font from '../../../layout/Font';
 
 function HotelDetail({item, index}) {
+  const [isVisible, setIsVisible] = useState(false);
   return (
-    <View style={styles.card}>
+    <View>
       <View style={styles.cardHeader}>
         <View style={commonStyle.rowSpaceBetween}>
           <View>
-            <Text>
-              Room {item?.roomNumber}: {item?.title}
+            <Text style={commonStyle.rowSpaceBetween}>
+              <Text style={styles.roomCountTitle}>
+                Room {item?.roomNumber}:
+              </Text>
+              <Text style={styles.cardTitle}>{item?.title}</Text>
             </Text>
-            <Text>1 King Bed, Room Only</Text>
+
+            <Text style={styles.subTitle}>1 King Bed, Room Only</Text>
           </View>
           <View>
-            <Text>QAR 4790</Text>
-            <Text>QAR 3395</Text>
+            <View style={commonStyle.rowSpaceBetween}>
+              <View style={commonStyle.marginHorizontal(5)}>
+                <Text style={styles.price}>QAR</Text>
+              </View>
+              <View>
+                <Text style={styles.discountedPrice}>4790</Text>
+              </View>
+            </View>
+            <View style={commonStyle.rowSpaceBetween}>
+              <View style={commonStyle.marginHorizontal(5)}>
+                <Text style={styles.price}>QAR</Text>
+              </View>
+              <View>
+                <Text style={styles.discountedPrice}>3395</Text>
+              </View>
+            </View>
           </View>
         </View>
+        <View>
+          <Icon
+            onPress={() => setIsVisible(!isVisible)}
+            name={isVisible ? 'chevron-up' : 'chevron-right'}
+            type={'feather'}
+            size={16}
+            color={'#242A37'}
+          />
+        </View>
       </View>
-      {item?.options &&
+      {isVisible &&
+        item?.options &&
         item?.options.map((option, i) => {
           return (
             <View key={i} style={styles.cardBody}>
@@ -59,15 +88,8 @@ function HotelDetail({item, index}) {
                   </View>
                 </View>
               </View>
-              <View style={commonStyle.center}>
-                {option?.rooms &&
-                  option?.rooms.map((room, j) => {
-                    return (
-                      <View key={j} style={commonStyle.marginVertical(8)}>
-                        <PriceSection item={room} isActive={room?.isSelected} />
-                      </View>
-                    );
-                  })}
+              <View>
+                <PriceGrid option={option} />
               </View>
             </View>
           );
@@ -80,12 +102,44 @@ const styles = StyleSheet.create({
   contentWrapper: {
     paddingHorizontal: 12,
   },
-  card: {},
   cardHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     backgroundColor: '#FEF5F2',
     padding: 12,
     borderTopRightRadius: 8,
     borderTopLeftRadius: 8,
+  },
+  roomCountTitle: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 14,
+    color: '#242A37',
+  },
+  cardTitle: {
+    fontFamily: Font.AvenirHeavy,
+    fontSize: 14,
+    color: '#F15922',
+  },
+  subTitle: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 12,
+    color: '#6C6C6C',
+  },
+  currency: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 12,
+    color: '#6C6C6C',
+  },
+  price: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 12,
+    color: '#6C6C6C',
+  },
+  discountedPrice: {
+    fontFamily: Font.AvenirBlack,
+    fontSize: 14,
+    color: '#0B151F',
   },
   cardBody: {
     marginVertical: 3.5,

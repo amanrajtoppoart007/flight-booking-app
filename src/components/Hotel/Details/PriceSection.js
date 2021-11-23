@@ -3,20 +3,19 @@ import {StyleSheet, Text, View} from 'react-native';
 import commonStyle from '../../../layout/Style';
 import {CheckBox, Icon} from 'react-native-elements';
 import Colors from '../../../layout/Colors';
-import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import Font from '../../../layout/Font';
 
-function PriceSection({item, isActive}) {
+function PriceSection({item, isActive, index, setSelected}) {
   return (
     <View style={styles.card(isActive)}>
-      <View style={commonStyle.rowFlexStart}>
-        <View style={commonStyle.width('75%')}>
-          <View style={commonStyle.rowSpaceBetween}>
+      <View style={styles.cardBody}>
+        <View style={styles.cardLeftSection}>
+          <View style={[commonStyle.rowSpaceBetween, commonStyle.width('80%')]}>
             <View>
-              <Text>2 Double Beds</Text>
+              <Text style={styles.bedTypeText}>{item?.title}</Text>
             </View>
             <View>
-              <Text>Bed & Breakfast</Text>
+              <Text style={styles.amenitiesText}>Bed & Breakfast</Text>
             </View>
           </View>
           <View style={commonStyle.marginVertical(6)}>
@@ -30,13 +29,13 @@ function PriceSection({item, isActive}) {
             </Text>
           </View>
         </View>
-        <View style={[commonStyle.width('25%'), commonStyle.center]}>
+        <View style={styles.cardRightSection}>
           <View style={commonStyle.rowCenter}>
-            <View>
+            <View style={styles.priceSection}>
               <View style={styles.offerCard}>
                 <Text style={styles.offerText}>5% off</Text>
               </View>
-              <View>
+              <View style={commonStyle.center}>
                 <Text style={commonStyle.rowCenter}>
                   <Text>QAR </Text>
                   <Text style={styles.price}>4790 </Text>
@@ -45,12 +44,14 @@ function PriceSection({item, isActive}) {
               <View>
                 <Text style={commonStyle.rowCenter}>
                   <Text>QAR </Text>
-                  <Text style={styles.price}>3395 </Text>
+                  <Text style={styles.discountedPrice}>3395 </Text>
                 </Text>
               </View>
             </View>
-            <View>
+            <View style={styles.checkBoxSection}>
               <CheckBox
+                onPress={() => setSelected(index)}
+                containerStyle={styles.checkBoxWrapper}
                 checked={isActive}
                 checkedIcon={
                   <Icon
@@ -78,19 +79,69 @@ function PriceSection({item, isActive}) {
 const styles = StyleSheet.create({
   card(isActive) {
     return {
-      width: wp('95%'),
+      width: '100%',
       height: 80,
       backgroundColor: isActive ? '#FEF5F2' : Colors.white,
+      borderWidth: 0.5,
+      borderColor: Colors.lightText,
       borderRadius: 8,
       padding: 10,
+      justifyContent: 'center',
+      alignItems: 'center',
     };
   },
+  cardBody: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    height: 70,
+  },
+  cardLeftSection: {
+    width: '60%',
+    borderRightWidth: 1,
+    borderRightColor: '#DDDDDD',
+  },
+  checkBoxWrapper: {
+    padding: 0,
+    margin: 0,
+  },
+  cardRightSection: {
+    width: '40%',
+    borderLeftWidth: 1,
+    borderLeftColor: '#DDDDDD',
+    marginHorizontal: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  bedTypeText: {
+    fontFamily: Font.AvenirHeavy,
+    fontSize: 12,
+    color: '#26698E',
+  },
+  amenitiesText: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 12,
+    color: '#242A37',
+  },
+  priceSection: {
+    width: '70%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  checkBoxSection: {
+    width: '30%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   offerCard: {
-    width: 45,
-    height: 20,
+    width: 50,
+    height: 25,
+    borderRadius: 2,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#FF2D55',
+    padding: 2,
   },
   offerText: {
     fontFamily: Font.AvenirHeavy,
@@ -98,6 +149,11 @@ const styles = StyleSheet.create({
     color: Colors.white,
   },
   price: {
+    fontFamily: Font.AvenirBlack,
+    fontSize: 12,
+    color: '#0B151F',
+  },
+  discountedPrice: {
     fontFamily: Font.AvenirBlack,
     fontSize: 14,
     color: '#0B151F',

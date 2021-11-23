@@ -288,7 +288,7 @@ function ChooseRooms() {
     },
   ]);
   return (
-    <View style={styles.container}>
+    <View>
       <View style={styles.sliderSection}>
         <FeatureSlider />
       </View>
@@ -307,9 +307,6 @@ function ChooseRooms() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   contentWrapper: {
     paddingHorizontal: 12,
   },
