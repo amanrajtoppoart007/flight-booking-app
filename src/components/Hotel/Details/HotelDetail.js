@@ -15,7 +15,9 @@ function HotelDetail({item, index}) {
       <View style={styles.cardHeader}>
         <View style={commonStyle.rowSpaceBetween}>
           <View>
-            <Text>Room {item?.roomNumber}: Fabulous Room, Deluxe Ro…</Text>
+            <Text>
+              Room {item?.roomNumber}: {item?.title}
+            </Text>
             <Text>1 King Bed, Room Only</Text>
           </View>
           <View>
@@ -29,7 +31,7 @@ function HotelDetail({item, index}) {
           return (
             <View key={i} style={styles.cardBody}>
               <View>
-                <Text>Spectacular Room, 2 Double Beds, Non Smoking…</Text>
+                <Text>{option?.title}</Text>
               </View>
               <View style={commonStyle.rowFlexStart}>
                 <View>
@@ -60,7 +62,11 @@ function HotelDetail({item, index}) {
               <View style={commonStyle.center}>
                 {option?.rooms &&
                   option?.rooms.map((room, j) => {
-                    return <PriceSection key={j} item={room} isActive={true} />;
+                    return (
+                      <View key={j} style={commonStyle.marginVertical(8)}>
+                        <PriceSection item={room} isActive={room?.isSelected} />
+                      </View>
+                    );
                   })}
               </View>
             </View>
@@ -76,10 +82,15 @@ const styles = StyleSheet.create({
   },
   card: {},
   cardHeader: {
-    height: 45,
     backgroundColor: '#FEF5F2',
+    padding: 12,
+    borderTopRightRadius: 8,
+    borderTopLeftRadius: 8,
   },
-  cardBody: {},
+  cardBody: {
+    marginVertical: 3.5,
+    paddingHorizontal: 12,
+  },
 });
 
 export default HotelDetail;

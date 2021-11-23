@@ -6,7 +6,7 @@ import Colors from '../../../layout/Colors';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import Font from '../../../layout/Font';
 
-function PriceSection({isActive}) {
+function PriceSection({item, isActive}) {
   return (
     <View style={styles.card(isActive)}>
       <View style={commonStyle.rowFlexStart}>
@@ -51,6 +51,7 @@ function PriceSection({isActive}) {
             </View>
             <View>
               <CheckBox
+                checked={isActive}
                 checkedIcon={
                   <Icon
                     name={'dot-circle-o'}

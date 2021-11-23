@@ -1,5 +1,12 @@
 import React from 'react';
-import {Image, ImageBackground, StyleSheet, Text, View} from 'react-native';
+import {
+  Image,
+  ImageBackground,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {widthPercentageToDP} from 'react-native-responsive-screen';
 import Font from '../../../layout/Font';
 import Colors from '../../../layout/Colors';
@@ -30,11 +37,11 @@ function ImageGallery() {
         </View>
         <View style={styles.miniGalleryContent}>
           <ImageBackground
-            style={[styles.miniImage, styles.extraImageSection]}
+            style={styles.miniImage}
             source={require('../../../assets/images/temp/slider/slider-mini-image-three.png')}>
-            <View>
+            <TouchableOpacity style={styles.extraImageSection}>
               <Text style={styles.extraImageCounter}>+20</Text>
-            </View>
+            </TouchableOpacity>
           </ImageBackground>
         </View>
       </View>
@@ -63,8 +70,12 @@ const styles = StyleSheet.create({
   },
   miniGalleryContent: {
     marginVertical: 3.5,
+    borderRadius: 8,
   },
   extraImageSection: {
+    width: 65,
+    height: 65,
+    borderRadius: 8,
     backgroundColor: 'rgba(44,40,40,0.6)',
     opacity: 0.8,
     justifyContent: 'center',

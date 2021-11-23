@@ -20,6 +20,7 @@ function ChooseRooms() {
               price: 4790.0,
               discountedPrice: 3395.0,
               currency: 'QAR',
+              isSelected: true,
             },
             {
               title: '1 King Bed',
@@ -28,6 +29,7 @@ function ChooseRooms() {
               price: 4790.0,
               discountedPrice: 3395.0,
               currency: 'QAR',
+              isSelected: false,
             },
             {
               title: '2 Double Beds',
@@ -36,6 +38,7 @@ function ChooseRooms() {
               price: 4790.0,
               discountedPrice: 3395.0,
               currency: 'QAR',
+              isSelected: false,
             },
           ],
         },
@@ -49,6 +52,7 @@ function ChooseRooms() {
               price: 4790.0,
               discountedPrice: 3395.0,
               currency: 'QAR',
+              isSelected: false,
             },
             {
               title: '1 King Bed',
@@ -57,6 +61,7 @@ function ChooseRooms() {
               price: 4790.0,
               discountedPrice: 3395.0,
               currency: 'QAR',
+              isSelected: false,
             },
             {
               title: '2 Double Beds',
@@ -65,6 +70,7 @@ function ChooseRooms() {
               price: 4790.0,
               discountedPrice: 3395.0,
               currency: 'QAR',
+              isSelected: false,
             },
           ],
         },
@@ -84,6 +90,7 @@ function ChooseRooms() {
               price: 4790.0,
               discountedPrice: 3395.0,
               currency: 'QAR',
+              isSelected: false,
             },
             {
               title: '1 King Bed',
@@ -92,6 +99,7 @@ function ChooseRooms() {
               price: 4790.0,
               discountedPrice: 3395.0,
               currency: 'QAR',
+              isSelected: false,
             },
             {
               title: '2 Double Beds',
@@ -100,6 +108,7 @@ function ChooseRooms() {
               price: 4790.0,
               discountedPrice: 3395.0,
               currency: 'QAR',
+              isSelected: false,
             },
           ],
         },
@@ -113,6 +122,7 @@ function ChooseRooms() {
               price: 4790.0,
               discountedPrice: 3395.0,
               currency: 'QAR',
+              isSelected: false,
             },
             {
               title: '1 King Bed',
@@ -121,6 +131,7 @@ function ChooseRooms() {
               price: 4790.0,
               discountedPrice: 3395.0,
               currency: 'QAR',
+              isSelected: false,
             },
             {
               title: '2 Double Beds',
@@ -129,6 +140,7 @@ function ChooseRooms() {
               price: 4790.0,
               discountedPrice: 3395.0,
               currency: 'QAR',
+              isSelected: false,
             },
           ],
         },
@@ -148,6 +160,7 @@ function ChooseRooms() {
               price: 4790.0,
               discountedPrice: 3395.0,
               currency: 'QAR',
+              isSelected: false,
             },
             {
               title: '1 King Bed',
@@ -156,6 +169,7 @@ function ChooseRooms() {
               price: 4790.0,
               discountedPrice: 3395.0,
               currency: 'QAR',
+              isSelected: false,
             },
             {
               title: '2 Double Beds',
@@ -164,6 +178,7 @@ function ChooseRooms() {
               price: 4790.0,
               discountedPrice: 3395.0,
               currency: 'QAR',
+              isSelected: false,
             },
           ],
         },
@@ -177,6 +192,7 @@ function ChooseRooms() {
               price: 4790.0,
               discountedPrice: 3395.0,
               currency: 'QAR',
+              isSelected: false,
             },
             {
               title: '1 King Bed',
@@ -185,6 +201,7 @@ function ChooseRooms() {
               price: 4790.0,
               discountedPrice: 3395.0,
               currency: 'QAR',
+              isSelected: false,
             },
             {
               title: '2 Double Beds',
@@ -193,6 +210,7 @@ function ChooseRooms() {
               price: 4790.0,
               discountedPrice: 3395.0,
               currency: 'QAR',
+              isSelected: false,
             },
           ],
         },
@@ -212,6 +230,7 @@ function ChooseRooms() {
               price: 4790.0,
               discountedPrice: 3395.0,
               currency: 'QAR',
+              isSelected: false,
             },
             {
               title: '1 King Bed',
@@ -220,6 +239,7 @@ function ChooseRooms() {
               price: 4790.0,
               discountedPrice: 3395.0,
               currency: 'QAR',
+              isSelected: false,
             },
             {
               title: '2 Double Beds',
@@ -228,6 +248,7 @@ function ChooseRooms() {
               price: 4790.0,
               discountedPrice: 3395.0,
               currency: 'QAR',
+              isSelected: false,
             },
           ],
         },
@@ -241,6 +262,7 @@ function ChooseRooms() {
               price: 4790.0,
               discountedPrice: 3395.0,
               currency: 'QAR',
+              isSelected: false,
             },
             {
               title: '1 King Bed',
@@ -249,6 +271,7 @@ function ChooseRooms() {
               price: 4790.0,
               discountedPrice: 3395.0,
               currency: 'QAR',
+              isSelected: false,
             },
             {
               title: '2 Double Beds',
@@ -257,6 +280,7 @@ function ChooseRooms() {
               price: 4790.0,
               discountedPrice: 3395.0,
               currency: 'QAR',
+              isSelected: false,
             },
           ],
         },
@@ -285,6 +309,9 @@ function ChooseRooms() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  contentWrapper: {
+    paddingHorizontal: 12,
   },
   sliderSection: {
     paddingHorizontal: 12,

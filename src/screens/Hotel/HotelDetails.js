@@ -82,7 +82,8 @@ function HotelDetails() {
   };
 
   return (
-    <SafeAreaView style={commonStyle.container}>
+    <SafeAreaView
+      style={[commonStyle.container, commonStyle.backgroundColor('F5F7FB')]}>
       <CustomStatusBar backgroundColor={Colors.primary} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={commonStyle.wrapper}>
@@ -106,7 +107,7 @@ function HotelDetails() {
                     </View>
                   </View>
                   <View style={commonStyle.rowSpaceBetween}>
-                    <View>
+                    <View style={commonStyle.marginHorizontal(20)}>
                       <EditSvg />
                     </View>
                     <View>
@@ -114,8 +115,10 @@ function HotelDetails() {
                     </View>
                   </View>
                 </View>
-                <View>
-                  <Text>15 Sep - 20 Sep | Room 1 | 2 Guests</Text>
+                <View style={commonStyle.marginVertical(9)}>
+                  <Text style={styles.roomDetailText}>
+                    15 Sep - 20 Sep | Room 1 | 2 Guests
+                  </Text>
                 </View>
               </View>
             </LinearGradient>
@@ -129,7 +132,7 @@ function HotelDetails() {
                           <View>
                             <Text style={styles.placeTitle}>W Doha</Text>
                           </View>
-                          <View>
+                          <View style={commonStyle.marginHorizontal(11.5)}>
                             <StarRating rating={4} size={15} />
                           </View>
                         </View>
@@ -181,12 +184,23 @@ function HotelDetails() {
                 </View>
               </View>
               <View style={styles.contentWrapper}>
-                <View style={commonStyle.rowSpaceEven}>
+                <View
+                  style={[
+                    commonStyle.rowSpaceEven,
+                    commonStyle.marginHorizontal(10),
+                    commonStyle.marginVertical(15),
+                  ]}>
                   <View>
-                    <Text>Check-In: 03:00 PM</Text>
+                    <Text style={commonStyle.rowSpaceBetween}>
+                      <Text style={styles.timeText('#6C6C6C')}>Check-In: </Text>
+                      <Text style={styles.timeText('#F15922')}>03:00 PM</Text>
+                    </Text>
                   </View>
                   <View>
-                    <Text>Check-Out: 12:00 PM</Text>
+                    <Text style={commonStyle.rowSpaceBetween}>
+                      <Text style={styles.timeText('#6C6C6C')}>Check-Out:</Text>
+                      <Text style={styles.timeText('#F15922')}> 12:00 PM</Text>
+                    </Text>
                   </View>
                 </View>
               </View>
@@ -228,6 +242,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: Colors.white,
   },
+  roomDetailText: {
+    fontFamily: Font.AvenirHeavy,
+    fontSize: 14,
+    color: '#90E0FF',
+  },
   placeTitle: {
     fontFamily: Font.AvenirHeavy,
     fontSize: 14,
@@ -252,6 +271,13 @@ const styles = StyleSheet.create({
     fontFamily: Font.AvenirHeavy,
     fontSize: 11,
     color: '#475F7B',
+  },
+  timeText(color) {
+    return {
+      fontFamily: Font.AvenirMedium,
+      fontSize: 14,
+      color,
+    };
   },
   headerSection: {
     flexDirection: 'row',
