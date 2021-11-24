@@ -56,6 +56,7 @@ function ResultItem() {
               <View style={{marginHorizontal: 3}}>
                 <Text style={styles.price}>13000</Text>
               </View>
+              <View style={styles.cross} />
             </View>
             <View style={styles.rowFlexEnd}>
               <View>
@@ -92,6 +93,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginVertical: 5,
     paddingHorizontal: 5,
+  },
+  cross: {
+    position: 'absolute',
+    borderColor: '#FF2D55',
+    borderBottomWidth: 2,
+    bottom: 0,
+    width: '60%',
+    borderRadius: 8,
+    transform: [{rotateZ: '170deg'}, {translateY: 8}],
   },
   title: {
     fontSize: 18,
