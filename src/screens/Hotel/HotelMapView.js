@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   View,
@@ -14,7 +14,9 @@ import Colors from '../../layout/Colors';
 import MenuSvg from '../../components/Svg/Hotel/Menu.svg';
 import ListSvg from '../../components/Svg/Hotel/List.svg';
 import Slider from '../../components/Hotel/MapView/Slider';
-function HotelMapView() {
+import ShortFilter from '../../components/Hotel/SortFilter';
+function HotelMapView({navigation}) {
+  const [isFilterVisible, setIsFilterVisible] = useState(false);
   return (
     <SafeAreaView style={commonStyle.container}>
       <View style={[commonStyle.wrapper, {flex: 1}]}>
@@ -31,7 +33,9 @@ function HotelMapView() {
             }}
           />
           <View style={styles.headerSection}>
-            <TouchableOpacity style={styles.menuButton}>
+            <TouchableOpacity
+              onPress={() => setIsFilterVisible(true)}
+              style={styles.menuButton}>
               <MenuSvg />
             </TouchableOpacity>
           </View>
@@ -44,12 +48,19 @@ function HotelMapView() {
                 <ListSvg />
               </View>
               <View>
-                <Text>List View</Text>
+                <TouchableOpacity
+                  onPress={() => navigation.replace('SearchResult')}>
+                  <Text>List View</Text>
+                </TouchableOpacity>
               </View>
             </View>
           </View>
+          <View />
         </View>
       </View>
+      {isFilterVisible && (
+        <ShortFilter onClose={() => setIsFilterVisible(false)} />
+      )}
     </SafeAreaView>
   );
 }

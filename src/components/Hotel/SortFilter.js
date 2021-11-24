@@ -41,7 +41,7 @@ function SortFilter({onClose}) {
       case 'SortBy':
         return <SortBy jumpTo={jumpTo} />;
       case 'Filter':
-        return <Fliter jumpTo={jumpTo} />;
+        return <Filter jumpTo={jumpTo} />;
       default:
         return <SortBy jumpto={jumpTo} />;
     }
@@ -76,7 +76,7 @@ function SortFilter({onClose}) {
   return (
     <SafeAreaView style={styles.container}>
       <Header onClose={onClose} />
-      <View style={styles.subConatiner}>
+      <View style={styles.subContainer}>
         <TabView
           navigationState={{index, routes}}
           renderScene={renderScene}
@@ -102,10 +102,6 @@ const Header = ({onClose}) => {
           size={20}
           color={'black'}
         />
-      </View>
-      <View style={styles.sortTextContainer}>
-        <Text style={styles.sortText}>Sort by</Text>
-        <Text style={styles.sortText}>Filters</Text>
       </View>
     </View>
   );
@@ -151,7 +147,7 @@ function ListCheckBox({text, svg = null}) {
 function GraphSlider() {
   const renderThumb = useCallback(
     () => (
-      <View elevation={5} style={styles.SliderIconConatiner}>
+      <View elevation={5} style={styles.SliderIconContainer}>
         <Icon
           name={'circle'}
           type={'entypo'}
@@ -204,34 +200,34 @@ function BorderButton({onPress, num, selected = false}) {
 }
 
 function Ratings() {
-  const [Selected, setSeletcted] = useState();
+  const [Selected, setSelected] = useState();
   return (
     <View>
       <Text style={styles.listTitle()}>Ratings</Text>
       <View style={[commonStyle.rowSpaceBetween, commonStyle.margin(10)]}>
         <BorderButton
-          selected={Selected == '5'}
-          onPress={() => setSeletcted('5')}
+          selected={Selected === '5'}
+          onPress={() => setSelected('5')}
           num="5"
         />
         <BorderButton
-          selected={Selected == '4'}
-          onPress={() => setSeletcted('4')}
+          selected={Selected === '4'}
+          onPress={() => setSelected('4')}
           num="4"
         />
         <BorderButton
-          selected={Selected == '3'}
-          onPress={() => setSeletcted('3')}
+          selected={Selected === '3'}
+          onPress={() => setSelected('3')}
           num="3"
         />
         <BorderButton
-          selected={Selected == '2'}
-          onPress={() => setSeletcted('2')}
+          selected={Selected === '2'}
+          onPress={() => setSelected('2')}
           num="2"
         />
         <BorderButton
-          selected={Selected == '1'}
-          onPress={() => setSeletcted('1')}
+          selected={Selected === '1'}
+          onPress={() => setSelected('1')}
           num="1"
         />
       </View>
@@ -240,7 +236,7 @@ function Ratings() {
   );
 }
 
-function Fliter() {
+function Filter() {
   return (
     <ScrollView>
       <View style={commonStyle.marginVertical(5)}>
@@ -263,8 +259,8 @@ function Fliter() {
             commonStyle.rowSpaceAround,
             commonStyle.marginHorizontal(10),
           ]}>
-          <LightBorderBtn onPress={() => {}} listTitle="Halfboard" />
-          <LightBorderBtn onPress={() => {}} listTitle="Fullboard" />
+          <LightBorderBtn onPress={() => {}} listTitle="HalfBoard" />
+          <LightBorderBtn onPress={() => {}} listTitle="FullBoard" />
         </View>
       </View>
       <View style={styles.divider} />
@@ -307,10 +303,10 @@ function Fliter() {
   );
 }
 
-const SortButton = ({isSelected = false, listTitle, onPress, Icon}) => {
+const SortButton = ({isSelected = false, listTitle, onPress, ShortBtnIcon}) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.sortButton}>
-      {Icon}
+      {ShortBtnIcon}
       <Text style={styles.listTitle(isSelected)}>{listTitle}</Text>
     </TouchableOpacity>
   );
@@ -330,38 +326,38 @@ const SortBy = () => {
       <SortButton
         onPress={() => setSelected('Recommended')}
         listTitle="Recommended"
-        Icon={<ThumbsUp />}
-        isSelected={Selected == 'Recommended'}
+        ShortBtnIcon={<ThumbsUp />}
+        isSelected={Selected === 'Recommended'}
       />
       <SortButton
         onPress={() => setSelected('Deals')}
         listTitle="Deals"
-        Icon={<Offer />}
-        isSelected={Selected == 'Deals'}
+        ShortBtnIcon={<Offer />}
+        isSelected={Selected === 'Deals'}
       />
       <SortButton
         onPress={() => setSelected('Stars (Highest)')}
         listTitle="Stars (Highest)"
-        Icon={<Stars />}
-        isSelected={Selected == 'Stars (Highest)'}
+        ShortBtnIcon={<Stars />}
+        isSelected={Selected === 'Stars (Highest)'}
       />
       <SortButton
         onPress={() => setSelected('Price (Highest)')}
         listTitle="Price (Highest)"
-        Icon={<HighPrice />}
-        isSelected={Selected == 'Price (Highest)'}
+        ShortBtnIcon={<HighPrice />}
+        isSelected={Selected === 'Price (Highest)'}
       />
       <SortButton
         onPress={() => setSelected('Price (Lowest)')}
         listTitle="Price (Lowest)"
-        Icon={<LowPrice />}
-        isSelected={Selected == 'Price (Lowest)'}
+        ShortBtnIcon={<LowPrice />}
+        isSelected={Selected === 'Price (Lowest)'}
       />
       <SortButton
         onPress={() => setSelected('Expedia Rating')}
         listTitle="Expedia Rating"
-        Icon={<Plane />}
-        isSelected={Selected == 'Expedia Rating'}
+        ShortBtnIcon={<Plane />}
+        isSelected={Selected === 'Expedia Rating'}
       />
     </ScrollView>
   );
@@ -394,7 +390,6 @@ const styles = StyleSheet.create({
       paddingHorizontal: 8,
       borderWidth: 1,
       borderColor: !selected ? Colors.border : Colors.orange,
-      backgroundColor: 'white',
       borderRadius: 6,
       paddingVertical: 5,
       backgroundColor: Colors.white,
@@ -451,10 +446,11 @@ const styles = StyleSheet.create({
     right: 0,
     alignItems: 'flex-end',
   },
-  subConatiner: {
+  subContainer: {
     backgroundColor: 'white',
     width: wp('75%'),
     height: hp('100%'),
+    paddingTop: 20,
   },
   FlightTabContainer: {
     backgroundColor: 'white',
@@ -567,7 +563,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginHorizontal: 10,
   },
-  SliderIconConatiner: {
+  SliderIconContainer: {
     margin: 3,
     padding: 2,
     borderRadius: 22,

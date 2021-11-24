@@ -14,7 +14,7 @@ import commonStyle from '../../layout/Style';
 import SortFilter from '../../components/Hotel/SortFilter';
 function SearchResult() {
   const navigation = useNavigation();
-  const [SortVissible, setSortVissible] = useState(false);
+  const [shortVisible, setShortVisible] = useState(false);
   const result = [
     {
       id: 'result-item-one',
@@ -120,7 +120,7 @@ function SearchResult() {
   const RenderItem = ({item}) => <ResultItem item={item} />;
   return (
     <SafeAreaView style={styles.container}>
-      <CustomStatusBar />
+      <CustomStatusBar backgroundColor={Colors.primary} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.wrapper}>
           <View style={styles.content}>
@@ -155,7 +155,7 @@ function SearchResult() {
                       </View>
                       <View style={commonStyle.marginHorizontal(5)}>
                         <Icon
-                          onPress={() => setSortVissible(true)}
+                          onPress={() => setShortVisible(true)}
                           name={'filter-variant'}
                           type={'material-community'}
                           size={18}
@@ -181,7 +181,7 @@ function SearchResult() {
           </View>
         </View>
       </ScrollView>
-      {SortVissible && <SortFilter onClose={() => setSortVissible(false)} />}
+      {shortVisible && <SortFilter onClose={() => setShortVisible(false)} />}
     </SafeAreaView>
   );
 }

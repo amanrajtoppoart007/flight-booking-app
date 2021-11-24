@@ -15,10 +15,10 @@ function SliderItem({item}) {
   return (
     <View style={styles.card}>
       <View style={styles.cardBody}>
-        <View>
+        <View style={{width: '30%'}}>
           <Image style={styles.image} source={item?.image} />
         </View>
-        <View style={commonStyle.marginHorizontal(5)}>
+        <View style={{width: '70%'}}>
           <View style={commonStyle.rowFlexStart}>
             <View>
               <Text>W Doha</Text>
@@ -35,9 +35,13 @@ function SliderItem({item}) {
               <Text>West Bay, Doha, QA</Text>
             </View>
           </View>
-          <View style={commonStyle.rowSpaceBetween}>
+          <View style={[commonStyle.rowSpaceBetween]}>
             <View>
-              <View style={commonStyle.rowFlexStart}>
+              <View
+                style={[
+                  commonStyle.rowFlexStart,
+                  commonStyle.marginVertical(10),
+                ]}>
                 <View>
                   <WifiSvg />
                 </View>
