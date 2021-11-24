@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {Button, Overlay} from 'react-native-elements';
+import {Overlay} from 'react-native-elements';
 import Colors from '../../../layout/Colors';
 import {
   heightPercentageToDP as hp,

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import commonStyle from '../../../layout/Style';
 import WifiSvg from '../../Svg/Hotel/Wifi.svg';
 import PoolSvg from '../../Svg/Hotel/Pool.svg';
@@ -8,9 +8,11 @@ import GymSvg from '../../Svg/Hotel/Gym.svg';
 import PriceGrid from './PriceGrid';
 import {Icon} from 'react-native-elements';
 import Font from '../../../layout/Font';
+import RoomInfo from './RoomInfo';
 
 function HotelDetail({item, index}) {
   const [isVisible, setIsVisible] = useState(false);
+  const [isRoomInfoVisible, setIsRoomInfoVisible] = useState(false);
   return (
     <View>
       <View style={styles.cardHeader}>
@@ -60,7 +62,7 @@ function HotelDetail({item, index}) {
           return (
             <View key={i} style={styles.cardBody}>
               <View>
-                <Text>{option?.title}</Text>
+                <Text style={styles.roomTitle}>{option?.title}</Text>
               </View>
               <View style={commonStyle.rowFlexStart}>
                 <View>
@@ -75,17 +77,10 @@ function HotelDetail({item, index}) {
                 <View>
                   <PoolSvg />
                 </View>
-                <View
-                  style={[
-                    commonStyle.rowFlexStart,
-                    commonStyle.marginHorizontal(5),
-                  ]}>
-                  <View>
-                    <Text>+</Text>
-                  </View>
-                  <View>
-                    <Text>More</Text>
-                  </View>
+                <View style={commonStyle.marginHorizontal(5)}>
+                  <TouchableOpacity onPress={() => setIsRoomInfoVisible(true)}>
+                    <Text style={styles.moreText}> + More</Text>
+                  </TouchableOpacity>
                 </View>
               </View>
               <View>
@@ -94,6 +89,12 @@ function HotelDetail({item, index}) {
             </View>
           );
         })}
+      <View>
+        <RoomInfo
+          isRoomInfoVisible={isRoomInfoVisible}
+          setIsRoomInfoVisible={setIsRoomInfoVisible}
+        />
+      </View>
     </View>
   );
 }
@@ -144,6 +145,16 @@ const styles = StyleSheet.create({
   cardBody: {
     marginVertical: 3.5,
     paddingHorizontal: 12,
+  },
+  roomTitle: {
+    fontFamily: Font.AvenirHeavy,
+    fontSize: 14,
+    color: '#1D8CCC',
+  },
+  moreText: {
+    fontFamily: Font.AvenirHeavy,
+    fontSize: 14,
+    color: '#1D8CCC',
   },
 });
 
