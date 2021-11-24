@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
 import Colors from '../../layout/Colors';
 import CustomStatusBar from '../../components/CustomStatusBar';
@@ -11,10 +11,10 @@ import {Icon} from 'react-native-elements';
 import ResultItem from '../../components/Hotel/Result/ResultItem';
 import {useNavigation} from '@react-navigation/native';
 import commonStyle from '../../layout/Style';
-
+import SortFilter from '../../components/Hotel/SortFilter';
 function SearchResult() {
   const navigation = useNavigation();
-
+  const [SortVissible, setSortVissible] = useState(false);
   const result = [
     {
       id: 'result-item-one',
@@ -155,6 +155,7 @@ function SearchResult() {
                       </View>
                       <View style={commonStyle.marginHorizontal(5)}>
                         <Icon
+                          onPress={() => setSortVissible(true)}
                           name={'filter-variant'}
                           type={'material-community'}
                           size={18}
@@ -180,6 +181,7 @@ function SearchResult() {
           </View>
         </View>
       </ScrollView>
+      {SortVissible && <SortFilter onClose={() => setSortVissible(false)} />}
     </SafeAreaView>
   );
 }
