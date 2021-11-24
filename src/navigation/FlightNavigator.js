@@ -15,7 +15,7 @@ const Stack = createStackNavigator();
 const FlightNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="FlightHome" component={Home} />
       <Stack.Screen name="FlightResult" component={FlightResults} />
       <Stack.Screen name="Review" component={Review} />
       <Stack.Screen name="BookingConfirm" component={BookingConfirm} />

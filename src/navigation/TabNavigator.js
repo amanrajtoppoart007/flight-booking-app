@@ -2,7 +2,6 @@ import * as React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Home from '../screens/Home';
 import FlightHome from '../screens/Flight/Home';
-import Account from '../screens/Account/Account';
 import Offer from '../screens/Offer';
 
 import HomeSvg from '../components/Svg/Tab/Home.svg';
@@ -15,6 +14,7 @@ import Colors from '../layout/Colors';
 import commonStyle from '../layout/Style';
 import {useState} from 'react';
 import TrackFlightModal from '../components/TrackFlight/TrackFlightModal';
+import AccountNavigator from './AccountNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -32,7 +32,7 @@ const menus = [
     svgIcon: OfferSvg,
   },
   {
-    title: 'Account',
+    title: 'AccountStack',
     svgIcon: UserSvg,
   },
 ];
@@ -142,9 +142,9 @@ export default function TabNavigator() {
       <Tab.Screen name="Flight" component={FlightHome} />
       <Tab.Screen name="Offer" component={Offer} />
       <Tab.Screen
-        name="Account"
+        name="AccountStack"
         options={{headerShown: false}}
-        component={Account}
+        component={AccountNavigator}
       />
     </Tab.Navigator>
   );

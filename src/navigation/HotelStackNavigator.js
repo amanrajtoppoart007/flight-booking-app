@@ -13,8 +13,8 @@ import GuestReviews from '../screens/Hotel/GuestReviews';
 const Stack = createStackNavigator();
 const HotelStackNavigator = () => (
   <Stack.Navigator screenOptions={{headerShown: false}}>
-    <Stack.Screen name={'GuestReviews'} component={GuestReviews} />
     <Stack.Screen name={'HotelDetails'} component={HotelDetails} />
+    <Stack.Screen name={'GuestReviews'} component={GuestReviews} />
     <Stack.Screen name={'GuestDetails'} component={GuestDetails} />
     <Stack.Screen name={'Payment'} component={Payment} />
     <Stack.Screen name={'Home'} component={Home} />

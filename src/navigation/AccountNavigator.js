@@ -16,7 +16,7 @@ const AccountNavigator = () => {
         gestureEnabled: true,
         ...ScreenSettings,
       }}>
-      <Stack.Screen name={'Account'} component={Account} />
+      <Stack.Screen name={'AccountHome'} component={Account} />
       <Stack.Screen name={'EditProfile'} component={EditProfile} />
       <Stack.Screen name={'MyTravelers'} component={MyTravelers} />
       <Stack.Screen name={'PasswordReset'} component={PasswordReset} />
