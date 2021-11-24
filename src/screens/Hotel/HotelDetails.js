@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import commonStyle from '../../layout/Style';
 import {
-  heightPercentageToDP,
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
@@ -32,8 +31,9 @@ import FlightSvg from '../../components/Svg/Profile/Flight.svg';
 import MapSvg from '../../components/Svg/Hotel/Map.svg';
 import TurnRightSvg from '../../components/Svg/Hotel/TurnRight.svg';
 import PlaneSvg from '../../components/Svg/Hotel/Plane.svg';
+import GoRightSvg from '../../components/Svg/Hotel/GoRight.svg';
 
-function HotelDetails() {
+function HotelDetails({navigation}) {
   const [index, setIndex] = useState(0);
   const [routes] = React.useState([
     {key: 'chooseRooms', title: 'Choose Rooms', Icon: ''},
@@ -86,7 +86,7 @@ function HotelDetails() {
     <SafeAreaView
       style={[commonStyle.container, commonStyle.backgroundColor('F5F7FB')]}>
       <CustomStatusBar backgroundColor={Colors.primary} />
-      <ScrollView showsVerticalScrollIndicator={true}>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={commonStyle.wrapper}>
           <View style={commonStyle.content}>
             <LinearGradient
@@ -101,6 +101,7 @@ function HotelDetails() {
                         type={'ionicon'}
                         style={styles.icon}
                         color={Colors.white}
+                        onPress={() => navigation.goBack()}
                       />
                     </View>
                     <View style={commonStyle.marginHorizontal(10)}>
@@ -206,13 +207,13 @@ function HotelDetails() {
                 </View>
               </View>
               <View>
-                <View style={{height: hp('400%')}}>
+                <View style={{height: hp('300%')}}>
                   <TabView
                     navigationState={{index, routes}}
                     renderScene={renderScene}
                     renderTabBar={_renderTabBar}
                     onIndexChange={_handleIndexChange}
-                    initialLayout={{width: wp('100%'), height: hp('300%')}}
+                    initialLayout={{width: wp('100%')}}
                   />
                 </View>
               </View>
@@ -220,6 +221,31 @@ function HotelDetails() {
           </View>
         </View>
       </ScrollView>
+      <LinearGradient
+        colors={['#242A37', '#3C4250']}
+        style={styles.fixedButtonSection}>
+        <View>
+          <Text style={styles.helperText}>Your total stay price</Text>
+          <View style={commonStyle.rowFlexStart}>
+            <View>
+              <Text style={styles.currencyTitle}>QAR</Text>
+            </View>
+            <View style={commonStyle.marginHorizontal(5)}>
+              <Text style={styles.priceTitle}>10,790.00</Text>
+            </View>
+          </View>
+        </View>
+        <View>
+          <TouchableOpacity style={styles.continueButton}>
+            <View>
+              <Text style={styles.continueButtonText}>Continue</Text>
+            </View>
+            <View style={commonStyle.marginHorizontal(5)}>
+              <GoRightSvg />
+            </View>
+          </TouchableOpacity>
+        </View>
+      </LinearGradient>
     </SafeAreaView>
   );
 }
@@ -317,6 +343,42 @@ const styles = StyleSheet.create({
     width: '100%',
     borderBottomWidth: 2,
     borderBottomColor: Colors.transparent,
+  },
+  fixedButtonSection: {
+    height: 73,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 12,
+  },
+  continueButton: {
+    width: 92,
+    height: 35,
+    backgroundColor: '#F15922',
+    borderRadius: 6,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  continueButtonText: {
+    fontFamily: Font.AvenirHeavy,
+    fontSize: 14,
+    color: Colors.white,
+  },
+  helperText: {
+    fontFamily: Font.AvenirHeavy,
+    fontSize: 14,
+    color: Colors.white,
+  },
+  currencyTitle: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 14,
+    color: Colors.white,
+  },
+  priceTitle: {
+    fontFamily: Font.AvenirHeavy,
+    fontSize: 16,
+    color: Colors.white,
   },
 });
 

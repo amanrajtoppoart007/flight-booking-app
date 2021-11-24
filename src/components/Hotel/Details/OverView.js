@@ -91,7 +91,7 @@ function OverView() {
                           </View>
                         </View>
                       ) : (
-                        <></>
+                        <View style={{display: 'none'}} key={index} />
                       );
                     })}
                 </View>
