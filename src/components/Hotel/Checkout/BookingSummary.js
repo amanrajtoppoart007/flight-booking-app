@@ -22,23 +22,19 @@ function BookingSummary({isBookingSummaryVisible, setIsBookingSummaryVisible}) {
     <BottomSheet isVisible={isBookingSummaryVisible}>
       <ScrollView style={styles.bottomSheet}>
         <View style={commonStyle.marginBottom(30)}>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}>
+          <View style={commonStyle.rowSpaceBetween}>
             <View>
               <Text style={styles.title}>Booking Summary</Text>
             </View>
-            <TouchableOpacity onPress={() => setIsBookingSummaryVisible(false)}>
+            <View>
               <Icon
+                onPress={() => setIsBookingSummaryVisible(false)}
                 name={'close'}
                 type={'antdesign'}
                 size={18}
                 color={Colors.lightText}
               />
-            </TouchableOpacity>
+            </View>
           </View>
           <View
             style={[commonStyle.rowFlexStart, commonStyle.marginVertical(10)]}>

@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.bottomSheet,
   },
   card: {
-    height: hp('65%'),
+    height: hp('75%'),
     backgroundColor: Colors.white,
     padding: 12,
     borderTopRightRadius: 20,
