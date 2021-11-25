@@ -31,7 +31,7 @@ function GuestReviews() {
           </View>
           <View style={styles.content}>
             <View style={styles.contentConatiner}>
-              <View style={[commonStyle.rowFlexStart, commonStyle.margin(10)]}>
+              <View style={[commonStyle.rowFlexStart, commonStyle.margin(12)]}>
                 <Text style={styles.greenBigText}>4.5/5</Text>
                 <View
                   style={[
@@ -43,7 +43,7 @@ function GuestReviews() {
                   <Text style={styles.textLight}>312 verified review</Text>
                 </View>
               </View>
-              <View style={commonStyle.marginHorizontal(10)}>
+              <View style={commonStyle.marginHorizontal(12)}>
                 <Text style={styles.textNormal}>Cleanliness</Text>
                 <View
                   style={[
@@ -56,14 +56,14 @@ function GuestReviews() {
                     variant="determinate"
                     value={4.7 / 5}
                     style={{
-                      width: '90%',
+                      width: '89%',
                       borderRadius: 5,
                     }}
                   />
                   <Text style={styles.greenText}>4.7/5</Text>
                 </View>
               </View>
-              <View style={commonStyle.marginHorizontal(10)}>
+              <View style={commonStyle.marginHorizontal(12)}>
                 <Text style={styles.textNormal}>Staff & service</Text>
                 <View
                   style={[
@@ -76,14 +76,14 @@ function GuestReviews() {
                     variant="determinate"
                     value={4.6 / 5}
                     style={{
-                      width: '90%',
+                      width: '89%',
                       borderRadius: 5,
                     }}
                   />
                   <Text style={styles.greenText}>4.6/5</Text>
                 </View>
               </View>
-              <View style={commonStyle.marginHorizontal(10)}>
+              <View style={commonStyle.marginHorizontal(12)}>
                 <Text style={styles.textNormal}>Amenities</Text>
                 <View
                   style={[
@@ -96,14 +96,14 @@ function GuestReviews() {
                     variant="determinate"
                     value={4.7 / 5}
                     style={{
-                      width: '90%',
+                      width: '89%',
                       borderRadius: 5,
                     }}
                   />
                   <Text style={styles.greenText}>4.7/5</Text>
                 </View>
               </View>
-              <View style={commonStyle.marginHorizontal(10)}>
+              <View style={commonStyle.marginHorizontal(12)}>
                 <Text style={styles.textNormal}>
                   Property conditions & facilities
                 </Text>
@@ -118,7 +118,7 @@ function GuestReviews() {
                     variant="determinate"
                     value={4.6 / 5}
                     style={{
-                      width: '90%',
+                      width: '89%',
                       borderRadius: 5,
                     }}
                   />
@@ -129,7 +129,7 @@ function GuestReviews() {
               <Text
                 style={[
                   styles.textBig,
-                  commonStyle.marginHorizontal(10),
+                  commonStyle.marginHorizontal(12),
                   commonStyle.marginBottom(10),
                 ]}>
                 Reviews from travellers
@@ -224,14 +224,13 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 8,
     elevation: 5,
-    marginHorizontal: 10,
-    marginVertical: 5,
+    margin: 12,
   },
   divider: {
     borderWidth: 0.5,
     borderColor: '#D9D9D9',
-    marginVertical: 8,
-    marginHorizontal: 10,
+    marginVertical: 12,
+    marginHorizontal: 12,
   },
   wrapper: {
     justifyContent: 'center',
