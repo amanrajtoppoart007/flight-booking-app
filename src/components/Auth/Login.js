@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {
+  Alert,
   Image,
   SafeAreaView,
   StyleSheet,
@@ -14,9 +15,12 @@ import {CheckBox} from 'react-native-elements';
 import CustomTextInput from '../Common/CustomTextInput';
 import Font from '../../layout/Font';
 
-import {api, LOGIN_URL} from '../../services/api';
+import {LOGIN_URL} from '../../services/api';
+import axios from 'axios';
+import {useNavigation} from '@react-navigation/native';
 
 function Login({jumpTo}) {
+  const navigation = useNavigation();
   const [checked, setChecked] = useState('email');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -39,7 +43,19 @@ function Login({jumpTo}) {
     setChecked(value);
   };
 
-  const login = () => {
+  const login = async () => {
+    if (checked === 'email' && !email) {
+      Alert.alert('Please enter valid email');
+      return false;
+    }
+    if (checked === 'mobile' && !mobileNumber) {
+      Alert.alert('Please enter valid mobile number');
+      return false;
+    }
+    if (!password) {
+      Alert.alert('Please enter a password');
+      return false;
+    }
     const emailParams = {
       uname: email,
       pwd: password,
@@ -56,8 +72,17 @@ function Login({jumpTo}) {
     const params = checked === 'email' ? emailParams : mobileParams;
 
     try {
-      const response = api.get(LOGIN_URL, params);
-      console.log(response);
+      const response = await axios.post(LOGIN_URL, params);
+      if (response.status === 200) {
+        const result = response?.data;
+        if (result?.suc) {
+          navigation.navigate('HomeStack');
+        } else {
+          Alert.alert(result?.err);
+        }
+      } else {
+        console.error(response?.message);
+      }
     } catch (e) {
       console.error(e);
     }

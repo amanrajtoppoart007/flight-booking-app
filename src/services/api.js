@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {getToken} from './storage';
 
-export const BASE_URL = 'https://65.0.46.253:3005/att/userb2c/';
+export const BASE_URL = 'http://65.0.46.253:3005/att/userb2c/';
 export const SEARCH_API_BASE_URL = 'https://hotel-content.ezytrip.com/ezytrip/';
 
 export const REGISTER_URL = BASE_URL + 'signup';
