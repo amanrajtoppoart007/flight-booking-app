@@ -4,11 +4,10 @@ import {
   StyleSheet,
   View,
   useWindowDimensions,
-  StatusBar,
   TouchableOpacity,
   Animated,
 } from 'react-native';
-import {TabView, SceneMap} from 'react-native-tab-view';
+import {TabView} from 'react-native-tab-view';
 import commonStyle from '../../layout/Style';
 import Colors from '../../layout/Colors';
 import {heightPercentageToDP} from 'react-native-responsive-screen';
@@ -74,8 +73,8 @@ function Auth() {
   return (
     <SafeAreaView style={commonStyle.container}>
       <CustomStatusBar backgroundColor={Colors.primary} />
-      <View style={[{flex: 1}, commonStyle.wrapper]}>
-        <View style={[{flex: 1}, commonStyle.content]}>
+      <View style={[styles.flex, commonStyle.wrapper]}>
+        <View style={[styles.flex, commonStyle.content]}>
           <View style={{height: heightPercentageToDP('100%')}}>
             <TabView
               navigationState={{index, routes}}
@@ -92,6 +91,9 @@ function Auth() {
 }
 
 const styles = StyleSheet.create({
+  flex: {
+    flex: 1,
+  },
   tabBar: {
     height: 50,
     flexDirection: 'row',
