@@ -22,7 +22,11 @@ function BookingSummary({isBookingSummaryVisible, setIsBookingSummaryVisible}) {
     <BottomSheet isVisible={isBookingSummaryVisible}>
       <ScrollView style={styles.bottomSheet}>
         <View style={commonStyle.marginBottom(30)}>
-          <View style={commonStyle.rowSpaceBetween}>
+          <View
+            style={[
+              commonStyle.rowSpaceBetween,
+              commonStyle.marginVertical(5),
+            ]}>
             <View>
               <Text style={styles.title}>Booking Summary</Text>
             </View>
@@ -166,7 +170,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 1,
     borderColor: '#DDDDDD',
-    marginVertical: 5,
+    marginVertical: 8,
   },
   title: {
     fontSize: 18,
@@ -175,7 +179,7 @@ const styles = StyleSheet.create({
   },
   divider: {
     borderBottomWidth: 1,
-    marginVertical: 5,
+    marginVertical: 8,
     borderColor: '#DDDDDD',
   },
   dividerVertical: {
