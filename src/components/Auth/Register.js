@@ -43,11 +43,13 @@ function Register({jumpTo}) {
     <SafeAreaView style={commonStyle.container}>
       <View style={commonStyle.wrapper}>
         <View style={commonStyle.content}>
-          <View style={styles.greetingSection}>
-            <Text style={styles.greetingText}>Create an Account</Text>
+          <View style={styles.container}>
+            <View style={styles.greetingSection}>
+              <Text style={styles.greetingText}>Create an Account</Text>
+            </View>
           </View>
 
-          <View>
+          <View style={styles.checkBoxSection}>
             <View style={commonStyle.rowFlexStart}>
               {radioProps &&
                 radioProps.map(item => {
@@ -70,37 +72,38 @@ function Register({jumpTo}) {
                 })}
             </View>
           </View>
-
-          <View>
-            <View style={styles.inputSection}>
-              {checked === 'email' ? (
+          <View style={styles.container}>
+            <View>
+              <View style={styles.inputSection}>
+                {checked === 'email' ? (
+                  <CustomTextInput
+                    type={'email'}
+                    title={'Email'}
+                    value={email}
+                    setValue={setEmail}
+                  />
+                ) : (
+                  <CustomTextInput
+                    type={'mobile'}
+                    title={'Mobile Number'}
+                    value={mobileNumber}
+                    setValue={setMobileNumber}
+                    phoneCode={phoneCode}
+                    setPhoneCode={setPhoneCode}
+                  />
+                )}
+              </View>
+              <View style={styles.inputSection}>
                 <CustomTextInput
-                  type={'email'}
-                  title={'Email'}
-                  value={email}
-                  setValue={setEmail}
+                  type={'password'}
+                  title={'Password'}
+                  value={password}
+                  setValue={setPassword}
                 />
-              ) : (
-                <CustomTextInput
-                  type={'mobile'}
-                  title={'Mobile Number'}
-                  value={mobileNumber}
-                  setValue={setMobileNumber}
-                  phoneCode={phoneCode}
-                  setPhoneCode={setPhoneCode}
-                />
-              )}
-            </View>
-            <View style={styles.inputSection}>
-              <CustomTextInput
-                type={'password'}
-                title={'Password'}
-                value={password}
-                setValue={setPassword}
-              />
+              </View>
             </View>
           </View>
-          <View style={styles.forgotPasswordSection}>
+          <View style={styles.termSection}>
             <View style={commonStyle.rowFlexStart}>
               <View>
                 <CheckBox
@@ -120,25 +123,26 @@ function Register({jumpTo}) {
               </View>
             </View>
           </View>
-
-          <View style={[commonStyle.center, commonStyle.marginVertical(20)]}>
-            <TouchableOpacity
-              onPress={() => navigation.navigate('HomeStack')}
-              style={styles.signInButton}>
-              <Text style={styles.signInButtonText}>Create Account</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.forgotPasswordSection}>
-            <View style={commonStyle.rowCenter}>
-              <View>
-                <Text style={styles.accountHelperTitle}>
-                  Already have an account?
-                </Text>
-              </View>
-              <View style={commonStyle.marginHorizontal(3)}>
-                <TouchableOpacity onPress={() => jumpTo('login')}>
-                  <Text style={styles.accountHelperLink}>Login</Text>
-                </TouchableOpacity>
+          <View style={styles.container}>
+            <View style={commonStyle.marginVertical(20)}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('HomeStack')}
+                style={styles.signInButton}>
+                <Text style={styles.signInButtonText}>Create Account</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.forgotPasswordSection}>
+              <View style={commonStyle.rowCenter}>
+                <View>
+                  <Text style={styles.accountHelperTitle}>
+                    Already have an account?
+                  </Text>
+                </View>
+                <View style={commonStyle.marginHorizontal(3)}>
+                  <TouchableOpacity onPress={() => jumpTo('login')}>
+                    <Text style={styles.accountHelperLink}>Login</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             </View>
           </View>
@@ -149,6 +153,9 @@ function Register({jumpTo}) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    paddingHorizontal: 20,
+  },
   greetingSection: {
     marginVertical: 30,
     justifyContent: 'center',
@@ -158,6 +165,11 @@ const styles = StyleSheet.create({
     fontFamily: Font.AvenirHeavy,
     fontSize: 16,
     color: Colors.black,
+  },
+
+  checkBoxSection: {
+    marginHorizontal: 8,
+    marginVertical: 30,
   },
 
   dividerSection: {
@@ -182,17 +194,20 @@ const styles = StyleSheet.create({
     fontFamily: Font.AvenirMedium,
     fontSize: 14,
     color: Colors.lightText,
+    marginHorizontal: 5,
   },
   inputSection: {
-    paddingHorizontal: 20,
     marginVertical: 10,
   },
+  termSection: {
+    marginVertical: 8,
+    marginHorizontal: 8,
+  },
   forgotPasswordSection: {
-    paddingHorizontal: 20,
     marginVertical: 8,
   },
   signInButton: {
-    width: 335,
+    width: '100%',
     height: 56,
     borderRadius: 8,
     backgroundColor: '#F15922',

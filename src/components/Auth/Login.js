@@ -43,40 +43,43 @@ function Login({jumpTo}) {
     <SafeAreaView style={commonStyle.container}>
       <View style={commonStyle.wrapper}>
         <View style={commonStyle.content}>
-          <View style={styles.greetingSection}>
-            <Text style={styles.greetingText}>Welcome Back!</Text>
-          </View>
-          <View style={styles.buttonSection}>
-            <View>
-              <TouchableOpacity style={[styles.button, styles.googleButton]}>
-                <Image
-                  style={styles.socialIcon}
-                  source={require('../../assets/icons/google.png')}
-                />
-              </TouchableOpacity>
+          <View style={styles.container}>
+            <View style={styles.greetingSection}>
+              <Text style={styles.greetingText}>Welcome Back!</Text>
             </View>
-            <View>
-              <TouchableOpacity style={[styles.button, styles.facebookButton]}>
-                <Image
-                  style={styles.socialIcon}
-                  source={require('../../assets/icons/facebook.png')}
-                />
-              </TouchableOpacity>
-            </View>
-          </View>
-
-          <View style={styles.dividerSection}>
-            <View style={commonStyle.rowCenter}>
-              <View style={styles.divider} />
-              <View style={commonStyle.marginHorizontal(5)}>
-                <Text style={styles.dividerText}>OR</Text>
+            <View style={styles.buttonSection}>
+              <View>
+                <TouchableOpacity style={[styles.button, styles.googleButton]}>
+                  <Image
+                    style={styles.socialIcon}
+                    source={require('../../assets/icons/google.png')}
+                  />
+                </TouchableOpacity>
               </View>
-              <View style={styles.divider} />
+              <View>
+                <TouchableOpacity
+                  style={[styles.button, styles.facebookButton]}>
+                  <Image
+                    style={styles.socialIcon}
+                    source={require('../../assets/icons/facebook.png')}
+                  />
+                </TouchableOpacity>
+              </View>
+            </View>
+
+            <View style={styles.dividerSection}>
+              <View style={commonStyle.rowCenter}>
+                <View style={styles.divider} />
+                <View style={commonStyle.marginHorizontal(5)}>
+                  <Text style={styles.dividerText}>OR</Text>
+                </View>
+                <View style={styles.divider} />
+              </View>
             </View>
           </View>
 
-          <View>
-            <View style={commonStyle.rowFlexStart}>
+          <View style={styles.checkBoxSection}>
+            <View style={[commonStyle.rowFlexStart]}>
               {radioProps &&
                 radioProps.map(item => {
                   return (
@@ -98,65 +101,66 @@ function Login({jumpTo}) {
                 })}
             </View>
           </View>
-
-          <View>
-            <View style={styles.inputSection}>
-              {checked === 'email' ? (
+          <View style={styles.container}>
+            <View>
+              <View style={styles.inputSection}>
+                {checked === 'email' ? (
+                  <CustomTextInput
+                    type={'email'}
+                    title={'Email'}
+                    value={email}
+                    setValue={setEmail}
+                  />
+                ) : (
+                  <CustomTextInput
+                    type={'mobile'}
+                    title={'Mobile Number'}
+                    value={mobileNumber}
+                    setValue={setMobileNumber}
+                    phoneCode={phoneCode}
+                    setPhoneCode={setPhoneCode}
+                  />
+                )}
+              </View>
+              <View style={styles.inputSection}>
                 <CustomTextInput
-                  type={'email'}
-                  title={'Email'}
-                  value={email}
-                  setValue={setEmail}
+                  type={'password'}
+                  title={'Password'}
+                  value={password}
+                  setValue={setPassword}
                 />
-              ) : (
-                <CustomTextInput
-                  type={'mobile'}
-                  title={'Mobile Number'}
-                  value={mobileNumber}
-                  setValue={setMobileNumber}
-                  phoneCode={phoneCode}
-                  setPhoneCode={setPhoneCode}
-                />
-              )}
-            </View>
-            <View style={styles.inputSection}>
-              <CustomTextInput
-                type={'password'}
-                title={'Password'}
-                value={password}
-                setValue={setPassword}
-              />
-            </View>
-          </View>
-          <View style={styles.forgotPasswordSection}>
-            <View style={commonStyle.rowFlexStart}>
-              <View>
-                <Text style={styles.helperTitle}>Forgot your password? </Text>
-              </View>
-              <View>
-                <Text style={styles.helperLinkText}>Retrieve</Text>
               </View>
             </View>
-          </View>
+            <View style={styles.forgotPasswordSection}>
+              <View style={commonStyle.rowFlexStart}>
+                <View>
+                  <Text style={styles.helperTitle}>Forgot your password? </Text>
+                </View>
+                <View>
+                  <Text style={styles.helperLinkText}>Retrieve</Text>
+                </View>
+              </View>
+            </View>
 
-          <View style={[commonStyle.center, commonStyle.marginVertical(20)]}>
-            <TouchableOpacity
-              onPress={() => navigation.navigate('HomeStack')}
-              style={styles.signInButton}>
-              <Text style={styles.signInButtonText}>Sign In</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.forgotPasswordSection}>
-            <View style={commonStyle.rowCenter}>
-              <View>
-                <Text style={styles.accountHelperTitle}>
-                  Don’t have an account?
-                </Text>
-              </View>
-              <View style={commonStyle.marginHorizontal(3)}>
-                <TouchableOpacity onPress={() => jumpTo('register')}>
-                  <Text style={styles.accountHelperLink}>Signup</Text>
-                </TouchableOpacity>
+            <View style={[commonStyle.center, commonStyle.marginVertical(20)]}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('HomeStack')}
+                style={styles.signInButton}>
+                <Text style={styles.signInButtonText}>Sign In</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.forgotPasswordSection}>
+              <View style={commonStyle.rowCenter}>
+                <View>
+                  <Text style={styles.accountHelperTitle}>
+                    Don’t have an account?
+                  </Text>
+                </View>
+                <View style={commonStyle.marginHorizontal(3)}>
+                  <TouchableOpacity onPress={() => jumpTo('register')}>
+                    <Text style={styles.accountHelperLink}>Signup</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             </View>
           </View>
@@ -167,6 +171,13 @@ function Login({jumpTo}) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    paddingHorizontal: 20,
+  },
+  checkBoxSection: {
+    marginHorizontal: 8,
+    marginVertical: 30,
+  },
   greetingSection: {
     marginVertical: 30,
     justifyContent: 'center',
@@ -179,11 +190,11 @@ const styles = StyleSheet.create({
   },
   buttonSection: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center',
   },
   button: {
-    width: 157,
+    width: 160,
     height: 54,
     borderRadius: 30,
     justifyContent: 'center',
@@ -214,22 +225,23 @@ const styles = StyleSheet.create({
   checkBoxContainerStyle: {
     backgroundColor: Colors.transparent,
     borderWidth: 0,
+    margin: 0,
+    padding: 0,
   },
   checkBoxTextStyle: {
     fontFamily: Font.AvenirMedium,
     fontSize: 14,
     color: Colors.lightText,
+    marginHorizontal: 5,
   },
   inputSection: {
-    paddingHorizontal: 20,
     marginVertical: 10,
   },
   forgotPasswordSection: {
-    paddingHorizontal: 20,
     marginVertical: 8,
   },
   signInButton: {
-    width: 335,
+    width: '100%',
     height: 56,
     borderRadius: 8,
     backgroundColor: '#F15922',

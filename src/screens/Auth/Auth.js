@@ -23,7 +23,7 @@ function Auth() {
 
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    {key: 'login', title: 'Login'},
+    {key: 'login', title: 'Sign In'},
     {key: 'register', title: 'Sign Up'},
   ]);
 
@@ -75,7 +75,7 @@ function Auth() {
       <CustomStatusBar backgroundColor={Colors.primary} />
       <View style={[styles.flex, commonStyle.wrapper]}>
         <View style={[styles.flex, commonStyle.content]}>
-          <View style={{height: heightPercentageToDP('100%')}}>
+          <View style={styles.tabViewWrapper}>
             <TabView
               navigationState={{index, routes}}
               renderScene={renderScene}
@@ -93,6 +93,9 @@ function Auth() {
 const styles = StyleSheet.create({
   flex: {
     flex: 1,
+  },
+  tabViewWrapper: {
+    height: heightPercentageToDP('100%'),
   },
   tabBar: {
     height: 50,
