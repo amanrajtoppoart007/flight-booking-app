@@ -12,11 +12,11 @@ import commonStyle from '../../layout/Style';
 import Colors from '../../layout/Colors';
 import {CheckBox} from 'react-native-elements';
 import CustomTextInput from '../Common/CustomTextInput';
-import {useNavigation} from '@react-navigation/native';
 import Font from '../../layout/Font';
 
+import {api, LOGIN_URL} from '../../services/api';
+
 function Login({jumpTo}) {
-  const navigation = useNavigation();
   const [checked, setChecked] = useState('email');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -37,6 +37,30 @@ function Login({jumpTo}) {
     });
     setRadioProps(array);
     setChecked(value);
+  };
+
+  const login = () => {
+    const emailParams = {
+      uname: email,
+      pwd: password,
+      type: 'email',
+    };
+
+    const mobileParams = {
+      mobile: mobileNumber,
+      phc: phoneCode,
+      pwd: password,
+      type: 'mobile',
+    };
+
+    const params = checked === 'email' ? emailParams : mobileParams;
+
+    try {
+      const response = api.get(LOGIN_URL, params);
+      console.log(response);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (
@@ -144,7 +168,7 @@ function Login({jumpTo}) {
 
             <View style={[commonStyle.center, commonStyle.marginVertical(20)]}>
               <TouchableOpacity
-                onPress={() => navigation.navigate('HomeStack')}
+                onPress={() => login()}
                 style={styles.signInButton}>
                 <Text style={styles.signInButtonText}>Sign In</Text>
               </TouchableOpacity>
