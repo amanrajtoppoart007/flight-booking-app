@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {
+  Alert,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -14,6 +15,10 @@ import CustomTextInput from '../Common/CustomTextInput';
 import TitleTextInput from '../Common/TitleTextInput';
 import Font from '../../layout/Font';
 import {useNavigation} from '@react-navigation/native';
+import Toast from '../../layout/AppToast';
+import axios from 'axios';
+import {REGISTER_URL} from '../../services/api';
+import SimpleTextInput from '../Common/SimpleTextInput';
 
 function Register({jumpTo}) {
   const navigation = useNavigation();
@@ -43,6 +48,65 @@ function Register({jumpTo}) {
     setChecked(value);
   };
 
+  const register = async () => {
+    //navigation.navigate('HomeStack');
+    if (!title) {
+      Toast.bottomToast('Please select title');
+      return false;
+    }
+    if (!firstName) {
+      Toast.bottomToast('Please enter first name');
+      return false;
+    }
+    if (!lastName) {
+      Toast.bottomToast('Please enter last name');
+      return false;
+    }
+    if (checked === 'email' && !email) {
+      Toast.bottomToast('Please enter valid email');
+      return false;
+    }
+    if (checked === 'mobile' && !mobileNumber) {
+      Toast.bottomToast('Please enter valid mobile number');
+      return false;
+    }
+    if (!password) {
+      Toast.bottomToast('Please enter a password');
+      return false;
+    }
+
+    if (!termsAccepted) {
+      Toast.bottomToast('Please accept our terms and conditions');
+      return false;
+    }
+
+    const params = {
+      fname: firstName,
+      lname: lastName,
+      tl: title,
+      email: email,
+      pwd: password,
+      phno: mobileNumber,
+      phc: phoneCode,
+    };
+
+    try {
+      const response = await axios.post(REGISTER_URL, params);
+      if (response.status === 200) {
+        const result = response?.data;
+        if (result?.suc) {
+          navigation.navigate('HomeStack');
+        } else {
+          Alert.alert(result?.err);
+        }
+      } else {
+        console.error(response?.message);
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   return (
     <SafeAreaView style={commonStyle.container}>
       <View style={commonStyle.wrapper}>
@@ -54,7 +118,7 @@ function Register({jumpTo}) {
           </View>
           <View style={styles.container}>
             <View>
-              <View style={styles.inputSection}>
+              <View style={[styles.inputSection, styles.firstNameSection]}>
                 <TitleTextInput
                   title={title}
                   setTitle={setTitle}
@@ -64,12 +128,11 @@ function Register({jumpTo}) {
                 />
               </View>
               <View style={styles.inputSection}>
-                <TitleTextInput
-                  title={title}
-                  setTitle={setTitle}
+                <SimpleTextInput
+                  titleType={'placeholder'}
+                  title={'Last Name'}
                   value={lastName}
                   setValue={setLastName}
-                  type={'input'}
                 />
               </View>
             </View>
@@ -152,7 +215,7 @@ function Register({jumpTo}) {
           <View style={styles.container}>
             <View style={commonStyle.marginVertical(20)}>
               <TouchableOpacity
-                onPress={() => navigation.navigate('HomeStack')}
+                onPress={() => register()}
                 style={styles.signInButton}>
                 <Text style={styles.signInButtonText}>Create Account</Text>
               </TouchableOpacity>
@@ -181,6 +244,9 @@ function Register({jumpTo}) {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 20,
+  },
+  firstNameSection: {
+    marginBottom: 20,
   },
   greetingSection: {
     marginVertical: 30,
