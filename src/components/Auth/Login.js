@@ -8,16 +8,16 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-
+import axios from 'axios';
+import {useNavigation} from '@react-navigation/native';
 import commonStyle from '../../layout/Style';
 import Colors from '../../layout/Colors';
 import {CheckBox} from 'react-native-elements';
 import CustomTextInput from '../Common/CustomTextInput';
 import Font from '../../layout/Font';
+import Toast from '../../layout/AppToast';
 
 import {LOGIN_URL} from '../../services/api';
-import axios from 'axios';
-import {useNavigation} from '@react-navigation/native';
 
 function Login({jumpTo}) {
   const navigation = useNavigation();
@@ -45,15 +45,15 @@ function Login({jumpTo}) {
 
   const login = async () => {
     if (checked === 'email' && !email) {
-      Alert.alert('Please enter valid email');
+      Toast.bottomToast('Please enter valid email');
       return false;
     }
     if (checked === 'mobile' && !mobileNumber) {
-      Alert.alert('Please enter valid mobile number');
+      Toast.bottomToast('Please enter valid mobile number');
       return false;
     }
     if (!password) {
-      Alert.alert('Please enter a password');
+      Toast.bottomToast('Please enter a password');
       return false;
     }
     const emailParams = {
