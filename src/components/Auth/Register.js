@@ -11,12 +11,16 @@ import commonStyle from '../../layout/Style';
 import Colors from '../../layout/Colors';
 import {CheckBox} from 'react-native-elements';
 import CustomTextInput from '../Common/CustomTextInput';
+import TitleTextInput from '../Common/TitleTextInput';
 import Font from '../../layout/Font';
 import {useNavigation} from '@react-navigation/native';
 
 function Register({jumpTo}) {
   const navigation = useNavigation();
   const [checked, setChecked] = useState('email');
+  const [title, setTitle] = useState('Title');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [mobileNumber, setMobileNumber] = useState('');
@@ -46,6 +50,28 @@ function Register({jumpTo}) {
           <View style={styles.container}>
             <View style={styles.greetingSection}>
               <Text style={styles.greetingText}>Create an Account</Text>
+            </View>
+          </View>
+          <View style={styles.container}>
+            <View>
+              <View style={styles.inputSection}>
+                <TitleTextInput
+                  title={title}
+                  setTitle={setTitle}
+                  value={firstName}
+                  setValue={setFirstName}
+                  type={'select'}
+                />
+              </View>
+              <View style={styles.inputSection}>
+                <TitleTextInput
+                  title={title}
+                  setTitle={setTitle}
+                  value={lastName}
+                  setValue={setLastName}
+                  type={'input'}
+                />
+              </View>
             </View>
           </View>
 
