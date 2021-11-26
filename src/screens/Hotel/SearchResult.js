@@ -1,19 +1,23 @@
 import React, {useState} from 'react';
-import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {
+  ImageBackground,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import Colors from '../../layout/Colors';
 import CustomStatusBar from '../../components/CustomStatusBar';
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import LinearGradient from 'react-native-linear-gradient';
 import {Icon} from 'react-native-elements';
 import ResultItem from '../../components/Hotel/Result/ResultItem';
-import {useNavigation} from '@react-navigation/native';
 import commonStyle from '../../layout/Style';
 import SortFilter from '../../components/Hotel/SortFilter';
-function SearchResult() {
-  const navigation = useNavigation();
+import Font from '../../layout/Font';
+function SearchResult({navigation}) {
   const [shortVisible, setShortVisible] = useState(false);
   const result = [
     {
@@ -141,11 +145,11 @@ function SearchResult() {
                         />
                       </View>
                       <View style={commonStyle.marginHorizontal(5)}>
-                        <Text style={styles.title}>Search Hotels</Text>
+                        <Text style={styles.title}>Doha, Qatar</Text>
                       </View>
                     </View>
                     <View style={commonStyle.rowCenter}>
-                      <View>
+                      <View style={commonStyle.marginHorizontal(5)}>
                         <Icon
                           name={'edit'}
                           type={'feather'}
@@ -172,7 +176,7 @@ function SearchResult() {
                 </View>
               </LinearGradient>
             </View>
-            <View>
+            <View style={styles.resultSection}>
               {result &&
                 result.map(item => {
                   return <RenderItem item={item} key={item?.id?.toString()} />;
@@ -181,6 +185,17 @@ function SearchResult() {
           </View>
         </View>
       </ScrollView>
+      <View style={styles.navigationButtonWrapper}>
+        <TouchableOpacity onPress={() => navigation.replace('HotelMapView')}>
+          <ImageBackground
+            borderRadius={4}
+            resizeMode={'contain'}
+            source={require('../../assets/images/hotel/map.png')}
+            style={styles.navigationButton}>
+            <Text style={styles.navigationButtonText}>Map View</Text>
+          </ImageBackground>
+        </TouchableOpacity>
+      </View>
       {shortVisible && <SortFilter onClose={() => setShortVisible(false)} />}
     </SafeAreaView>
   );
@@ -211,35 +226,44 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   header: {
-    paddingHorizontal: 10,
+    paddingHorizontal: 12,
   },
   title: {
+    fontFamily: Font.AvenirHeavy,
     fontSize: 18,
     color: Colors.white,
   },
-  searchSection: {
-    top: hp('10%'),
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  card: {
-    width: wp('90%'),
-    height: hp('50%'),
-    backgroundColor: Colors.white,
-    borderRadius: 8,
-    borderWidth: 0.1,
-    borderColor: Colors.border,
-    elevation: 5,
-    padding: 15,
-  },
-  cardTitle: {
-    fontSize: 14,
-    color: Colors.lightText,
-  },
   dateSection: {marginVertical: 3, marginLeft: 32},
   date: {
+    fontFamily: Font.AvenirHeavy,
     fontSize: 14,
     color: '#90E0FF',
+  },
+  resultSection: {
+    paddingHorizontal: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+  },
+  navigationButtonWrapper: {
+    position: 'absolute',
+    bottom: 20,
+    right: 20,
+    zIndex: 1,
+  },
+  navigationButton: {
+    width: 101,
+    height: 38,
+    borderRadius: 4,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+    opacity: 1,
+  },
+  navigationButtonText: {
+    fontFamily: Font.AvenirHeavy,
+    fontSize: 14,
+    color: Colors.white,
   },
 });
 

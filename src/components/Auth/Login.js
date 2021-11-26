@@ -44,6 +44,8 @@ function Login({jumpTo}) {
   };
 
   const login = async () => {
+    navigation.navigate('HomeStack');
+    return false;
     if (checked === 'email' && !email) {
       Toast.bottomToast('Please enter valid email');
       return false;

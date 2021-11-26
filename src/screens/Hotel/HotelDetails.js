@@ -236,7 +236,9 @@ function HotelDetails({navigation}) {
           </View>
         </View>
         <View>
-          <TouchableOpacity style={styles.continueButton}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('GuestDetails')}
+            style={styles.continueButton}>
             <View>
               <Text style={styles.continueButtonText}>Continue</Text>
             </View>
