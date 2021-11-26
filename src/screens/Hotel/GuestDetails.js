@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {
-  Pressable,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -43,7 +42,7 @@ function GuestDetails() {
   const [email, setEmail] = useState('');
   const [mobileNumber, setMobileNumber] = useState('');
   const [phoneCode, setPhoneCode] = useState('');
-  const [bookingSummary, setBookingSummary] = useState(true);
+  const [bookingSummary, setBookingSummary] = useState(false);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -152,25 +151,25 @@ function GuestDetails() {
               </View>
             </View>
             <View style={styles.ContactConatiner}>
-              <View style={styles.rowWrapper}>
+              <View style={[styles.rowWrapper, commonStyle.marginBottom(12)]}>
                 <User />
                 <Text style={[styles.textBig, styles.marginLeft(10)]}>
                   Add Guest Details
                 </Text>
               </View>
-              <View style={commonStyle.marginVertical(5)}>
+              <View style={commonStyle.marginVertical(8)}>
                 <Accordion
                   title="Room 1: (1 Adult, 2 Children)"
                   Content={<AccordionContent />}
                 />
               </View>
-              <View style={commonStyle.marginVertical(5)}>
+              <View style={commonStyle.marginVertical(8)}>
                 <Accordion
                   title="Room 2: (1 Adult)"
                   Content={<AccordionContent />}
                 />
               </View>
-              <View style={commonStyle.marginVertical(5)}>
+              <View style={commonStyle.marginVertical(8)}>
                 <Accordion
                   title="Room 3: (1 Adult)"
                   Content={<AccordionContent />}
@@ -436,8 +435,8 @@ const styles = StyleSheet.create({
     fontFamily: Font.AvenirRegular,
   },
   ContactConatiner: {
-    paddingVertical: 10,
-    marginBottom: 10,
+    paddingVertical: 12,
+    marginBottom: 12,
     backgroundColor: Colors.background,
   },
   textLight: {
@@ -462,16 +461,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 10,
+    marginBottom: 12,
+    paddingTop: 11,
     backgroundColor: Colors.background,
   },
   LoginConatainer: {
-    paddingVertical: 10,
+    paddingVertical: 12,
     marginHorizontal: 5,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-evenly',
-    marginBottom: 10,
+    marginBottom: 12,
     backgroundColor: Colors.background,
     borderRadius: 8,
   },
