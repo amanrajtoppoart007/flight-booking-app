@@ -40,6 +40,7 @@ function DateRangePicker({isDateRangeVisible, setIsDateRangeVisible}) {
           </View>
           <View style={styles.card}>
             <DatepickerRange
+              showSelectionInfo={false}
               startDate={dateFrom?.toString()}
               untilDate={dateUpto?.toString()}
               onConfirm={(startDate, untilDate) =>
@@ -49,7 +50,7 @@ function DateRangePicker({isDateRangeVisible, setIsDateRangeVisible}) {
               showButton={true}
               selectedBackgroundColor={'#F15922'}
               todayColor={'#F15922'}
-              infoText={'Select Date'}
+              infoText={''}
               infoStyle={{color: 'white', fontSize: 13}}
             />
           </View>

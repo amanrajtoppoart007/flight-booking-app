@@ -10,42 +10,42 @@ export default class Month extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (nextProps.minDate != this.props.minDate) {
+    if (nextProps.minDate !== this.props.minDate) {
       return true;
     }
 
-    if (nextProps.maxDate != this.props.maxDate) {
+    if (nextProps.maxDate !== this.props.maxDate) {
       return true;
     }
 
-    if (nextProps.availableDates != this.props.availableDates) {
+    if (nextProps.availableDates !== this.props.availableDates) {
       return true;
     }
 
     if (
       nextProps.startDate &&
-      nextProps.startDate.format('YYYYMM') == nextProps.month
+      nextProps.startDate.format('YYYYMM') === nextProps.month
     ) {
       return true;
     }
 
     if (
       nextProps.untilDate &&
-      nextProps.untilDate.format('YYYYMM') == nextProps.month
+      nextProps.untilDate.format('YYYYMM') === nextProps.month
     ) {
       return true;
     }
 
     if (
       this.props.startDate &&
-      this.props.startDate.format('YYYYMM') == nextProps.month
+      this.props.startDate.format('YYYYMM') === nextProps.month
     ) {
       return true;
     }
 
     if (
       this.props.untilDate &&
-      this.props.untilDate.format('YYYYMM') == nextProps.month
+      this.props.untilDate.format('YYYYMM') === nextProps.month
     ) {
       return true;
     }
@@ -59,16 +59,12 @@ export default class Month extends React.Component {
       return true;
     }
 
-    if (
+    return (
       this.props.untilDate &&
       this.props.startDate &&
       this.props.startDate.format('YYYYMM') < nextProps.month &&
       this.props.untilDate.format('YYYYMM') > nextProps.month
-    ) {
-      return true;
-    }
-
-    return false;
+    );
   }
 
   getDayStack(month) {
@@ -95,7 +91,7 @@ export default class Month extends React.Component {
           type: null,
           date: null,
         };
-        if (i == currDate.days() && currDate.month() == currMonth) {
+        if (i === currDate.days() && currDate.month() === currMonth) {
           if (
             minDate &&
             minDate.format('YYYYMMDD') &&
@@ -120,13 +116,13 @@ export default class Month extends React.Component {
           }
           if (
             availableDates &&
-            availableDates.indexOf(currDate.format('YYYYMMDD')) == -1
+            availableDates.indexOf(currDate.format('YYYYMMDD')) === -1
           ) {
             dayObject.type = 'blockout';
           }
           if (
             startDate &&
-            startDate.format('YYYYMMDD') == currDate.format('YYYYMMDD')
+            startDate.format('YYYYMMDD') === currDate.format('YYYYMMDD')
           ) {
             if (!untilDate) {
               dayObject.type = 'single';
@@ -136,7 +132,7 @@ export default class Month extends React.Component {
           }
           if (
             untilDate &&
-            untilDate.format('YYYYMMDD') == currDate.format('YYYYMMDD')
+            untilDate.format('YYYYMMDD') === currDate.format('YYYYMMDD')
           ) {
             dayObject.type = 'last';
           }
@@ -167,7 +163,7 @@ export default class Month extends React.Component {
       }
 
       dayRow.push(dayColumn);
-    } while (currDate.month() == currMonth);
+    } while (currDate.month() === currMonth);
 
     return dayRow;
   }

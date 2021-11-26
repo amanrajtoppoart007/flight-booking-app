@@ -11,11 +11,7 @@ export default class Day extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (nextProps.day.type == this.props.day.type) {
-      return false;
-    }
-
-    return true;
+    return nextProps.day.type !== this.props.day.type;
   }
 
   render() {
@@ -31,7 +27,7 @@ export default class Day extends React.Component {
       case 'single':
         dayStyle = {
           backgroundColor: dayProps.selectedBackgroundColor,
-          borderRadius: Math.floor(DEVICE_WIDTH / 7),
+          borderRadius: 6,
           width: '14.28%',
         };
         textDayStyle = {color: dayProps.selectedTextColor};
@@ -39,8 +35,8 @@ export default class Day extends React.Component {
       case 'first':
         dayStyle = {
           backgroundColor: dayProps.selectedBackgroundColor,
-          borderBottomLeftRadius: Math.floor(DEVICE_WIDTH / 7),
-          borderTopLeftRadius: Math.floor(DEVICE_WIDTH / 7),
+          borderBottomLeftRadius: 6,
+          borderTopLeftRadius: 6,
           width: '14.28%',
         };
         textDayStyle = {color: dayProps.selectedTextColor};
@@ -48,28 +44,26 @@ export default class Day extends React.Component {
       case 'last':
         dayStyle = {
           backgroundColor: dayProps.selectedBackgroundColor,
-          borderBottomRightRadius: Math.floor(DEVICE_WIDTH / 7),
-          borderTopRightRadius: Math.floor(DEVICE_WIDTH / 7),
+          borderBottomRightRadius: 6,
+          borderTopRightRadius: 6,
           width: '14.28%',
         };
         textDayStyle = {color: dayProps.selectedTextColor};
         break;
       case 'between':
         dayStyle = {
-          backgroundColor: dayProps.selectedBackgroundColor,
+          backgroundColor: 'rgba(241, 89, 34, 0.15)',
           width: '14.28%',
         };
-        textDayStyle = {color: dayProps.selectedTextColor};
+        textDayStyle = {color: 'black'};
         break;
       case 'disabled':
       case 'blockout':
         textDayStyle = {color: '#ccc'};
-      default:
-        break;
     }
 
     if (day.date) {
-      if (day.type == 'disabled') {
+      if (day.type === 'disabled') {
         return (
           <TouchableWithoutFeedback activeOpacity={1} style={dayStyle}>
             <View
@@ -87,7 +81,7 @@ export default class Day extends React.Component {
                 }}>
                 {moment(day.date, 'YYYYMMDD').date()}
               </Text>
-              {day.date == moment().format('YYYYMMDD') ? (
+              {day.date === moment().format('YYYYMMDD') ? (
                 <View
                   style={{
                     position: 'absolute',
@@ -112,7 +106,7 @@ export default class Day extends React.Component {
             </View>
           </TouchableWithoutFeedback>
         );
-      } else if (day.type == 'blockout') {
+      } else if (day.type === 'blockout') {
         const strikeTop = Math.floor(DEVICE_WIDTH / -22);
         return (
           <TouchableWithoutFeedback activeOpacity={1} style={dayStyle}>
@@ -176,7 +170,7 @@ export default class Day extends React.Component {
                 }}>
                 {moment(day.date, 'YYYYMMDD').date()}
               </Text>
-              {day.date == moment().format('YYYYMMDD') ? (
+              {day.date === moment().format('YYYYMMDD') ? (
                 <View
                   style={{
                     position: 'absolute',

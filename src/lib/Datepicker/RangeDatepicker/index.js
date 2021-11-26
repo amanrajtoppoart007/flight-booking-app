@@ -94,7 +94,7 @@ export default class RangeDatepicker extends Component {
   onSelectDate(date) {
     let startDate;
     let untilDate = null;
-    const {availableDates} = this.state;
+    //const {availableDates} = this.state;
 
     if (this.state.startDate && !this.state.untilDate) {
       if (
@@ -219,22 +219,9 @@ export default class RangeDatepicker extends Component {
 
   render() {
     return (
-      <View
-        style={{
-          backgroundColor: '#fff',
-          zIndex: 1000,
-          alignSelf: 'center',
-          width: '100%',
-          flex: 1,
-        }}>
+      <View style={styles.container}>
         {this.props.showClose || this.props.showReset ? (
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              padding: 20,
-              paddingBottom: 10,
-            }}>
+          <View style={styles.helperButtonWrapper}>
             {this.props.showClose && (
               <Text style={{fontSize: 12}} onPress={this.props.onClose}>
                 Close
@@ -248,14 +235,7 @@ export default class RangeDatepicker extends Component {
           </View>
         ) : null}
         {this.props.showSelectionInfo ? (
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              paddingHorizontal: 20,
-              paddingBottom: 5,
-              alignItems: 'center',
-            }}>
+          <View style={styles.dateRangeTextWrapper}>
             <View style={{flex: 1}}>
               <Text style={{fontSize: 18, color: '#666'}}>
                 {this.state.startDate
@@ -265,7 +245,7 @@ export default class RangeDatepicker extends Component {
             </View>
 
             <View style={{}}>
-              <Text style={{fontSize: 80}}>/</Text>
+              <Text style={{fontSize: 18}}>/</Text>
             </View>
 
             <View style={{flex: 1}}>
@@ -278,7 +258,7 @@ export default class RangeDatepicker extends Component {
           </View>
         ) : null}
 
-        {this.props.infoText != '' && (
+        {this.props.infoText !== '' && (
           <View style={this.props.infoContainerStyle}>
             <Text style={this.props.infoStyle}>{this.props.infoText}</Text>
           </View>
@@ -293,7 +273,7 @@ export default class RangeDatepicker extends Component {
           })}
         </View>
         <FlatList
-          style={{flex: 1}}
+          style={styles.flatListStyle}
           data={this.getMonthStack()}
           renderItem={({item, index}) => {
             return this.handleRenderRow(item, index);
@@ -317,6 +297,29 @@ export default class RangeDatepicker extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#fff',
+    zIndex: 1000,
+    alignSelf: 'center',
+    width: '100%',
+    flex: 1,
+  },
+  helperButtonWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 20,
+    paddingBottom: 10,
+  },
+  dateRangeTextWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
+    paddingBottom: 5,
+    alignItems: 'center',
+  },
+  flatListStyle: {
+    flex: 1,
+  },
   dayHeader: {
     flexDirection: 'row',
     borderBottomWidth: 1,

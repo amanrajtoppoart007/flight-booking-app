@@ -1,6 +1,6 @@
 'use strict';
 import React from 'react';
-import {View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import Day from './Day';
 
 export default class DayRow extends React.Component {
@@ -9,7 +9,7 @@ export default class DayRow extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (JSON.stringify(nextProps.days) == JSON.stringify(this.props.days)) {
+    if (JSON.stringify(nextProps.days) === JSON.stringify(this.props.days)) {
       return false;
     }
 
@@ -18,14 +18,7 @@ export default class DayRow extends React.Component {
 
   render() {
     return (
-      <View
-        style={{
-          marginBottom: 2,
-          marginTop: 2,
-          flexDirection: 'row',
-          justifyContent: 'space-evenly',
-          flex: 1,
-        }}>
+      <View style={styles.container}>
         {this.props.days.map((day, i) => {
           return (
             <Day
@@ -40,3 +33,13 @@ export default class DayRow extends React.Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    marginBottom: 2,
+    marginTop: 2,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    flex: 1,
+  },
+});
