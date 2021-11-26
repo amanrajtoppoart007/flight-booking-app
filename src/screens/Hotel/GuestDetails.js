@@ -184,6 +184,7 @@ function GuestDetails() {
               handleBottomSheetPress={() => setBookingSummary(true)}
               title="Your total stay price"
               price="10,790.00"
+              onPress={() => navigation.navigate('Payment')}
             />
           </View>
         </View>
@@ -448,13 +449,11 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: Colors.lightText,
     fontFamily: Font.AvenirLight,
-    color: '#1DAD81',
   },
   blueText: {
     fontSize: 12,
     color: Colors.lightText,
     fontFamily: Font.AvenirLight,
-    color: '#26698E',
   },
   topConatainer: {
     paddingVertical: 5,

@@ -1,11 +1,16 @@
 import React from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import Colors from '../../../layout/Colors';
 import ImageSlider from './ImageSlider';
 import StarRating from '../../StarRating';
 import {Icon} from 'react-native-elements';
+import Font from '../../../layout/Font';
+import commonStyle from '../../../layout/Style';
+import {widthPercentageToDP} from 'react-native-responsive-screen';
+import {useNavigation} from '@react-navigation/native';
 
 function ResultItem() {
+  const navigation = useNavigation();
   return (
     <View style={styles.card}>
       <View>
@@ -14,14 +19,20 @@ function ResultItem() {
       <View>
         <View style={styles.titleSection}>
           <View>
-            <Text style={styles.title}>W Doha</Text>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('HotelDetails')}>
+              <Text style={styles.title}>W Doha</Text>
+            </TouchableOpacity>
           </View>
-          <View style={{marginHorizontal: 5}}>
-            <StarRating rating={3} size={16} />
+          <View style={commonStyle.marginHorizontal(5)}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('GuestReviews')}>
+              <StarRating rating={3} size={16} />
+            </TouchableOpacity>
           </View>
         </View>
         <View style={styles.footer}>
-          <View style={{width: '65%'}}>
+          <View style={commonStyle.width('65%')}>
             <View style={styles.locationSection}>
               <View>
                 <Icon
@@ -31,29 +42,31 @@ function ResultItem() {
                   color={'#6C6C6C'}
                 />
               </View>
-              <View style={{marginHorizontal: 5}}>
+              <View style={commonStyle.marginHorizontal(5)}>
                 <Text style={styles.place}>Diplomatic Area, Doha, QA</Text>
               </View>
             </View>
             <View style={styles.buttonSection}>
               <View>
                 <View style={styles.button}>
-                  <Text>Breakfast Included</Text>
+                  <Text style={styles.buttonWithBgText}>
+                    Breakfast Included
+                  </Text>
                 </View>
               </View>
-              <View style={{marginHorizontal: 3}}>
+              <View style={commonStyle.marginHorizontal(5)}>
                 <View style={styles.withoutBgButton}>
                   <Text style={styles.buttonText}>Free Cancellation</Text>
                 </View>
               </View>
             </View>
           </View>
-          <View style={{width: '35%'}}>
+          <View style={commonStyle.width('35%')}>
             <View style={styles.rowFlexEnd}>
               <View>
                 <Text style={styles.currency}>QAR</Text>
               </View>
-              <View style={{marginHorizontal: 3}}>
+              <View style={commonStyle.marginHorizontal(3)}>
                 <Text style={styles.price}>13000</Text>
               </View>
               <View style={styles.cross} />
@@ -62,7 +75,7 @@ function ResultItem() {
               <View>
                 <Text style={styles.currency}>QAR</Text>
               </View>
-              <View style={{marginHorizontal: 3}}>
+              <View style={commonStyle.marginHorizontal(3)}>
                 <Text style={styles.price}>12500</Text>
               </View>
             </View>
@@ -77,6 +90,7 @@ function ResultItem() {
 }
 const styles = StyleSheet.create({
   card: {
+    width: widthPercentageToDP('98%'),
     backgroundColor: Colors.white,
     borderWidth: 0.1,
     borderColor: Colors.border,
@@ -84,8 +98,6 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     padding: 10,
     paddingHorizontal: 5,
-    height: 235,
-    elevation: 1,
   },
   titleSection: {
     flexDirection: 'row',
@@ -104,6 +116,7 @@ const styles = StyleSheet.create({
     transform: [{rotateZ: '170deg'}, {translateY: 8}],
   },
   title: {
+    fontFamily: Font.AvenirHeavy,
     fontSize: 18,
     color: Colors.black,
   },
@@ -120,6 +133,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   place: {
+    fontFamily: Font.AvenirMedium,
     fontSize: 12,
     color: '#6C6C6C',
   },
@@ -132,10 +146,9 @@ const styles = StyleSheet.create({
   button: {
     height: 24,
     borderRadius: 4,
-    backgroundColor: '#CFEEE1',
+    backgroundColor: 'rgba(207, 238, 225, 1)',
     justifyContent: 'center',
     alignItems: 'center',
-    elevation: 1,
     paddingHorizontal: 5,
   },
   withoutBgButton: {
@@ -144,16 +157,23 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  buttonWithBgText: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 12,
+    color: '#13A869',
+  },
   buttonText: {
+    fontFamily: Font.AvenirHeavy,
     fontSize: 12,
     color: '#13A869',
   },
   price: {
+    fontFamily: Font.AvenirBlack,
     fontSize: 14,
-    fontWeight: 'bold',
     color: Colors.black,
   },
   currency: {
+    fontFamily: Font.AvenirMedium,
     fontSize: 14,
     color: '#6C6C6C',
   },

@@ -5,7 +5,7 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import DatepickerRange from 'react-native-range-datepicker';
+import DatepickerRange from '../../../lib/Datepicker/index';
 import Colors from '../../../layout/Colors';
 
 function DateRangePicker({isDateRangeVisible, setIsDateRangeVisible}) {
@@ -45,6 +45,12 @@ function DateRangePicker({isDateRangeVisible, setIsDateRangeVisible}) {
               onConfirm={(startDate, untilDate) =>
                 setDate(startDate, untilDate)
               }
+              buttonColor={'#F15922'}
+              showButton={true}
+              selectedBackgroundColor={'#F15922'}
+              todayColor={'#F15922'}
+              infoText={'Select Date'}
+              infoStyle={{color: 'white', fontSize: 13}}
             />
           </View>
         </View>

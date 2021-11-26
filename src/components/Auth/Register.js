@@ -49,6 +49,8 @@ function Register({jumpTo}) {
   };
 
   const register = async () => {
+    navigation.navigate('HomeStack');
+    return false;
     //navigation.navigate('HomeStack');
     if (!title) {
       Toast.bottomToast('Please select title');

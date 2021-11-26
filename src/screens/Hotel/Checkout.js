@@ -53,43 +53,7 @@ function Checkout({navigation}) {
                 <StatusStepBar activeIndex={2} />
               </View>
             </LinearGradient>
-            <View style={styles.middleSection}>
-              <View style={commonStyle.marginVertical(10)}>
-                <View style={[commonStyle.rowSpaceBetween]}>
-                  <View>
-                    <Text style={styles.dataDefinition}>
-                      Doha (DOH) → Dubai (DXB)
-                    </Text>
-                  </View>
-                  <View>
-                    <Text style={styles.priceTitle}>Total Price</Text>
-                  </View>
-                </View>
-                <View style={[commonStyle.rowSpaceBetween]}>
-                  <View>
-                    <Text style={styles.mutedText}>
-                      Wed, 15 Sep, 4 Travellers
-                    </Text>
-                  </View>
-                  <View style={commonStyle.rowSpaceBetween}>
-                    <Text>QAR </Text>
-                    <Text style={styles.priceTitle}>170.00</Text>
-                  </View>
-                </View>
-                <View>
-                  <View>
-                    <Text style={styles.dataDefinition}>
-                      Dubai (DXB) → Doha (DOH)
-                    </Text>
-                  </View>
-                  <View>
-                    <Text style={styles.mutedText}>
-                      Mon, 20 Sep, 4 Travellers
-                    </Text>
-                  </View>
-                </View>
-              </View>
-            </View>
+            <View style={styles.middleSection} />
             <View style={[commonStyle.center, commonStyle.marginVertical(10)]}>
               <View style={styles.loginSection}>
                 <View style={commonStyle.rowSpaceBetween}>
@@ -151,7 +115,7 @@ function Checkout({navigation}) {
           </View>
           <View>
             <TouchableOpacity
-              onPress={() => navigation.navigate('ReviewItinerary')}
+              onPress={() => navigation.navigate('Payment')}
               style={styles.checkOutBtn}>
               <Text style={styles.checkOutBtnText}>Continue</Text>
             </TouchableOpacity>
