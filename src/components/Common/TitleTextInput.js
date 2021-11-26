@@ -1,35 +1,32 @@
 import React, {useState} from 'react';
-import {Image, StyleSheet, Text, TextInput, View} from 'react-native';
+import {StyleSheet, Text, TextInput, View} from 'react-native';
 import Colors from '../../layout/Colors';
 import {Icon} from 'react-native-elements';
-
-import countries from '../../utils/country';
 import SelectDropdown from 'react-native-select-dropdown';
 import Font from '../../layout/Font';
-import commonStyle from '../../layout/Style';
 
-function CustomTextInput({
-  type,
-  title,
-  value,
-  setValue,
-  phoneCode = '+974',
-  setPhoneCode = null,
-  placeholder,
-}) {
-  const [secureTextEntry, setSecureTextEntry] = useState(false);
-  const [countryList] = useState(countries);
-  const [countryCode, setCountryCode] = useState(phoneCode);
+function TitleTextInput({title, setTitle, value, setValue, type}) {
+  const [titles] = useState([
+    {
+      title: 'Mr.',
+      value: 'mr',
+    },
+    {
+      title: 'Mrs.',
+      value: 'mrs',
+    },
+    {
+      title: 'Mis.',
+      value: 'mis',
+    },
+  ]);
 
   return (
     <View>
-      <View>
-        <Text style={styles.title}>{title}</Text>
-      </View>
       <View style={styles.inputContainerStyle}>
-        {type === 'mobile' && (
+        {type === 'select' && (
           <SelectDropdown
-            defaultButtonText={countryCode}
+            defaultButtonText={title}
             buttonStyle={styles.dropDownButtonStyle}
             buttonTextStyle={styles.dropDownButtonTextStyle}
             renderDropdownIcon={() => {
@@ -44,52 +41,32 @@ function CustomTextInput({
             }}
             renderCustomizedButtonChild={item => {
               return (
-                <View style={commonStyle.rowSpaceBetween}>
-                  <View>
-                    <Image
-                      style={styles.icon}
-                      source={require('../../assets/icons/country/qar.png')}
-                    />
-                  </View>
-                  <View style={commonStyle.marginHorizontal(4)}>
-                    <Text style={styles.dropdownBtnTxtStyle}>
-                      {item?.dial_code ?? '+974'}
-                    </Text>
-                  </View>
+                <View>
+                  <Text style={styles.dropdownBtnTxtStyle}>
+                    {item?.title ?? 'Title'}
+                  </Text>
                 </View>
               );
             }}
             dropdownIconPosition={'right'}
-            data={countryList}
+            data={titles}
             onSelect={selectedItem => {
-              setCountryCode(selectedItem?.dial_code);
-              setPhoneCode(selectedItem?.dial_code);
+              setTitle(selectedItem.value);
             }}
             buttonTextAfterSelection={selectedItem => {
-              return selectedItem?.dial_code;
+              return selectedItem?.title;
             }}
             rowTextForSelection={item => {
-              return item?.dial_code;
+              return item?.title;
             }}
           />
         )}
-
         <TextInput
           value={value}
-          placeholder={placeholder ?? ''}
           onChangeText={text => setValue(text)}
-          style={[styles.inputStyle(type), styles.inputTextStyle]}
-          secureTextEntry={secureTextEntry}
+          style={[styles.inputStyle, styles.inputTextStyle]}
           placeholderTextColor={Colors.lightText}
         />
-        {type === 'password' && (
-          <Icon
-            onPress={() => setSecureTextEntry(!secureTextEntry)}
-            name={'eye'}
-            type={'font-awesome'}
-            color={'#444343'}
-          />
-        )}
       </View>
     </View>
   );
@@ -102,12 +79,10 @@ const styles = StyleSheet.create({
     color: '#AAAAAA',
   },
   icon: {width: 20, height: 20},
-  inputStyle(type) {
-    return {
-      width: type === 'mobile' ? '65%' : '90%',
-      fontSize: 14,
-      height: 35,
-    };
+  inputStyle: {
+    width: '65%',
+    fontSize: 14,
+    height: 35,
   },
   inputTextStyle: {
     fontFamily: Font.AvenirMedium,
@@ -127,7 +102,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   dropDownButtonStyle: {
-    width: 100,
+    width: 80,
     height: 35,
     backgroundColor: '#FFFFFF',
     borderRadius: 8,
@@ -140,4 +115,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CustomTextInput;
+export default TitleTextInput;
