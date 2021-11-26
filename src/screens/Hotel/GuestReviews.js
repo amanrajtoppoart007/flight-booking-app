@@ -1,9 +1,6 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet, Text, View, ScrollView} from 'react-native';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import Font from '../../layout/Font';
 import Colors from '../../layout/Colors';
 import CustomStatusBar from '../../components/CustomStatusBar';
@@ -30,7 +27,7 @@ function GuestReviews() {
             />
           </View>
           <View style={styles.content}>
-            <View style={styles.contentConatiner}>
+            <View style={styles.contentContainer}>
               <View style={[commonStyle.rowFlexStart, commonStyle.margin(12)]}>
                 <Text style={styles.greenBigText}>4.5/5</Text>
                 <View
@@ -129,6 +126,7 @@ function GuestReviews() {
               <Text
                 style={[
                   styles.textBig,
+                  styles.fontSize(16),
                   commonStyle.marginHorizontal(12),
                   commonStyle.marginBottom(10),
                 ]}>
@@ -154,7 +152,9 @@ function GuestReviews() {
               />
               <View style={styles.divider} />
               <View style={styles.rowCenter}>
-                <Text style={styles.blueBigText}>Read all reviews</Text>
+                <Text style={[styles.blueBigText, styles.fontSize(14)]}>
+                  Read all reviews
+                </Text>
               </View>
             </View>
           </View>
@@ -176,8 +176,15 @@ function Card({name, date, rating, message}) {
         <Text style={styles.textLight}>{date}</Text>
       </View>
       <View style={[commonStyle.rowFlexStart, commonStyle.marginBottom(5)]}>
-        <Text style={[styles.greenText, styles.marginRight(5)]}>{rating}</Text>
-        <Text style={styles.blueText}> Excellent</Text>
+        <Text
+          style={[
+            styles.greenText,
+            styles.marginRight(5),
+            styles.fontSize(14),
+          ]}>
+          {rating}
+        </Text>
+        <Text style={[styles.blueText, styles.fontSize(14)]}> Excellent</Text>
       </View>
       <Text style={styles.textNormalSmall}>
         {message}
@@ -205,7 +212,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     justifyContent: 'space-between',
   },
-  contentConatiner: {
+  contentContainer: {
     flex: 1,
     marginTop: 15,
     backgroundColor: Colors.white,
@@ -218,6 +225,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  fontSize(t) {
+    return {
+      fontSize: t,
+    };
   },
   card: {
     backgroundColor: '#F5F5F5',
@@ -274,12 +286,12 @@ const styles = StyleSheet.create({
     fontFamily: Font.AvenirMedium,
   },
   textNormal: {
-    fontSize: 14,
+    fontSize: 12,
     color: Colors.black,
     fontFamily: Font.AvenirRegular,
   },
   textNormalSmall: {
-    fontSize: 13,
+    fontSize: 12,
     color: Colors.black,
     fontFamily: Font.AvenirRegular,
   },
@@ -289,7 +301,7 @@ const styles = StyleSheet.create({
     fontFamily: Font.AvenirRegular,
   },
   textBig: {
-    fontSize: 16,
+    fontSize: 18,
     color: Colors.black,
     fontFamily: Font.AvenirMedium,
   },
@@ -299,7 +311,7 @@ const styles = StyleSheet.create({
     fontFamily: Font.AvenirMedium,
   },
   textPrimary: {
-    fontSize: 13,
+    fontSize: 12,
     color: Colors.primary,
     fontFamily: Font.AvenirRegular,
   },
@@ -308,7 +320,7 @@ const styles = StyleSheet.create({
     color: Colors.secondary,
     fontFamily: Font.AvenirRegular,
   },
-  ContactConatiner: {
+  ContactContainer: {
     paddingVertical: 10,
     marginBottom: 10,
     backgroundColor: Colors.background,
@@ -319,18 +331,17 @@ const styles = StyleSheet.create({
     fontFamily: Font.AvenirLight,
   },
   greenText: {
-    fontSize: 14,
+    fontSize: 12,
     fontFamily: Font.AvenirLight,
     color: '#1DAD81',
   },
   greenBigText: {
-    fontSize: 20,
+    fontSize: 24,
     fontFamily: Font.AvenirMedium,
     color: '#1DAD81',
   },
   blueText: {
-    fontSize: 14,
-    color: Colors.lightText,
+    fontSize: 12,
     fontFamily: Font.AvenirRegular,
     color: '#26698E',
   },
@@ -339,7 +350,7 @@ const styles = StyleSheet.create({
     fontFamily: Font.AvenirRegular,
     color: '#26698E',
   },
-  topConatainer: {
+  topContainer: {
     paddingVertical: 5,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -347,7 +358,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     backgroundColor: Colors.background,
   },
-  LoginConatainer: {
+  LoginContainer: {
     paddingVertical: 10,
     marginHorizontal: 5,
     flexDirection: 'row',

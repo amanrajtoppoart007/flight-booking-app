@@ -21,6 +21,9 @@ import Bag from '../../components/Svg/Bag.svg';
 import Font from '../../layout/Font';
 function MoreOptions() {
   const navigation = useNavigation();
+  const [DepartingIndex, setDepartingIndex] = useState(0);
+  const [ReturningIndex, setReturningIndex] = useState(0);
+
   return (
     <View style={styleOptions.container}>
       <View style={[commonStyle.rowSpaceBetween]}>
@@ -46,13 +49,15 @@ function MoreOptions() {
             <Text style={styleOptions.smallBlueText}>Dubai (DXB)</Text>
           </View>
         </View>
-        <Text style={styleOptions.timeText}>Wed, 15 Sep</Text>
+        <Text style={styleOptions.TimeText}>Wed, 15 Sep</Text>
       </View>
       <View style={commonStyle.padding(4)}>
-        <View style={styleOptions.card(true)}>
+        <TouchableOpacity
+          onPress={() => setDepartingIndex(0)}
+          style={styleOptions.card(DepartingIndex == 0)}>
           <View style={[commonStyle.rowSpaceBetween, commonStyle.padding(10)]}>
             <Icon
-              name={'dot-circle-o'}
+              name={DepartingIndex == 0 ? 'dot-circle-o' : 'circle-o'}
               type={'font-awesome'}
               size={26}
               color={Colors.primary}
@@ -73,7 +78,7 @@ function MoreOptions() {
           </View>
           <View style={[commonStyle.rowSpaceBetween, commonStyle.padding(10)]}>
             <View>
-              <Text style={styles.timetext}>
+              <Text style={styles.TimeText}>
                 10:00{'\n'}
                 <Text style={styles.smallLightText}>DOH</Text>
               </Text>
@@ -104,7 +109,7 @@ function MoreOptions() {
               </View>
             </View>
             <View>
-              <Text style={styles.timetext}>
+              <Text style={styles.TimeText}>
                 12:00{'\n'}
                 <Text style={styles.smallLightText}>DXB</Text>
               </Text>
@@ -116,11 +121,11 @@ function MoreOptions() {
           </View>
           <View style={[commonStyle.rowSpaceBetween, commonStyle.padding(10)]}>
             <View style={commonStyle.rowFlexStart}>
-              <Text style={styleOptions.timeText}>1 Stop |</Text>
+              <Text style={styleOptions.TimeText}>1 Stop |</Text>
               <Bag style={commonStyle.marginHorizontal(8)} />
-              <Text style={styleOptions.timeText}>Check In: 1 piece</Text>
+              <Text style={styleOptions.TimeText}>Check In: 1 piece</Text>
             </View>
-            <Text style={styleOptions.timeText}>Cabin: 7 Kg</Text>
+            <Text style={styleOptions.TimeText}>Cabin: 7 Kg</Text>
             <TouchableOpacity
               onPress={() => navigation.navigate('Review')}
               style={commonStyle.rowCenter}>
@@ -133,11 +138,13 @@ function MoreOptions() {
               />
             </TouchableOpacity>
           </View>
-        </View>
-        <View style={styleOptions.card(false)}>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => setDepartingIndex(1)}
+          style={styleOptions.card(DepartingIndex == 1)}>
           <View style={[commonStyle.rowSpaceBetween, commonStyle.padding(10)]}>
             <Icon
-              name={'circle-o'}
+              name={DepartingIndex == 1 ? 'dot-circle-o' : 'circle-o'}
               type={'font-awesome'}
               size={26}
               color={Colors.primary}
@@ -158,7 +165,7 @@ function MoreOptions() {
           </View>
           <View style={[commonStyle.rowSpaceBetween, commonStyle.padding(10)]}>
             <View>
-              <Text style={styles.timetext}>
+              <Text style={styles.TimeText}>
                 10:00{'\n'}
                 <Text style={styles.smallLightText}>DOH</Text>
               </Text>
@@ -189,7 +196,7 @@ function MoreOptions() {
               </View>
             </View>
             <View>
-              <Text style={styles.timetext}>
+              <Text style={styles.TimeText}>
                 12:00{'\n'}
                 <Text style={styles.smallLightText}>DXB</Text>
               </Text>
@@ -201,11 +208,11 @@ function MoreOptions() {
           </View>
           <View style={[commonStyle.rowSpaceBetween, commonStyle.padding(10)]}>
             <View style={commonStyle.rowFlexStart}>
-              <Text style={styleOptions.timeText}>1 Stop |</Text>
+              <Text style={styleOptions.TimeText}>1 Stop |</Text>
               <Bag style={commonStyle.marginHorizontal(8)} />
-              <Text style={styleOptions.timeText}>Check In: 1 piece</Text>
+              <Text style={styleOptions.TimeText}>Check In: 1 piece</Text>
             </View>
-            <Text style={styleOptions.timeText}>Cabin: 7 Kg</Text>
+            <Text style={styleOptions.TimeText}>Cabin: 7 Kg</Text>
             <TouchableOpacity
               onPress={() => navigation.navigate('Review')}
               style={commonStyle.rowCenter}>
@@ -218,7 +225,7 @@ function MoreOptions() {
               />
             </TouchableOpacity>
           </View>
-        </View>
+        </TouchableOpacity>
       </View>
 
       <View style={[commonStyle.rowSpaceBetween]}>
@@ -244,13 +251,15 @@ function MoreOptions() {
             <Text style={styleOptions.smallBlueText}>Doha (DOH)</Text>
           </View>
         </View>
-        <Text style={styleOptions.timeText}>Mon, 20 Sep</Text>
+        <Text style={styleOptions.TimeText}>Mon, 20 Sep</Text>
       </View>
       <View style={commonStyle.padding(4)}>
-        <View style={styleOptions.card(true)}>
+        <TouchableOpacity
+          onPress={() => setReturningIndex(0)}
+          style={styleOptions.card(setReturningIndex == 0)}>
           <View style={[commonStyle.rowSpaceBetween, commonStyle.padding(10)]}>
             <Icon
-              name={'dot-circle-o'}
+              name={ReturningIndex == 0 ? 'dot-circle-o' : 'circle-o'}
               type={'font-awesome'}
               size={26}
               color={Colors.primary}
@@ -271,7 +280,7 @@ function MoreOptions() {
           </View>
           <View style={[commonStyle.rowSpaceBetween, commonStyle.padding(10)]}>
             <View>
-              <Text style={styles.timetext}>
+              <Text style={styles.TimeText}>
                 10:00{'\n'}
                 <Text style={styles.smallLightText}>DOH</Text>
               </Text>
@@ -302,7 +311,7 @@ function MoreOptions() {
               </View>
             </View>
             <View>
-              <Text style={styles.timetext}>
+              <Text style={styles.TimeText}>
                 12:00{'\n'}
                 <Text style={styles.smallLightText}>DXB</Text>
               </Text>
@@ -314,11 +323,11 @@ function MoreOptions() {
           </View>
           <View style={[commonStyle.rowSpaceBetween, commonStyle.padding(10)]}>
             <View style={commonStyle.rowFlexStart}>
-              <Text style={styleOptions.timeText}>1 Stop |</Text>
+              <Text style={styleOptions.TimeText}>1 Stop |</Text>
               <Bag style={commonStyle.marginHorizontal(8)} />
-              <Text style={styleOptions.timeText}>Check In: 1 piece</Text>
+              <Text style={styleOptions.TimeText}>Check In: 1 piece</Text>
             </View>
-            <Text style={styleOptions.timeText}>Cabin: 7 Kg</Text>
+            <Text style={styleOptions.TimeText}>Cabin: 7 Kg</Text>
             <TouchableOpacity
               onPress={() => navigation.navigate('Review')}
               style={commonStyle.rowCenter}>
@@ -331,11 +340,13 @@ function MoreOptions() {
               />
             </TouchableOpacity>
           </View>
-        </View>
-        <View style={styleOptions.card(false)}>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => setReturningIndex(1)}
+          style={styleOptions.card(setReturningIndex == 1)}>
           <View style={[commonStyle.rowSpaceBetween, commonStyle.padding(10)]}>
             <Icon
-              name={'circle-o'}
+              name={ReturningIndex == 1 ? 'dot-circle-o' : 'circle-o'}
               type={'font-awesome'}
               size={26}
               color={Colors.primary}
@@ -356,7 +367,7 @@ function MoreOptions() {
           </View>
           <View style={[commonStyle.rowSpaceBetween, commonStyle.padding(10)]}>
             <View>
-              <Text style={styles.timetext}>
+              <Text style={styles.TimeText}>
                 10:00{'\n'}
                 <Text style={styles.smallLightText}>DOH</Text>
               </Text>
@@ -387,7 +398,7 @@ function MoreOptions() {
               </View>
             </View>
             <View>
-              <Text style={styles.timetext}>
+              <Text style={styles.TimeText}>
                 12:00{'\n'}
                 <Text style={styles.smallLightText}>DXB</Text>
               </Text>
@@ -399,11 +410,11 @@ function MoreOptions() {
           </View>
           <View style={[commonStyle.rowSpaceBetween, commonStyle.padding(10)]}>
             <View style={commonStyle.rowFlexStart}>
-              <Text style={styleOptions.timeText}>1 Stop |</Text>
+              <Text style={styleOptions.TimeText}>1 Stop |</Text>
               <Bag style={commonStyle.marginHorizontal(8)} />
-              <Text style={styleOptions.timeText}>Check In: 1 piece</Text>
+              <Text style={styleOptions.TimeText}>Check In: 1 piece</Text>
             </View>
-            <Text style={styleOptions.timeText}>Cabin: 7 Kg</Text>
+            <Text style={styleOptions.TimeText}>Cabin: 7 Kg</Text>
             <TouchableOpacity
               onPress={() => navigation.navigate('Review')}
               style={commonStyle.rowCenter}>
@@ -416,7 +427,7 @@ function MoreOptions() {
               />
             </TouchableOpacity>
           </View>
-        </View>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -425,8 +436,8 @@ function MoreOptions() {
 export default function FlightResults() {
   const navigation = useNavigation();
   const [topbar, setTopbar] = useState('cheapest');
-  const [moreOptionsVissible, setMoreOptionsVissible] = useState(false);
-  const [SortVissible, setSortVissible] = useState(false);
+  const [moreOptionsVisible, setMoreOptionsVisible] = useState(false);
+  const [SortVisible, setSortVisible] = useState(false);
 
   function Header() {
     return (
@@ -469,7 +480,7 @@ export default function FlightResults() {
                 </View>
                 <View style={{marginHorizontal: 5}}>
                   <Icon
-                    onPress={() => setSortVissible(!SortVissible)}
+                    onPress={() => setSortVisible(!SortVisible)}
                     name={'filter-variant'}
                     type={'material-community'}
                     size={18}
@@ -525,9 +536,9 @@ export default function FlightResults() {
             <Header />
             <TopBar />
             <View>
-              <View style={styles.DataContainer(moreOptionsVissible)}>
-                <View style={styles.subHeaderConatiner}>
-                  <View style={styles.flexcenter}>
+              <View style={styles.DataContainer(moreOptionsVisible)}>
+                <View style={styles.subHeaderContainer}>
+                  <View style={styles.flexCenter}>
                     <Deer />
                     <Text style={styles.titleBlack}>Qatar Airways</Text>
                   </View>
@@ -568,7 +579,7 @@ export default function FlightResults() {
                           commonStyle.rowCenter,
                           commonStyle.marginHorizontal(5),
                         ]}>
-                        <Text style={styles.timetext}>10:00</Text>
+                        <Text style={styles.TimeText}>10:00</Text>
                         <Icon
                           style={commonStyle.marginHorizontal(5)}
                           name={'arrowright'}
@@ -576,7 +587,7 @@ export default function FlightResults() {
                           size={16}
                           color={'black'}
                         />
-                        <Text style={styles.timetext}>12:15</Text>
+                        <Text style={styles.TimeText}>12:15</Text>
                       </View>
                       <Text style={styles.smallLightText}>5h 30m</Text>
                     </View>
@@ -624,7 +635,7 @@ export default function FlightResults() {
                           commonStyle.rowCenter,
                           commonStyle.marginHorizontal(5),
                         ]}>
-                        <Text style={styles.timetext}>15:45</Text>
+                        <Text style={styles.TimeText}>15:45</Text>
                         <Icon
                           style={commonStyle.marginHorizontal(5)}
                           name={'arrowright'}
@@ -632,7 +643,7 @@ export default function FlightResults() {
                           size={16}
                           color={'black'}
                         />
-                        <Text style={styles.timetext}>16:00</Text>
+                        <Text style={styles.TimeText}>16:00</Text>
                       </View>
                       <Text style={styles.smallLightText}>5h 30m</Text>
                     </View>
@@ -666,17 +677,17 @@ export default function FlightResults() {
                     alignItems: 'center',
                   }}>
                   <TouchableOpacity
-                    onPress={() => setMoreOptionsVissible(!moreOptionsVissible)}
+                    onPress={() => setMoreOptionsVisible(!moreOptionsVisible)}
                     style={styles.moreOptionsContainer}>
                     <Text style={styles.moreOptionsText}>
-                      {moreOptionsVissible
+                      {moreOptionsVisible
                         ? 'Less Flight Options'
                         : 'More Options'}
                     </Text>
                     <View style={commonStyle.marginHorizontal(5)} />
                     <Icon
                       name={
-                        moreOptionsVissible
+                        moreOptionsVisible
                           ? 'angle-double-up'
                           : 'angle-double-down'
                       }
@@ -686,9 +697,9 @@ export default function FlightResults() {
                     />
                   </TouchableOpacity>
                 </View>
-                {moreOptionsVissible && <MoreOptions />}
+                {moreOptionsVisible && <MoreOptions />}
               </View>
-              {moreOptionsVissible && (
+              {moreOptionsVisible && (
                 <View style={styles.SelectContainer}>
                   <View>
                     <Text style={styles.moneyText}>
@@ -711,9 +722,9 @@ export default function FlightResults() {
               {
                 // second element
               }
-              <View style={styles.DataContainer(moreOptionsVissible)}>
-                <View style={styles.subHeaderConatiner}>
-                  <View style={styles.flexcenter}>
+              <View style={styles.DataContainer(moreOptionsVisible)}>
+                <View style={styles.subHeaderContainer}>
+                  <View style={styles.flexCenter}>
                     <Deer />
                     <Text style={styles.titleBlack}>
                       Qatar Airways{'\n'}
@@ -763,7 +774,7 @@ export default function FlightResults() {
                           commonStyle.rowCenter,
                           commonStyle.marginHorizontal(5),
                         ]}>
-                        <Text style={styles.timetext}>21:25</Text>
+                        <Text style={styles.TimeText}>21:25</Text>
                         <Icon
                           style={commonStyle.marginHorizontal(5)}
                           name={'arrowright'}
@@ -771,7 +782,7 @@ export default function FlightResults() {
                           size={16}
                           color={'black'}
                         />
-                        <Text style={styles.timetext}>21:50</Text>
+                        <Text style={styles.TimeText}>21:50</Text>
                       </View>
                       <Text style={styles.smallLightText}>5h 30m</Text>
                     </View>
@@ -819,7 +830,7 @@ export default function FlightResults() {
                           commonStyle.rowCenter,
                           commonStyle.marginHorizontal(5),
                         ]}>
-                        <Text style={styles.timetext}>23:50</Text>
+                        <Text style={styles.TimeText}>23:50</Text>
                         <Icon
                           style={commonStyle.marginHorizontal(5)}
                           name={'arrowright'}
@@ -827,7 +838,7 @@ export default function FlightResults() {
                           size={16}
                           color={'black'}
                         />
-                        <Text style={styles.timetext}>08:45</Text>
+                        <Text style={styles.TimeText}>08:45</Text>
                       </View>
                       <Text style={styles.smallLightText}>5h 30m</Text>
                     </View>
@@ -861,17 +872,17 @@ export default function FlightResults() {
                     alignItems: 'center',
                   }}>
                   <TouchableOpacity
-                    onPress={() => setMoreOptionsVissible(!moreOptionsVissible)}
+                    onPress={() => setMoreOptionsVisible(!moreOptionsVisible)}
                     style={styles.moreOptionsContainer}>
                     <Text style={styles.moreOptionsText}>
-                      {moreOptionsVissible
+                      {moreOptionsVisible
                         ? 'Less Flight Options'
                         : 'More Flight Options'}
                     </Text>
                     <View style={commonStyle.marginHorizontal(5)} />
                     <Icon
                       name={
-                        moreOptionsVissible
+                        moreOptionsVisible
                           ? 'angle-double-up'
                           : 'angle-double-down'
                       }
@@ -881,9 +892,9 @@ export default function FlightResults() {
                     />
                   </TouchableOpacity>
                 </View>
-                {moreOptionsVissible && <MoreOptions />}
+                {moreOptionsVisible && <MoreOptions />}
               </View>
-              {moreOptionsVissible && (
+              {moreOptionsVisible && (
                 <View style={styles.SelectContainer}>
                   <View>
                     <Text style={styles.moneyText}>
@@ -906,9 +917,9 @@ export default function FlightResults() {
               {
                 // second element
               }
-              <View style={styles.DataContainer(moreOptionsVissible)}>
-                <View style={styles.subHeaderConatiner}>
-                  <View style={styles.flexcenter}>
+              <View style={styles.DataContainer(moreOptionsVisible)}>
+                <View style={styles.subHeaderContainer}>
+                  <View style={styles.flexCenter}>
                     <Deer />
                     <Text style={styles.titleBlack}>
                       Qatar Airways{'\n'}
@@ -954,7 +965,7 @@ export default function FlightResults() {
                           commonStyle.rowCenter,
                           commonStyle.marginHorizontal(5),
                         ]}>
-                        <Text style={styles.timetext}>17:00</Text>
+                        <Text style={styles.TimeText}>17:00</Text>
                         <Icon
                           style={commonStyle.marginHorizontal(5)}
                           name={'arrowright'}
@@ -962,7 +973,7 @@ export default function FlightResults() {
                           size={16}
                           color={'black'}
                         />
-                        <Text style={styles.timetext}>19:15</Text>
+                        <Text style={styles.TimeText}>19:15</Text>
                       </View>
                       <Text style={styles.smallLightText}>5h 30m</Text>
                     </View>
@@ -1010,7 +1021,7 @@ export default function FlightResults() {
                           commonStyle.rowCenter,
                           commonStyle.marginHorizontal(5),
                         ]}>
-                        <Text style={styles.timetext}>12:00</Text>
+                        <Text style={styles.TimeText}>12:00</Text>
                         <Icon
                           style={commonStyle.marginHorizontal(5)}
                           name={'arrowright'}
@@ -1018,7 +1029,7 @@ export default function FlightResults() {
                           size={16}
                           color={'black'}
                         />
-                        <Text style={styles.timetext}>20:05</Text>
+                        <Text style={styles.TimeText}>20:05</Text>
                       </View>
                       <Text style={styles.smallLightText}>5h 30m</Text>
                     </View>
@@ -1052,17 +1063,17 @@ export default function FlightResults() {
                     alignItems: 'center',
                   }}>
                   <TouchableOpacity
-                    onPress={() => setMoreOptionsVissible(!moreOptionsVissible)}
+                    onPress={() => setMoreOptionsVisible(!moreOptionsVisible)}
                     style={styles.moreOptionsContainer}>
                     <Text style={styles.moreOptionsText}>
-                      {moreOptionsVissible
+                      {moreOptionsVisible
                         ? 'Less Flight Options'
                         : 'More Flight Options'}
                     </Text>
                     <View style={commonStyle.marginHorizontal(5)} />
                     <Icon
                       name={
-                        moreOptionsVissible
+                        moreOptionsVisible
                           ? 'angle-double-up'
                           : 'angle-double-down'
                       }
@@ -1072,9 +1083,9 @@ export default function FlightResults() {
                     />
                   </TouchableOpacity>
                 </View>
-                {moreOptionsVissible && <MoreOptions />}
+                {moreOptionsVisible && <MoreOptions />}
               </View>
-              {moreOptionsVissible && (
+              {moreOptionsVisible && (
                 <View style={styles.SelectContainer}>
                   <View>
                     <Text style={styles.moneyText}>
@@ -1097,7 +1108,7 @@ export default function FlightResults() {
           </View>
         </View>
       </ScrollView>
-      {SortVissible && <SortFilter onClose={() => setSortVissible(false)} />}
+      {SortVisible && <SortFilter onClose={() => setSortVisible(false)} />}
     </SafeAreaView>
   );
 }
@@ -1117,7 +1128,7 @@ const styleOptions = StyleSheet.create({
     color: Colors.primary,
     fontFamily: Font.AvenirLight,
   },
-  timeText: {
+  TimeText: {
     fontSize: 12,
     color: Colors.border,
     fontFamily: Font.AvenirRegular,
@@ -1142,7 +1153,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  flexcenter: {
+  flexCenter: {
     flexDirection: 'row',
     alignItems: 'flex-start',
   },
@@ -1219,7 +1230,7 @@ const styles = StyleSheet.create({
   },
   WhiteText: {
     fontFamily: Font.AvenirMedium,
-    fontSize: 14,
+    fontSize: 16,
     color: Colors.white,
   },
   locationContainer: {
@@ -1240,8 +1251,8 @@ const styles = StyleSheet.create({
     color: Colors.lightText,
     fontFamily: Font.AvenirLight,
   },
-  timetext: {
-    fontSize: 15,
+  TimeText: {
+    fontSize: 14,
     color: Colors.black,
     marginVertical: 5,
     fontFamily: Font.AvenirRegular,
@@ -1261,7 +1272,7 @@ const styles = StyleSheet.create({
   moneyText: {
     color: Colors.black,
     marginHorizontal: 5,
-    fontSize: 18,
+    fontSize: 16,
     fontFamily: Font.AvenirHeavy,
   },
   moreOptionsContainer: {
@@ -1273,12 +1284,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   subTitle: {
-    fontSize: 16,
+    fontSize: 14,
     color: Colors.lightText,
     fontFamily: Font.AvenirLight,
   },
   titleBlack: {
-    fontSize: 18,
+    fontSize: 14,
     color: Colors.black,
     fontFamily: Font.AvenirMedium,
   },
@@ -1287,7 +1298,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   lightText: {
-    fontSize: 14,
+    fontSize: 12,
     color: Colors.lightText,
     fontFamily: Font.AvenirLight,
   },
@@ -1303,7 +1314,7 @@ const styles = StyleSheet.create({
     fontFamily: Font.AvenirLight,
   },
   redTextBig: {
-    fontSize: 15,
+    fontSize: 14,
     color: 'red',
     marginVertical: 5,
     fontFamily: Font.AvenirRegular,
@@ -1315,7 +1326,7 @@ const styles = StyleSheet.create({
     fontFamily: Font.AvenirRegular,
   },
 
-  subHeaderConatiner: {
+  subHeaderContainer: {
     alignSelf: 'flex-end',
     flexDirection: 'row',
     justifyContent: 'space-between',

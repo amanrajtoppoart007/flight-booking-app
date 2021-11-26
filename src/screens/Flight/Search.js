@@ -153,13 +153,13 @@ function Search() {
         }
         renderItem={({item}) => {
           return (
-            <View style={commonStyle.paddingHorizontal(5)}>
+            <View>
               <View style={styles.itemContainer}>
                 <Icon
                   style={styles.marginH}
                   name={'flight-takeoff'}
                   type={'material'}
-                  size={24}
+                  size={20}
                   color={'gray'}
                 />
                 <View style={styles.itemTextContainer}>
@@ -207,6 +207,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
     flex: 1,
     fontFamily: Font.AvenirRegular,
+    fontSize: 14,
   },
   divider: {
     borderWidth: 0.5,
@@ -227,7 +228,7 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: 'black',
-    fontSize: 18,
+    fontSize: 16,
     margin: 10,
     fontFamily: Font.AvenirHeavy,
   },
@@ -245,12 +246,12 @@ const styles = StyleSheet.create({
   },
   itemText: {
     color: 'black',
-    fontSize: 16,
+    fontSize: 14,
     fontFamily: Font.AvenirRegular,
   },
   itemSmallText: {
     color: Colors.lightText,
-    fontSize: 14,
+    fontSize: 12,
     fontFamily: Font.AvenirRegular,
   },
 });

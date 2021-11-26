@@ -25,9 +25,7 @@ import Pin from '../../components/Svg/Hotel/Pin.svg';
 import Info from '../../components/Svg/Hotel/Info.svg';
 import InfoBlue from '../../components/Svg/Hotel/InfoBlue.svg';
 import Line from '../../components/Svg/Hotel/Line.svg';
-
 import User from '../../components/Svg/Profile/User.svg';
-
 import Ratings from '../../components/Svg/Hotel/Ratings.svg';
 import BlueRightArrow from '../../components/Svg/Hotel/BlueRightArrow.svg';
 import LoginLock from '../../components/Svg/Hotel/LoginLock.svg';
@@ -36,6 +34,7 @@ import {ScrollView} from 'react-native-gesture-handler';
 import Accordion from '../../components/Hotel/Checkout/Accordion';
 import BookingSummary from '../../components/Hotel/Checkout/BookingSummary';
 import Footer from '../../components/Hotel/Footer';
+import SelectTextInput from '../../components/Common/SelectTextInput';
 
 function GuestDetails() {
   const navigation = useNavigation();
@@ -71,7 +70,7 @@ function GuestDetails() {
                 <StatusStepBar activeIndex={1} />
               </LinearGradient>
             </View>
-            <View style={styles.topConatainer}>
+            <View style={styles.topContainer}>
               <View>
                 <View style={styles.rowWrapper}>
                   <Text style={[styles.textNormal, styles.marginRight(5)]}>
@@ -81,7 +80,12 @@ function GuestDetails() {
                 </View>
                 <View style={styles.rowWrapper}>
                   <Pin />
-                  <Text style={[styles.textLight, styles.marginLeft(5)]}>
+                  <Text
+                    style={[
+                      styles.textLight,
+                      styles.fontSize(12),
+                      styles.marginLeft(5),
+                    ]}>
                     West Bay, Doha, QA
                   </Text>
                 </View>
@@ -106,7 +110,7 @@ function GuestDetails() {
                 </View>
               </View>
             </View>
-            <View style={styles.LoginConatainer}>
+            <View style={styles.LoginContainer}>
               <LoginLock />
               <Text style={styles.textNormal}>
                 Login to view your saved traveller list.
@@ -115,7 +119,7 @@ function GuestDetails() {
                 <Text style={styles.ButtonText}>Login</Text>
               </TouchableOpacity>
             </View>
-            <View style={styles.ContactConatiner}>
+            <View style={styles.ContactContainer}>
               <View style={styles.rowWrapper}>
                 <PhoneBook />
                 <Text style={[styles.textBig, styles.marginLeft(10)]}>
@@ -150,7 +154,7 @@ function GuestDetails() {
                 />
               </View>
             </View>
-            <View style={styles.ContactConatiner}>
+            <View style={styles.ContactContainer}>
               <View style={[styles.rowWrapper, commonStyle.marginBottom(12)]}>
                 <User />
                 <Text style={[styles.textBig, styles.marginLeft(10)]}>
@@ -197,26 +201,19 @@ function AccordionContent() {
   const [Title, setTitle] = useState('');
   const [FirstName, setFirstName] = useState('');
   const [LastName, setLastName] = useState('');
+  const [ExtraVisible, setExtraVisible] = useState(false);
 
   return (
     <View style={commonStyle.marginVertical(5)}>
       <View style={AStyles.rowWrapper}>
-        <View style={[AStyles.InputConatiner, {flex: 0.8}]}>
-          <TextInput
-            value={Title}
-            onChangeText={t => setTitle(t)}
-            style={AStyles.TitleInput}
-            placeholder="Title"
-            placeholderTextColor={Colors.lightText}
-          />
-          <Icon
-            name={'caretdown'}
-            type={'antdesign'}
-            size={15}
-            color={Colors.primary}
-          />
-        </View>
-        <View style={AStyles.InputConatiner}>
+        <SelectTextInput
+          value={Title}
+          placeholder="Title"
+          setValue={setTitle}
+          listValues={['data1', 'data2']}
+          style={styles.marginRight(10)}
+        />
+        <View style={AStyles.InputContainer}>
           <TextInput
             value={FirstName}
             onChangeText={t => setFirstName(t)}
@@ -225,7 +222,7 @@ function AccordionContent() {
             placeholderTextColor={Colors.lightText}
           />
         </View>
-        <View style={AStyles.InputConatiner}>
+        <View style={AStyles.InputContainer}>
           <TextInput
             value={LastName}
             onChangeText={t => setLastName(t)}
@@ -253,34 +250,40 @@ function AccordionContent() {
           </Text>
           <Info />
         </View>
-        <View style={commonStyle.rowFlexStart}>
+        <TouchableOpacity
+          onPress={() => setExtraVisible(!ExtraVisible)}
+          style={commonStyle.rowFlexStart}>
           <Text style={[AStyles.blueText, styles.marginRight(5)]}>Extras</Text>
           <Icon
-            name={'caretdown'}
+            name={ExtraVisible ? 'caretup' : 'caretdown'}
             type={'antdesign'}
-            size={15}
+            size={14}
             color={Colors.primary}
           />
-        </View>
+        </TouchableOpacity>
       </View>
-      <Line />
-      <View style={AStyles.borderConatiner}>
-        <Text style={AStyles.lightText}>
-          Please enter any special request that you may have.
-        </Text>
-        <Text style={AStyles.lightText}>(Eg: Late Check-In, VIP Pax)</Text>
-      </View>
-      <View
-        style={[
-          commonStyle.marginHorizontal(10),
-          commonStyle.marginVertical(5),
-        ]}>
-        <Text style={AStyles.lightText}>
-          Note: Special requests are not guaranteed and are at the hotel’s
-          discretion. Additional charges may apply depending on the hotel’s
-          policies.
-        </Text>
-      </View>
+      {ExtraVisible && (
+        <>
+          <Line />
+          <View style={AStyles.borderContainer}>
+            <Text style={AStyles.lightText}>
+              Please enter any special request that you may have.
+            </Text>
+            <Text style={AStyles.lightText}>(Eg: Late Check-In, VIP Pax)</Text>
+          </View>
+          <View
+            style={[
+              commonStyle.marginHorizontal(10),
+              commonStyle.marginVertical(5),
+            ]}>
+            <Text style={AStyles.lightText}>
+              Note: Special requests are not guaranteed and are at the hotel’s
+              discretion. Additional charges may apply depending on the hotel’s
+              policies.
+            </Text>
+          </View>
+        </>
+      )}
     </View>
   );
 }
@@ -291,13 +294,13 @@ const AStyles = StyleSheet.create({
     justifyContent: 'space-evenly',
     alignItems: 'center',
   },
-  InputConatiner: {
+  InputContainer: {
     flexDirection: 'row',
     borderBottomWidth: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
     flex: 1,
-    borderColor: Colors.lightText,
+    borderColor: '#D9D9D9',
     marginRight: 10,
   },
   TitleInput: {
@@ -330,7 +333,7 @@ const AStyles = StyleSheet.create({
     fontFamily: Font.AvenirLight,
     color: Colors.secondary,
   },
-  borderConatiner: {
+  borderContainer: {
     borderRadius: 5,
     borderWidth: 1,
     borderColor: '#DDDDDD',
@@ -435,18 +438,18 @@ const styles = StyleSheet.create({
     color: Colors.secondary,
     fontFamily: Font.AvenirRegular,
   },
-  ContactConatiner: {
+  ContactContainer: {
     paddingVertical: 12,
     marginBottom: 12,
     backgroundColor: Colors.background,
   },
   textLight: {
-    fontSize: 12,
+    fontSize: 11,
     color: Colors.lightText,
     fontFamily: Font.AvenirLight,
   },
   greenText: {
-    fontSize: 12,
+    fontSize: 11,
     color: Colors.lightText,
     fontFamily: Font.AvenirLight,
   },
@@ -455,7 +458,12 @@ const styles = StyleSheet.create({
     color: Colors.lightText,
     fontFamily: Font.AvenirLight,
   },
-  topConatainer: {
+  fontSize(t) {
+    return {
+      fontSize: t,
+    };
+  },
+  topContainer: {
     paddingVertical: 5,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -464,7 +472,7 @@ const styles = StyleSheet.create({
     paddingTop: 11,
     backgroundColor: Colors.background,
   },
-  LoginConatainer: {
+  LoginContainer: {
     paddingVertical: 12,
     marginHorizontal: 5,
     flexDirection: 'row',

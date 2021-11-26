@@ -58,7 +58,7 @@ function SortFilter({onClose}) {
               key={i?.toString()}
               style={styles.tabItem}
               onPress={() => setIndex(i)}>
-              <Animated.Text style={[styles.title, {color}]}>
+              <Animated.Text style={styles.tabTitle(i === index)}>
                 {route.title}
               </Animated.Text>
               {i === index ? (
@@ -383,6 +383,13 @@ const styles = StyleSheet.create({
       marginRight: 4,
     };
   },
+  tabTitle(isActive) {
+    return {
+      fontFamily: Font.AvenirMedium,
+      fontSize: 14,
+      color: isActive ? Colors.primary : '#6C6C6C',
+    };
+  },
   BorderButton(selected = false) {
     return {
       flexDirection: 'row',
@@ -398,7 +405,7 @@ const styles = StyleSheet.create({
     };
   },
   CheckText: {
-    fontSize: 16,
+    fontSize: 14,
     color: Colors.lightText,
     fontFamily: Font.AvenirMedium,
   },
@@ -523,7 +530,7 @@ const styles = StyleSheet.create({
   },
   listTitle(isSelected = false) {
     return {
-      fontSize: 16,
+      fontSize: 14,
       color: isSelected ? Colors.primary : Colors.black,
       fontFamily: Font.AvenirRegular,
       marginLeft: 15,

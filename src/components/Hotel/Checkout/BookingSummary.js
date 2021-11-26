@@ -140,15 +140,30 @@ function Card({title, subtitle, price, baseFare, tax, discount}) {
             ]}>
             <View style={commonStyle.rowSpaceBetween}>
               <Text style={styles.textNormalLight}>Base Fare</Text>
-              <Text style={styles.textNormalLight}>QAR {baseFare}</Text>
+              <Text style={styles.textNormalLight}>
+                QAR{' '}
+                <Text style={[styles.textNormalLight, {color: Colors.black}]}>
+                  {baseFare}
+                </Text>
+              </Text>
             </View>
             <View style={commonStyle.rowSpaceBetween}>
               <Text style={styles.textNormalLight}>Taxes & Fee</Text>
-              <Text style={styles.textNormalLight}>QAR {tax}</Text>
+              <Text style={styles.textNormalLight}>
+                QAR{' '}
+                <Text style={[styles.textNormalLight, {color: Colors.black}]}>
+                  {tax}
+                </Text>
+              </Text>
             </View>
             <View style={commonStyle.rowSpaceBetween}>
               <Text style={styles.textNormalLight}>Discount</Text>
-              <Text style={styles.textNormalLight}>QAR {discount}</Text>
+              <Text style={styles.textNormalLight}>
+                QAR{' '}
+                <Text style={[styles.textNormalLight, {color: Colors.black}]}>
+                  {discount}
+                </Text>
+              </Text>
             </View>
           </View>
         </>
@@ -188,17 +203,17 @@ const styles = StyleSheet.create({
     borderColor: '#DDDDDD',
   },
   textNormal: {
-    fontSize: 13,
+    fontSize: 14,
     color: Colors.black,
     fontFamily: Font.AvenirRegular,
   },
   textBold: {
-    fontSize: 13,
+    fontSize: 14,
     color: Colors.black,
     fontFamily: Font.AvenirHeavy,
   },
   textNormalBlue: {
-    fontSize: 13,
+    fontSize: 14,
     color: '#26698E',
     fontFamily: Font.AvenirRegular,
   },
@@ -208,7 +223,7 @@ const styles = StyleSheet.create({
     fontFamily: Font.AvenirRegular,
   },
   textNormalPrimary: {
-    fontSize: 13,
+    fontSize: 14,
     color: Colors.primary,
     fontFamily: Font.AvenirRegular,
   },
@@ -236,6 +251,11 @@ const styles = StyleSheet.create({
   marginRight(t) {
     return {
       marginRight: t,
+    };
+  },
+  fontSize(t) {
+    return {
+      fontSize: t,
     };
   },
   marginLeft(t) {

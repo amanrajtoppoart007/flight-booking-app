@@ -55,7 +55,7 @@ function Item({title, subtitle}) {
         <Text style={styles.title}>{title}</Text>
         <Text
           style={{
-            fontSize: 14,
+            fontSize: 12,
             color: Colors.lightText,
           }}>
           {subtitle}
@@ -221,7 +221,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
   },
   buttonText: {
-    fontSize: 12,
+    fontSize: 14,
     color: Colors.white,
     fontFamily: Font.AvenirRegular,
   },
@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
   selectText: {
     marginHorizontal: 10,
     marginVertical: 8,
-    fontSize: 16,
+    fontSize: 14,
     color: 'black',
   },
 });
