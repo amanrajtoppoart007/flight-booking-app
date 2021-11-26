@@ -14,9 +14,9 @@ import HotelMapView from '../screens/Hotel/HotelMapView';
 const Stack = createStackNavigator();
 const HotelStackNavigator = () => (
   <Stack.Navigator screenOptions={{headerShown: false}}>
+    <Stack.Screen name={'GuestDetails'} component={GuestDetails} />
     <Stack.Screen name={'SearchResult'} component={SearchResult} />
     <Stack.Screen name={'GuestReviews'} component={GuestReviews} />
-    <Stack.Screen name={'GuestDetails'} component={GuestDetails} />
     <Stack.Screen name={'HotelMapView'} component={HotelMapView} />
     <Stack.Screen name={'Home'} component={Home} />
     <Stack.Screen name={'HotelDetails'} component={HotelDetails} />
