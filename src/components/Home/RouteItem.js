@@ -15,6 +15,7 @@ function RouteItem({item}) {
         </View>
         <View style={commonStyle.marginHorizontal(10)}>
           <Text style={styles.text}>{item?.from}</Text>
+          <View style={commonStyle.marginVertical(5.5)} />
           <Text style={styles.text}>{item?.to}</Text>
         </View>
       </View>

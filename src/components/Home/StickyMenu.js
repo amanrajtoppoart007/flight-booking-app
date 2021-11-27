@@ -5,14 +5,14 @@ import Colors from '../../layout/Colors';
 import {useNavigation} from '@react-navigation/native';
 import Font from '../../layout/Font';
 
-import PlaneSvg from '../Svg/Plane.svg';
-import HotelSvg from '../Svg/Hotel.svg';
-import AssistanceSvg from '../Svg/Assistance.svg';
+import PlaneSvg from '../Svg/StickyMenu/Plane.svg';
+import HotelSvg from '../Svg/StickyMenu/Hotel.svg';
+import AssistanceSvg from '../Svg/StickyMenu/Assistance.svg';
 function StickyMenu() {
   const navigation = useNavigation();
   return (
     <View style={styles.wrapper}>
-      <View>
+      <View style={styles.content}>
         <Pressable
           onPress={() => navigation.navigate('FlightStack')}
           style={styles.card}>
@@ -24,7 +24,7 @@ function StickyMenu() {
           </View>
         </Pressable>
       </View>
-      <View>
+      <View style={styles.content}>
         <Pressable
           onPress={() => navigation.navigate('HotelStack')}
           style={styles.card}>
@@ -36,7 +36,7 @@ function StickyMenu() {
           </View>
         </Pressable>
       </View>
-      <View>
+      <View style={styles.content}>
         <Pressable style={styles.card}>
           <View style={[styles.circle, styles.assistanceMenu]}>
             <AssistanceSvg style={styles.menuIcon} />
@@ -52,19 +52,20 @@ function StickyMenu() {
 
 const styles = StyleSheet.create({
   wrapper: {
-    flex: 1,
-    position: 'absolute',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginVertical: 5,
-    backgroundColor: 'red',
+    marginVertical: 10,
+    backgroundColor: 'white',
+  },
+  content: {
+    width: '33.33%',
+    paddingHorizontal: 10,
   },
   card: {
-    width: 125,
-    height: 50,
+    height: 45,
     borderRadius: 50,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: 'transparent',
     borderWidth: 1,
     borderColor: '#707070',
     flexDirection: 'row',
@@ -73,9 +74,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
   },
   circle: {
-    width: 35,
-    height: 35,
-    borderRadius: 35 / 2,
+    width: 30,
+    height: 30,
+    borderRadius: 30 / 2,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -90,7 +91,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: Font.AvenirMedium,
-    fontSize: 14,
+    fontSize: 12,
     color: Colors.black,
   },
   menuIcon: {},
