@@ -44,6 +44,7 @@ function FlightDetails() {
             style={[
               commonStyle.rowSpaceBetween,
               commonStyle.marginVertical(10),
+              commonStyle.marginHorizontal(10),
               {alignItems: 'flex-start'},
             ]}>
             <Deer width={25} />
@@ -143,6 +144,7 @@ function FlightDetails() {
             style={[
               commonStyle.rowSpaceBetween,
               commonStyle.marginVertical(10),
+              commonStyle.marginHorizontal(10),
               {alignItems: 'flex-start'},
             ]}>
             <Deer width={25} />
