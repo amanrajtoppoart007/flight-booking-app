@@ -85,6 +85,9 @@ function Home({navigation}) {
             <Animated.View
               style={[
                 {
+                  marginHorizontal: 12,
+                },
+                {
                   transform: [
                     {scale: chipSectionScale},
                     {translateY: chipSectionY},

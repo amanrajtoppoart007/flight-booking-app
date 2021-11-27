@@ -50,7 +50,7 @@ function ChipSection() {
 const styles = StyleSheet.create({
   card: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center',
     marginVertical: 10,
   },
