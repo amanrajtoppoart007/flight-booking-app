@@ -19,6 +19,10 @@ import {
 } from 'react-native-responsive-screen';
 import commonStyle from '../../../layout/Style';
 import Deer from '../../Svg/Deer.svg';
+import AirFrance from '../../Svg/AirFrance.svg';
+import EgyptAir from '../../Svg/EgyptAir.svg';
+import RoyalJordanian from '../../Svg/RoyalJordanian.svg';
+
 export const Header = ({onClose}) => {
   return (
     <View style={styles.HeaderContainer}>
@@ -185,12 +189,18 @@ function TabFlightView() {
           svg={<Deer style={styles.SvgIcon} />}
           text="Qatar Airways"
         />
-        <ListCheckBox svg={<Deer style={styles.SvgIcon} />} text="Egypt Air" />
         <ListCheckBox
-          svg={<Deer style={styles.SvgIcon} />}
+          svg={<EgyptAir style={styles.SvgIcon} />}
+          text="Egypt Air"
+        />
+        <ListCheckBox
+          svg={<RoyalJordanian style={styles.SvgIcon} />}
           text="Royal Jordanian"
         />
-        <ListCheckBox svg={<Deer style={styles.SvgIcon} />} text="Air France" />
+        <ListCheckBox
+          svg={<AirFrance style={styles.SvgIcon} />}
+          text="Air France"
+        />
       </View>
     </View>
   );
@@ -198,7 +208,7 @@ function TabFlightView() {
 function GraphSlider() {
   const renderThumb = useCallback(
     () => (
-      <View elevation={5} style={styles.SliderIconConatiner}>
+      <View elevation={5} style={styles.SliderIconContainer}>
         <Icon
           name={'circle'}
           type={'entypo'}
@@ -260,24 +270,24 @@ function IconButton({onPress, text, icon}) {
 }
 
 function Stops() {
-  const [Selected, setSeletcted] = useState();
+  const [Selected, setSelected] = useState();
   return (
     <View>
       <Text style={styles.listTitle()}>Stops</Text>
       <View style={[commonStyle.rowSpaceBetween, commonStyle.margin(10)]}>
         <BorderButton
           selected={Selected == 'Non-stop'}
-          onPress={() => setSeletcted('Non-stop')}
+          onPress={() => setSelected('Non-stop')}
           text="Non-stop"
         />
         <BorderButton
           selected={Selected == '1 stop'}
-          onPress={() => setSeletcted('1 stop')}
+          onPress={() => setSelected('1 stop')}
           text="1 stop"
         />
         <BorderButton
           selected={Selected == '2+ stop'}
-          onPress={() => setSeletcted('2+ stop')}
+          onPress={() => setSelected('2+ stop')}
           text="2+ stop"
         />
       </View>
@@ -286,7 +296,7 @@ function Stops() {
   );
 }
 
-function Fliter() {
+function Filter() {
   return (
     <ScrollView>
       <GraphSlider />
@@ -370,7 +380,7 @@ function SortFilter({onClose}) {
       case 'SortBy':
         return <SortBy jumpTo={jumpTo} />;
       case 'Filter':
-        return <Fliter jumpTo={jumpTo} />;
+        return <Filter jumpTo={jumpTo} />;
       default:
         return <SortBy jumpto={jumpTo} />;
     }
@@ -387,7 +397,7 @@ function SortFilter({onClose}) {
               key={i?.toString()}
               style={styles.tabItem}
               onPress={() => setIndex(i)}>
-              <Animated.Text style={[styles.title, {color}]}>
+              <Animated.Text style={styles.tabTitle(i == index)}>
                 {route.title}
               </Animated.Text>
               {i === index ? (
@@ -405,7 +415,7 @@ function SortFilter({onClose}) {
   return (
     <SafeAreaView style={styles.container}>
       <Header onClose={onClose} />
-      <View style={styles.subConatiner}>
+      <View style={styles.subContainer}>
         <TabView
           navigationState={{index, routes}}
           renderScene={renderScene}
@@ -437,6 +447,13 @@ const styles = StyleSheet.create({
       fontFamily: Font.AvenirRegular,
     };
   },
+  tabTitle(isActive) {
+    return {
+      fontFamily: Font.AvenirMedium,
+      fontSize: 14,
+      color: isActive ? Colors.primary : '#6C6C6C',
+    };
+  },
   BorderButton(selected = false) {
     return {
       paddingHorizontal: 10,
@@ -450,7 +467,7 @@ const styles = StyleSheet.create({
     };
   },
   CheckText: {
-    fontSize: 16,
+    fontSize: 14,
     color: Colors.lightText,
     fontFamily: Font.AvenirMedium,
   },
@@ -478,7 +495,7 @@ const styles = StyleSheet.create({
     right: 0,
     alignItems: 'flex-end',
   },
-  subConatiner: {
+  subContainer: {
     backgroundColor: 'white',
     width: wp('75%'),
     height: hp('100%'),
@@ -540,7 +557,7 @@ const styles = StyleSheet.create({
   },
   listTitle(isSelected = false) {
     return {
-      fontSize: 16,
+      fontSize: 14,
       color: isSelected ? 'green' : Colors.black,
       fontFamily: Font.AvenirRegular,
       marginHorizontal: 10,
@@ -570,7 +587,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginHorizontal: 10,
   },
-  SliderIconConatiner: {
+  SliderIconContainer: {
     margin: 3,
     padding: 2,
     borderRadius: 22,

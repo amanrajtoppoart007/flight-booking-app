@@ -51,6 +51,16 @@ const commonStyle = StyleSheet.create({
       marginVertical: value,
     };
   },
+  marginRight(value) {
+    return {
+      marginRight: value,
+    };
+  },
+  marginLeft(value) {
+    return {
+      marginLeft: value,
+    };
+  },
   marginHorizontal(value) {
     return {
       marginHorizontal: value,

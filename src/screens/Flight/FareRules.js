@@ -3,6 +3,7 @@ import {Pressable, StyleSheet, Text, View, ScrollView} from 'react-native';
 import Colors from '../../layout/Colors';
 import {Icon} from 'react-native-elements';
 import Font from '../../layout/Font';
+import commonStyle from '../../layout/Style';
 
 function ExpandableSection({children, name}) {
   const [open, setOpen] = useState(false);
@@ -25,10 +26,10 @@ function ExpandableSection({children, name}) {
 }
 
 export default function FareRules() {
-  const [tabbar, setTabbar] = useState('DOH-DXB');
+  const [tabBar, setTabBar] = useState('DOH-DXB');
   const d = [
     'Penalties',
-    'Minimun Stay',
+    'Minimum Stay',
     'Maximum Stay',
     'Seasonality',
     'Blackout Date',
@@ -38,9 +39,10 @@ export default function FareRules() {
       <View
         style={{
           flex: 1,
-          marginHorizontal: 5,
         }}>
-        <Text style={styles.textbold}>Flight Long Fare Rules</Text>
+        <Text style={[styles.textBold, commonStyle.marginHorizontal(5)]}>
+          Flight Long Fare Rules
+        </Text>
         <View style={styles.warningBackground}>
           <Text style={[styles.text, {color: 'tomato', marginBottom: 5}]}>
             Tickets are non-refundable
@@ -55,7 +57,7 @@ export default function FareRules() {
           </Text>
         </View>
         <View style={styles.termsContainer}>
-          <Text style={[styles.textbold, {color: Colors.primary}]}>
+          <Text style={[styles.textBold, {color: Colors.primary}]}>
             Terms & Policies
           </Text>
           <Icon
@@ -67,14 +69,14 @@ export default function FareRules() {
         </View>
         <View style={styles.itemContainer}>
           <Pressable
-            onPress={() => setTabbar('DOH-DXB')}
-            style={styles.item(tabbar, 'DOH-DXB')}>
-            <Text style={styles.text}>DOH-DXB</Text>
+            onPress={() => setTabBar('DOH-DXB')}
+            style={styles.item(tabBar, 'DOH-DXB')}>
+            <Text style={styles.itemText(tabBar == 'DOH-DXB')}>DOH-DXB</Text>
           </Pressable>
           <Pressable
-            onPress={() => setTabbar('DXB-DOH')}
-            style={styles.item(tabbar, 'DXB-DOH')}>
-            <Text style={styles.text}>DXB-DOH</Text>
+            onPress={() => setTabBar('DXB-DOH')}
+            style={styles.item(tabBar, 'DXB-DOH')}>
+            <Text style={styles.itemText(tabBar == 'DXB-DOH')}>DXB-DOH</Text>
           </Pressable>
         </View>
         {d.map(item => (
@@ -121,6 +123,13 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
     flex: 1,
   },
+  itemText(isActive) {
+    return {
+      fontSize: 12,
+      color: isActive ? Colors.primary : 'black',
+      fontFamily: Font.AvenirRegular,
+    };
+  },
   divider: {
     borderWidth: 0.5,
     borderColor: '#D9D9D9',
@@ -149,21 +158,17 @@ const styles = StyleSheet.create({
       marginTop: 10,
     };
   },
-  textbold: {
+  textBold: {
     color: 'black',
-    fontSize: 18,
-    fontFamily: Font.AvenirMedium,
-  },
-  text: {
-    fontSize: 13,
-    color: 'black',
-    fontFamily: Font.AvenirRegular,
-  },
-  itemtext: {
-    color: 'gray',
     fontSize: 14,
     fontFamily: Font.AvenirMedium,
   },
+  text: {
+    fontSize: 12,
+    color: 'black',
+    fontFamily: Font.AvenirRegular,
+  },
+
   expandableSections: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -172,15 +177,15 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   expandableSectionsText: {
-    fontSize: 18,
+    fontSize: 14,
     color: Colors.primary,
     marginRight: 5,
   },
   warningBackground: {
     backgroundColor: 'rgba(150,150,150,0.1)',
-    marginHorizontal: 10,
+    marginHorizontal: 15,
     borderRadius: 5,
-    marginVertical: 5,
+    marginVertical: 10,
     padding: 10,
   },
   termsContainer: {

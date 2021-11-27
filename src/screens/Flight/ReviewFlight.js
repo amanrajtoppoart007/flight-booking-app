@@ -46,13 +46,12 @@ function ReviewFlight() {
     return (
       <View style={styles.tabBar}>
         {props.navigationState.routes.map((route, i) => {
-          const color = i === index ? Colors.primary : '#6C6C6C';
           return (
             <TouchableOpacity
               key={i?.toString()}
               style={styles.tabItem}
               onPress={() => setIndex(i)}>
-              <Animated.Text style={[styles.title, {color}]}>
+              <Animated.Text style={styles.tabTitle(i == index)}>
                 {route.title}
               </Animated.Text>
               {i === index ? (
@@ -71,7 +70,7 @@ function ReviewFlight() {
     <SafeAreaView style={styles.container}>
       <CustomStatusBar backgroundColor={Colors.backgroundColor} />
       <View style={[commonStyle.rowSpaceBetween, commonStyle.margin(10)]}>
-        <Text style={styles.textbold}>Review your flight to Dubai</Text>
+        <Text style={styles.textBold}>Review your flight to Dubai</Text>
         <Icon
           onPress={() => navigation.goBack()}
           name={'close'}
@@ -106,12 +105,18 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
 
-  textbold: {
+  textBold: {
     color: 'black',
-    fontSize: 18,
+    fontSize: 16,
     fontFamily: Font.AvenirRegular,
   },
-
+  tabTitle(isActive) {
+    return {
+      fontFamily: Font.AvenirMedium,
+      fontSize: 14,
+      color: isActive ? Colors.primary : '#6C6C6C',
+    };
+  },
   contentContainer: {
     flex: 1,
     marginVertical: 10,

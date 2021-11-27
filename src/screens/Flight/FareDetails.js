@@ -6,9 +6,9 @@ import commonStyle from '../../layout/Style';
 import Font from '../../layout/Font';
 
 export default function FairDetails() {
-  const [adultopen, setAdultopen] = useState(false);
-  const [childopen, setChildopen] = useState(false);
-  const [infantopen, setInfantopen] = useState(false);
+  const [AdultOpen, setAdultOpen] = useState(false);
+  const [ChildOpen, setChildOpen] = useState(false);
+  const [InfantOpen, setInfantOpen] = useState(false);
 
   return (
     <View style={{flex: 1}}>
@@ -19,40 +19,31 @@ export default function FairDetails() {
             commonStyle.marginHorizontal(10),
           ]}>
           <View style={styles.rowFlexStartBaseline}>
-            <Text
-              style={[
-                styles.textbold,
-                {
-                  color: Colors.primary,
-                  marginRight: 5,
-                },
-              ]}>
-              Adult 1
-            </Text>
+            <Text style={styles.header}>Adult 1</Text>
             <Icon
-              name={adultopen ? 'up' : 'down'}
-              onPress={() => setAdultopen(!adultopen)}
+              name={AdultOpen ? 'up' : 'down'}
+              onPress={() => setAdultOpen(!AdultOpen)}
               type={'antdesign'}
               size={16}
               color={Colors.primary}
             />
           </View>
-          <Text style={styles.textbold}>
+          <Text style={styles.textBold}>
             <Text style={styles.qarText}>QAR</Text> 170.00
           </Text>
         </View>
         <View style={styles.divider} />
-        {adultopen && (
+        {AdultOpen && (
           <View style={styles.blueBackground}>
             <View style={styles.sectionContentContainer}>
-              <Text style={[styles.textbold, {fontSize: 16}]}>Fare</Text>
-              <Text style={[styles.textbold, {fontSize: 16}]}>
+              <Text style={styles.subHeading}>Fare</Text>
+              <Text style={styles.subHeading}>
                 <Text style={styles.qarText}>QAR</Text> 140.00
               </Text>
             </View>
             <View style={styles.sectionContentContainer}>
-              <Text style={[styles.textbold, {fontSize: 16}]}>Taxes & Fee</Text>
-              <Text style={[styles.textbold, {fontSize: 16}]}>
+              <Text style={styles.subHeading}>Taxes & Fee</Text>
+              <Text style={styles.subHeading}>
                 <Text style={styles.qarText}>QAR</Text> 30.00
               </Text>
             </View>
@@ -66,40 +57,31 @@ export default function FairDetails() {
             commonStyle.marginHorizontal(10),
           ]}>
           <View style={styles.rowFlexStartBaseline}>
-            <Text
-              style={[
-                styles.textbold,
-                {
-                  color: Colors.primary,
-                  marginRight: 5,
-                },
-              ]}>
-              Child 1
-            </Text>
+            <Text style={styles.header}>Child 1</Text>
             <Icon
-              name={childopen ? 'up' : 'down'}
-              onPress={() => setChildopen(!childopen)}
+              name={ChildOpen ? 'up' : 'down'}
+              onPress={() => setChildOpen(!ChildOpen)}
               type={'antdesign'}
               size={16}
               color={Colors.primary}
             />
           </View>
-          <Text style={styles.textbold}>
+          <Text style={styles.textBold}>
             <Text style={styles.qarText}>QAR</Text> 80.00
           </Text>
         </View>
         <View style={styles.divider} />
-        {childopen && (
+        {ChildOpen && (
           <View style={styles.blueBackground}>
             <View style={styles.sectionContentContainer}>
-              <Text style={[styles.textbold, {fontSize: 16}]}>Fare</Text>
-              <Text style={[styles.textbold, {fontSize: 16}]}>
+              <Text style={styles.subHeading}>Fare</Text>
+              <Text style={styles.subHeading}>
                 <Text style={styles.qarText}>QAR</Text> 60.00
               </Text>
             </View>
             <View style={styles.sectionContentContainer}>
-              <Text style={[styles.textbold, {fontSize: 16}]}>Taxes & Fee</Text>
-              <Text style={[styles.textbold, {fontSize: 16}]}>
+              <Text style={styles.subHeading}>Taxes & Fee</Text>
+              <Text style={styles.subHeading}>
                 <Text style={styles.qarText}>QAR</Text> 20.00
               </Text>
             </View>
@@ -113,40 +95,31 @@ export default function FairDetails() {
             commonStyle.marginHorizontal(10),
           ]}>
           <View style={styles.rowFlexStartBaseline}>
-            <Text
-              style={[
-                styles.textbold,
-                {
-                  color: Colors.primary,
-                  marginRight: 5,
-                },
-              ]}>
-              Infant 1
-            </Text>
+            <Text style={styles.header}>Infant 1</Text>
             <Icon
-              name={infantopen ? 'up' : 'down'}
-              onPress={() => setInfantopen(!infantopen)}
+              name={InfantOpen ? 'up' : 'down'}
+              onPress={() => setInfantOpen(!InfantOpen)}
               type={'antdesign'}
               size={16}
               color={Colors.primary}
             />
           </View>
-          <Text style={styles.textbold}>
+          <Text style={styles.textBold}>
             <Text style={styles.qarText}>QAR</Text> 50.00
           </Text>
         </View>
         <View style={styles.divider} />
-        {infantopen && (
+        {InfantOpen && (
           <View style={styles.blueBackground}>
             <View style={styles.sectionContentContainer}>
-              <Text style={[styles.textbold, {fontSize: 16}]}>Fare</Text>
-              <Text style={[styles.textbold, {fontSize: 16}]}>
+              <Text style={styles.subHeading}>Fare</Text>
+              <Text style={styles.subHeading}>
                 <Text style={styles.qarText}>QAR</Text> 40.00
               </Text>
             </View>
             <View style={styles.sectionContentContainer}>
-              <Text style={[styles.textbold, {fontSize: 16}]}>Taxes & Fee</Text>
-              <Text style={[styles.textbold, {fontSize: 16}]}>
+              <Text style={styles.subHeading}>Taxes & Fee</Text>
+              <Text style={styles.subHeading}>
                 <Text style={styles.qarText}>QAR</Text> 10.00
               </Text>
             </View>
@@ -155,12 +128,12 @@ export default function FairDetails() {
       </View>
       <View style={styles.totalContainer}>
         <View>
-          <Text style={[styles.textbold]}>Grand Total</Text>
+          <Text style={styles.subHeading}>Grand Total</Text>
           <Text style={[styles.text, {color: Colors.lightText}]}>
-            Taxes and fees Inculuded
+            Taxes and fees Included
           </Text>
         </View>
-        <Text style={styles.textbold}>
+        <Text style={styles.textBold}>
           <Text style={styles.qarText}>QAR</Text> 300.00
         </Text>
       </View>
@@ -173,9 +146,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.background,
   },
-  marginh: {
-    marginLeft: 10,
-  },
   margin: {
     padding: 15,
   },
@@ -184,29 +154,27 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
     flex: 1,
   },
+  subHeading: {
+    fontFamily: Font.AvenirRegular,
+    fontSize: 14,
+    color: 'black',
+  },
+  header: {
+    fontSize: 14,
+    color: Colors.primary,
+    fontFamily: Font.AvenirRegular,
+    marginRight: 5,
+  },
   divider: {
     borderWidth: 0.5,
     borderColor: '#D9D9D9',
     marginVertical: 10,
     marginHorizontal: 10,
   },
-  headertext: {
-    color: 'black',
-    fontSize: 20,
-    fontFamily: Font.AvenirHeavy,
-    margin: 10,
-  },
   qarText: {
     fontSize: 14,
     fontFamily: Font.AvenirLight,
     color: Colors.lightText,
-  },
-  itemcontainer: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    marginHorizontal: 10,
-    borderBottomWidth: 1,
-    borderColor: '#D9D9D9',
   },
   item: {
     borderBottomWidth: 1.2,
@@ -215,27 +183,17 @@ const styles = StyleSheet.create({
     marginRight: 15,
     marginTop: 10,
   },
-  textbold: {
+  textBold: {
     color: 'black',
-    fontSize: 18,
-    fontFamily: Font.AvenirRegular,
+    fontSize: 14,
+    fontFamily: Font.AvenirHeavy,
   },
   text: {
     fontSize: 13,
     color: 'black',
     fontFamily: Font.AvenirRegular,
   },
-  itemtext: {
-    color: 'gray',
-    fontSize: 14,
-    fontFamily: Font.AvenirHeavy,
-  },
-  DetailsHearder: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    margin: 5,
-    alignItems: 'center',
-  },
+
   blueBackground: {
     backgroundColor: 'rgba(61, 181, 255, 0.05)',
     marginHorizontal: 10,
