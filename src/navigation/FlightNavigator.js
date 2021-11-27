@@ -6,10 +6,10 @@ import Review from '../screens/Flight/ReviewFlight';
 import FlightResults from '../screens/Flight/FlightResults';
 import BookingConfirm from '../screens/Flight/BookingConfirm';
 import ModifySearch from '../screens/Flight/ModifySearch';
-
 import Checkout from '../screens/Flight/Checkout';
 import Payment from '../screens/Flight/Payment';
 import ReviewItinerary from '../screens/Flight/ReviewItinerary';
+import FlightByNavigator from '../screens/Flight/FlightBy/FlightByNavigator';
 
 const Stack = createStackNavigator();
 const FlightNavigator = () => {
@@ -24,6 +24,7 @@ const FlightNavigator = () => {
       <Stack.Screen name="Checkout" component={Checkout} />
       <Stack.Screen name="ReviewItinerary" component={ReviewItinerary} />
       <Stack.Screen name="Payment" component={Payment} />
+      <Stack.Screen name="FlightBy" component={FlightByNavigator} />
     </Stack.Navigator>
   );
 };
