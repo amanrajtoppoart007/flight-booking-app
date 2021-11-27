@@ -49,11 +49,12 @@ function FlightDetails() {
             <Deer width={25} />
             <View>
               <Text
-                style={[styles.textBold, {color: 'darkblue', fontSize: 17}]}>
+                style={[styles.textBold, {color: 'darkblue', fontSize: 14}]}>
                 Qatar Airways
                 <Text style={styles.text}> | QR - 3801</Text>
               </Text>
-              <Text style={[styles.text, {color: Colors.primary}]}>
+              <Text
+                style={[styles.text, {color: Colors.primary, fontSize: 11}]}>
                 Operated by FlyDubai
               </Text>
               <Text style={styles.text}>
@@ -62,16 +63,16 @@ function FlightDetails() {
               </Text>
             </View>
           </View>
-          <View style={styles.rowHoriLeft}>
+          <View style={styles.rowHLeft}>
             <Bag style={{margin: 6}} />
 
             <View style={{flexDirection: 'column', marginRight: 5}}>
-              <Text style={[styles.textBold, {fontSize: 16}]}>Check in</Text>
+              <Text style={[styles.textBold, {fontSize: 12}]}>Check in</Text>
               <Text style={styles.text}>1 piece</Text>
             </View>
             <View style={{flexDirection: 'column', marginLeft: 5}}>
-              <Text style={[styles.textBold, {fontSize: 16}]}>Cabin</Text>
-              <Text style={styles.text}>7 Kge</Text>
+              <Text style={[styles.textBold, {fontSize: 12}]}>Cabin</Text>
+              <Text style={styles.text}>7 Kg</Text>
             </View>
           </View>
         </View>
@@ -147,11 +148,12 @@ function FlightDetails() {
             <Deer width={25} />
             <View>
               <Text
-                style={[styles.textBold, {color: 'darkblue', fontSize: 17}]}>
+                style={[styles.textBold, {color: 'darkblue', fontSize: 14}]}>
                 Qatar Airways
                 <Text style={styles.text}> | QR - 3802</Text>
               </Text>
-              <Text style={[styles.text, {color: Colors.primary}]}>
+              <Text
+                style={[styles.text, {color: Colors.primary, fontSize: 11}]}>
                 Operated by FlyDubai
               </Text>
               <Text style={styles.text}>
@@ -160,16 +162,16 @@ function FlightDetails() {
               </Text>
             </View>
           </View>
-          <View style={styles.rowHoriLeft}>
+          <View style={styles.rowHLeft}>
             <Bag style={{margin: 6}} />
 
             <View style={{flexDirection: 'column', marginRight: 5}}>
-              <Text style={[styles.textBold, {fontSize: 16}]}>Check in</Text>
+              <Text style={[styles.textBold, {fontSize: 12}]}>Check in</Text>
               <Text style={styles.text}>1 piece</Text>
             </View>
             <View style={{flexDirection: 'column', marginLeft: 5}}>
-              <Text style={[styles.textBold, {fontSize: 16}]}>Cabin</Text>
-              <Text style={styles.text}>7 Kge</Text>
+              <Text style={[styles.textBold, {fontSize: 12}]}>Cabin</Text>
+              <Text style={styles.text}>7 Kg</Text>
             </View>
           </View>
         </View>
@@ -239,9 +241,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.background,
   },
-  marginh: {
-    marginLeft: 10,
-  },
   margin: {
     padding: 15,
   },
@@ -255,20 +254,6 @@ const styles = StyleSheet.create({
     borderColor: '#D9D9D9',
     marginVertical: 10,
     marginHorizontal: 10,
-  },
-  headertext: {
-    color: 'black',
-    fontSize: 18,
-    fontWeight: 'bold',
-    margin: 10,
-    fontFamily: Font.AvenirRegular,
-  },
-  itemcontainer: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    marginHorizontal: 10,
-    borderBottomWidth: 1,
-    borderColor: '#D9D9D9',
   },
   item: {
     borderBottomWidth: 1.2,
@@ -287,11 +272,6 @@ const styles = StyleSheet.create({
     color: 'black',
     fontFamily: Font.AvenirRegular,
   },
-  itemtext: {
-    color: 'gray',
-    fontSize: 12,
-    fontFamily: Font.AvenirHeavy,
-  },
   DetailHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -304,7 +284,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     alignItems: 'flex-end',
   },
-  rowHoriLeft: {
+  rowHLeft: {
     flexDirection: 'row',
     marginHorizontal: 5,
     marginLeft: 10,
