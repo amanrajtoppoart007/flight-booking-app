@@ -25,7 +25,6 @@ const HotelStackNavigator = () => (
     <Stack.Screen name={'BookingStatus'} component={BookingStatus} />
 
     <Stack.Screen name={'HotelCheckout'} component={Checkout} />
-    <Stack.Screen name={'SearchResult'} component={SearchResult} />
   </Stack.Navigator>
 );
 
