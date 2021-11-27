@@ -91,8 +91,9 @@ const AnimatedHeader = ({scrollY}) => {
             transform: [{scale: topBarScale}, {translateY: topBarScaleY}],
           },
         ]}>
-        <StickyMenu />
-        <ChipSection />
+        <View style={styles.border}>
+          <StickyMenu />
+        </View>
       </Animated.View>
     </Animated.View>
   );
@@ -104,6 +105,10 @@ const styles = StyleSheet.create({
     marginTop: HEADER_MIN_HEIGHT,
     zIndex: 9999,
     backgroundColor: 'white',
+  },
+  border: {
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: '#707070',
   },
   header: {
     position: 'absolute',

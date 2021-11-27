@@ -26,11 +26,25 @@ import TimaticFeature from '../components/Home/TimaticFeature';
 import OfferSlider from '../components/Home/OfferSlider';
 import RouteItem from '../components/Home/RouteItem';
 import AnimatedHeader from '../components/Home/AnimatedHeader';
+import ChipSection from '../components/Home/ChipSection';
 
 const HEADER_MAX_HEIGHT = heightPercentageToDP('40%');
+const HEADER_MIN_HEIGHT = 140;
+const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
 
 function Home({navigation}) {
   const scrollY = useRef(new Animated.Value(0)).current;
+
+  const chipSectionScale = scrollY.interpolate({
+    inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
+    outputRange: [0, 0, 1],
+    extrapolate: 'clamp',
+  });
+  const chipSectionY = scrollY.interpolate({
+    inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
+    outputRange: [0, 0, 0],
+    extrapolate: 'clamp',
+  });
 
   const [popularRoutes] = useState([
     {
@@ -65,10 +79,21 @@ function Home({navigation}) {
           {useNativeDriver: true},
         )}
         scrollEventThrottle={16}
-        contentContainerStyle={{paddingTop: HEADER_MAX_HEIGHT + 50}}>
+        contentContainerStyle={{paddingTop: HEADER_MAX_HEIGHT + 30}}>
         <View style={commonStyle.wrapper}>
           <View style={commonStyle.content}>
-            <View style={commonStyle.marginVertical(25)}>
+            <Animated.View
+              style={[
+                {
+                  transform: [
+                    {scale: chipSectionScale},
+                    {translateY: chipSectionY},
+                  ],
+                },
+              ]}>
+              <ChipSection />
+            </Animated.View>
+            <View>
               <OfferSlider />
             </View>
             <LinearGradient
