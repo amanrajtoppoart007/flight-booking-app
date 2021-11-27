@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {
   SafeAreaView,
-  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -10,33 +9,41 @@ import {
 } from 'react-native';
 import commonStyle from '../layout/Style';
 import CustomStatusBar from '../components/CustomStatusBar';
-import Menu from '../components/Home/Menu';
 import Colors from '../layout/Colors';
 import LinearGradient from 'react-native-linear-gradient';
 import {
+  heightPercentageToDP,
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 
 import {Icon} from 'react-native-elements';
 import Font from '../layout/Font';
-
-import LogoSvg from '../components/Svg/Logo.svg';
 import TimaticSvg from '../components/Svg/Timatic.svg';
-import DrawerSvg from '../components/Svg/Drawer.svg';
 import ArrowRightSvg from '../components/Svg/ArrowRight.svg';
-
 import TimaticFeature from '../components/Home/TimaticFeature';
-import ChipSection from '../components/Home/ChipSection';
+
 import OfferSlider from '../components/Home/OfferSlider';
 import RouteItem from '../components/Home/RouteItem';
-import StickyMenu from '../components/Home/StickyMenu';
+import AnimatedHeader from '../components/Home/AnimatedHeader';
+import ChipSection from '../components/Home/ChipSection';
+
+const HEADER_MAX_HEIGHT = heightPercentageToDP('40%');
+const HEADER_MIN_HEIGHT = 140;
+const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
+
 function Home({navigation}) {
-  const scrollY = new Animated.Value(0);
-  const diffClamp = Animated.diffClamp(scrollY, 0, 55);
-  const translateY = diffClamp.interpolate({
-    inputRange: [0, 0],
-    outputRange: [0, 55],
+  const scrollY = useRef(new Animated.Value(0)).current;
+
+  const chipSectionScale = scrollY.interpolate({
+    inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
+    outputRange: [0, 0, 1],
+    extrapolate: 'clamp',
+  });
+  const chipSectionY = scrollY.interpolate({
+    inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
+    outputRange: [0, 0, 0],
+    extrapolate: 'clamp',
   });
 
   const [popularRoutes] = useState([
@@ -65,50 +72,27 @@ function Home({navigation}) {
   return (
     <SafeAreaView style={commonStyle.container}>
       <CustomStatusBar backgroundColor={Colors.white} />
-      <ScrollView
+      <Animated.ScrollView
         showsVerticalScrollIndicator={false}
-        onScroll={e => {
-          scrollY.setValue(e.nativeEvent.contentOffset.y);
-        }}>
+        onScroll={Animated.event(
+          [{nativeEvent: {contentOffset: {y: scrollY}}}],
+          {useNativeDriver: true},
+        )}
+        scrollEventThrottle={16}
+        contentContainerStyle={{paddingTop: HEADER_MAX_HEIGHT + 30}}>
         <View style={commonStyle.wrapper}>
           <View style={commonStyle.content}>
-            <LinearGradient colors={['#FFFFFF', '#FFFFFF', '#E2F2FF']}>
-              {/*<Animated.View
-                style={{
-                  transform: [{translateY: translateY}],
-                  elevation: 4,
-                  zIndex: 100,
-                }}>
-                <StickyMenu />
-              </Animated.View>*/}
-
-              <View style={styles.navbarSection}>
-                <View>
-                  <LogoSvg style={styles.logo} resizeMode={'contain'} />
-                </View>
-                <View>
-                  <TouchableOpacity
-                    onPress={() => {
-                      navigation.toggleDrawer();
-                    }}
-                    style={styles.drawerToggleButton}>
-                    <DrawerSvg />
-                  </TouchableOpacity>
-                </View>
-              </View>
-              <View style={styles.menuHeader}>
-                <View style={commonStyle.marginVertical(8)}>
-                  <Text style={styles.title}>Welcome Faiyaz !</Text>
-                </View>
-                <View style={commonStyle.marginVertical(8)}>
-                  <Menu />
-                </View>
-              </View>
-              <View style={styles.menuFooter}>
-                <ChipSection />
-              </View>
-            </LinearGradient>
-
+            <Animated.View
+              style={[
+                {
+                  transform: [
+                    {scale: chipSectionScale},
+                    {translateY: chipSectionY},
+                  ],
+                },
+              ]}>
+              <ChipSection />
+            </Animated.View>
             <View>
               <OfferSlider />
             </View>
@@ -149,13 +133,15 @@ function Home({navigation}) {
                       </View>
                       <View style={styles.divider} />
                       <View>
-                        <View style={styles.circle}>
-                          <Icon
-                            name={'plane'}
-                            type={'font-awesome'}
-                            size={15}
-                            color={'white'}
-                          />
+                        <View style={styles.outerCircle}>
+                          <View style={styles.circle}>
+                            <Icon
+                              name={'plane'}
+                              type={'font-awesome'}
+                              size={10}
+                              color={'white'}
+                            />
+                          </View>
                         </View>
                       </View>
                       <View style={styles.divider} />
@@ -177,18 +163,22 @@ function Home({navigation}) {
                   <View style={commonStyle.marginVertical(10)}>
                     <TimaticSvg />
                   </View>
-                  <Text style={styles.timaticSectionHelperText}>
-                    Timatic delivers airlines accurate information based on the
-                    passenger’s
-                  </Text>
+                  <View style={commonStyle.marginVertical(5)}>
+                    <Text style={styles.timaticSectionHelperText}>
+                      Timatic delivers airlines accurate information based on
+                      the passenger’s
+                    </Text>
+                  </View>
                   <View style={styles.timaticFeatures}>
                     <View style={styles.timaticFeatureSection}>
                       <View>
                         <TimaticFeature title="Nationality" />
+                        <View style={commonStyle.marginVertical(7.5)} />
                         <TimaticFeature title="Destination" />
                       </View>
                       <View>
                         <TimaticFeature title="Passport" />
+                        <View style={commonStyle.marginVertical(7.5)} />
                         <TimaticFeature title="Transit Points" />
                       </View>
                       <View>
@@ -207,7 +197,8 @@ function Home({navigation}) {
             </LinearGradient>
           </View>
         </View>
-      </ScrollView>
+      </Animated.ScrollView>
+      <AnimatedHeader scrollY={scrollY} />
     </SafeAreaView>
   );
 }
@@ -268,16 +259,24 @@ const styles = StyleSheet.create({
     color: Colors.black,
   },
   circle: {
-    width: 30,
-    height: 30,
-    borderRadius: 15,
+    width: 22,
+    height: 22,
+    borderRadius: 11,
     backgroundColor: '#F15922',
     justifyContent: 'center',
     alignItems: 'center',
   },
+  outerCircle: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: '#DDDDDD',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   divider: {
-    borderWidth: 1,
-    borderColor: Colors.lightText,
+    height: 2,
+    backgroundColor: '#DDDDDD',
     width: 120,
   },
   webViewSection: {
@@ -289,7 +288,6 @@ const styles = StyleSheet.create({
   },
   webView: {
     width: wp('95%'),
-    height: hp('25%'),
     backgroundColor: Colors.white,
     borderRadius: 8,
     padding: 20,
