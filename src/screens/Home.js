@@ -65,10 +65,10 @@ function Home({navigation}) {
           {useNativeDriver: true},
         )}
         scrollEventThrottle={16}
-        contentContainerStyle={{paddingTop: HEADER_MAX_HEIGHT + 10}}>
+        contentContainerStyle={{paddingTop: HEADER_MAX_HEIGHT + 50}}>
         <View style={commonStyle.wrapper}>
           <View style={commonStyle.content}>
-            <View>
+            <View style={commonStyle.marginVertical(25)}>
               <OfferSlider />
             </View>
             <LinearGradient

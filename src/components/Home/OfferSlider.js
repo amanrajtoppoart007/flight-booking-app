@@ -28,7 +28,7 @@ function OfferSlider() {
   ];
 
   const renderItem = ({item}) => (
-    <View>
+    <View style={commonStyle.marginHorizontal(7.5)}>
       <View style={styles.card}>
         <item.SvgImg style={styles.image} resizeMode={'cover'} />
       </View>
@@ -38,11 +38,9 @@ function OfferSlider() {
   return (
     <>
       {brands && (
-        <View style={commonStyle.marginVertical(10)}>
+        <View style={styles.sliderWrapper}>
           <FlatList
-            style={{
-              width: wp('95%'),
-            }}
+            style={styles.slider}
             showsHorizontalScrollIndicator={false}
             initialNumToRender={4}
             horizontal={true}
@@ -57,11 +55,17 @@ function OfferSlider() {
 }
 
 const styles = StyleSheet.create({
+  sliderWrapper: {
+    marginVertical: 10,
+    width: '100%',
+  },
+  slider: {
+    width: wp('100%'),
+  },
   card: {
     width: 160,
     height: 160,
     borderRadius: 8,
-    marginHorizontal: 8,
     backgroundColor: Colors.transparent,
   },
   image: {
