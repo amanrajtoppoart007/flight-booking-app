@@ -27,7 +27,7 @@ import Font from '../../../layout/Font';
 export default function FlightResults() {
   const navigation = useNavigation();
   const [topbar, setTopbar] = useState('cheapest');
-  const [moreOptionsVisible, setMoreOptionsVisible] = useState(false);
+  const [Index, setIndex] = useState();
   const [SortVisible, setSortVisible] = useState(false);
 
   function Header() {
@@ -100,497 +100,357 @@ export default function FlightResults() {
             <Header />
             <TopBar />
             <View>
-              <View style={styles.DataContainer(moreOptionsVisible)}>
+              <TouchableOpacity
+                onPress={() => setIndex(0)}
+                style={styles.DataContainer(Index == 0)}>
                 <View style={styles.subHeaderContainer}>
                   <View style={styles.flexCenter}>
                     <Deer />
-                    <Text style={styles.titleBlack}>Qatar Airways</Text>
+                    <View>
+                      <Text style={styles.titleBlack}>
+                        Qatar Airways
+                        <Text style={styles.smallLightText}> | QR - 3801 </Text>
+                      </Text>
+                      <Text style={styleOptions.smallBlueText}>
+                        Operated by FlyDubai
+                      </Text>
+                    </View>
                   </View>
                   <View style={styles.flexEnd}>
                     <Text style={styles.moneyText}>
                       <Text style={styles.lightText}>QAR </Text>
                       170.00
                     </Text>
-                    <Text style={styles.redText}>
-                      4 Seats Left{' '}
-                      <Text style={{color: 'green'}}> Refundable</Text>
-                    </Text>
+                    <Text style={styleOptions.smallGreenText}>Refundable</Text>
                   </View>
                 </View>
                 <View style={styles.divider} />
-                <View style={commonStyle.padding(4)}>
-                  <TouchableOpacity style={styleOptions.card(false)}>
-                    <View
-                      style={[
-                        commonStyle.rowSpaceBetween,
-                        commonStyle.padding(10),
-                      ]}>
-                      <View>
-                        <Text style={styles.titleBlack}>
-                          Qatar Airways
-                          <Text style={styles.smallLightText}>
-                            {' '}
-                            | QR - 3801{' '}
-                          </Text>
-                        </Text>
-                        <Text style={styleOptions.smallBlueText}>
-                          Operated by FlyDubai
-                        </Text>
-                      </View>
-                      <View style={{alignItems: 'flex-end'}}>
-                        <Text style={styles.smallLightText}>Economy</Text>
-                        <Text style={styleOptions.smallGreenText}>
-                          Refundable
-                        </Text>
-                      </View>
+                <View style={styleOptions.card}>
+                  <View style={[commonStyle.rowSpaceBetween]}>
+                    <View>
+                      <Text style={styles.TimeText}>
+                        10:00{'\n'}
+                        <Text style={styles.smallLightText}>DOH</Text>
+                      </Text>
                     </View>
-                    <View
-                      style={[
-                        commonStyle.rowSpaceBetween,
-                        commonStyle.padding(10),
-                      ]}>
-                      <View>
-                        <Text style={styles.TimeText}>
-                          10:00{'\n'}
-                          <Text style={styles.smallLightText}>DOH</Text>
-                        </Text>
-                      </View>
-                      <View style={commonStyle.rowFlexStart}>
-                        <View style={{alignItems: 'center'}}>
-                          <Text style={styles.smallLightText}>AMM</Text>
-                          <View style={commonStyle.rowFlexStart}>
-                            <Icon
-                              name={'circle'}
-                              type={'entypo'}
-                              size={12}
-                              color={'#D9D9D9'}
-                            />
-                            <View
-                              style={[
-                                {
-                                  width: 80,
-                                  borderWidth: 1,
-                                  borderColor: '#D9D9D9',
-                                },
-                              ]}
-                            />
-                            <Icon
-                              name={'circle'}
-                              type={'entypo'}
-                              size={12}
-                              color={'#D9D9D9'}
-                            />
-                          </View>
-                          <Text style={[styles.smallLightText]}>2h 30m</Text>
+                    <View style={commonStyle.rowFlexStart}>
+                      <View style={{alignItems: 'center'}}>
+                        <Text style={styles.smallLightText}>AMM</Text>
+                        <View style={commonStyle.rowFlexStart}>
+                          <Icon
+                            name={'circle'}
+                            type={'entypo'}
+                            size={12}
+                            color={'#D9D9D9'}
+                          />
+                          <View
+                            style={[
+                              {
+                                width: 80,
+                                borderWidth: 1,
+                                borderColor: '#D9D9D9',
+                              },
+                            ]}
+                          />
+                          <Icon
+                            name={'circle'}
+                            type={'entypo'}
+                            size={12}
+                            color={'#D9D9D9'}
+                          />
                         </View>
-                      </View>
-                      <View>
-                        <Text style={styles.TimeText}>
-                          12:00{'\n'}
-                          <Text style={styles.smallLightText}>DXB</Text>
-                        </Text>
-                      </View>
-                      <View style={{alignItems: 'flex-end'}}>
-                        <Text style={styles.smallLightText}>
-                          Total Duration
-                        </Text>
-                        <Text style={styles.smallLightText}>5h 30m</Text>
+                        <Text style={[styles.smallLightText]}>2h 30m</Text>
                       </View>
                     </View>
-                    <View
-                      style={[
-                        commonStyle.rowSpaceBetween,
-                        commonStyle.padding(10),
-                      ]}>
-                      <View style={commonStyle.rowFlexStart}>
-                        <Text style={styleOptions.TimeText}>1 Stop |</Text>
-                        <Bag style={commonStyle.marginHorizontal(8)} />
-                        <Text style={styleOptions.TimeText}>
-                          Check In: 1 piece
-                        </Text>
-                      </View>
-                      <Text style={styleOptions.TimeText}>Cabin: 7 Kg</Text>
-                      <TouchableOpacity
-                        onPress={() => navigation.navigate('Review')}
-                        style={commonStyle.rowCenter}>
-                        <Text style={styles.DetailsText}>Details</Text>
-                        <Icon
-                          name={'caretright'}
-                          type={'antdesign'}
-                          size={15}
-                          color={Colors.primary}
-                        />
-                      </TouchableOpacity>
+                    <View>
+                      <Text style={styles.TimeText}>
+                        12:00{'\n'}
+                        <Text style={styles.smallLightText}>DXB</Text>
+                      </Text>
                     </View>
-                  </TouchableOpacity>
+                    <View style={{alignItems: 'flex-end'}}>
+                      <Text style={styles.smallLightText}>Total Duration</Text>
+                      <Text style={styles.smallLightText}>5h 30m</Text>
+                    </View>
+                  </View>
+                  <View
+                    style={[
+                      commonStyle.rowSpaceBetween,
+                      commonStyle.marginBottom(10),
+                    ]}>
+                    <View style={commonStyle.rowFlexStart}>
+                      <Text style={styleOptions.TimeText}>1 Stop |</Text>
+                      <Bag style={commonStyle.marginHorizontal(8)} />
+                      <Text style={styleOptions.TimeText}>
+                        Check In: 1 piece
+                      </Text>
+                    </View>
+                    <Text style={styleOptions.TimeText}>Cabin: 7 Kg</Text>
+                    <TouchableOpacity
+                      onPress={() => navigation.navigate('Review')}
+                      style={commonStyle.rowCenter}>
+                      <Text style={styles.DetailsText}>Details</Text>
+                      <Icon
+                        name={'caretright'}
+                        type={'antdesign'}
+                        size={15}
+                        color={Colors.primary}
+                      />
+                    </TouchableOpacity>
+                  </View>
                 </View>
                 <View
                   style={{
-                    marginTop: 10,
                     alignItems: 'center',
                   }}>
-                  <TouchableOpacity
-                    onPress={() => setMoreOptionsVisible(!moreOptionsVisible)}
-                    style={styles.moreOptionsContainer}>
+                  <TouchableOpacity style={styles.moreOptionsContainer}>
                     <Text style={styles.moreOptionsText}>
-                      {moreOptionsVisible
-                        ? 'Less Flight Options'
-                        : 'More Options'}
+                      More Flight Options
                     </Text>
                     <View style={commonStyle.marginHorizontal(5)} />
                     <Icon
-                      name={
-                        moreOptionsVisible
-                          ? 'angle-double-up'
-                          : 'angle-double-down'
-                      }
+                      name={'angle-double-down'}
                       type={'font-awesome'}
                       size={16}
                       color={Colors.black}
                     />
                   </TouchableOpacity>
                 </View>
-              </View>
-
-              <View style={styles.DataContainer(moreOptionsVisible)}>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => setIndex(1)}
+                style={styles.DataContainer(Index == 1)}>
                 <View style={styles.subHeaderContainer}>
                   <View style={styles.flexCenter}>
                     <Deer />
-                    <Text style={styles.titleBlack}>
-                      Qatar Airways{'\n'}
-                      <View style={commonStyle.marginVertical(5)}>
-                        <Icons />
-                      </View>
-                    </Text>
+                    <View>
+                      <Text style={styles.titleBlack}>
+                        Qatar Airways
+                        <Text style={styles.smallLightText}> | QR - 3801 </Text>
+                      </Text>
+                      <Text style={styleOptions.smallBlueText}>
+                        Operated by FlyDubai
+                      </Text>
+                    </View>
                   </View>
                   <View style={styles.flexEnd}>
                     <Text style={styles.moneyText}>
                       <Text style={styles.lightText}>QAR </Text>
-                      145.00
+                      175.00
                     </Text>
-                    <Text
-                      style={{
-                        fontSize: 12,
-                        color: 'tomato',
-                        marginVertical: 5,
-                      }}>
-                      Non Refundable
-                    </Text>
+                    <Text style={styleOptions.smallGreenText}>Refundable</Text>
                   </View>
                 </View>
                 <View style={styles.divider} />
-                <View
-                  style={[
-                    {flexDirection: 'row'},
-                    commonStyle.marginHorizontal(10),
-                  ]}>
-                  <View style={{flex: 0.5}}>
-                    <View style={styles.rowSpaceBetween}>
-                      <View style={commonStyle.rowCenter}>
-                        <Icon
-                          style={commonStyle.marginHorizontal(5)}
-                          name={'flight-takeoff'}
-                          type={'material'}
-                          size={20}
-                          color={'red'}
-                        />
-                        <Text style={styles.redTextBig}>Departing</Text>
-                      </View>
-                      <Text style={styles.smallLightText}>QR - 3803</Text>
+                <View style={styleOptions.card}>
+                  <View style={[commonStyle.rowSpaceBetween]}>
+                    <View>
+                      <Text style={styles.TimeText}>
+                        10:00{'\n'}
+                        <Text style={styles.smallLightText}>DOH</Text>
+                      </Text>
                     </View>
-                    <View style={styles.rowSpaceBetween}>
-                      <View
-                        style={[
-                          commonStyle.rowCenter,
-                          commonStyle.marginHorizontal(5),
-                        ]}>
-                        <Text style={styles.TimeText}>21:25</Text>
-                        <Icon
-                          style={commonStyle.marginHorizontal(5)}
-                          name={'arrowright'}
-                          type={'antdesign'}
-                          size={16}
-                          color={'black'}
-                        />
-                        <Text style={styles.TimeText}>21:50</Text>
+                    <View style={commonStyle.rowFlexStart}>
+                      <View style={{alignItems: 'center'}}>
+                        <Text style={styles.smallLightText}>AMM</Text>
+                        <View style={commonStyle.rowFlexStart}>
+                          <Icon
+                            name={'circle'}
+                            type={'entypo'}
+                            size={12}
+                            color={'#D9D9D9'}
+                          />
+                          <View
+                            style={[
+                              {
+                                width: 80,
+                                borderWidth: 1,
+                                borderColor: '#D9D9D9',
+                              },
+                            ]}
+                          />
+                          <Icon
+                            name={'circle'}
+                            type={'entypo'}
+                            size={12}
+                            color={'#D9D9D9'}
+                          />
+                        </View>
+                        <Text style={[styles.smallLightText]}>2h 30m</Text>
                       </View>
+                    </View>
+                    <View>
+                      <Text style={styles.TimeText}>
+                        12:00{'\n'}
+                        <Text style={styles.smallLightText}>DXB</Text>
+                      </Text>
+                    </View>
+                    <View style={{alignItems: 'flex-end'}}>
+                      <Text style={styles.smallLightText}>Total Duration</Text>
                       <Text style={styles.smallLightText}>5h 30m</Text>
-                    </View>
-                    <View style={styles.locationContainer}>
-                      <Text style={styles.smallLightText}>DOH</Text>
-                      <Text style={styles.smallLightText}>DXB</Text>
-                      <View style={commonStyle.rowCenter}>
-                        <Bag style={commonStyle.paddingHorizontal(10)} />
-                        <Text style={styles.smallLightText}>1 Piece</Text>
-                      </View>
-                    </View>
-                    <View style={styles.stopsContainer}>
-                      <Text style={styles.smallLightText}>2 Stop</Text>
-                      <TouchableOpacity
-                        onPress={() => navigation.navigate('Review')}
-                        style={commonStyle.rowCenter}>
-                        <Text style={styles.DetailsText}>Details</Text>
-                        <Icon
-                          name={'caretright'}
-                          type={'antdesign'}
-                          size={15}
-                          color={Colors.primary}
-                        />
-                      </TouchableOpacity>
                     </View>
                   </View>
-                  <View style={styles.dividerV} />
-                  <View style={{flex: 0.5}}>
-                    <View style={styles.rowSpaceBetween}>
-                      <View style={commonStyle.rowCenter}>
-                        <Icon
-                          style={commonStyle.marginHorizontal(5)}
-                          name={'flight-takeoff'}
-                          type={'material'}
-                          size={20}
-                          color={'red'}
-                        />
-                        <Text style={styles.redTextBig}>Returning</Text>
-                      </View>
-                      <Text style={styles.smallLightText}>QR - 3804</Text>
+                  <View
+                    style={[
+                      commonStyle.rowSpaceBetween,
+                      commonStyle.marginBottom(10),
+                    ]}>
+                    <View style={commonStyle.rowFlexStart}>
+                      <Text style={styleOptions.TimeText}>1 Stop |</Text>
+                      <Bag style={commonStyle.marginHorizontal(8)} />
+                      <Text style={styleOptions.TimeText}>
+                        Check In: 1 piece
+                      </Text>
                     </View>
-                    <View style={styles.rowSpaceBetween}>
-                      <View
-                        style={[
-                          commonStyle.rowCenter,
-                          commonStyle.marginHorizontal(5),
-                        ]}>
-                        <Text style={styles.TimeText}>23:50</Text>
-                        <Icon
-                          style={commonStyle.marginHorizontal(5)}
-                          name={'arrowright'}
-                          type={'antdesign'}
-                          size={16}
-                          color={'black'}
-                        />
-                        <Text style={styles.TimeText}>08:45</Text>
-                      </View>
-                      <Text style={styles.smallLightText}>5h 30m</Text>
-                    </View>
-                    <View style={styles.locationContainer}>
-                      <Text style={styles.smallLightText}>DXB</Text>
-                      <Text style={styles.smallLightText}>DOH</Text>
-                      <View style={commonStyle.rowCenter}>
-                        <Bag style={commonStyle.paddingHorizontal(10)} />
-                        <Text style={styles.smallLightText}>1 Piece</Text>
-                      </View>
-                    </View>
-                    <View style={styles.stopsContainer}>
-                      <Text style={styles.smallLightText}>2 Stop</Text>
-                      <TouchableOpacity
-                        onPress={() => navigation.navigate('Review')}
-                        style={commonStyle.rowCenter}>
-                        <Text style={styles.DetailsText}>Details</Text>
-                        <Icon
-                          name={'caretright'}
-                          type={'antdesign'}
-                          size={15}
-                          color={Colors.primary}
-                        />
-                      </TouchableOpacity>
-                    </View>
+                    <Text style={styleOptions.TimeText}>Cabin: 7 Kg</Text>
+                    <TouchableOpacity
+                      onPress={() => navigation.navigate('Review')}
+                      style={commonStyle.rowCenter}>
+                      <Text style={styles.DetailsText}>Details</Text>
+                      <Icon
+                        name={'caretright'}
+                        type={'antdesign'}
+                        size={15}
+                        color={Colors.primary}
+                      />
+                    </TouchableOpacity>
                   </View>
                 </View>
                 <View
                   style={{
-                    marginTop: 10,
                     alignItems: 'center',
                   }}>
-                  <TouchableOpacity
-                    onPress={() => setMoreOptionsVisible(!moreOptionsVisible)}
-                    style={styles.moreOptionsContainer}>
+                  <TouchableOpacity style={styles.moreOptionsContainer}>
                     <Text style={styles.moreOptionsText}>
-                      {moreOptionsVisible
-                        ? 'Less Flight Options'
-                        : 'More Flight Options'}
+                      More Flight Options
                     </Text>
                     <View style={commonStyle.marginHorizontal(5)} />
                     <Icon
-                      name={
-                        moreOptionsVisible
-                          ? 'angle-double-up'
-                          : 'angle-double-down'
-                      }
+                      name={'angle-double-down'}
                       type={'font-awesome'}
                       size={16}
                       color={Colors.black}
                     />
                   </TouchableOpacity>
                 </View>
-              </View>
-
-              <View style={styles.DataContainer(moreOptionsVisible)}>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => setIndex(2)}
+                style={styles.DataContainer(Index == 2)}>
                 <View style={styles.subHeaderContainer}>
                   <View style={styles.flexCenter}>
                     <Deer />
-                    <Text style={styles.titleBlack}>
-                      Qatar Airways{'\n'}
-                      <View style={commonStyle.marginVertical(5)}>
-                        <Icons />
-                      </View>
-                    </Text>
+                    <View>
+                      <Text style={styles.titleBlack}>
+                        Qatar Airways
+                        <Text style={styles.smallLightText}> | QR - 3801 </Text>
+                      </Text>
+                      <Text style={styleOptions.smallBlueText}>
+                        Operated by FlyDubai
+                      </Text>
+                    </View>
                   </View>
                   <View style={styles.flexEnd}>
                     <Text style={styles.moneyText}>
                       <Text style={styles.lightText}>QAR </Text>
-                      273.00
+                      270.00
                     </Text>
-                    <Text style={styles.redText}>
-                      2 Seats Left{' '}
-                      <Text style={{color: 'green'}}> Refundable</Text>
-                    </Text>
+                    <Text style={styleOptions.smallGreenText}>Refundable</Text>
                   </View>
                 </View>
                 <View style={styles.divider} />
-                <View
-                  style={[
-                    {flexDirection: 'row'},
-                    commonStyle.marginHorizontal(10),
-                  ]}>
-                  <View style={{flex: 0.5}}>
-                    <View style={styles.rowSpaceBetween}>
-                      <View style={commonStyle.rowCenter}>
-                        <Icon
-                          style={commonStyle.marginHorizontal(5)}
-                          name={'flight-takeoff'}
-                          type={'material'}
-                          size={20}
-                          color={'red'}
-                        />
-                        <Text style={styles.redTextBig}>Departing</Text>
-                      </View>
-                      <Text style={styles.smallLightText}>QR - 3803</Text>
+                <View style={styleOptions.card}>
+                  <View style={[commonStyle.rowSpaceBetween]}>
+                    <View>
+                      <Text style={styles.TimeText}>
+                        10:00{'\n'}
+                        <Text style={styles.smallLightText}>DOH</Text>
+                      </Text>
                     </View>
-                    <View style={styles.rowSpaceBetween}>
-                      <View
-                        style={[
-                          commonStyle.rowCenter,
-                          commonStyle.marginHorizontal(5),
-                        ]}>
-                        <Text style={styles.TimeText}>17:00</Text>
-                        <Icon
-                          style={commonStyle.marginHorizontal(5)}
-                          name={'arrowright'}
-                          type={'antdesign'}
-                          size={16}
-                          color={'black'}
-                        />
-                        <Text style={styles.TimeText}>19:15</Text>
+                    <View style={commonStyle.rowFlexStart}>
+                      <View style={{alignItems: 'center'}}>
+                        <Text style={styles.smallLightText}>AMM</Text>
+                        <View style={commonStyle.rowFlexStart}>
+                          <Icon
+                            name={'circle'}
+                            type={'entypo'}
+                            size={12}
+                            color={'#D9D9D9'}
+                          />
+                          <View
+                            style={[
+                              {
+                                width: 80,
+                                borderWidth: 1,
+                                borderColor: '#D9D9D9',
+                              },
+                            ]}
+                          />
+                          <Icon
+                            name={'circle'}
+                            type={'entypo'}
+                            size={12}
+                            color={'#D9D9D9'}
+                          />
+                        </View>
+                        <Text style={[styles.smallLightText]}>2h 30m</Text>
                       </View>
+                    </View>
+                    <View>
+                      <Text style={styles.TimeText}>
+                        12:00{'\n'}
+                        <Text style={styles.smallLightText}>DXB</Text>
+                      </Text>
+                    </View>
+                    <View style={{alignItems: 'flex-end'}}>
+                      <Text style={styles.smallLightText}>Total Duration</Text>
                       <Text style={styles.smallLightText}>5h 30m</Text>
-                    </View>
-                    <View style={styles.locationContainer}>
-                      <Text style={styles.smallLightText}>DOH</Text>
-                      <Text style={styles.smallLightText}>DXB</Text>
-                      <View style={commonStyle.rowCenter}>
-                        <Bag style={commonStyle.paddingHorizontal(10)} />
-                        <Text style={styles.smallLightText}>30 kgs</Text>
-                      </View>
-                    </View>
-                    <View style={styles.stopsContainer}>
-                      <Text style={styles.smallLightText}>2 Stop</Text>
-                      <TouchableOpacity
-                        onPress={() => navigation.navigate('Review')}
-                        style={commonStyle.rowCenter}>
-                        <Text style={styles.DetailsText}>Details</Text>
-                        <Icon
-                          name={'caretright'}
-                          type={'antdesign'}
-                          size={15}
-                          color={Colors.primary}
-                        />
-                      </TouchableOpacity>
                     </View>
                   </View>
-                  <View style={styles.dividerV} />
-                  <View style={{flex: 0.5}}>
-                    <View style={styles.rowSpaceBetween}>
-                      <View style={commonStyle.rowCenter}>
-                        <Icon
-                          style={commonStyle.marginHorizontal(5)}
-                          name={'flight-takeoff'}
-                          type={'material'}
-                          size={20}
-                          color={'red'}
-                        />
-                        <Text style={styles.redTextBig}>Returning</Text>
-                      </View>
-                      <Text style={styles.smallLightText}>QR - 3804</Text>
+                  <View
+                    style={[
+                      commonStyle.rowSpaceBetween,
+                      commonStyle.marginBottom(10),
+                    ]}>
+                    <View style={commonStyle.rowFlexStart}>
+                      <Text style={styleOptions.TimeText}>1 Stop |</Text>
+                      <Bag style={commonStyle.marginHorizontal(8)} />
+                      <Text style={styleOptions.TimeText}>
+                        Check In: 1 piece
+                      </Text>
                     </View>
-                    <View style={styles.rowSpaceBetween}>
-                      <View
-                        style={[
-                          commonStyle.rowCenter,
-                          commonStyle.marginHorizontal(5),
-                        ]}>
-                        <Text style={styles.TimeText}>12:00</Text>
-                        <Icon
-                          style={commonStyle.marginHorizontal(5)}
-                          name={'arrowright'}
-                          type={'antdesign'}
-                          size={16}
-                          color={'black'}
-                        />
-                        <Text style={styles.TimeText}>20:05</Text>
-                      </View>
-                      <Text style={styles.smallLightText}>5h 30m</Text>
-                    </View>
-                    <View style={styles.locationContainer}>
-                      <Text style={styles.smallLightText}>DXB</Text>
-                      <Text style={styles.smallLightText}>DOH</Text>
-                      <View style={commonStyle.rowCenter}>
-                        <Bag style={commonStyle.paddingHorizontal(10)} />
-                        <Text style={styles.smallLightText}>30 kgs</Text>
-                      </View>
-                    </View>
-                    <View style={styles.stopsContainer}>
-                      <Text style={styles.smallLightText}>2 Stop</Text>
-                      <TouchableOpacity
-                        onPress={() => navigation.navigate('Review')}
-                        style={commonStyle.rowCenter}>
-                        <Text style={styles.DetailsText}>Details</Text>
-                        <Icon
-                          name={'caretright'}
-                          type={'antdesign'}
-                          size={15}
-                          color={Colors.primary}
-                        />
-                      </TouchableOpacity>
-                    </View>
+                    <Text style={styleOptions.TimeText}>Cabin: 7 Kg</Text>
+                    <TouchableOpacity
+                      onPress={() => navigation.navigate('Review')}
+                      style={commonStyle.rowCenter}>
+                      <Text style={styles.DetailsText}>Details</Text>
+                      <Icon
+                        name={'caretright'}
+                        type={'antdesign'}
+                        size={15}
+                        color={Colors.primary}
+                      />
+                    </TouchableOpacity>
                   </View>
                 </View>
                 <View
                   style={{
-                    marginTop: 10,
                     alignItems: 'center',
                   }}>
-                  <TouchableOpacity
-                    onPress={() => setMoreOptionsVisible(!moreOptionsVisible)}
-                    style={styles.moreOptionsContainer}>
+                  <TouchableOpacity style={styles.moreOptionsContainer}>
                     <Text style={styles.moreOptionsText}>
-                      {moreOptionsVisible
-                        ? 'Less Flight Options'
-                        : 'More Flight Options'}
+                      More Flight Options
                     </Text>
                     <View style={commonStyle.marginHorizontal(5)} />
                     <Icon
-                      name={
-                        moreOptionsVisible
-                          ? 'angle-double-up'
-                          : 'angle-double-down'
-                      }
+                      name={'angle-double-down'}
                       type={'font-awesome'}
                       size={16}
                       color={Colors.black}
                     />
                   </TouchableOpacity>
                 </View>
-              </View>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
@@ -1034,14 +894,8 @@ const styleOptions = StyleSheet.create({
     color: Colors.border,
     fontFamily: Font.AvenirRegular,
   },
-  card(isSelected) {
-    return {
-      backgroundColor: isSelected ? 'rgba(225, 225, 225, 0.4)' : Colors.white,
-      borderRadius: 10,
-      marginBottom: 10,
-      borderWidth: 1,
-      borderColor: isSelected ? Colors.primary : Colors.border,
-    };
+  card: {
+    paddingHorizontal: 10,
   },
 });
 
@@ -1178,13 +1032,12 @@ const styles = StyleSheet.create({
   },
   DataContainer(bo) {
     return {
-      backgroundColor: Colors.white,
-      elevation: 4,
+      backgroundColor: bo ? 'rgba(29,140,204,0.1)' : Colors.white,
+      elevation: bo ? 0 : 4,
       marginBottom: 20,
-      borderRadius: bo ? 8 : 0,
       borderWidth: bo ? 2 : 0,
       marginHorizontal: 5,
-      borderColor: Colors.secondary,
+      borderColor: Colors.primary,
       paddingTop: 10,
     };
   },
@@ -1239,7 +1092,7 @@ const styles = StyleSheet.create({
     fontFamily: Font.AvenirRegular,
   },
   moreOptionsText: {
-    fontSize: 14,
+    fontSize: 12,
     color: Colors.black,
     marginVertical: 5,
     fontFamily: Font.AvenirRegular,
