@@ -19,11 +19,9 @@ const HotelStackNavigator = () => (
     <Stack.Screen name={'SearchResult'} component={SearchResult} />
     <Stack.Screen name={'GuestReviews'} component={GuestReviews} />
     <Stack.Screen name={'HotelMapView'} component={HotelMapView} />
-
     <Stack.Screen name={'HotelDetails'} component={HotelDetails} />
     <Stack.Screen name={'Payment'} component={Payment} />
     <Stack.Screen name={'BookingStatus'} component={BookingStatus} />
-
     <Stack.Screen name={'HotelCheckout'} component={Checkout} />
   </Stack.Navigator>
 );
