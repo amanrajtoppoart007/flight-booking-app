@@ -30,6 +30,7 @@ import Back from '../../assets/icons/svg/Back.svg';
 export default function Home() {
   const navigation = useNavigation();
   const [guestEntryModal, setGuestEntryModal] = useState(false);
+  const [flightType, setFlightType] = useState('round-trip');
   const [isDateRangeVisible, setIsDateRangeVisible] = useState(false);
   const [Location, setLocation] = useState([
     {
@@ -64,6 +65,15 @@ export default function Home() {
 
     setLocation(temp);
   }
+  function _handleSearchFlight() {
+    if (flightType == 'round-trip') {
+      navigation.navigate('FlightResult');
+    } else if (flightType == 'one-way') {
+      navigation.navigate('FlightBy');
+    } else {
+      navigation.navigate('FlightResult');
+    }
+  }
   function _onSwap(index = 0) {
     let temp = [...Location];
     let ele = temp[index].from;
@@ -74,8 +84,6 @@ export default function Home() {
     temp[index].toText = ele;
     setLocation(temp);
   }
-
-  const [flightType, setFlightType] = useState('round-trip');
 
   return (
     <SafeAreaView style={styles.container}>
@@ -177,7 +185,7 @@ export default function Home() {
             </View>
             <View style={commonStyle.center}>
               <Pressable
-                onPress={() => navigation.navigate('FlightResult')}
+                onPress={_handleSearchFlight}
                 style={styles.searchButton}>
                 <Icon
                   name={'search'}
