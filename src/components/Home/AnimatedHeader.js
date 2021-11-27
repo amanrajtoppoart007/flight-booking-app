@@ -1,5 +1,12 @@
 import React from 'react';
-import {Animated, TouchableOpacity, View, Text, StyleSheet} from 'react-native';
+import {
+  Animated,
+  TouchableOpacity,
+  View,
+  Text,
+  StyleSheet,
+  StatusBar,
+} from 'react-native';
 import LogoSvg from '../Svg/Logo.svg';
 import DrawerSvg from '../Svg/Drawer.svg';
 import commonStyle from '../../layout/Style';
@@ -10,6 +17,7 @@ import {useNavigation} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 import {heightPercentageToDP} from 'react-native-responsive-screen';
 import StickyMenu from './StickyMenu';
+import Colors from '../../layout/Colors';
 
 const HEADER_MAX_HEIGHT = heightPercentageToDP('40%');
 const HEADER_MIN_HEIGHT = 140;
@@ -102,9 +110,9 @@ const AnimatedHeader = ({scrollY}) => {
 const styles = StyleSheet.create({
   stickyNavBar: {
     position: 'absolute',
-    marginTop: HEADER_MIN_HEIGHT,
-    zIndex: 9999,
-    backgroundColor: 'white',
+    marginTop: HEADER_MIN_HEIGHT + StatusBar.currentHeight,
+    zIndex: 999,
+    backgroundColor: Colors.white,
   },
   border: {
     borderBottomWidth: StyleSheet.hairlineWidth,
@@ -115,7 +123,8 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    backgroundColor: 'transparent',
+    height: HEADER_MIN_HEIGHT + StatusBar.currentHeight,
+    backgroundColor: 'white',
   },
   navbarSection: {
     flexDirection: 'row',

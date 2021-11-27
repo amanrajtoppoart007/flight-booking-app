@@ -71,7 +71,7 @@ function Home({navigation}) {
 
   return (
     <SafeAreaView style={commonStyle.container}>
-      <CustomStatusBar backgroundColor={Colors.white} />
+      <CustomStatusBar backgroundColor={'white'} />
       <Animated.ScrollView
         showsVerticalScrollIndicator={false}
         onScroll={Animated.event(

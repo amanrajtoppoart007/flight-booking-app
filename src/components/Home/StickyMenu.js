@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
   content: {
     width: '33.33%',
     paddingHorizontal: 10,
+    marginVertical: 5,
   },
   card: {
     height: 45,

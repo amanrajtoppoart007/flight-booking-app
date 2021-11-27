@@ -33,7 +33,7 @@ function ChipSection() {
     <View style={styles.card}>
       {chips &&
         chips.map((item, index) => (
-          <View style={styles.item(index)} key={index?.toString()}>
+          <View key={index?.toString()}>
             <TouchableOpacity
               onPress={() => setActive(index)}
               style={[styles.chip, styles.toggleChipStatus(item?.isActive)]}>
@@ -50,15 +50,9 @@ function ChipSection() {
 const styles = StyleSheet.create({
   card: {
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-around',
     alignItems: 'center',
     marginVertical: 10,
-  },
-  item(i) {
-    return {
-      width: i === 0 ? '25%' : '37.5%',
-      paddingHorizontal: 10,
-    };
   },
   chip: {
     height: 45,
