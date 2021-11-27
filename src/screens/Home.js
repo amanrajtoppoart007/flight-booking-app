@@ -12,7 +12,6 @@ import CustomStatusBar from '../components/CustomStatusBar';
 import Colors from '../layout/Colors';
 import LinearGradient from 'react-native-linear-gradient';
 import {
-  heightPercentageToDP,
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
@@ -28,7 +27,7 @@ import RouteItem from '../components/Home/RouteItem';
 import AnimatedHeader from '../components/Home/AnimatedHeader';
 import ChipSection from '../components/Home/ChipSection';
 
-const HEADER_MAX_HEIGHT = heightPercentageToDP('40%');
+const HEADER_MAX_HEIGHT = hp('40%');
 const HEADER_MIN_HEIGHT = 140;
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
 
@@ -79,14 +78,12 @@ function Home({navigation}) {
           {useNativeDriver: true},
         )}
         scrollEventThrottle={16}
-        contentContainerStyle={{paddingTop: HEADER_MAX_HEIGHT + 30}}>
+        contentContainerStyle={{paddingTop: HEADER_MAX_HEIGHT + 25}}>
         <View style={commonStyle.wrapper}>
           <View style={commonStyle.content}>
             <Animated.View
               style={[
-                {
-                  marginHorizontal: 12,
-                },
+                commonStyle.marginHorizontal(12),
                 {
                   transform: [
                     {scale: chipSectionScale},

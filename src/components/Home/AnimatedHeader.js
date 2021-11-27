@@ -110,8 +110,8 @@ const AnimatedHeader = ({scrollY}) => {
 const styles = StyleSheet.create({
   stickyNavBar: {
     position: 'absolute',
-    marginTop: HEADER_MIN_HEIGHT + StatusBar.currentHeight,
-    zIndex: 999,
+    zIndex: 1,
+    top: 160,
     backgroundColor: Colors.white,
   },
   border: {
@@ -131,6 +131,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 12,
+    zIndex: 9999,
   },
   logo: {
     width: 110,
