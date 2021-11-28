@@ -41,7 +41,6 @@ function SearchHistorySlider() {
       {list && (
         <View>
           <FlatList
-            style={{width: wp('95%')}}
             showsHorizontalScrollIndicator={false}
             initialNumToRender={3}
             horizontal={true}

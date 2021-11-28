@@ -85,7 +85,7 @@ function TrackFlightModal({isVisible, setIsVisible}) {
           </View>
         </View>
         <View>
-          <View style={{height: hp('100%')}}>
+          <View style={{height: hp('150%')}}>
             <TabView
               navigationState={{index, routes}}
               renderScene={renderScene}
@@ -132,24 +132,23 @@ const styles = StyleSheet.create({
   tabBar: {
     height: 50,
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-end',
-    borderBottomWidth: 1,
-    borderBottomColor: '#DDDDDD',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   underline: {
-    width: '90%',
+    width: '100%',
     borderBottomWidth: 2,
     borderBottomColor: Colors.primary,
     marginTop: 10,
   },
   underlineTransparent: {
-    width: '90%',
+    width: '100%',
     borderBottomWidth: 2,
-    borderBottomColor: Colors.transparent,
+    borderBottomColor: '#DDDDDD',
     marginTop: 10,
   },
   tabItem: {
+    width: '33.33%',
     alignItems: 'center',
   },
 });

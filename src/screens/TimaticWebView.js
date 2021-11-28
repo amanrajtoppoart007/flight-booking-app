@@ -17,7 +17,7 @@ function TimaticWebView() {
             onLoadStart={() => setLoading(true)}
             onLoadEnd={() => setLoading(false)}
             style={styles.container}
-            source={{uri: 'https://www.google.com?q=timatic'}}
+            source={{uri: 'https://www.iata.org/en/publications/timatic/'}}
           />
         </View>
       </View>
