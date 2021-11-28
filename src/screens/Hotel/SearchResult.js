@@ -186,15 +186,16 @@ function SearchResult({navigation}) {
         </View>
       </ScrollView>
       <View style={styles.navigationButtonWrapper}>
-        <TouchableOpacity onPress={() => navigation.replace('HotelMapView')}>
-          <ImageBackground
-            borderRadius={4}
-            resizeMode={'contain'}
-            source={require('../../assets/images/hotel/map.png')}
+        <ImageBackground
+          resizeMode={'contain'}
+          source={require('../../assets/images/hotel/map.png')}
+          style={styles.navigationButton}>
+          <TouchableOpacity
+            onPress={() => navigation.replace('HotelMapView')}
             style={styles.navigationButton}>
             <Text style={styles.navigationButtonText}>Map View</Text>
-          </ImageBackground>
-        </TouchableOpacity>
+          </TouchableOpacity>
+        </ImageBackground>
       </View>
       {shortVisible && <SortFilter onClose={() => setShortVisible(false)} />}
     </SafeAreaView>
@@ -252,13 +253,12 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   navigationButton: {
-    width: 101,
+    width: 100,
     height: 38,
     borderRadius: 4,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'transparent',
-    opacity: 1,
+    backgroundColor: 'rgba(0,0,0,0.4)',
   },
   navigationButtonText: {
     fontFamily: Font.AvenirHeavy,
