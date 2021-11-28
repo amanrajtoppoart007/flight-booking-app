@@ -21,7 +21,7 @@ import Back from '../../../components/Svg/Back.svg';
 import Departure from '../../../components/Svg/Departure.svg';
 import PlaneSmall from '../../../components/Svg/PlaneSmall.svg';
 import Font from '../../../layout/Font';
-
+import Footer from '../../../components/Flight/Footer';
 export default function FlightResults() {
   const navigation = useNavigation();
   const [Index, setIndex] = useState();
@@ -452,6 +452,7 @@ export default function FlightResults() {
           </View>
         </View>
       </ScrollView>
+      <Footer />
       {SortVisible && <SortFilter onClose={() => setSortVisible(false)} />}
     </SafeAreaView>
   );
