@@ -65,7 +65,7 @@ function Schedule() {
     <View style={commonStyle.marginVertical(10)}>
       <View style={commonStyle.rowSpaceBetween}>
         <View>
-          <TextInput style={styles.searchInput} />
+          <TextInput placeholder={'Airport Name…'} style={styles.searchInput} />
         </View>
         <View>
           <TouchableOpacity style={styles.searchButton}>
@@ -111,6 +111,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 4,
     borderColor: '#C3C3C3',
+    paddingHorizontal: 5,
   },
   searchButton: {
     width: 46,
@@ -133,13 +134,13 @@ const styles = StyleSheet.create({
     borderBottomColor: '#DDDDDD',
   },
   underline: {
-    width: '90%',
+    width: '100%',
     borderBottomWidth: 2,
     borderBottomColor: Colors.primary,
     marginTop: 10,
   },
   underlineTransparent: {
-    width: '90%',
+    width: '100%',
     borderBottomWidth: 2,
     borderBottomColor: Colors.transparent,
     marginTop: 10,
