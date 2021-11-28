@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -14,8 +14,10 @@ import Font from '../../layout/Font';
 import SearchSvg from '../Svg/Search.svg';
 import RouteCard from './Route/RouteCard';
 import FlightStatus from './Route/FlightStatus';
+import DatePicker from '../Common/DatePicker';
 
 function RouteSection() {
+  const [isDatePickerVisible, setIsDatePickerVisible] = useState(false);
   return (
     <View style={commonStyle.marginVertical(15)}>
       <View style={commonStyle.rowSpaceEven}>
@@ -34,14 +36,16 @@ function RouteSection() {
           />
         </View>
         <View>
-          <View style={styles.dateCard}>
+          <TouchableOpacity
+            onPress={() => setIsDatePickerVisible(true)}
+            style={styles.dateCard}>
             <View style={styles.date}>
               <Text style={styles.month}>September</Text>
             </View>
             <View style={commonStyle.center}>
               <Text style={styles.dateText}>20</Text>
             </View>
-          </View>
+          </TouchableOpacity>
         </View>
         <View>
           <TouchableOpacity style={styles.searchButton}>
@@ -84,6 +88,12 @@ function RouteSection() {
           <View style={commonStyle.marginVertical(80)} />
         </View>
       </ScrollView>
+      {isDatePickerVisible && (
+        <DatePicker
+          isDatePickerVisible={isDatePickerVisible}
+          setIsDatePickerVisible={setIsDatePickerVisible}
+        />
+      )}
     </View>
   );
 }
