@@ -4,6 +4,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -25,6 +26,7 @@ import VisaCardXl from '../../components/Svg/VisaCard.svg';
 import LockSvg from '../../components/Svg/Lock.svg';
 import CalenderSvg from '../../components/Svg/Calender.svg';
 import CardSvg from '../../components/Svg/Card.svg';
+import CouponSvg from '../../components/Svg/Hotel/Coupon.svg';
 
 import {Input, CheckBox} from 'react-native-elements';
 
@@ -58,6 +60,34 @@ function Payment({navigation}) {
             </LinearGradient>
 
             <View>
+              <View
+                style={[
+                  commonStyle.marginVertical(20),
+                  commonStyle.paddingHorizontal(8),
+                ]}>
+                <View style={commonStyle.rowSpaceBetween}>
+                  <View style={commonStyle.rowCenter}>
+                    <View>
+                      <CouponSvg />
+                    </View>
+                    <View style={commonStyle.marginHorizontal(8)}>
+                      <Text style={styles.promoCodeText}>Promo Code</Text>
+                    </View>
+                  </View>
+
+                  <View>
+                    <TextInput
+                      style={styles.promoCodeInputBox}
+                      placeholder={'Enter promo code…'}
+                    />
+                  </View>
+                  <View>
+                    <TouchableOpacity style={styles.promoCodeApplyButton}>
+                      <Text style={styles.promoCodeApplyButtonText}>Apply</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </View>
               <View
                 style={[
                   commonStyle.marginVertical(10),
@@ -253,6 +283,32 @@ const styles = StyleSheet.create({
     fontFamily: Font.AvenirMedium,
     fontSize: 11,
     color: '#475F7B',
+  },
+  promoCodeApplyButton: {
+    width: 60,
+    height: 36,
+    borderRadius: 6,
+    borderWidth: 1,
+    borderColor: '#1D8CCC',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  promoCodeText: {
+    fontFamily: Font.AvenirHeavy,
+    fontSize: 14,
+    color: '#242A37',
+  },
+  promoCodeApplyButtonText: {
+    fontFamily: Font.AvenirHeavy,
+    fontSize: 14,
+    color: '#1D8CCC',
+  },
+  promoCodeInputBox: {
+    width: 150,
+    height: 36,
+    borderWidth: 1,
+    borderColor: '#AAAAAA',
+    borderRadius: 6,
   },
 });
 
