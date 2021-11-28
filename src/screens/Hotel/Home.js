@@ -11,15 +11,13 @@ import LinearGradient from 'react-native-linear-gradient';
 import CustomStatusBar from '../../components/CustomStatusBar';
 import {Icon} from 'react-native-elements';
 import SearchHistorySlider from '../../components/Hotel/Home/SearchHistorySlider';
-import {useNavigation} from '@react-navigation/native';
 import GuestListEntry from '../../components/Hotel/Home/GuestListEntry';
 import DateRangePicker from '../../components/Hotel/Home/DateRangePicker';
 import LocationSelector from '../../components/Hotel/Home/LocationSelector';
 import commonStyle from '../../layout/Style';
 import Font from '../../layout/Font';
 
-function Home() {
-  const navigation = useNavigation();
+function Home({navigation}) {
   const [guestEntryModal, setGuestEntryModal] = useState(false);
   const [isDateRangeVisible, setIsDateRangeVisible] = useState(false);
   const [isLocationSelectorVisible, setIsLocationSelectorVisible] =
@@ -37,6 +35,7 @@ function Home() {
                 <View style={[styles.titleSection, styles.rowCenter]}>
                   <View>
                     <Icon
+                      onPress={() => navigation.goBack()}
                       name={'md-arrow-back-sharp'}
                       type={'ionicon'}
                       size={18}

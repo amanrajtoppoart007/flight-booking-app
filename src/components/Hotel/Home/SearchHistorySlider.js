@@ -2,6 +2,8 @@ import React from 'react';
 import {StyleSheet, View, FlatList, Text} from 'react-native';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import Colors from '../../../layout/Colors';
+import commonStyle from '../../../layout/Style';
+import Font from '../../../layout/Font';
 function SearchHistorySlider() {
   const list = [
     {
@@ -32,8 +34,12 @@ function SearchHistorySlider() {
 
   const _renderItem = ({item}) => (
     <View style={styles.card}>
-      <Text style={styles.title}>{item?.title}</Text>
-      <Text style={styles.date}>15 Sep - Fri, 17 Sep - 2 Guests</Text>
+      <View style={commonStyle.marginVertical(2)}>
+        <Text style={styles.title}>{item?.title}</Text>
+      </View>
+      <View style={commonStyle.marginVertical(2)}>
+        <Text style={styles.date}>15 Sep - Fri, 17 Sep - 2 Guests</Text>
+      </View>
     </View>
   );
   return (
@@ -56,7 +62,7 @@ function SearchHistorySlider() {
 
 const styles = StyleSheet.create({
   card: {
-    width: 218,
+    width: wp('44%'),
     height: 60,
     borderRadius: 8,
     borderWidth: 1,
@@ -65,12 +71,14 @@ const styles = StyleSheet.create({
     marginHorizontal: 2,
   },
   title: {
+    fontFamily: Font.AvenirMedium,
     fontSize: 14,
     color: Colors.black,
   },
   date: {
+    fontFamily: Font.AvenirMedium,
     fontSize: 12,
-    color: Colors.lightText,
+    color: '#898989',
   },
 });
 
