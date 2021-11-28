@@ -24,7 +24,7 @@ import Font from '../../../layout/Font';
 import Footer from '../../../components/Flight/Footer';
 export default function FlightResults() {
   const navigation = useNavigation();
-  const [Index, setIndex] = useState();
+  const [Index, setIndex] = useState(0);
   const [SortVisible, setSortVisible] = useState(false);
 
   function Header() {
