@@ -28,12 +28,12 @@ function Footer({
             <Text style={styles.textNormalLight}> (For 4 Travellers)</Text>
           </Text>
         </View>
-        <View style={[commonStyle.rowSpaceBetween, commonStyle.marginTop(5)]}>
+        <View style={[commonStyle.rowSpaceBetween, commonStyle.marginTop(10)]}>
           {data &&
             data.map(item => (
               <View
                 key={String(Math.floor(Math.random() * 356))}
-                style={commonStyle.rowSpaceEven}>
+                style={[commonStyle.rowSpaceEven, commonStyle.marginRight(10)]}>
                 <View style={commonStyle.rowSpaceBetween}>
                   <DeerWhiteBg />
                   <View style={commonStyle.marginLeft(5)}>
@@ -45,13 +45,17 @@ function Footer({
             ))}
         </View>
       </View>
-      <View style={styles.RightContainer}>
+      <View
+        style={[
+          styles.RightContainer,
+          {justifyContent: !price ? 'center' : 'space-between'},
+        ]}>
         {price && (
           <Text style={styles.textBigWhite}>
             <Text style={styles.textBigLight}>QAR</Text> {price}
           </Text>
         )}
-        <TouchableOpacity onPress={onPress} style={styles.continueButton}>
+        <TouchableOpacity onPress={onPress} style={[styles.continueButton]}>
           <Text style={styles.textNormalWhite}>{buttonText}</Text>
           {buttonIcon && (
             <Icon
