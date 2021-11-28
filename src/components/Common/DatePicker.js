@@ -42,9 +42,12 @@ function DatePicker({isDatePickerVisible, setIsDatePickerVisible}) {
               showSelectionInfo={false}
               minDate={''}
               maxDate={''}
-              onConfirm={(startDate, untilDate) =>
-                setDate(startDate, untilDate)
-              }
+              onClose={() => {
+                setIsDatePickerVisible(false);
+              }}
+              onSelect={() => {
+                setDate();
+              }}
               buttonColor={'#F15922'}
               showButton={true}
               selectedBackgroundColor={'#F15922'}
