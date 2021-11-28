@@ -13,10 +13,7 @@ import {Icon} from 'react-native-elements';
 import Colors from '../../layout/Colors';
 import LinearGradient from 'react-native-linear-gradient';
 import CustomStatusBar from '../../components/CustomStatusBar';
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import Font from '../../layout/Font';
 import StatusStepBar from '../../components/Hotel/Payment/StatusStepBar';
 import Accordion from '../../components/Hotel/Payment/Accordion';
