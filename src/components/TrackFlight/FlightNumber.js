@@ -11,14 +11,16 @@ import commonStyle from '../../layout/Style';
 import Colors from '../../layout/Colors';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import SelectDropdown from 'react-native-select-dropdown';
+import {Icon} from 'react-native-elements';
+
 import Font from '../../layout/Font';
 import DeerSvg from '../Svg/Deer.svg';
 import SearchSvg from '../Svg/Search.svg';
 
 import Card from './FlightNumber/Card';
-import {Icon} from 'react-native-elements';
-
+import DatePicker from '../Common/DatePicker';
 function FlightNumber() {
+  const [isDatePickerVisible, setIsDatePickerVisible] = useState(false);
   const [places] = useState([
     {
       place: 'DOH',
@@ -207,14 +209,16 @@ function FlightNumber() {
           />
         </View>
         <View>
-          <View style={styles.dateCard}>
+          <TouchableOpacity
+            onPress={() => setIsDatePickerVisible(true)}
+            style={styles.dateCard}>
             <View style={styles.date}>
               <Text style={styles.month}>September</Text>
             </View>
             <View style={commonStyle.center}>
               <Text style={styles.dateText}>20</Text>
             </View>
-          </View>
+          </TouchableOpacity>
         </View>
         <View>
           <TouchableOpacity style={styles.searchButton}>
@@ -256,6 +260,12 @@ function FlightNumber() {
             ))}
         </ScrollView>
       </View>
+      {isDatePickerVisible && (
+        <DatePicker
+          isDatePickerVisible={isDatePickerVisible}
+          setIsDatePickerVisible={setIsDatePickerVisible}
+        />
+      )}
     </View>
   );
 }
