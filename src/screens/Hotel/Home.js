@@ -16,6 +16,7 @@ import GuestListEntry from '../../components/Hotel/Home/GuestListEntry';
 import DateRangePicker from '../../components/Hotel/Home/DateRangePicker';
 import LocationSelector from '../../components/Hotel/Home/LocationSelector';
 import commonStyle from '../../layout/Style';
+import Font from '../../layout/Font';
 
 function Home() {
   const navigation = useNavigation();
@@ -32,25 +33,22 @@ function Home() {
             <LinearGradient
               colors={['#1C8CCC', '#015F95']}
               style={styles.canvas}>
-              <View style={[styles.titleSection, styles.rowCenter]}>
-                <View>
-                  <Icon
-                    name={'md-arrow-back-sharp'}
-                    type={'ionicon'}
-                    size={18}
-                    color={Colors.white}
-                  />
-                </View>
-                <View style={{marginHorizontal: 10}}>
-                  <Text style={styles.title}>Search Hotels</Text>
+              <View style={commonStyle.marginHorizontal(20)}>
+                <View style={[styles.titleSection, styles.rowCenter]}>
+                  <View>
+                    <Icon
+                      name={'md-arrow-back-sharp'}
+                      type={'ionicon'}
+                      size={18}
+                      color={Colors.white}
+                    />
+                  </View>
+                  <View style={commonStyle.marginHorizontal(10)}>
+                    <Text style={styles.title}>Search Hotels</Text>
+                  </View>
                 </View>
               </View>
-              <View
-                style={{
-                  top: hp('10%'),
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}>
+              <View style={styles.cardWrapper}>
                 <View style={styles.card}>
                   <View style={styles.subSection}>
                     <View style={styles.margin}>
@@ -71,7 +69,11 @@ function Home() {
                   </View>
 
                   <View style={styles.subSection}>
-                    <View style={commonStyle.rowCenter}>
+                    <View
+                      style={[
+                        commonStyle.rowSpaceBetween,
+                        commonStyle.width('100%'),
+                      ]}>
                       <View>
                         <View style={styles.margin}>
                           <Text style={styles.helperText}>Check-In</Text>
@@ -99,7 +101,7 @@ function Home() {
                         </View>
                       </View>
                       <View>
-                        <View style={styles.margin}>
+                        <View style={[styles.margin, commonStyle.rowFlexEnd]}>
                           <Text style={styles.helperText}>Check-Out</Text>
                         </View>
                         <View style={styles.margin}>
@@ -132,27 +134,29 @@ function Home() {
               </View>
             </LinearGradient>
           </View>
-          <View style={commonStyle.center}>
-            <Pressable
-              onPress={() => navigation.navigate('SearchResult')}
-              style={styles.searchButton}>
-              <Icon
-                name={'search'}
-                type={'font-awesome'}
-                size={16}
-                color={Colors.white}
-              />
-              <View style={{marginHorizontal: 5}}>
-                <Text style={styles.searchButtonText}>Search Hotels</Text>
-              </View>
-            </Pressable>
-          </View>
-          <View style={{paddingHorizontal: 10}}>
-            <View style={{marginVertical: 15}}>
-              <Text style={styles.recentSearchTitle}>Recently Searched</Text>
+          <View style={commonStyle.marginHorizontal(20)}>
+            <View style={[commonStyle.center, commonStyle.width('100%')]}>
+              <Pressable
+                onPress={() => navigation.navigate('SearchResult')}
+                style={styles.searchButton}>
+                <Icon
+                  name={'search'}
+                  type={'font-awesome'}
+                  size={16}
+                  color={Colors.white}
+                />
+                <View style={commonStyle.marginHorizontal(5)}>
+                  <Text style={styles.searchButtonText}>Search Hotels</Text>
+                </View>
+              </Pressable>
             </View>
             <View>
-              <SearchHistorySlider />
+              <View style={commonStyle.marginVertical(15)}>
+                <Text style={styles.recentSearchTitle}>Recently Searched</Text>
+              </View>
+              <View>
+                <SearchHistorySlider />
+              </View>
             </View>
           </View>
 
@@ -202,13 +206,18 @@ const styles = StyleSheet.create({
   },
   titleSection: {
     marginVertical: 20,
-    paddingHorizontal: 20,
   },
   title: {
+    fontFamily: Font.AvenirHeavy,
     fontSize: 18,
     color: Colors.white,
   },
   searchSection: {
+    top: hp('10%'),
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  cardWrapper: {
     top: hp('10%'),
     justifyContent: 'center',
     alignItems: 'center',
@@ -226,21 +235,23 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   subSection: {
+    width: '100%',
     justifyContent: 'center',
   },
   divider: {
     width: '100%',
-    borderWidth: 0.5,
-    borderColor: '#D9D9D9',
+    borderBottomWidth: 1,
+    borderBottomColor: '#D9D9D9',
     marginVertical: 8,
   },
 
   cardTitle: {
+    fontFamily: Font.AvenirMedium,
     fontSize: 14,
-    color: Colors.lightText,
+    color: '#6C6C6C',
   },
   searchButton: {
-    width: 335,
+    width: '100%',
     height: 56,
     borderRadius: 8,
     flexDirection: 'row',
@@ -249,42 +260,41 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.secondary,
   },
   searchButtonText: {
-    fontSize: 14,
+    fontFamily: Font.AvenirHeavy,
+    fontSize: 16,
     color: Colors.white,
   },
   searchHistoryCard: {
-    width: 218,
+    width: '100%',
     height: 60,
     borderRadius: 8,
     borderWidth: 1,
     borderColor: '#163D68',
   },
   recentSearchTitle: {
+    fontFamily: Font.AvenirBlack,
     fontSize: 16,
     color: Colors.black,
-    fontWeight: 'bold',
   },
   searchText: {
+    fontFamily: Font.AvenirBlack,
     fontSize: 24,
-    color: Colors.black,
-    fontWeight: 'bold',
-  },
-  searchHelperText: {
-    fontSize: 14,
-    color: Colors.lightText,
+    color: '#242A37',
   },
   helperText: {
+    fontFamily: Font.AvenirMedium,
     fontSize: 14,
     color: Colors.lightText,
   },
   dateFilterText: {
+    fontFamily: Font.AvenirHeavy,
     fontSize: 18,
-    color: Colors.lightText,
-    fontWeight: 'bold',
+    color: '#242A37',
   },
   roomFilterText: {
+    fontFamily: Font.AvenirHeavy,
     fontSize: 18,
-    color: Colors.black,
+    color: '#242A37',
   },
 });
 export default Home;
