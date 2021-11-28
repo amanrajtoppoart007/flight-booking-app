@@ -22,6 +22,8 @@ import Departure from '../../../components/Svg/Departure.svg';
 import PlaneSmall from '../../../components/Svg/PlaneSmall.svg';
 import Font from '../../../layout/Font';
 import Footer from '../../../components/Flight/Footer';
+import RoyalJordanian from '../../../components/Svg/RoyalJordanian.svg';
+
 export default function FlightResults() {
   const navigation = useNavigation();
   const [Index, setIndex] = useState(0);
@@ -83,7 +85,7 @@ export default function FlightResults() {
     return (
       <View style={styles.topbarContainer}>
         <Departure style={commonStyle.marginRight(10)} />
-        <Text style={styles.redText}>Select your return flight</Text>
+        <Text style={styles.redText}>Select your onward flight</Text>
       </View>
     );
   }
@@ -102,11 +104,11 @@ export default function FlightResults() {
                 style={styles.DataContainer(Index == 0)}>
                 <View style={styles.subHeaderContainer}>
                   <View style={styles.flexCenter}>
-                    <Deer />
+                    <RoyalJordanian style={commonStyle.marginRight(5)} />
                     <View>
                       <Text style={styles.titleBlack}>
-                        Qatar Airways
-                        <Text style={styles.smallLightText}> | QR - 3801 </Text>
+                        Royal Jordanian
+                        <Text style={styles.smallLightText}> | RJ - 653 </Text>
                       </Text>
                       <Text style={styleOptions.smallBlueText}>
                         Operated by FlyDubai
@@ -453,8 +455,13 @@ export default function FlightResults() {
         </View>
       </ScrollView>
       <Footer
-        onPress={() => navigation.navigate('FlightResultsReturn')}
-        price={'175.00'}
+        data={[
+          {title: 'DOH → DXB', subtext: '1 stop'},
+          {title: 'DXB → DOH', subtext: '1 stop'},
+        ]}
+        buttonText={'QAR 350.00'}
+        buttonIcon={false}
+        onPress={() => navigation.navigate('ReviewItinerary')}
       />
       {SortVisible && <SortFilter onClose={() => setSortVisible(false)} />}
     </SafeAreaView>
