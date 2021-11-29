@@ -9,9 +9,9 @@ import ModifySearch from '../screens/Flight/ModifySearch';
 import Checkout from '../screens/Flight/Checkout';
 import Payment from '../screens/Flight/Payment';
 import ReviewItinerary from '../screens/Flight/ReviewItinerary';
-import FlightByNavigator from '../screens/Flight/FlightBy/FlightByNavigator';
-import OneWayNavigator from '../screens/Flight/OneWay/OneWayNavigator';
-import MultiCityNavigator from '../screens/Flight/MultiCity/MultiCityNavigator';
+import FlightByNavigator from './FlightByNavigator';
+import OneWayNavigator from './OneWayNavigator';
+import MultiCityNavigator from './MultiCityNavigator';
 import ScreenSettings from './ScreenSettings';
 
 const Stack = createStackNavigator();
