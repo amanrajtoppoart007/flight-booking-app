@@ -71,7 +71,7 @@ export default function Home() {
     } else if (flightType == 'one-way') {
       navigation.navigate('OneWay');
     } else {
-      navigation.navigate('FlightResult');
+      navigation.navigate('MultiCity');
     }
   }
   function _onSwap(index = 0) {

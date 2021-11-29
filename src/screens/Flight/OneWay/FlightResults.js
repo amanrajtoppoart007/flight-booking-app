@@ -120,7 +120,7 @@ export default function FlightResults() {
             <TopBar />
             <View>
               <TouchableOpacity
-                onPress={() => navigation.navigate('ReviewItineraryOneWay')}
+                onPress={() => navigation.navigate('OneWayReviewItinerary')}
                 style={styles.DataContainer(Index == 0)}>
                 <View style={styles.subHeaderContainer}>
                   <View style={styles.flexCenter}>
@@ -257,14 +257,14 @@ export default function FlightResults() {
                     </Text>
                   </View>
                   <TouchableOpacity
-                    onPress={() => navigation.navigate('ReviewItineraryOneWay')}
+                    onPress={() => navigation.navigate('OneWayReviewItinerary')}
                     style={styles.Button}>
                     <Text style={styles.WhiteText}>Select</Text>
                   </TouchableOpacity>
                 </View>
               )}
               <TouchableOpacity
-                onPress={() => navigation.navigate('ReviewItineraryOneWay')}
+                onPress={() => navigation.navigate('OneWayReviewItinerary')}
                 style={styles.DataContainer(Index == 1)}>
                 <View style={styles.subHeaderContainer}>
                   <View style={styles.flexCenter}>
@@ -401,14 +401,14 @@ export default function FlightResults() {
                     </Text>
                   </View>
                   <TouchableOpacity
-                    onPress={() => navigation.navigate('ReviewItineraryOneWay')}
+                    onPress={() => navigation.navigate('OneWayReviewItinerary')}
                     style={styles.Button}>
                     <Text style={styles.WhiteText}>Select</Text>
                   </TouchableOpacity>
                 </View>
               )}
               <TouchableOpacity
-                onPress={() => navigation.navigate('ReviewItineraryOneWay')}
+                onPress={() => navigation.navigate('OneWayReviewItinerary')}
                 style={styles.DataContainer(Index == 2)}>
                 <View style={styles.subHeaderContainer}>
                   <View style={styles.flexCenter}>
@@ -545,7 +545,7 @@ export default function FlightResults() {
                     </Text>
                   </View>
                   <TouchableOpacity
-                    onPress={() => navigation.navigate('ReviewItineraryOneWay')}
+                    onPress={() => navigation.navigate('OneWayReviewItinerary')}
                     style={styles.Button}>
                     <Text style={styles.WhiteText}>Select</Text>
                   </TouchableOpacity>
