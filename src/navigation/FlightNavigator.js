@@ -10,6 +10,7 @@ import Checkout from '../screens/Flight/Checkout';
 import Payment from '../screens/Flight/Payment';
 import ReviewItinerary from '../screens/Flight/ReviewItinerary';
 import FlightByNavigator from '../screens/Flight/FlightBy/FlightByNavigator';
+import OneWayNavigator from '../screens/Flight/OneWay/OneWayNavigator';
 
 const Stack = createStackNavigator();
 const FlightNavigator = () => {
@@ -25,6 +26,7 @@ const FlightNavigator = () => {
       <Stack.Screen name="ReviewItinerary" component={ReviewItinerary} />
       <Stack.Screen name="Payment" component={Payment} />
       <Stack.Screen name="FlightBy" component={FlightByNavigator} />
+      <Stack.Screen name="OneWay" component={OneWayNavigator} />
     </Stack.Navigator>
   );
 };
