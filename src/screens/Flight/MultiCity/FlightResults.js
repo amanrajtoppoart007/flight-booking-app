@@ -8,18 +8,18 @@ import {
   ScrollView,
 } from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import Colors from '../../layout/Colors';
-import commonStyle from '../../layout/Style';
+import Colors from '../../../layout/Colors';
+import commonStyle from '../../../layout/Style';
 import LinearGradient from 'react-native-linear-gradient';
-import CustomStatusBar from '../../components/CustomStatusBar';
+import CustomStatusBar from '../../../components/CustomStatusBar';
 import {Icon} from 'react-native-elements';
 import {useNavigation} from '@react-navigation/native';
-import SortFilter from '../../components/Flight/FlightResults/SortFilter';
-import Icons from '../../components/Svg/FlightResultsIcons.svg';
-import Deer from '../../components/Svg/Deer.svg';
-import Bag from '../../components/Svg/Bag.svg';
-import RoundTripFlight from '../../components/Svg/RoundTripFlight.svg';
-import Font from '../../layout/Font';
+import SortFilter from '../../../components/Flight/FlightResults/SortFilter';
+import Icons from '../../../components/Svg/FlightResultsIcons.svg';
+import Deer from '../../../components/Svg/Deer.svg';
+import Bag from '../../../components/Svg/Bag.svg';
+import RoundTripFlight from '../../../components/Svg/RoundTripFlight.svg';
+import Font from '../../../layout/Font';
 
 export default function FlightResults() {
   const navigation = useNavigation();

@@ -69,9 +69,9 @@ export default function Home() {
     if (flightType == 'round-trip') {
       navigation.navigate('FlightResult');
     } else if (flightType == 'one-way') {
-      navigation.navigate('FlightBy');
+      navigation.navigate('OneWay');
     } else {
-      navigation.navigate('FlightResult');
+      navigation.navigate('MultiCity');
     }
   }
   function _onSwap(index = 0) {
