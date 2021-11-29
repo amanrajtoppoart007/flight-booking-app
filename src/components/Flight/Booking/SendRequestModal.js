@@ -21,16 +21,21 @@ function SendRequestModal({visible, setVisible}) {
   const [types] = useState([
     {
       id: 'request-type-id-one',
+      title: 'Request Type',
+      value: '',
+    },
+    {
+      id: 'request-type-id-two',
       title: 'Cancel my booking',
       value: 'cancel-my-booking',
     },
     {
-      id: 'request-type-id-two',
+      id: 'request-type-id-three',
       title: 'Change my booking',
       value: 'change-my-booking',
     },
     {
-      id: 'request-type-id-three',
+      id: 'request-type-id-four',
       title: 'Other Queries',
       value: 'other-queries',
     },
@@ -39,10 +44,7 @@ function SendRequestModal({visible, setVisible}) {
   return (
     <>
       <Overlay
-        overlayStyle={{
-          backgroundColor: 'rgba(0,0,0,0.3)',
-          alignItems: 'center',
-        }}
+        overlayStyle={styles.overLayStyle}
         fullScreen={true}
         isVisible={visible}
         onBackdropPress={toggleOverlay}>
@@ -57,9 +59,9 @@ function SendRequestModal({visible, setVisible}) {
               </TouchableOpacity>
             </View>
           </View>
-          <View>
+          <View style={styles.dropDownSection}>
             <SelectDropdown
-              placeholder={'Request Type'}
+              defaultValueByIndex={0}
               defaultButtonText={'Request Type'}
               buttonStyle={styles.dropDownButtonStyle}
               buttonTextStyle={styles.dropDownButtonTextStyle}
@@ -73,7 +75,16 @@ function SendRequestModal({visible, setVisible}) {
                   />
                 );
               }}
-              dropdownIconPosition={'right'}
+              rowTextStyle={styles.dropDownButtonTextStyle}
+              renderCustomizedButtonChild={item => {
+                return (
+                  <View>
+                    <Text style={styles.dropDownButtonTextStyle}>
+                      {item?.title}
+                    </Text>
+                  </View>
+                );
+              }}
               data={types}
               onSelect={selectedItem => {}}
               buttonTextAfterSelection={selectedItem => {
@@ -84,14 +95,16 @@ function SendRequestModal({visible, setVisible}) {
               }}
             />
           </View>
-          <View>
+          <View style={styles.textBoxSection}>
             <TextInput
               style={styles.textInputBox}
               placeholder={'Description…'}
             />
           </View>
           <View>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity
+              onPress={() => setVisible(false)}
+              style={styles.button}>
               <Text style={styles.buttonText}>Send</Text>
             </TouchableOpacity>
           </View>
@@ -102,6 +115,7 @@ function SendRequestModal({visible, setVisible}) {
 }
 
 const styles = StyleSheet.create({
+  overLayStyle: {backgroundColor: 'rgba(0,0,0,0.3)', alignItems: 'center'},
   card: {
     top: hp('15%'),
     width: 345,
@@ -116,6 +130,9 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#242A37',
   },
+  dropDownSection: {
+    marginTop: 20,
+  },
   dropDownButtonStyle: {
     width: '100%',
     backgroundColor: Colors.white,
@@ -127,6 +144,9 @@ const styles = StyleSheet.create({
     fontFamily: Font.AvenirMedium,
     fontSize: 14,
     color: '#6C6C6C',
+  },
+  textBoxSection: {
+    marginVertical: 15,
   },
   textInputBox: {
     height: 60,
