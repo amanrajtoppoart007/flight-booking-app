@@ -24,7 +24,7 @@ export default function FlightResults() {
   const navigation = useNavigation();
   const [Index, setIndex] = useState();
   const [SortVisible, setSortVisible] = useState(false);
-  const [topbar, setTopbar] = useState('cheapest');
+  const [topBar, setTopBar] = useState('cheapest');
   const [moreOptionsVisible, setMoreOptionsVisible] = useState({
     index1: false,
     index2: false,
@@ -43,7 +43,7 @@ export default function FlightResults() {
                     <Back />
                   </TouchableOpacity>
                 </View>
-                <View style={{marginHorizontal: 5}}>
+                <View style={commonStyle.marginHorizontal(5)}>
                   <View style={commonStyle.rowCenter}>
                     <Text style={styles.title}>Doha </Text>
                     <PlaneSmall />
@@ -61,7 +61,7 @@ export default function FlightResults() {
                     color={Colors.white}
                   />
                 </View>
-                <View style={{marginHorizontal: 5}}>
+                <View style={commonStyle.marginHorizontal(5)}>
                   <Icon
                     onPress={() => setSortVisible(!SortVisible)}
                     name={'filter-variant'}
@@ -85,24 +85,24 @@ export default function FlightResults() {
 
   function TopBar() {
     return (
-      <View style={styles.topbarContainer}>
+      <View style={styles.topBarContainer}>
         <TouchableOpacity
-          onPress={() => setTopbar('cheapest')}
-          style={styles.topbarItem('cheapest', topbar)}>
+          onPress={() => setTopBar('cheapest')}
+          style={styles.topBarItem('cheapest', topBar)}>
           <Text style={styles.subTitle}>Cheapest</Text>
           <Text style={styles.titleBlack}>QAR 170</Text>
         </TouchableOpacity>
         <View style={styles.BorderRight} />
         <TouchableOpacity
-          onPress={() => setTopbar('fastest')}
-          style={styles.topbarItem('fastest', topbar)}>
+          onPress={() => setTopBar('fastest')}
+          style={styles.topBarItem('fastest', topBar)}>
           <Text style={styles.subTitle}>Fastest</Text>
           <Text style={styles.titleBlack}>QAR 273</Text>
         </TouchableOpacity>
         <View style={styles.BorderRight} />
         <TouchableOpacity
-          onPress={() => setTopbar('best')}
-          style={styles.topbarItem('best', topbar)}>
+          onPress={() => setTopBar('best')}
+          style={styles.topBarItem('best', topBar)}>
           <Text style={styles.subTitle}>Best</Text>
           <Text style={styles.titleBlack}>QAR 170</Text>
         </TouchableOpacity>
@@ -121,7 +121,7 @@ export default function FlightResults() {
             <View>
               <TouchableOpacity
                 onPress={() => navigation.navigate('OneWayReviewItinerary')}
-                style={styles.DataContainer(Index == 0)}>
+                style={styles.DataContainer(Index === 0)}>
                 <View style={styles.subHeaderContainer}>
                   <View style={styles.flexCenter}>
                     <Deer />
@@ -265,7 +265,7 @@ export default function FlightResults() {
               )}
               <TouchableOpacity
                 onPress={() => navigation.navigate('OneWayReviewItinerary')}
-                style={styles.DataContainer(Index == 1)}>
+                style={styles.DataContainer(Index === 1)}>
                 <View style={styles.subHeaderContainer}>
                   <View style={styles.flexCenter}>
                     <Deer />
@@ -409,7 +409,7 @@ export default function FlightResults() {
               )}
               <TouchableOpacity
                 onPress={() => navigation.navigate('OneWayReviewItinerary')}
-                style={styles.DataContainer(Index == 2)}>
+                style={styles.DataContainer(Index === 2)}>
                 <View style={styles.subHeaderContainer}>
                   <View style={styles.flexCenter}>
                     <Deer />
@@ -681,10 +681,10 @@ function MoreOptions() {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => setDepartingIndex(1)}
-          style={styleOptions.card(DepartingIndex == 1)}>
+          style={styleOptions.card(DepartingIndex === 1)}>
           <View style={[commonStyle.rowSpaceBetween, commonStyle.padding(10)]}>
             <Icon
-              name={DepartingIndex == 1 ? 'dot-circle-o' : 'circle-o'}
+              name={DepartingIndex === 1 ? 'dot-circle-o' : 'circle-o'}
               type={'font-awesome'}
               size={26}
               color={Colors.primary}
@@ -872,7 +872,7 @@ const styles = StyleSheet.create({
     borderColor: '#D9D9D9',
     marginHorizontal: 4,
   },
-  topbarContainer: {
+  topBarContainer: {
     flexDirection: 'row',
     borderBottomWidth: 0.3,
     borderColor: Colors.border,
@@ -887,15 +887,15 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     paddingHorizontal: 40,
   },
-  topbarItem(index, name) {
+  topBarItem(index, name) {
     return {
       padding: 10,
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
       borderColor: 'green',
-      borderBottomWidth: index == name ? 3 : 0,
-      backgroundColor: index == name ? '#F2F2F2' : Colors.white,
+      borderBottomWidth: index === name ? 3 : 0,
+      backgroundColor: index === name ? '#F2F2F2' : Colors.white,
     };
   },
   WhiteText: {

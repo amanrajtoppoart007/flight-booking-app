@@ -283,14 +283,13 @@ const buttonStyle = StyleSheet.create({
   card: {
     width: 110,
     height: 45,
-    borderWidth: 0.1,
+    borderWidth: StyleSheet.hairlineWidth,
     borderColor: Colors.border,
     borderRadius: 6,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center',
     padding: 5,
-    elevation: 1,
   },
   text: {
     fontSize: 18,
