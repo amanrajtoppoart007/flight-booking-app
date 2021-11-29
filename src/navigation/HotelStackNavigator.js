@@ -10,10 +10,17 @@ import Payment from '../screens/Hotel/Payment';
 import HotelDetails from '../screens/Hotel/HotelDetails';
 import GuestReviews from '../screens/Hotel/GuestReviews';
 import HotelMapView from '../screens/Hotel/HotelMapView';
+import ScreenSettings from './ScreenSettings';
 
 const Stack = createStackNavigator();
 const HotelStackNavigator = () => (
-  <Stack.Navigator screenOptions={{headerShown: false}}>
+  <Stack.Navigator
+    screenOptions={{
+      headerShown: false,
+      cardOverlayEnabled: true,
+      gestureEnabled: true,
+      ...ScreenSettings,
+    }}>
     <Stack.Screen name={'Home'} component={Home} />
     <Stack.Screen name={'GuestDetails'} component={GuestDetails} />
     <Stack.Screen name={'SearchResult'} component={SearchResult} />

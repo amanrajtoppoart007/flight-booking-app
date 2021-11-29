@@ -12,11 +12,18 @@ import ReviewItinerary from '../screens/Flight/ReviewItinerary';
 import FlightByNavigator from '../screens/Flight/FlightBy/FlightByNavigator';
 import OneWayNavigator from '../screens/Flight/OneWay/OneWayNavigator';
 import MultiCityNavigator from '../screens/Flight/MultiCity/MultiCityNavigator';
+import ScreenSettings from './ScreenSettings';
 
 const Stack = createStackNavigator();
 const FlightNavigator = () => {
   return (
-    <Stack.Navigator screenOptions={{headerShown: false}}>
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+        cardOverlayEnabled: true,
+        gestureEnabled: true,
+        ...ScreenSettings,
+      }}>
       <Stack.Screen name="FlightHome" component={Home} />
       <Stack.Screen name="FlightResult" component={FlightResults} />
       <Stack.Screen name="Review" component={Review} />

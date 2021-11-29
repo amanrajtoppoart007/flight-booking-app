@@ -1,7 +1,6 @@
 import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import SideBar from '../components/SideBar';
-import TabNavigator from './TabNavigator';
 import Terms from '../screens/Terms';
 import Faq from '../screens/Faq';
 import Social from '../screens/Social';
@@ -12,7 +11,6 @@ import ReviewFlight from '../screens/Flight/ReviewFlight';
 import FareRules from '../screens/Flight/FareRules';
 import Search from '../screens/Flight/Search';
 import FlightResult from '../screens/Flight/FlightResults';
-import Auth from '../screens/Auth/Auth';
 import AppNavigator from './AppNavigator';
 
 const Drawer = createDrawerNavigator();
