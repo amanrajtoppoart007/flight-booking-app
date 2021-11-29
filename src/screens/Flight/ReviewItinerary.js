@@ -43,6 +43,7 @@ function ReviewItinerary({navigation}) {
               <View style={commonStyle.rowFlexStart}>
                 <View style={commonStyle.center}>
                   <Icon
+                    onPress={() => navigation.goBack()}
                     name={'md-arrow-back-sharp'}
                     type={'ionicon'}
                     style={styles.icon}
