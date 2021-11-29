@@ -8,7 +8,7 @@ const Stack = createStackNavigator();
 const FlightBy = () => (
   <Stack.Navigator screenOptions={{headerShown: false}}>
     <Stack.Screen name={'FlightResultsOneWay'} component={FlightResults} />
-    <Stack.Screen name={'ReviewItineraryOneWay'} component={ReviewItinerary} />
+    <Stack.Screen name={'OneWayReviewItinerary'} component={ReviewItinerary} />
   </Stack.Navigator>
 );
 
