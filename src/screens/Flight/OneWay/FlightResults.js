@@ -257,7 +257,7 @@ export default function FlightResults() {
                     </Text>
                   </View>
                   <TouchableOpacity
-                    onPress={() => navigation.navigate('Checkout')}
+                    onPress={() => navigation.navigate('ReviewItineraryOneWay')}
                     style={styles.Button}>
                     <Text style={styles.WhiteText}>Select</Text>
                   </TouchableOpacity>
@@ -401,7 +401,7 @@ export default function FlightResults() {
                     </Text>
                   </View>
                   <TouchableOpacity
-                    onPress={() => navigation.navigate('Checkout')}
+                    onPress={() => navigation.navigate('ReviewItineraryOneWay')}
                     style={styles.Button}>
                     <Text style={styles.WhiteText}>Select</Text>
                   </TouchableOpacity>
@@ -545,7 +545,7 @@ export default function FlightResults() {
                     </Text>
                   </View>
                   <TouchableOpacity
-                    onPress={() => navigation.navigate('Checkout')}
+                    onPress={() => navigation.navigate('ReviewItineraryOneWay')}
                     style={styles.Button}>
                     <Text style={styles.WhiteText}>Select</Text>
                   </TouchableOpacity>
