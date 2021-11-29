@@ -1,9 +1,9 @@
 import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createStackNavigator} from '@react-navigation/stack';
 import ScreenSettings from './ScreenSettings';
 import HomeNavigator from './HomeNavigator';
 import Auth from '../screens/Auth/Auth';
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 const AppNavigator = () => (
   <Stack.Navigator

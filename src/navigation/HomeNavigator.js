@@ -1,12 +1,12 @@
 import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createStackNavigator} from '@react-navigation/stack';
 import ScreenSettings from './ScreenSettings';
 import TimaticWebView from '../screens/TimaticWebView';
 import Auth from '../screens/Auth/Auth';
 import HotelStackNavigator from './HotelStackNavigator';
 import FlightNavigator from './FlightNavigator';
 import TabNavigator from './TabNavigator';
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 const HomeNavigator = () => (
   <Stack.Navigator
