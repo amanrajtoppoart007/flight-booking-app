@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 import FlightWing from '../../../Svg/Flight/FlightWing.svg';
@@ -7,8 +7,10 @@ import TimeCard from './TimeCard';
 import Font from '../../../../layout/Font';
 import {Icon} from 'react-native-elements';
 import Colors from '../../../../layout/Colors';
+import MoreOptions from './MoreOptions';
 
 function FlightCard() {
+  const [isMoreOptionVisible, setIsMoreOptionVisible] = useState(false);
   return (
     <View style={styles.card}>
       <View style={styles.cardHeader}>
@@ -45,11 +47,40 @@ function FlightCard() {
         </View>
       </View>
       <View style={styles.cardFooter}>
-        <TouchableOpacity style={styles.moreItemButton}>
+        <TouchableOpacity
+          onPress={() => setIsMoreOptionVisible(!isMoreOptionVisible)}
+          style={styles.moreItemButton}>
           <Text style={styles.moreItemButtonText}>More Options</Text>
-          <Icon type={'feather'} name={'chevrons-up'} size={12} />
+          <Icon
+            type={'feather'}
+            name={isMoreOptionVisible ? 'chevrons-up' : 'chevrons-down'}
+            size={12}
+          />
         </TouchableOpacity>
         <View style={styles.divider} />
+      </View>
+      {isMoreOptionVisible && (
+        <View style={commonStyle.backgroundColor('rgba(49, 179, 223, 0.15)')}>
+          <MoreOptions />
+        </View>
+      )}
+      <View style={styles.selectButtonSection}>
+        <View>
+          <View style={commonStyle.rowFlexStart}>
+            <View>
+              <Text style={styles.currency}>QAR</Text>
+            </View>
+            <View style={commonStyle.marginHorizontal(5)}>
+              <Text style={styles.price}>170.00</Text>
+            </View>
+          </View>
+          <Text style={styles.text}>(For 1 Travellers)</Text>
+        </View>
+        <View>
+          <TouchableOpacity style={styles.selectButton}>
+            <Text style={styles.selectButtonText}>Select</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -78,6 +109,11 @@ const styles = StyleSheet.create({
     fontFamily: Font.AvenirRoman,
     fontSize: 14,
     color: '#242A37',
+  },
+  text: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 12,
+    color: '#50555F',
   },
   currency: {
     fontFamily: Font.AvenirMedium,
@@ -109,7 +145,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(49, 179, 223, 0.2)',
+    backgroundColor: 'rgba(49, 179, 223, 0.15)',
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
   },
@@ -117,6 +153,26 @@ const styles = StyleSheet.create({
     fontFamily: Font.AvenirMedium,
     fontSize: 12,
     color: '#50555F',
+  },
+  selectButton: {
+    width: 110,
+    height: 45,
+    backgroundColor: '#F15922',
+    borderRadius: 6,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  selectButtonSection: {
+    height: 70,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 12,
+  },
+  selectButtonText: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 16,
+    color: Colors.white,
   },
 });
 

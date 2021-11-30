@@ -14,6 +14,14 @@ const commonStyle = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  alignFlexEnd: {
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+  },
+  alignItemCenter: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   content: {
     width: '100%',
   },
