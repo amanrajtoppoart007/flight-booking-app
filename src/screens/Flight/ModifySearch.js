@@ -18,7 +18,7 @@ import {Icon} from 'react-native-elements';
 import SearchHistorySlider from '../../components/Flight/SearchHistorySlider';
 import {useNavigation} from '@react-navigation/native';
 import DateRangePicker from '../../components/Hotel/Home/DateRangePicker';
-import TravellerandClass from '../../components/Flight/TravellerandClass';
+import TravellerAndClass from '../../components/Flight/TravellerAndClass';
 import RoundTripCard from '../../components/Flight/SearchFlights/RoundTripCard';
 import OneWayTripCard from '../../components/Flight/SearchFlights/OneWayTrip';
 import MultiCityCard from '../../components/Flight/SearchFlights/MultiCity';
@@ -185,7 +185,7 @@ export default function Home() {
             </View>
 
             <View>
-              <TravellerandClass
+              <TravellerAndClass
                 isTravellerandClassVisible={guestEntryModal}
                 setIsTravellerandClassVisible={setGuestEntryModal}
               />

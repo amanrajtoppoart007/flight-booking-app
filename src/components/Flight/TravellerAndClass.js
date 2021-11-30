@@ -13,6 +13,7 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import Font from '../../layout/Font';
+import commonStyle from '../../layout/Style';
 const Button = () => {
   const [count, setCount] = useState(0);
   return (
@@ -44,13 +45,7 @@ const Button = () => {
 
 function Item({title, subtitle}) {
   return (
-    <View
-      style={{
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginVertical: 10,
-      }}>
+    <View style={[commonStyle.rowSpaceBetween, commonStyle.marginVertical(10)]}>
       <View>
         <Text style={styles.title}>{title}</Text>
         <Text
@@ -66,28 +61,23 @@ function Item({title, subtitle}) {
   );
 }
 
-function TravellerandClass({
-  isTravellerandClassVisible,
-  setIsTravellerandClassVisible,
+function TravellerAndClass({
+  isTravellerAndClassVisible,
+  setIsTravellerAndClassVisible,
 }) {
   const [select, setSelect] = useState('Economy');
 
   return (
-    <BottomSheet isVisible={isTravellerandClassVisible}>
+    <BottomSheet isVisible={isTravellerAndClassVisible}>
       <View style={styles.bottomSheet}>
         <View style={{flex: 1}}>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}>
+          <View style={commonStyle.rowSpaceBetween}>
             <View>
               <Text style={styles.title}>Select Travellers & Class</Text>
             </View>
             <View>
               <Icon
-                onPress={() => setIsTravellerandClassVisible(false)}
+                onPress={() => setIsTravellerAndClassVisible(false)}
                 name={'close'}
                 type={'antdesign'}
                 size={18}
@@ -118,7 +108,7 @@ function TravellerandClass({
                     styles.selectContainer,
                     {
                       borderColor:
-                        select == 'Economy' ? 'darkorange' : Colors.primary,
+                        select === 'Economy' ? 'darkorange' : Colors.primary,
                     },
                   ]}>
                   <Text
@@ -126,7 +116,7 @@ function TravellerandClass({
                       styles.selectText,
                       {
                         color:
-                          select == 'Economy' ? 'darkorange' : Colors.primary,
+                          select === 'Economy' ? 'darkorange' : Colors.primary,
                       },
                     ]}>
                     Economy
@@ -138,7 +128,7 @@ function TravellerandClass({
                     styles.selectContainer,
                     {
                       borderColor:
-                        select == 'Business' ? 'darkorange' : Colors.primary,
+                        select === 'Business' ? 'darkorange' : Colors.primary,
                     },
                   ]}>
                   <Text
@@ -146,7 +136,7 @@ function TravellerandClass({
                       styles.selectText,
                       {
                         color:
-                          select == 'Business' ? 'darkorange' : Colors.primary,
+                          select === 'Business' ? 'darkorange' : Colors.primary,
                       },
                     ]}>
                     Business
@@ -158,7 +148,9 @@ function TravellerandClass({
                     styles.selectContainer,
                     {
                       borderColor:
-                        select == 'First Class' ? 'darkorange' : Colors.primary,
+                        select === 'First Class'
+                          ? 'darkorange'
+                          : Colors.primary,
                     },
                   ]}>
                   <Text
@@ -166,7 +158,7 @@ function TravellerandClass({
                       styles.selectText,
                       {
                         color:
-                          select == 'First Class'
+                          select === 'First Class'
                             ? 'darkorange'
                             : Colors.primary,
                       },
@@ -181,7 +173,7 @@ function TravellerandClass({
 
         <View style={{justifyContent: 'center', alignItems: 'center'}}>
           <TouchableOpacity
-            onPress={() => setIsTravellerandClassVisible(false)}
+            onPress={() => setIsTravellerAndClassVisible(false)}
             style={styles.button}>
             <Text style={styles.buttonText}>Done</Text>
           </TouchableOpacity>
@@ -258,4 +250,4 @@ const buttonStyle = StyleSheet.create({
     fontFamily: Font.AvenirLight,
   },
 });
-export default TravellerandClass;
+export default TravellerAndClass;

@@ -14,6 +14,8 @@ import OneWayNavigator from './OneWayNavigator';
 import MultiCityNavigator from './MultiCityNavigator';
 import ScreenSettings from './ScreenSettings';
 
+import LccNavigator from './LccNavigator';
+
 const Stack = createStackNavigator();
 const FlightNavigator = () => {
   return (
@@ -24,6 +26,7 @@ const FlightNavigator = () => {
         gestureEnabled: true,
         ...ScreenSettings,
       }}>
+      <Stack.Screen name="LccNavigator" component={LccNavigator} />
       <Stack.Screen name="FlightHome" component={Home} />
       <Stack.Screen name="FlightResult" component={FlightResults} />
       <Stack.Screen name="Review" component={Review} />

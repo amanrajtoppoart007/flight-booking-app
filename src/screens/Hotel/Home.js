@@ -1,5 +1,12 @@
 import React, {useState} from 'react';
-import {Pressable, SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {
+  Platform,
+  Pressable,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 
 import {
   widthPercentageToDP as wp,
@@ -228,11 +235,18 @@ const styles = StyleSheet.create({
     height: hp('50%'),
     backgroundColor: Colors.white,
     borderRadius: 8,
-    borderWidth: 0.1,
-    borderColor: Colors.border,
-    elevation: 5,
     padding: 15,
+    ...Platform.select({
+      android: {
+        elevation: 3,
+      },
+      ios: {
+        borderWidth: StyleSheet.hairlineWidth,
+        borderColor: Colors.border,
+      },
+    }),
   },
+
   subSection: {
     width: '100%',
     justifyContent: 'center',

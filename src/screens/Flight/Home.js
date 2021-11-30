@@ -19,7 +19,7 @@ import {Icon} from 'react-native-elements';
 import SearchHistorySlider from '../../components/Flight/SearchHistorySlider';
 import {useNavigation} from '@react-navigation/native';
 import DateRangePicker from '../../components/Hotel/Home/DateRangePicker';
-import TravellerandClass from '../../components/Flight/TravellerandClass';
+import TravellerAndClass from '../../components/Flight/TravellerAndClass';
 import RoundTripCard from '../../components/Flight/SearchFlights/RoundTripCard';
 import OneWayTripCard from '../../components/Flight/SearchFlights/OneWayTrip';
 import MultiCityCard from '../../components/Flight/SearchFlights/MultiCity';
@@ -66,9 +66,9 @@ export default function Home() {
     setLocation(temp);
   }
   function _handleSearchFlight() {
-    if (flightType == 'round-trip') {
+    if (flightType === 'round-trip') {
       navigation.navigate('FlightResult');
-    } else if (flightType == 'one-way') {
+    } else if (flightType === 'one-way') {
       navigation.navigate('OneWay');
     } else {
       navigation.navigate('MultiCity');
@@ -95,7 +95,7 @@ export default function Home() {
               style={{
                 height: hp(
                   `${
-                    flightType == 'multi-city' && Location.length > 2
+                    flightType === 'multi-city' && Location.length > 2
                       ? Location.length * 16.7 + 48.5
                       : 74
                   }%`,
@@ -146,7 +146,7 @@ export default function Home() {
                       </Text>
                     </Pressable>
                   </View>
-                  {flightType == 'round-trip' ? (
+                  {flightType === 'round-trip' ? (
                     <RoundTripCard
                       setIsLocationSelectorVisible={() =>
                         navigation.navigate('Search')
@@ -156,7 +156,7 @@ export default function Home() {
                       Location={Location[0]}
                       onSwap={_onSwap}
                     />
-                  ) : flightType == 'multi-city' ? (
+                  ) : flightType === 'multi-city' ? (
                     <MultiCityCard
                       setIsLocationSelectorVisible={() =>
                         navigation.navigate('Search')
@@ -211,7 +211,7 @@ export default function Home() {
               </View>
             </View>
             <View>
-              <TravellerandClass
+              <TravellerAndClass
                 isTravellerandClassVisible={guestEntryModal}
                 setIsTravellerandClassVisible={setGuestEntryModal}
               />
