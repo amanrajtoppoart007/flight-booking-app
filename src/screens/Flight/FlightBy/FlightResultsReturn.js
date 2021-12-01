@@ -16,7 +16,7 @@ import SortFilter from '../../../components/Flight/FlightResults/SortFilter';
 
 function SearchResult({navigation}) {
   const [shortVisible, setShortVisible] = useState(false);
-  const [SelectedIndex, setSelectedIndex] = useState(false);
+  const [SelectedIndex, setSelectedIndex] = useState(0);
 
   return (
     <SafeAreaView style={commonStyle.container}>
