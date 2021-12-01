@@ -1,13 +1,15 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
-import commonStyle from '../../../layout/Style';
-import Font from '../../../layout/Font';
+import commonStyle from '../../../../layout/Style';
+import Font from '../../../../layout/Font';
 import {Icon} from 'react-native-elements';
-import Colors from '../../../layout/Colors';
-import Deer from '../../Svg/Deer.svg';
-import Bag from '../../Svg/Bag.svg';
-import MoreOptions from './MoreOptions';
+import Colors from '../../../../layout/Colors';
+import Deer from '../../../Svg/Deer.svg';
+import Bag from '../../../Svg/Bag.svg';
+import Running from '../../../Svg/Running.svg';
+import MoreOptions from '../../FlightBy/MoreOptions';
+
 function FlightCard({isSelected, onPress, onPressSelect}) {
   const [isMoreOptionVisible, setIsMoreOptionVisible] = useState(false);
   return (
@@ -26,7 +28,16 @@ function FlightCard({isSelected, onPress, onPressSelect}) {
           <Text style={styles.LightText}>
             QAR <Text style={styles.price}>170.00</Text>
           </Text>
-          <Text style={styles.GreenText}>Refundable</Text>
+          <View style={commonStyle.rowSpaceBetween}>
+            <View style={styles.Running}>
+              <Running />
+            </View>
+
+            <View style={commonStyle.marginHorizontal(3)} />
+            <Text style={styles.RedText}>4 Seats Left</Text>
+            <View style={commonStyle.marginHorizontal(3)} />
+            <Text style={styles.GreenText}>Refundable</Text>
+          </View>
         </View>
       </View>
       <View style={styles.divider} />
@@ -149,6 +160,11 @@ const styles = StyleSheet.create({
       borderColor: '#1D8CCC',
     };
   },
+  Running: {
+    backgroundColor: '#FF0000',
+    padding: 2,
+    borderRadius: 8,
+  },
   rowFlexCenter: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -211,6 +227,11 @@ const styles = StyleSheet.create({
     fontFamily: Font.AvenirMedium,
     fontSize: 12,
     color: '#13A869',
+  },
+  RedText: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 12,
+    color: '#FF0000',
   },
   smallText: {
     fontFamily: Font.AvenirRoman,

@@ -1,9 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import Font from '../../layout/Font';
 import PlaneSmall from '../Svg/PlaneSmall.svg';
 import DeerWhiteBg from '../Svg/DeerWhiteBg.svg';
@@ -111,12 +108,12 @@ const styles = StyleSheet.create({
   textNormalWhite: {
     fontSize: 14,
     color: Colors.white,
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirHeavy,
   },
   textNormalLight: {
     fontSize: 12,
     color: Colors.lightText,
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirMedium,
   },
   textBigLight: {
     fontSize: 14,
@@ -126,7 +123,7 @@ const styles = StyleSheet.create({
   textBigWhite: {
     fontSize: 16,
     color: Colors.white,
-    fontFamily: Font.AvenirMedium,
+    fontFamily: Font.AvenirHeavy,
   },
 
   marginRight(t) {
