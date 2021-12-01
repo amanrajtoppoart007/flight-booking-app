@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -15,13 +15,12 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import {Icon} from 'react-native-elements';
 import Colors from '../../../layout/Colors';
-import RoundTripFlightSvg from '../../../components/Svg/Flight/RoundTripFlight.svg';
 import Font from '../../../layout/Font';
 import CustomStatusBar from '../../../components/CustomStatusBar';
-import Accordion from '../../../components/Flight/Lcc/AddServices/Accordion';
-import UserService from '../../../components/Flight/Lcc/AddServices/UserService';
+import Accordion from '../../../components/Flight/Lcc/AddSeats/Accordion';
+import UserList from '../../../components/Flight/Lcc/AddSeats/UserList';
 
-function AddServices({navigation}) {
+function AddSeats({navigation}) {
   return (
     <SafeAreaView style={commonStyle.container}>
       <CustomStatusBar backgroundColor={Colors.primary} />
@@ -46,7 +45,7 @@ function AddServices({navigation}) {
                           />
                         </View>
                         <View style={commonStyle.marginHorizontal(5)}>
-                          <Text style={styles.title}>Add Baggage & Meals</Text>
+                          <Text style={styles.title}>Add Seat</Text>
                         </View>
                       </View>
                       <View>
@@ -61,7 +60,7 @@ function AddServices({navigation}) {
                   title={'Departing'}
                   subTitle={'DOH - DXB'}
                   visible={true}
-                  Content={<UserService />}
+                  Content={<UserList />}
                 />
               </View>
               <View>
@@ -69,7 +68,7 @@ function AddServices({navigation}) {
                   title={'Returning'}
                   subTitle={'DOH - DXB'}
                   visible={true}
-                  Content={<UserService />}
+                  Content={<UserList />}
                 />
               </View>
               <View
@@ -123,4 +122,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddServices;
+export default AddSeats;

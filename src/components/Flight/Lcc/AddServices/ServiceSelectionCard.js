@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import commonStyle from '../../../layout/Style';
+import commonStyle from '../../../../layout/Style';
 import SelectDropdown from 'react-native-select-dropdown';
 import {Icon} from 'react-native-elements';
-import Font from '../../../layout/Font';
-import Colors from '../../../layout/Colors';
+import Font from '../../../../layout/Font';
+import Colors from '../../../../layout/Colors';
 
 function ServiceSelectionCard() {
   const [visible, setVisible] = useState(false);

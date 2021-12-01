@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import Font from '../../../layout/Font';
-import commonStyle from '../../../layout/Style';
-import Colors from '../../../layout/Colors';
+import Font from '../../../../layout/Font';
+import commonStyle from '../../../../layout/Style';
+import Colors from '../../../../layout/Colors';
 import {Icon} from 'react-native-elements';
 
-import Departure from '../../Svg/Flight/Departure.svg';
+import Departure from '../../../Svg/Flight/Departure.svg';
 
 function Accordion({title, subTitle, visible, Content}) {
   const [expanded, setExpanded] = useState(visible);
@@ -30,14 +30,28 @@ function Accordion({title, subTitle, visible, Content}) {
             </View>
           </View>
         </View>
-        <View style={commonStyle.marginHorizontal(8)}>
-          <Icon
-            name={expanded ? 'minus' : 'plus'}
-            onPress={() => setExpanded(!expanded)}
-            type={'font-awesome'}
-            size={16}
-            color={Colors.primary}
-          />
+        <View style={commonStyle.rowSpaceBetween}>
+          <View
+            style={[
+              commonStyle.rowSpaceBetween,
+              commonStyle.marginHorizontal(12),
+            ]}>
+            <View style={commonStyle.marginHorizontal(5)}>
+              <Text style={styles.currency}>QAR</Text>
+            </View>
+            <View>
+              <Text style={styles.price}>00.00</Text>
+            </View>
+          </View>
+          <View>
+            <Icon
+              name={expanded ? 'minus' : 'plus'}
+              onPress={() => setExpanded(!expanded)}
+              type={'font-awesome'}
+              size={16}
+              color={Colors.primary}
+            />
+          </View>
         </View>
       </View>
       <View>{expanded && Content}</View>
@@ -67,6 +81,16 @@ const styles = StyleSheet.create({
     fontFamily: Font.AvenirMedium,
     fontSize: 14,
     color: '#242A37',
+  },
+  currency: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 16,
+    color: '#6C6C6C',
+  },
+  price: {
+    fontFamily: Font.AvenirBlack,
+    fontSize: 16,
+    color: '#0B151F',
   },
 });
 export default Accordion;
