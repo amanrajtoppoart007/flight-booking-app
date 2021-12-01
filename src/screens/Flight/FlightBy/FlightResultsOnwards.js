@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {SafeAreaView, StyleSheet, Text, View, FlatList} from 'react-native';
 import commonStyle from '../../../layout/Style';
 
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
@@ -11,9 +11,11 @@ import {Icon} from 'react-native-elements';
 import PlaneSmall from '../../../components/Svg/PlaneSmall.svg';
 import Departure from '../../../components/Svg/Departure.svg';
 import FlightCard from '../../../components/Flight/FlightBy/FlightCard';
-
+import Footer from '../../../components/Flight/Footer';
+import SortFilter from '../../../components/Flight/FlightResults/SortFilter';
 function SearchResult({navigation}) {
   const [shortVisible, setShortVisible] = useState(false);
+  const [SelectedIndex, setSelectedIndex] = useState(false);
 
   return (
     <SafeAreaView style={commonStyle.container}>
@@ -77,11 +79,25 @@ function SearchResult({navigation}) {
             <Text style={styles.topBarText}>Select your onward flight</Text>
           </View>
           <View style={commonStyle.flex(1)}>
-            <FlightCard />
+            <FlatList
+              data={[0, 1, 2]}
+              renderItem={({_, index}) => (
+                <FlightCard
+                  onPress={() => setSelectedIndex(index)}
+                  isSelected={SelectedIndex === index}
+                />
+              )}
+            />
+            <Footer
+              data={[{title: 'DOH → DXB', subtext: '1 stop'}]}
+              onPress={() => navigation.navigate('FlightResultsReturn')}
+              price={'175.00'}
+            />
           </View>
           <View />
         </View>
       </View>
+      {shortVisible && <SortFilter onClose={() => setShortVisible(false)} />}
     </SafeAreaView>
   );
 }
