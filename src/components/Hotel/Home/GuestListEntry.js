@@ -15,6 +15,7 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import SelectDropdown from 'react-native-select-dropdown';
+import commonStyle from '../../../layout/Style';
 
 const Button = () => {
   const [count, setCount] = useState(0);
@@ -175,12 +176,7 @@ function GuestListEntry({
     <BottomSheet isVisible={isGuestBottomSheetVisible}>
       <View style={styles.bottomSheet}>
         <View style={{flex: 1}}>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}>
+          <View style={commonStyle.rowSpaceBetween}>
             <View>
               <Text style={styles.title}>Select Room & Guests</Text>
             </View>

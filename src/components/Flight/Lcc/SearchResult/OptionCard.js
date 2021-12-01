@@ -4,7 +4,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import commonStyle from '../../../../layout/Style';
 import {Icon} from 'react-native-elements';
 import Colors from '../../../../layout/Colors';
-import Bag from '../../../Svg/Bag.svg';
+import Bag from '../../../Svg/Flight/Bag.svg';
 import DeerSvg from '../../../Svg/Deer.svg';
 import Font from '../../../../layout/Font';
 
@@ -32,7 +32,9 @@ function OptionCard({item, setSelected, parentIndex, index}) {
               <Text style={styles.airlineName}>Qatar Airways</Text>
               <Text style={styles.flightNumber}> | QR - 3801 </Text>
             </Text>
-            <Text style={styles.flightOperator}>Operated by FlyDubai</Text>
+            <View style={commonStyle.marginVertical(3)}>
+              <Text style={styles.flightOperator}>Operated by FlyDubai</Text>
+            </View>
           </View>
         </View>
         <View style={commonStyle.alignFlexEnd}>
@@ -41,7 +43,7 @@ function OptionCard({item, setSelected, parentIndex, index}) {
         </View>
       </View>
 
-      <View style={commonStyle.rowSpaceBetween}>
+      <View style={styles.scheduleSection}>
         <View>
           <Text style={styles.time}>10:00</Text>
           <Text style={styles.text}>DOH</Text>
@@ -69,11 +71,11 @@ function OptionCard({item, setSelected, parentIndex, index}) {
 
       <View style={commonStyle.rowSpaceBetween}>
         <View style={commonStyle.rowFlexStart}>
-          <Text style={styles.text}>1 Stop |</Text>
+          <Text style={styles.dartText}>1 Stop |</Text>
           <Bag style={commonStyle.marginHorizontal(8)} />
-          <Text style={styles.text}>Check In: 1 piece</Text>
+          <Text style={styles.dartText}>Check In: 1 piece</Text>
         </View>
-        <Text style={styles.text}>Cabin: 7 Kg</Text>
+        <Text style={styles.dartText}>Cabin: 7 Kg</Text>
         <TouchableOpacity
           onPress={() => navigation.navigate('Review')}
           style={commonStyle.rowCenter}>
@@ -103,6 +105,13 @@ const styles = StyleSheet.create({
       borderWidth: StyleSheet.hairlineWidth,
       borderColor: isSelected ? Colors.primary : Colors.border,
     };
+  },
+
+  scheduleSection: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginVertical: 15,
   },
 
   airlineName: {
@@ -138,6 +147,11 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#6C6C6C',
   },
+  dartText: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 12,
+    color: '#0B151F',
+  },
   time: {
     fontFamily: Font.AvenirHeavy,
     fontSize: 14,
@@ -153,9 +167,9 @@ const styles = StyleSheet.create({
     height: 12,
     borderWidth: 2,
     borderRadius: 6,
-    borderColor: '#D9D9D9',
+    borderColor: '#AAAAAA',
   },
-  circleConnector: {width: 80, height: 2, backgroundColor: '#D9D9D9'},
+  circleConnector: {width: 80, height: 2, backgroundColor: '#AAAAAA'},
 });
 
 export default OptionCard;

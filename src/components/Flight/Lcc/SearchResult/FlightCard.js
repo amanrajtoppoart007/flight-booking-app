@@ -8,81 +8,93 @@ import Font from '../../../../layout/Font';
 import {Icon} from 'react-native-elements';
 import Colors from '../../../../layout/Colors';
 import MoreOptions from './MoreOptions';
+import FareOptions from './FareOptions';
 
 function FlightCard() {
   const [isMoreOptionVisible, setIsMoreOptionVisible] = useState(false);
+  const [isFareOptionsVisible, setIsFareOptionsVisible] = useState(false);
   return (
-    <View style={styles.card}>
-      <View style={styles.cardHeader}>
-        <View style={commonStyle.rowSpaceBetween}>
-          <View>
-            <FlightWing />
-          </View>
-          <View style={commonStyle.marginHorizontal(5)}>
-            <Text style={styles.airlineName}>Air Arabia</Text>
-          </View>
-        </View>
-        <View>
-          <Text style={commonStyle.rowCenter}>
-            <Text style={styles.currency}>QAR </Text>
-            <Text style={styles.price}>400.00</Text>
-          </Text>
-          <Text style={styles.refundPolicy}>Refundable</Text>
-        </View>
-      </View>
-      <View style={styles.cardBody}>
-        <View style={commonStyle.marginVertical(12)}>
-          <View style={styles.divider} />
-        </View>
-        <View style={commonStyle.rowSpaceBetween}>
-          <View style={commonStyle.width('48%')}>
-            <TimeCard />
-          </View>
-          <View>
-            <View style={styles.itemSeparator} />
-          </View>
-          <View style={commonStyle.width('48%')}>
-            <TimeCard />
-          </View>
-        </View>
-      </View>
-      <View style={styles.cardFooter}>
-        <TouchableOpacity
-          onPress={() => setIsMoreOptionVisible(!isMoreOptionVisible)}
-          style={styles.moreItemButton}>
-          <Text style={styles.moreItemButtonText}>More Options</Text>
-          <Icon
-            type={'feather'}
-            name={isMoreOptionVisible ? 'chevrons-up' : 'chevrons-down'}
-            size={12}
-          />
-        </TouchableOpacity>
-        <View style={styles.divider} />
-      </View>
-      {isMoreOptionVisible && (
-        <View style={commonStyle.backgroundColor('rgba(49, 179, 223, 0.15)')}>
-          <MoreOptions />
-        </View>
-      )}
-      <View style={styles.selectButtonSection}>
-        <View>
-          <View style={commonStyle.rowFlexStart}>
+    <>
+      <View style={styles.card}>
+        <View style={styles.cardHeader}>
+          <View style={commonStyle.rowSpaceBetween}>
             <View>
-              <Text style={styles.currency}>QAR</Text>
+              <FlightWing />
             </View>
             <View style={commonStyle.marginHorizontal(5)}>
-              <Text style={styles.price}>170.00</Text>
+              <Text style={styles.airlineName}>Air Arabia</Text>
             </View>
           </View>
-          <Text style={styles.text}>(For 1 Travellers)</Text>
+          <View>
+            <Text style={commonStyle.rowCenter}>
+              <Text style={styles.currency}>QAR </Text>
+              <Text style={styles.price}>400.00</Text>
+            </Text>
+            <Text style={styles.refundPolicy}>Refundable</Text>
+          </View>
         </View>
-        <View>
-          <TouchableOpacity style={styles.selectButton}>
-            <Text style={styles.selectButtonText}>Select</Text>
+        <View style={styles.cardBody}>
+          <View style={commonStyle.marginVertical(12)}>
+            <View style={styles.divider} />
+          </View>
+          <View style={commonStyle.rowSpaceBetween}>
+            <View style={commonStyle.width('48%')}>
+              <TimeCard />
+            </View>
+            <View>
+              <View style={styles.itemSeparator} />
+            </View>
+            <View style={commonStyle.width('48%')}>
+              <TimeCard />
+            </View>
+          </View>
+        </View>
+        <View style={styles.cardFooter}>
+          <TouchableOpacity
+            onPress={() => setIsMoreOptionVisible(!isMoreOptionVisible)}
+            style={styles.moreItemButton}>
+            <Text style={styles.moreItemButtonText}>More Options</Text>
+            <Icon
+              type={'feather'}
+              name={isMoreOptionVisible ? 'chevrons-up' : 'chevrons-down'}
+              size={12}
+            />
           </TouchableOpacity>
+          <View style={styles.divider} />
+        </View>
+        {isMoreOptionVisible && (
+          <View style={commonStyle.backgroundColor('rgba(49, 179, 223, 0.15)')}>
+            <MoreOptions />
+          </View>
+        )}
+        <View style={styles.selectButtonSection}>
+          <View>
+            <View style={commonStyle.rowFlexStart}>
+              <View>
+                <Text style={styles.currency}>QAR</Text>
+              </View>
+              <View style={commonStyle.marginHorizontal(5)}>
+                <Text style={styles.price}>170.00</Text>
+              </View>
+            </View>
+            <Text style={styles.text}>(For 1 Travellers)</Text>
+          </View>
+          <View>
+            <TouchableOpacity
+              onPress={() => setIsFareOptionsVisible(!isFareOptionsVisible)}
+              style={styles.selectButton}>
+              <Text style={styles.selectButtonText}>Select</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
-    </View>
+      {isFareOptionsVisible && (
+        <FareOptions
+          isVisible={isFareOptionsVisible}
+          setIsVisible={setIsFareOptionsVisible}
+        />
+      )}
+    </>
   );
 }
 
