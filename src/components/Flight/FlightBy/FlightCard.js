@@ -7,11 +7,11 @@ import {Icon} from 'react-native-elements';
 import Colors from '../../../layout/Colors';
 import Deer from '../../Svg/Deer.svg';
 import Bag from '../../Svg/Bag.svg';
-import Style from '../../../layout/Style';
-function FlightCard() {
+import MoreOptions from './MoreOptions';
+function FlightCard({isSelected, onPress, onPressSelect}) {
   const [isMoreOptionVisible, setIsMoreOptionVisible] = useState(false);
   return (
-    <TouchableOpacity style={styles.card}>
+    <TouchableOpacity onPress={onPress} style={styles.card(isSelected)}>
       <View style={styles.cardHeader}>
         <View style={[styles.rowFlexCenter]}>
           <Deer />
@@ -109,14 +109,45 @@ function FlightCard() {
           />
         </TouchableOpacity>
       </View>
+      {isMoreOptionVisible && (
+        <>
+          <View style={commonStyle.backgroundColor('rgba(49, 179, 223, 0.15)')}>
+            <MoreOptions />
+          </View>
+          <View style={styles.selectButtonSection}>
+            <View>
+              <View style={commonStyle.rowFlexStart}>
+                <View>
+                  <Text style={styles.currency}>QAR</Text>
+                </View>
+                <View style={commonStyle.marginHorizontal(5)}>
+                  <Text style={styles.price}>170.00</Text>
+                </View>
+              </View>
+              <Text style={styles.text}>(For 1 Travellers)</Text>
+            </View>
+            <View>
+              <TouchableOpacity
+                style={styles.selectButton}
+                onPress={onPressSelect}>
+                <Text style={styles.selectButtonText}>Select</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </>
+      )}
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
-  card: {
-    marginBottom: 12,
-    backgroundColor: Colors.white,
+  card(value) {
+    return {
+      backgroundColor: value ? 'rgba(29,140,204,0.1)' : Colors.white,
+      marginBottom: 12,
+      borderWidth: value ? 1 : 0,
+      borderColor: '#1D8CCC',
+    };
   },
   rowFlexCenter: {
     flexDirection: 'row',
