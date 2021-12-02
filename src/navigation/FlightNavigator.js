@@ -27,13 +27,13 @@ const FlightNavigator = () => {
         ...ScreenSettings,
       }}>
       <Stack.Screen name="FlightHome" component={Home} />
+      <Stack.Screen name="ModifySearch" component={ModifySearch} />
       <Stack.Screen name="LccNavigator" component={LccNavigator} />
       <Stack.Screen name="FlightBy" component={FlightByNavigator} />
       <Stack.Screen name="FlightResult" component={FlightResults} />
       <Stack.Screen name="Review" component={Review} />
       <Stack.Screen name="BookingConfirm" component={BookingConfirm} />
       <Stack.Screen name="Search" component={Search} />
-      <Stack.Screen name="ModifySearch" component={ModifySearch} />
       <Stack.Screen name="Checkout" component={Checkout} />
       <Stack.Screen name="ReviewItinerary" component={ReviewItinerary} />
       <Stack.Screen name="Payment" component={Payment} />
