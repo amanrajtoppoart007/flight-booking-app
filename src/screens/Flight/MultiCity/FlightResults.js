@@ -1,5 +1,12 @@
 import React, {useState} from 'react';
-import {FlatList, SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {
+  FlatList,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import commonStyle from '../../../layout/Style';
 
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
@@ -15,7 +22,6 @@ import FlightCard from '../../../components/Flight/MultiCity/FlightResult/Flight
 
 function FlightResult({navigation}) {
   const [shortVisible, setShortVisible] = useState(false);
-  const [index, setIndex] = React.useState(0);
 
   const [flights] = useState([
     {
@@ -23,15 +29,6 @@ function FlightResult({navigation}) {
     },
     {
       id: 'flight-list-id-two',
-    },
-    {
-      id: 'flight-list-id-three',
-    },
-    {
-      id: 'flight-list-id-four',
-    },
-    {
-      id: 'flight-list-id-five',
     },
   ]);
 
@@ -111,6 +108,24 @@ function FlightResult({navigation}) {
               </View>
             </View>
           </LinearGradient>
+          <View style={commonStyle.paddingHorizontal(12)}>
+            <View
+              style={[
+                commonStyle.rowSpaceBetween,
+                commonStyle.paddingHorizontal(5),
+                {height: 60, alignItems: 'center'},
+              ]}>
+              <View>
+                <TouchableOpacity style={styles.priceButton}>
+                  <Text style={styles.priceButtonText}>Cheapest</Text>
+                </TouchableOpacity>
+              </View>
+              <View>
+                <Text>QAR 170.00</Text>
+                <Text>(For 4 travellers)</Text>
+              </View>
+            </View>
+          </View>
           <View>
             <FlatList
               keyExtractor={item => item?.id?.toString()}
@@ -171,6 +186,19 @@ const styles = StyleSheet.create({
     fontFamily: Font.AvenirHeavy,
     fontSize: 14,
     color: '#242A37',
+  },
+  priceButton: {
+    width: 70,
+    height: 30,
+    borderRadius: 6,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(19, 168, 105, 0.16)',
+  },
+  priceButtonText: {
+    fontFamily: Font.AvenirHeavy,
+    fontSize: 14,
+    color: '#13A869',
   },
 });
 
