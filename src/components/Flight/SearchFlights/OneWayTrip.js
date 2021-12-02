@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 import {
   widthPercentageToDP as wp,
@@ -21,13 +21,7 @@ export default function OneWayTrip({
     <View style={styles.card}>
       <View style={styles.subSection}>
         <View style={commonStyle.rowCenter}>
-          <View
-            style={[
-              styles.underline,
-              {
-                marginRight: 15,
-              },
-            ]}>
+          <View style={styles.underlineLeft}>
             <View style={styles.margin}>
               <Text style={styles.helperText}>From</Text>
             </View>
@@ -36,7 +30,7 @@ export default function OneWayTrip({
                 <Text style={styles.searchText}>{Location.fromText}</Text>
               </Pressable>
             </View>
-            <View style={{marginBottom: 10}}>
+            <View style={commonStyle.marginBottom(10)}>
               <Text style={styles.helperText}>{Location.from}</Text>
             </View>
           </View>
@@ -47,14 +41,7 @@ export default function OneWayTrip({
             color={Colors.primary}
             onPress={() => onSwap()}
           />
-          <View
-            style={[
-              styles.underline,
-              {
-                marginLeft: 15,
-                alignItems: 'flex-end',
-              },
-            ]}>
+          <View style={styles.underlineRight}>
             <View style={styles.margin}>
               <Text style={styles.helperText}>To</Text>
             </View>
@@ -63,7 +50,7 @@ export default function OneWayTrip({
                 <Text style={styles.searchText}>{Location.toText}</Text>
               </Pressable>
             </View>
-            <View style={{marginBottom: 10}}>
+            <View style={commonStyle.marginBottom(10)}>
               <Text style={styles.helperText}>{Location.to}</Text>
             </View>
           </View>
@@ -71,14 +58,7 @@ export default function OneWayTrip({
       </View>
       <View style={styles.subSection}>
         <View style={commonStyle.rowSpaceBetween}>
-          <View
-            style={[
-              styles.underline,
-              {
-                marginRight: 15,
-                alignSelf: 'flex-end',
-              },
-            ]}>
+          <View style={styles.LeftUnderline}>
             <View style={styles.margin}>
               <Text style={styles.helperText}>Departure</Text>
             </View>
@@ -88,14 +68,7 @@ export default function OneWayTrip({
               </Pressable>
             </View>
           </View>
-          <View
-            style={[
-              styles.underline,
-              {
-                marginLeft: 15,
-                alignItems: 'flex-end',
-              },
-            ]}>
+          <View style={styles.RightUnderline}>
             <View style={styles.margin}>
               <Text style={styles.helperText}>Add Return?</Text>
             </View>
@@ -184,12 +157,33 @@ const styles = StyleSheet.create({
     borderColor: '#D9D9D9',
     marginVertical: 8,
   },
-  underline: {
+  underlineRight: {
     borderBottomWidth: 1,
     borderColor: '#D9D9D9',
     flex: 1,
+    marginLeft: 15,
+    alignItems: 'flex-end',
   },
-
+  underlineLeft: {
+    borderBottomWidth: 1,
+    borderColor: '#D9D9D9',
+    flex: 1,
+    marginRight: 15,
+  },
+  LeftUnderline: {
+    borderBottomWidth: 1,
+    borderColor: '#D9D9D9',
+    flex: 1,
+    marginRight: 15,
+    alignSelf: 'flex-end',
+  },
+  RightUnderline: {
+    borderBottomWidth: 1,
+    borderColor: '#D9D9D9',
+    flex: 1,
+    marginLeft: 15,
+    alignItems: 'flex-end',
+  },
   cardTitle: {
     fontSize: 14,
     color: Colors.lightText,
@@ -197,7 +191,7 @@ const styles = StyleSheet.create({
   searchText: {
     fontSize: 24,
     color: Colors.black,
-    fontFamily: Font.AvenirHeavy,
+    fontFamily: Font.AvenirBlack,
   },
   searchHelperText: {
     fontSize: 14,
@@ -207,22 +201,22 @@ const styles = StyleSheet.create({
   helperText: {
     fontSize: 14,
     color: Colors.lightText,
-    fontFamily: Font.AvenirLight,
+    fontFamily: Font.AvenirMedium,
   },
   dateFilterText: {
     fontSize: 20,
     color: Colors.black,
-    fontFamily: Font.AvenirMedium,
+    fontFamily: Font.AvenirHeavy,
     marginVertical: 5,
   },
   roomFilterText: {
     fontSize: 18,
     color: Colors.black,
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirHeavy,
   },
   addButton: {
-    backgroundColor: 'rgba(61, 181, 255, 0.05)',
-    borderRadius: 5,
+    backgroundColor: '#EAF1F9',
+    borderRadius: 8,
     padding: 5,
   },
 });

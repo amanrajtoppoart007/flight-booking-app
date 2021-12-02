@@ -29,7 +29,7 @@ import Back from '../../assets/icons/svg/Back.svg';
 
 export default function Home() {
   const navigation = useNavigation();
-  const [guestEntryModal, setGuestEntryModal] = useState(false);
+  const [guestEntryModal, setGuestEntryModal] = useState(true);
   const [flightType, setFlightType] = useState('round-trip');
   const [isDateRangeVisible, setIsDateRangeVisible] = useState(false);
   const [Location, setLocation] = useState([
@@ -115,14 +115,7 @@ export default function Home() {
                   </View>
                 </View>
 
-                <View
-                  style={{
-                    top: hp(
-                      `${Location.length > 2 ? Location.length * 4.2 : 9}%`,
-                    ),
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}>
+                <View style={styles.HeaderContainer(Location.length)}>
                   <View style={styles.topBar}>
                     <Pressable
                       onPress={() => setFlightType('round-trip')}
@@ -190,7 +183,7 @@ export default function Home() {
                 <Icon
                   name={'search'}
                   type={'font-awesome'}
-                  size={16}
+                  size={18}
                   color={Colors.white}
                 />
                 <Text
@@ -212,8 +205,8 @@ export default function Home() {
             </View>
             <View>
               <TravellerAndClass
-                isTravellerandClassVisible={guestEntryModal}
-                setIsTravellerandClassVisible={setGuestEntryModal}
+                Visible={guestEntryModal}
+                setVisible={setGuestEntryModal}
               />
               <DateRangePicker
                 isDateRangeVisible={isDateRangeVisible}
@@ -248,6 +241,13 @@ const styles = StyleSheet.create({
       height: hp(`${lo > 2 ? lo / 2 + 21.5 : 21}%`),
     };
   },
+  HeaderContainer(length) {
+    return {
+      top: hp(`${length > 2 ? length * 4.2 : 9}%`),
+      justifyContent: 'center',
+      alignItems: 'center',
+    };
+  },
   rowCenter: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
@@ -260,7 +260,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     color: Colors.white,
-    fontFamily: Font.AvenirMedium,
+    fontFamily: Font.AvenirHeavy,
   },
   card: {
     flexDirection: 'column',
@@ -274,25 +274,7 @@ const styles = StyleSheet.create({
     elevation: 5,
     padding: 15,
   },
-  subSection: {
-    justifyContent: 'center',
-  },
-  divider: {
-    width: '100%',
-    borderWidth: 0.5,
-    borderColor: '#D9D9D9',
-    marginVertical: 8,
-  },
-  underline: {
-    borderBottomWidth: 1,
-    borderColor: '#D9D9D9',
-    flex: 1,
-  },
 
-  cardTitle: {
-    fontSize: 14,
-    color: Colors.lightText,
-  },
   topBar: {
     height: 50,
     flexDirection: 'row',
@@ -320,7 +302,7 @@ const styles = StyleSheet.create({
   topBarText(type, name) {
     return {
       fontSize: 14,
-      fontFamily: Font.AvenirMedium,
+      fontFamily: Font.AvenirHeavy,
       color: type === name ? 'white' : Colors.lightText,
     };
   },
@@ -334,9 +316,9 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.secondary,
   },
   searchButtonText: {
-    fontSize: 14,
+    fontSize: 16,
     color: Colors.white,
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirHeavy,
   },
   searchHistoryCard: {
     width: 218,
@@ -348,29 +330,6 @@ const styles = StyleSheet.create({
   recentSearchTitle: {
     fontSize: 16,
     color: Colors.black,
-    fontWeight: 'bold',
-    fontFamily: Font.AvenirRegular,
-  },
-  searchText: {
-    fontSize: 24,
-    color: Colors.black,
-    fontWeight: 'bold',
-  },
-  searchHelperText: {
-    fontSize: 14,
-    color: Colors.lightText,
-  },
-  helperText: {
-    fontSize: 14,
-    color: Colors.lightText,
-  },
-  dateFilterText: {
-    fontSize: 18,
-    color: Colors.lightText,
-    fontWeight: 'bold',
-  },
-  roomFilterText: {
-    fontSize: 18,
-    color: Colors.black,
+    fontFamily: Font.AvenirBlack,
   },
 });
