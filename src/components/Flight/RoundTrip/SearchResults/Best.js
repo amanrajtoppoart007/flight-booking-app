@@ -28,7 +28,7 @@ function Best() {
     <FlightCard
       onPress={() => setSelectedIndex(index)}
       isSelected={SelectedIndex === index}
-      onPressSelect={() => navigation.navigate('OneWayReviewItinerary')}
+      onPressSelect={() => navigation.navigate('ReviewItinerary')}
     />
   );
   return (

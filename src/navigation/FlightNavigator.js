@@ -26,6 +26,8 @@ const FlightNavigator = () => {
         gestureEnabled: true,
         ...ScreenSettings,
       }}>
+      <Stack.Screen name="ModifySearch" component={ModifySearch} />
+
       <Stack.Screen name="FlightHome" component={Home} />
       <Stack.Screen name="LccNavigator" component={LccNavigator} />
       <Stack.Screen name="FlightBy" component={FlightByNavigator} />
@@ -33,7 +35,6 @@ const FlightNavigator = () => {
       <Stack.Screen name="Review" component={Review} />
       <Stack.Screen name="BookingConfirm" component={BookingConfirm} />
       <Stack.Screen name="Search" component={Search} />
-      <Stack.Screen name="ModifySearch" component={ModifySearch} />
       <Stack.Screen name="Checkout" component={Checkout} />
       <Stack.Screen name="ReviewItinerary" component={ReviewItinerary} />
       <Stack.Screen name="Payment" component={Payment} />
