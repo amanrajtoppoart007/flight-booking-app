@@ -28,7 +28,7 @@ const Button = () => {
         />
       </View>
       <View>
-        <Text style={buttonStyle.text}>{count}</Text>
+        <Text style={styles.title}>{count}</Text>
       </View>
       <View>
         <Icon
@@ -48,36 +48,27 @@ function Item({title, subtitle}) {
     <View style={[commonStyle.rowSpaceBetween, commonStyle.marginVertical(10)]}>
       <View>
         <Text style={styles.title}>{title}</Text>
-        <Text
-          style={{
-            fontSize: 12,
-            color: Colors.lightText,
-          }}>
-          {subtitle}
-        </Text>
+        <Text style={styles.subTitle}>{subtitle}</Text>
       </View>
       <Button />
     </View>
   );
 }
 
-function TravellerAndClass({
-  isTravellerAndClassVisible,
-  setIsTravellerAndClassVisible,
-}) {
+function TravellerAndClass({Visible, setVisible}) {
   const [select, setSelect] = useState('Economy');
 
   return (
-    <BottomSheet isVisible={isTravellerAndClassVisible}>
+    <BottomSheet isVisible={Visible}>
       <View style={styles.bottomSheet}>
-        <View style={{flex: 1}}>
+        <View style={commonStyle.flex(1)}>
           <View style={commonStyle.rowSpaceBetween}>
             <View>
               <Text style={styles.title}>Select Travellers & Class</Text>
             </View>
             <View>
               <Icon
-                onPress={() => setIsTravellerAndClassVisible(false)}
+                onPress={() => setVisible(false)}
                 name={'close'}
                 type={'antdesign'}
                 size={18}
@@ -85,84 +76,33 @@ function TravellerAndClass({
               />
             </View>
           </View>
-          <View
-            style={{
-              flex: 1,
-              marginTop: 10,
-            }}>
+          <View style={[commonStyle.flex(1), commonStyle.marginTop(10)]}>
             <Item title="Adults" subtitle="12 yrs & above" />
             <Item title="Children" subtitle="2-12 yrs" />
             <Item title="Infant" subtitle="Below 2 yrs" />
             <View>
-              <Text style={[styles.title, {marginVertical: 10}]}>
+              <Text style={[styles.title, commonStyle.marginVertical(10)]}>
                 Select Cabin Class
               </Text>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'flex-start',
-                }}>
+              <View style={commonStyle.rowFlexStart}>
                 <Pressable
                   onPress={() => setSelect('Economy')}
-                  style={[
-                    styles.selectContainer,
-                    {
-                      borderColor:
-                        select === 'Economy' ? 'darkorange' : Colors.primary,
-                    },
-                  ]}>
-                  <Text
-                    style={[
-                      styles.selectText,
-                      {
-                        color:
-                          select === 'Economy' ? 'darkorange' : Colors.primary,
-                      },
-                    ]}>
+                  style={styles.selectContainer(select === 'Economy')}>
+                  <Text style={styles.selectText(select === 'Economy')}>
                     Economy
                   </Text>
                 </Pressable>
                 <Pressable
                   onPress={() => setSelect('Business')}
-                  style={[
-                    styles.selectContainer,
-                    {
-                      borderColor:
-                        select === 'Business' ? 'darkorange' : Colors.primary,
-                    },
-                  ]}>
-                  <Text
-                    style={[
-                      styles.selectText,
-                      {
-                        color:
-                          select === 'Business' ? 'darkorange' : Colors.primary,
-                      },
-                    ]}>
+                  style={styles.selectContainer(select === 'Business')}>
+                  <Text style={styles.selectText(select === 'Business')}>
                     Business
                   </Text>
                 </Pressable>
                 <Pressable
                   onPress={() => setSelect('First Class')}
-                  style={[
-                    styles.selectContainer,
-                    {
-                      borderColor:
-                        select === 'First Class'
-                          ? 'darkorange'
-                          : Colors.primary,
-                    },
-                  ]}>
-                  <Text
-                    style={[
-                      styles.selectText,
-                      {
-                        color:
-                          select === 'First Class'
-                            ? 'darkorange'
-                            : Colors.primary,
-                      },
-                    ]}>
+                  style={styles.selectContainer(select === 'First Class')}>
+                  <Text style={styles.selectText(select === 'First Class')}>
                     First Class
                   </Text>
                 </Pressable>
@@ -171,9 +111,9 @@ function TravellerAndClass({
           </View>
         </View>
 
-        <View style={{justifyContent: 'center', alignItems: 'center'}}>
+        <View style={styles.center}>
           <TouchableOpacity
-            onPress={() => setIsTravellerAndClassVisible(false)}
+            onPress={() => setVisible(false)}
             style={styles.button}>
             <Text style={styles.buttonText}>Done</Text>
           </TouchableOpacity>
@@ -192,17 +132,22 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 10,
     padding: 20,
   },
+  center: {justifyContent: 'center', alignItems: 'center'},
   title: {
     fontSize: 18,
     color: Colors.black,
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirHeavy,
   },
   helper: {
     fontSize: 16,
     color: Colors.black,
     fontFamily: Font.AvenirRegular,
   },
-
+  subTitle: {
+    fontSize: 12,
+    color: Colors.lightText,
+    fontFamily: Font.AvenirMedium,
+  },
   button: {
     height: 45,
     borderRadius: 6,
@@ -215,21 +160,26 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 14,
     color: Colors.white,
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirHeavy,
   },
-  selectContainer: {
-    borderWidth: 2,
-    borderRadius: 8,
-    marginHorizontal: 5,
-    marginVertical: 5,
-    backgroundColor: Colors.white,
-    elevation: 5,
+  selectContainer(value) {
+    return {
+      borderWidth: 2,
+      borderRadius: 8,
+      marginHorizontal: 5,
+      marginVertical: 5,
+      backgroundColor: Colors.white,
+      elevation: 5,
+      borderColor: value ? 'darkorange' : Colors.primary,
+    };
   },
-  selectText: {
-    marginHorizontal: 10,
-    marginVertical: 8,
-    fontSize: 14,
-    color: 'black',
+  selectText(value) {
+    return {
+      marginHorizontal: 10,
+      marginVertical: 8,
+      fontSize: 14,
+      color: value ? 'darkorange' : Colors.primary,
+    };
   },
 });
 const buttonStyle = StyleSheet.create({
