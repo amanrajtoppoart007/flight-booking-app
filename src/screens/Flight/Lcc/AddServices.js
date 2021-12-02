@@ -74,7 +74,9 @@ function AddServices({navigation}) {
               </View>
               <View
                 style={[commonStyle.center, commonStyle.marginVertical(20)]}>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('LccAddSeats')}
+                  style={styles.button}>
                   <Text style={styles.buttonText}>Confirm Selection</Text>
                 </TouchableOpacity>
               </View>

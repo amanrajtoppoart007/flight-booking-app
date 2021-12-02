@@ -9,8 +9,10 @@ import {BottomSheet, Icon} from 'react-native-elements';
 import commonStyle from '../../../../layout/Style';
 import Font from '../../../../layout/Font';
 import FareOptionCard from './FareOptionCard';
+import {useNavigation} from '@react-navigation/native';
 
 function FareOptions({isVisible, setIsVisible}) {
+  const navigation = useNavigation();
   const [fareOptions, setFareOptions] = useState([
     {
       id: 'price-item-one',
@@ -104,7 +106,9 @@ function FareOptions({isVisible, setIsVisible}) {
               </View>
             </View>
             <View>
-              <TouchableOpacity style={styles.continueButton}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('LccAddServices')}
+                style={styles.continueButton}>
                 <Text style={styles.continueButtonText}>QAR 400.00</Text>
               </TouchableOpacity>
             </View>

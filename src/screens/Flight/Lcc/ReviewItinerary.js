@@ -131,7 +131,7 @@ function ReviewItinerary({navigation}) {
                   </View>
                   <View>
                     <TouchableOpacity
-                      onPress={() => navigation.navigate('Payment')}
+                      onPress={() => navigation.navigate('LccBookingStatus')}
                       style={styles.checkOutBtn}>
                       <Text style={styles.checkOutBtnText}>Continue</Text>
                     </TouchableOpacity>
