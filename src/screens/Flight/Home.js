@@ -29,7 +29,7 @@ import Back from '../../assets/icons/svg/Back.svg';
 
 export default function Home() {
   const navigation = useNavigation();
-  const [guestEntryModal, setGuestEntryModal] = useState(true);
+  const [guestEntryModal, setGuestEntryModal] = useState(false);
   const [flightType, setFlightType] = useState('round-trip');
   const [isDateRangeVisible, setIsDateRangeVisible] = useState(false);
   const [Location, setLocation] = useState([
