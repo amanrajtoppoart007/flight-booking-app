@@ -59,7 +59,6 @@ function MoreOptions() {
         options: newOptions,
       };
     });
-    console.log(flightOptionList);
     setFlightOptions(flightOptionList);
   };
   return (

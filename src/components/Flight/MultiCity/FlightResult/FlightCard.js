@@ -86,6 +86,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginHorizontal: 12,
+    backgroundColor: '#EAF1F9',
+    height: 45,
+    borderRadius: 8,
+    paddingHorizontal: 12,
   },
   cardBody: {
     paddingHorizontal: 12,
