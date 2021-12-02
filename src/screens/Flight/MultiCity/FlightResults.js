@@ -1,18 +1,8 @@
 import React, {useState} from 'react';
-import {
-  Animated,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {FlatList, SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import commonStyle from '../../../layout/Style';
 
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import Colors from '../../../layout/Colors';
 import Font from '../../../layout/Font';
 
@@ -21,10 +11,31 @@ import LinearGradient from 'react-native-linear-gradient';
 import {Icon} from 'react-native-elements';
 
 import FlightSvg from '../../../components/Svg/Flight/FlightWhite.svg';
+import FlightCard from '../../../components/Flight/MultiCity/FlightResult/FlightCard';
 
 function FlightResult({navigation}) {
   const [shortVisible, setShortVisible] = useState(false);
   const [index, setIndex] = React.useState(0);
+
+  const [flights] = useState([
+    {
+      id: 'flight-list-id-one',
+    },
+    {
+      id: 'flight-list-id-two',
+    },
+    {
+      id: 'flight-list-id-three',
+    },
+    {
+      id: 'flight-list-id-four',
+    },
+    {
+      id: 'flight-list-id-five',
+    },
+  ]);
+
+  const _renderItem = () => <FlightCard />;
 
   return (
     <SafeAreaView style={commonStyle.container}>
@@ -100,7 +111,13 @@ function FlightResult({navigation}) {
               </View>
             </View>
           </LinearGradient>
-          <View />
+          <View>
+            <FlatList
+              keyExtractor={item => item?.id?.toString()}
+              data={flights}
+              renderItem={_renderItem}
+            />
+          </View>
         </View>
       </View>
     </SafeAreaView>
