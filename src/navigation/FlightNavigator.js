@@ -39,7 +39,6 @@ const FlightNavigator = () => {
       <Stack.Screen name="Payment" component={Payment} />
       <Stack.Screen name="OneWay" component={OneWayNavigator} />
       <Stack.Screen name="MultiCity" component={MultiCityNavigator} />
-      <Stack.Screen name="LccNavigator" component={LccNavigator} />
     </Stack.Navigator>
   );
 };

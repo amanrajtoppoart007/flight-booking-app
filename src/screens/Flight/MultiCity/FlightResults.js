@@ -20,7 +20,7 @@ import CustomStatusBar from '../../../components/CustomStatusBar';
 import LinearGradient from 'react-native-linear-gradient';
 import {Icon} from 'react-native-elements';
 
-import RoundTripFlightSvg from '../../../components/Svg/Flight/RoundTripFlight.svg';
+import FlightSvg from '../../../components/Svg/Flight/FlightWhite.svg';
 
 function FlightResult({navigation}) {
   const [shortVisible, setShortVisible] = useState(false);
@@ -45,14 +45,31 @@ function FlightResult({navigation}) {
                     />
                   </View>
                   <View style={styles.titleWrapper}>
-                    <View>
-                      <Text style={styles.title}>Doha</Text>
+                    <View style={commonStyle.rowSpaceBetween}>
+                      <View>
+                        <Text style={styles.title}>DOH</Text>
+                      </View>
+                      <View style={commonStyle.marginHorizontal(8)}>
+                        <FlightSvg />
+                      </View>
+                      <View>
+                        <Text style={styles.title}>DXB,</Text>
+                      </View>
                     </View>
-                    <View style={commonStyle.marginHorizontal(8)}>
-                      <RoundTripFlightSvg />
-                    </View>
-                    <View>
-                      <Text style={styles.title}>Dubai</Text>
+                    <View
+                      style={[
+                        commonStyle.rowSpaceBetween,
+                        commonStyle.marginHorizontal(8),
+                      ]}>
+                      <View>
+                        <Text style={styles.title}>DOH</Text>
+                      </View>
+                      <View style={commonStyle.marginHorizontal(8)}>
+                        <FlightSvg />
+                      </View>
+                      <View>
+                        <Text style={styles.title}>DXB</Text>
+                      </View>
                     </View>
                   </View>
                 </View>
