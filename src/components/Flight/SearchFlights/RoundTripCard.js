@@ -1,5 +1,11 @@
-import React, {useState} from 'react';
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import {
+  Pressable,
+  TouchableOpacity,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -20,13 +26,7 @@ export default function RoundTripCard({
     <View style={styles.card}>
       <View style={styles.subSection}>
         <View style={commonStyle.rowCenter}>
-          <View
-            style={[
-              styles.underline,
-              {
-                marginRight: 15,
-              },
-            ]}>
+          <View style={[styles.underlineRight]}>
             <View style={styles.margin}>
               <Text style={styles.helperText}>From</Text>
             </View>
@@ -35,7 +35,7 @@ export default function RoundTripCard({
                 <Text style={styles.searchText}>{Location.fromText}</Text>
               </Pressable>
             </View>
-            <View style={{marginBottom: 10}}>
+            <View style={commonStyle.marginBottom(5)}>
               <Text style={styles.helperText}>{Location.from}</Text>
             </View>
           </View>
@@ -46,14 +46,7 @@ export default function RoundTripCard({
             color={Colors.primary}
             onPress={() => onSwap()}
           />
-          <View
-            style={[
-              styles.underline,
-              {
-                marginLeft: 15,
-                alignItems: 'flex-end',
-              },
-            ]}>
+          <View style={[styles.underlineLeft]}>
             <View style={styles.margin}>
               <Text style={styles.helperText}>To</Text>
             </View>
@@ -62,7 +55,7 @@ export default function RoundTripCard({
                 <Text style={styles.searchText}>{Location.toText}</Text>
               </Pressable>
             </View>
-            <View style={{marginBottom: 10}}>
+            <View style={commonStyle.marginBottom(5)}>
               <Text style={styles.helperText}>{Location.to}</Text>
             </View>
           </View>
@@ -70,13 +63,7 @@ export default function RoundTripCard({
       </View>
       <View style={styles.subSection}>
         <View style={commonStyle.rowSpaceBetween}>
-          <View
-            style={[
-              styles.underline,
-              {
-                marginRight: 15,
-              },
-            ]}>
+          <View style={styles.underlineRight}>
             <View style={styles.margin}>
               <Text style={styles.helperText}>Departure</Text>
             </View>
@@ -86,14 +73,7 @@ export default function RoundTripCard({
               </Pressable>
             </View>
           </View>
-          <View
-            style={[
-              styles.underline,
-              {
-                marginLeft: 15,
-                alignItems: 'flex-end',
-              },
-            ]}>
+          <View style={[styles.underlineLeft]}>
             <View style={styles.margin}>
               <Text style={styles.helperText}>X Return</Text>
             </View>
@@ -110,9 +90,9 @@ export default function RoundTripCard({
           <Text style={styles.helperText}>Travellers & Class</Text>
         </View>
         <View style={styles.margin}>
-          <Pressable onPress={() => setGuestEntryModal(true)}>
+          <TouchableOpacity onPress={() => setGuestEntryModal(true)}>
             <Text style={styles.roomFilterText}>1 Adult, Economy</Text>
-          </Pressable>
+          </TouchableOpacity>
         </View>
         <View style={styles.divider} />
       </View>
@@ -174,10 +154,18 @@ const styles = StyleSheet.create({
     borderColor: '#D9D9D9',
     marginVertical: 8,
   },
-  underline: {
+  underlineRight: {
     borderBottomWidth: 1,
     borderColor: '#D9D9D9',
     flex: 1,
+    marginRight: 15,
+  },
+  underlineLeft: {
+    borderBottomWidth: 1,
+    borderColor: '#D9D9D9',
+    flex: 1,
+    marginLeft: 15,
+    alignItems: 'flex-end',
   },
 
   cardTitle: {
@@ -188,7 +176,7 @@ const styles = StyleSheet.create({
   searchText: {
     fontSize: 24,
     color: Colors.black,
-    fontFamily: Font.AvenirHeavy,
+    fontFamily: Font.AvenirBlack,
   },
   searchHelperText: {
     fontSize: 14,
@@ -198,17 +186,17 @@ const styles = StyleSheet.create({
   helperText: {
     fontSize: 14,
     color: Colors.lightText,
-    fontFamily: Font.AvenirLight,
+    fontFamily: Font.AvenirMedium,
   },
   dateFilterText: {
     fontSize: 18,
     color: Colors.black,
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirHeavy,
     marginVertical: 5,
   },
   roomFilterText: {
     fontSize: 18,
     color: Colors.black,
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirHeavy,
   },
 });

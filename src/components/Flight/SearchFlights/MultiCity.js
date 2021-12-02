@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 import {
   widthPercentageToDP as wp,
@@ -9,7 +9,7 @@ import {Icon} from 'react-native-elements';
 import commonStyle from '../../../layout/Style';
 import Font from '../../../layout/Font';
 
-export default function OneWayTrip({
+export default function MultiCity({
   setIsLocationSelectorVisible,
   setIsDateRangeVisible,
   setGuestEntryModal,
@@ -22,8 +22,8 @@ export default function OneWayTrip({
     <View style={styles.card(Location.length)}>
       <View style={styles.subSection}>
         {Location.map((_, index) => (
-          <View key={index} style={styles.dataConatiner}>
-            <View style={styles.fromConatiner}>
+          <View key={index} style={styles.dataContainer}>
+            <View style={styles.fromContainer}>
               <View style={styles.margin}>
                 <Text style={styles.helperText}>From</Text>
               </View>
@@ -34,7 +34,7 @@ export default function OneWayTrip({
                   </Text>
                 </Pressable>
               </View>
-              <View style={{marginBottom: 10}}>
+              <View style={commonStyle.marginBottom(10)}>
                 <Text style={styles.helperText}>{Location[index].from}</Text>
               </View>
             </View>
@@ -45,7 +45,7 @@ export default function OneWayTrip({
               color={Colors.primary}
               onPress={() => onSwap(index)}
             />
-            <View style={styles.toConatiner}>
+            <View style={styles.toContainer}>
               <View style={styles.margin}>
                 <Text style={styles.helperText}>To</Text>
               </View>
@@ -56,17 +56,14 @@ export default function OneWayTrip({
                   </Text>
                 </Pressable>
               </View>
-              <View style={{marginBottom: 10}}>
+              <View style={commonStyle.marginBottom(10)}>
                 <Text style={styles.helperText}>{Location[index].to}</Text>
               </View>
             </View>
             <View style={styles.verticalLine} />
             <View>
               {index > 1 ? (
-                <View
-                  style={{
-                    alignSelf: 'flex-end',
-                  }}>
+                <View style={styles.AlignSelfEnd}>
                   <Icon
                     name={'closecircle'}
                     type={'antdesign'}
@@ -99,7 +96,7 @@ export default function OneWayTrip({
         />
         <Text style={styles.addFlightText}>Add Flight</Text>
       </Pressable>
-      <View style={styles.bottomConatiner}>
+      <View style={styles.bottomContainer}>
         <View style={styles.margin}>
           <Text style={styles.helperText}>Travellers & Class</Text>
         </View>
@@ -137,6 +134,9 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: Colors.lightText,
     fontFamily: Font.AvenirRegular,
+  },
+  AlignSelfEnd: {
+    alignSelf: 'flex-end',
   },
   rowCenter: {
     flexDirection: 'row',
@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
   searchText: {
     fontSize: 24,
     color: Colors.black,
-    fontFamily: Font.AvenirHeavy,
+    fontFamily: Font.AvenirBlack,
   },
   searchHelperText: {
     fontSize: 14,
@@ -198,30 +198,26 @@ const styles = StyleSheet.create({
   helperText: {
     fontSize: 14,
     color: Colors.lightText,
-    fontFamily: Font.AvenirLight,
+    fontFamily: Font.AvenirMedium,
   },
   dateFilterText: {
     fontSize: 16,
     color: Colors.black,
     marginLeft: 5,
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirHeavy,
   },
   roomFilterText: {
-    fontSize: 18,
+    fontSize: 16,
     color: Colors.black,
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirHeavy,
   },
   addFlightText: {
-    fontSize: 16,
+    fontSize: 14,
     color: Colors.secondary,
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirHeavy,
     marginLeft: 5,
   },
-  addButton: {
-    backgroundColor: 'rgba(61, 181, 255, 0.05)',
-    borderRadius: 5,
-    padding: 5,
-  },
+
   verticalLine: {
     borderLeftWidth: 1,
     borderColor: '#D9D9D9',
@@ -229,14 +225,14 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginHorizontal: 10,
   },
-  fromConatiner: {
+  fromContainer: {
     marginRight: 15,
   },
-  toConatiner: {
+  toContainer: {
     marginLeft: 15,
     alignItems: 'flex-end',
   },
-  dataConatiner: {
+  dataContainer: {
     alignSelf: 'stretch',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
@@ -256,7 +252,7 @@ const styles = StyleSheet.create({
     height: hp('7.5%'),
     paddingHorizontal: 3,
   },
-  bottomConatiner: {
+  bottomContainer: {
     justifyContent: 'center',
     height: hp('12%'),
     marginVertical: 10,
