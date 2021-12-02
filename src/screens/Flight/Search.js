@@ -12,7 +12,6 @@ import CustomStatusBar from '../../components/CustomStatusBar';
 import {Icon} from 'react-native-elements';
 import {useNavigation} from '@react-navigation/native';
 import Font from '../../layout/Font';
-import commonStyle from '../../layout/Style';
 
 function Search() {
   const navigation = useNavigation();
@@ -156,7 +155,6 @@ function Search() {
             <View>
               <View style={styles.itemContainer}>
                 <Icon
-                  style={styles.marginH}
                   name={'flight-takeoff'}
                   type={'material'}
                   size={20}
@@ -166,7 +164,7 @@ function Search() {
                   <Text style={styles.itemText}>{item.name}</Text>
                   <Text style={styles.itemSmallText}>{item.address}</Text>
                 </View>
-                <Text style={styles.itemText}>{item.shortForm}</Text>
+                <Text style={styles.itemTextBold}>{item.shortForm}</Text>
               </View>
               <View style={styles.divider} />
             </View>
@@ -195,6 +193,7 @@ const styles = StyleSheet.create({
   TopOriginContainer: {
     paddingVertical: 10,
     backgroundColor: '#F5F7FB',
+    marginHorizontal: 5,
   },
   marginH: {
     marginLeft: 10,
@@ -206,14 +205,14 @@ const styles = StyleSheet.create({
     color: 'black',
     marginHorizontal: 5,
     flex: 1,
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirMedium,
     fontSize: 14,
   },
   divider: {
     borderWidth: 0.5,
     borderColor: '#D9D9D9',
     marginVertical: 10,
-    marginHorizontal: 10,
+    marginHorizontal: 15,
   },
   inputContainer: {
     height: 45,
@@ -230,13 +229,13 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 16,
     margin: 10,
-    fontFamily: Font.AvenirHeavy,
+    fontFamily: Font.AvenirBlack,
   },
   itemContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginVertical: 5,
-    paddingHorizontal: 5,
+    paddingHorizontal: 15,
   },
   itemTextContainer: {
     flex: 1,
@@ -247,12 +246,17 @@ const styles = StyleSheet.create({
   itemText: {
     color: 'black',
     fontSize: 14,
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirMedium,
   },
   itemSmallText: {
     color: Colors.lightText,
     fontSize: 12,
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirMedium,
+  },
+  itemTextBold: {
+    color: 'black',
+    fontSize: 14,
+    fontFamily: Font.AvenirHeavy,
   },
 });
 
