@@ -1,25 +1,32 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef} from 'react';
 import {
-  FlatList,
-  ImageBackground,
+  View,
   SafeAreaView,
   StyleSheet,
   Text,
+  Image,
   TouchableOpacity,
-  View,
 } from 'react-native';
+import AppIntroSlider from 'react-native-app-intro-slider';
+import AppInfo from '../storage/intro';
+
+import Colors from '../layout/Colors';
+import Font from '../layout/Font';
 import {
   heightPercentageToDP,
   widthPercentageToDP,
 } from 'react-native-responsive-screen';
-import Font from '../layout/Font';
-import Colors from '../layout/Colors';
 import commonStyle from '../layout/Style';
 import CustomStatusBar from '../components/CustomStatusBar';
 
-function Welcome() {
+const Welcome = ({navigation}) => {
   const slider = useRef(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  function onDone() {
+    AppInfo.setIntro().then(() => {
+      navigation.navigate('AppNavigator');
+    });
+  }
+
   const slides = [
     {
       key: 'welcome-screen-slider-item-one',
@@ -36,70 +43,14 @@ function Welcome() {
       title: 'Organise all your travel plans in one itinerary',
       image: require('../assets/images/welcome/laptop.png'),
     },
+    {
+      key: 'welcome-screen-slider-item-four',
+      title: 'Organise all your travel plans in one itinerary',
+      image: require('../assets/images/welcome/laptop.png'),
+    },
   ];
 
-  const _renderItem = ({item, index}) => {
-    return (
-      <View key={item.key.toString()}>
-        <View style={styles.slide}>
-          <View style={styles.sliderUpperSection}>
-            <View style={styles.titleSection}>
-              <Text style={styles.title}>{item.title}</Text>
-            </View>
-            <View>
-              <RenderPagination activeIndex={index} />
-            </View>
-          </View>
-          <View style={styles.sliderBottomSection}>
-            <ImageBackground
-              resizeMode={'cover'}
-              style={styles.image}
-              source={item.image}>
-              <View style={styles.controlButtonSection}>
-                <View>
-                  {index !== 0 && <RenderPrevButton prevIndex={index - 1} />}
-                </View>
-                <View>
-                  {index !== 2 && <RenderNextButton nextIndex={index + 1} />}
-                  {index === 2 && <RenderDoneButton />}
-                </View>
-              </View>
-            </ImageBackground>
-          </View>
-        </View>
-      </View>
-    );
-  };
-
-  const RenderNextButton = ({nextIndex}) => {
-    return (
-      <TouchableOpacity
-        onPress={() => changeSliderListIndex(nextIndex)}
-        style={styles.controlButton}>
-        <Text style={styles.controlButtonText}>Next</Text>
-      </TouchableOpacity>
-    );
-  };
-
-  const RenderPrevButton = ({prevIndex}) => {
-    return (
-      <TouchableOpacity
-        onPress={() => changeSliderListIndex(prevIndex)}
-        style={styles.controlButton}>
-        <Text style={styles.controlButtonText}>Previous</Text>
-      </TouchableOpacity>
-    );
-  };
-
-  const RenderDoneButton = () => {
-    return (
-      <View style={styles.controlButton}>
-        <Text style={styles.controlButtonText}>Done</Text>
-      </View>
-    );
-  };
-
-  const RenderPagination = () => {
+  const _renderPagination = (activeIndex: number) => {
     return (
       <View style={styles.paginationContainer}>
         <SafeAreaView>
@@ -110,10 +61,11 @@ function Welcome() {
                   key={i}
                   style={[
                     styles.dot,
-                    i === currentIndex
+                    i === activeIndex
                       ? commonStyle.backgroundColor(Colors.primary)
                       : commonStyle.backgroundColor('#DDDDDD'),
                   ]}
+                  onPress={() => slider.current?.goToSlide(i, true)}
                 />
               ))}
           </View>
@@ -121,15 +73,54 @@ function Welcome() {
       </View>
     );
   };
-  const itemWidth = widthPercentageToDP('100%');
 
-  const changeSliderListIndex = index => {
-    setCurrentIndex(index);
-    slider.current.scrollToIndex({
-      index: index,
-      animated: true,
-    });
+  const _renderItem = ({item}) => {
+    return (
+      <View key={item.key.toString()}>
+        <View style={styles.slide}>
+          <View style={styles.sliderUpperSection}>
+            <View style={styles.titleSection}>
+              <Text style={styles.title}>{item.title}</Text>
+            </View>
+            <View>
+              <_renderPagination />
+            </View>
+          </View>
+          <View style={styles.sliderBottomSection}>
+            <Image
+              resizeMode={'cover'}
+              style={styles.image}
+              source={item.image}
+            />
+          </View>
+        </View>
+      </View>
+    );
   };
+  const _renderNextButton = () => {
+    return (
+      <View style={[styles.controlButton, styles.nextButton]}>
+        <Text style={styles.controlButtonText}>Next</Text>
+      </View>
+    );
+  };
+
+  const _renderPrevButton = () => {
+    return (
+      <View style={[styles.controlButton, styles.prevButton]}>
+        <Text style={styles.controlButtonText}>Previous</Text>
+      </View>
+    );
+  };
+
+  const _renderDoneButton = () => {
+    return (
+      <View style={[styles.controlButton, styles.doneButton]}>
+        <Text style={styles.controlButtonText}>Done</Text>
+      </View>
+    );
+  };
+
   return (
     <SafeAreaView
       style={[
@@ -140,28 +131,27 @@ function Welcome() {
       <View style={[commonStyle.flex(1), commonStyle.wrapper]}>
         <View style={[commonStyle.flex(1), commonStyle.content]}>
           <View style={commonStyle.flex(1)}>
-            <FlatList
+            <AppIntroSlider
               ref={slider}
-              getItemLayout={(data, index) => ({
-                length: itemWidth,
-                offset: itemWidth * index,
-                index,
-              })}
-              snapToInterval={itemWidth}
-              horizontal={true}
-              data={slides}
               renderItem={_renderItem}
-              scrollEnabled={false}
-              decelerationRate="fast"
-              bounces={false}
-              showsHorizontalScrollIndicator={false}
+              onSkip={() => onDone()}
+              onDone={() => onDone()}
+              data={slides}
+              renderNextButton={_renderNextButton}
+              renderPrevButton={_renderPrevButton}
+              renderDoneButton={_renderDoneButton}
+              pagingEnabled={false}
+              renderPagination={false}
+              dotStyle={{backgroundColor: 'transparent'}}
+              activeDotStyle={{backgroundColor: 'transparent'}}
+              dotClickEnabled={false}
             />
           </View>
         </View>
       </View>
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   skipButton: {},
@@ -208,15 +198,8 @@ const styles = StyleSheet.create({
     height: 5,
     borderRadius: 5,
   },
-  controlButtonSection: {
-    width: '100%',
-    position: 'absolute',
-    bottom: 0,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
   controlButton: {
+    bottom: 20,
     width: 80,
     height: 40,
     backgroundColor: '#F15922',

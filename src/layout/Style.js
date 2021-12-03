@@ -6,6 +6,11 @@ const commonStyle = StyleSheet.create({
       flex,
     };
   },
+  height(height) {
+    return {
+      height,
+    };
+  },
   container: {
     flex: 1,
     backgroundColor: Colors.background,
