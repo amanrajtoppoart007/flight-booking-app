@@ -20,7 +20,7 @@ function ExpandableSection({children, name}) {
         />
       </View>
       <View style={styles.divider} />
-      {open && <View style={{marginHorizontal: 10}}>{children}</View>}
+      {open && <View style={commonStyle.marginHorizontal(10)}>{children}</View>}
     </View>
   );
 }
@@ -36,15 +36,12 @@ export default function FareRules() {
   ];
   return (
     <ScrollView>
-      <View
-        style={{
-          flex: 1,
-        }}>
+      <View style={commonStyle.flex(1)}>
         <Text style={[styles.textBold, commonStyle.marginHorizontal(5)]}>
           Flight Long Fare Rules
         </Text>
         <View style={styles.warningBackground}>
-          <Text style={[styles.text, {color: 'tomato', marginBottom: 5}]}>
+          <Text style={[styles.redText, commonStyle.marginBottom(5)]}>
             Tickets are non-refundable
           </Text>
           <Text style={[styles.text]}>
@@ -71,12 +68,12 @@ export default function FareRules() {
           <Pressable
             onPress={() => setTabBar('DOH-DXB')}
             style={styles.item(tabBar, 'DOH-DXB')}>
-            <Text style={styles.itemText(tabBar == 'DOH-DXB')}>DOH-DXB</Text>
+            <Text style={styles.itemText(tabBar === 'DOH-DXB')}>DOH-DXB</Text>
           </Pressable>
           <Pressable
             onPress={() => setTabBar('DXB-DOH')}
             style={styles.item(tabBar, 'DXB-DOH')}>
-            <Text style={styles.itemText(tabBar == 'DXB-DOH')}>DXB-DOH</Text>
+            <Text style={styles.itemText(tabBar === 'DXB-DOH')}>DXB-DOH</Text>
           </Pressable>
         </View>
         {d.map(item => (
@@ -127,8 +124,13 @@ const styles = StyleSheet.create({
     return {
       fontSize: 12,
       color: isActive ? Colors.primary : 'black',
-      fontFamily: Font.AvenirRegular,
+      fontFamily: Font.AvenirMedium,
     };
+  },
+  redText: {
+    fontSize: 12,
+    fontFamily: Font.AvenirMedium,
+    color: '#F15922',
   },
   divider: {
     borderWidth: 0.5,
@@ -161,12 +163,12 @@ const styles = StyleSheet.create({
   textBold: {
     color: 'black',
     fontSize: 14,
-    fontFamily: Font.AvenirMedium,
+    fontFamily: Font.AvenirHeavy,
   },
   text: {
     fontSize: 12,
     color: 'black',
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirMedium,
   },
 
   expandableSections: {
@@ -180,6 +182,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: Colors.primary,
     marginRight: 5,
+    fontFamily: Font.AvenirHeavy,
   },
   warningBackground: {
     backgroundColor: 'rgba(150,150,150,0.1)',

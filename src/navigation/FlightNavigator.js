@@ -13,7 +13,6 @@ import FlightByNavigator from './FlightByNavigator';
 import OneWayNavigator from './OneWayNavigator';
 import MultiCityNavigator from './MultiCityNavigator';
 import ScreenSettings from './ScreenSettings';
-
 import LccNavigator from './LccNavigator';
 
 const Stack = createStackNavigator();

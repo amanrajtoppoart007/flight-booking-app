@@ -9,8 +9,11 @@ import Deer from '../../../Svg/Deer.svg';
 import Bag from '../../../Svg/Bag.svg';
 import Running from '../../../Svg/Running.svg';
 import MoreOptions from '../../FlightBy/MoreOptions';
+import {useNavigation} from '@react-navigation/native';
 
 function FlightCard({isSelected, onPress, onPressSelect}) {
+  const navigation = useNavigation();
+
   const [isMoreOptionVisible, setIsMoreOptionVisible] = useState(false);
   return (
     <TouchableOpacity onPress={onPress} style={styles.card(isSelected)}>
@@ -96,7 +99,9 @@ function FlightCard({isSelected, onPress, onPressSelect}) {
           </Text>
         </View>
         <Text style={styles.LightText}>Cabin: 7 Kg</Text>
-        <TouchableOpacity style={commonStyle.rowCenter}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Review')}
+          style={commonStyle.rowCenter}>
           <Text style={styles.BlueText}>Details</Text>
           <Icon
             name={'caretright'}

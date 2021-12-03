@@ -62,7 +62,7 @@ const _renderDoneButton = () => {
 const Welcome = ({navigation}) => {
   function onDone() {
     AppInfo.setIntro().then(() => {
-      navigation.navigate('AuthStack');
+      navigation.navigate('AppNavigator');
     });
   }
   return (

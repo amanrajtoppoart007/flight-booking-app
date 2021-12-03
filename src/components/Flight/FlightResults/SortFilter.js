@@ -37,10 +37,7 @@ export const Header = ({onClose}) => {
           color={'black'}
         />
       </View>
-      <View style={styles.sortTextContainer}>
-        <Text style={styles.sortText}>Sort by</Text>
-        <Text style={styles.sortText}>Filters</Text>
-      </View>
+      <View style={commonStyle.marginBottom(15)} />
     </View>
   );
 };
@@ -276,17 +273,17 @@ function Stops() {
       <Text style={styles.listTitle()}>Stops</Text>
       <View style={[commonStyle.rowSpaceBetween, commonStyle.margin(10)]}>
         <BorderButton
-          selected={Selected == 'Non-stop'}
+          selected={Selected === 'Non-stop'}
           onPress={() => setSelected('Non-stop')}
           text="Non-stop"
         />
         <BorderButton
-          selected={Selected == '1 stop'}
+          selected={Selected === '1 stop'}
           onPress={() => setSelected('1 stop')}
           text="1 stop"
         />
         <BorderButton
-          selected={Selected == '2+ stop'}
+          selected={Selected === '2+ stop'}
           onPress={() => setSelected('2+ stop')}
           text="2+ stop"
         />
@@ -327,42 +324,42 @@ const SortBy = () => {
       <SortList
         onPress={() => setSelected('Departure (Earliest)')}
         listTitle="Departure (Earliest)"
-        isSelected={Selected == 'Departure (Earliest)'}
+        isSelected={Selected === 'Departure (Earliest)'}
       />
       <SortList
         onPress={() => setSelected('Departure (Latest)')}
         listTitle="Departure (Latest)"
-        isSelected={Selected == 'Departure (Latest)'}
+        isSelected={Selected === 'Departure (Latest)'}
       />
       <SortList
         onPress={() => setSelected('Arrival (Earliest)')}
         listTitle="Arrival (Earliest)"
-        isSelected={Selected == 'Arrival (Earliest)'}
+        isSelected={Selected === 'Arrival (Earliest)'}
       />
       <SortList
         onPress={() => setSelected('Arrival (Latest)')}
         listTitle="Arrival (Latest)"
-        isSelected={Selected == 'Arrival (Latest)'}
+        isSelected={Selected === 'Arrival (Latest)'}
       />
       <SortList
         onPress={() => setSelected('Duration (Shortest)')}
         listTitle="Duration (Shortest)"
-        isSelected={Selected == 'Duration (Shortest)'}
+        isSelected={Selected === 'Duration (Shortest)'}
       />
       <SortList
         onPress={() => setSelected('Duration (Longest)')}
         listTitle="Duration (Longest)"
-        isSelected={Selected == 'Duration (Longest)'}
+        isSelected={Selected === 'Duration (Longest)'}
       />
       <SortList
         onPress={() => setSelected('Price (Highest)')}
         listTitle="Price (Highest)"
-        isSelected={Selected == 'Price (Highest)'}
+        isSelected={Selected === 'Price (Highest)'}
       />
       <SortList
         onPress={() => setSelected('Price (Lowest)')}
         listTitle="Price (Lowest)"
-        isSelected={Selected == 'Price (Lowest)'}
+        isSelected={Selected === 'Price (Lowest)'}
       />
     </ScrollView>
   );
@@ -391,13 +388,12 @@ function SortFilter({onClose}) {
     return (
       <View style={styles.tabBar}>
         {props.navigationState.routes.map((route, i) => {
-          const color = i === index ? Colors.primary : '#6C6C6C';
           return (
             <TouchableOpacity
               key={i?.toString()}
               style={styles.tabItem}
               onPress={() => setIndex(i)}>
-              <Animated.Text style={styles.tabTitle(i == index)}>
+              <Animated.Text style={styles.tabTitle(i === index)}>
                 {route.title}
               </Animated.Text>
               {i === index ? (
@@ -444,12 +440,12 @@ const styles = StyleSheet.create({
     return {
       fontSize: 14,
       color: !selected ? Colors.black : Colors.orange,
-      fontFamily: Font.AvenirRegular,
+      fontFamily: Font.AvenirMedium,
     };
   },
   tabTitle(isActive) {
     return {
-      fontFamily: Font.AvenirMedium,
+      fontFamily: Font.AvenirHeavy,
       fontSize: 14,
       color: isActive ? Colors.primary : '#6C6C6C',
     };
@@ -459,7 +455,6 @@ const styles = StyleSheet.create({
       paddingHorizontal: 10,
       borderWidth: 1,
       borderColor: !selected ? Colors.border : Colors.orange,
-      backgroundColor: 'white',
       borderRadius: 6,
       paddingVertical: 5,
       backgroundColor: Colors.white,
@@ -469,7 +464,7 @@ const styles = StyleSheet.create({
   CheckText: {
     fontSize: 14,
     color: Colors.lightText,
-    fontFamily: Font.AvenirMedium,
+    fontFamily: Font.AvenirBook,
   },
   IconButton: {
     flex: 1,
@@ -483,7 +478,11 @@ const styles = StyleSheet.create({
   LightText: {
     fontSize: 14,
     color: Colors.lightText,
-    fontFamily: Font.AvenirLight,
+    fontFamily: Font.AvenirBook,
+  },
+  title: {
+    fontFamily: Font.AvenirHeavy,
+    fontSize: 14,
   },
   SvgIcon: {width: 18, height: 18, marginRight: 5},
   container: {
@@ -517,14 +516,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   sortTitle: {
-    fontFamily: Font.AvenirMedium,
+    fontFamily: Font.AvenirHeavy,
     fontSize: 14,
     color: Colors.black,
   },
   sortClear: {
     fontSize: 14,
     color: Colors.secondary,
-    fontFamily: Font.AvenirMedium,
+    fontFamily: Font.AvenirHeavy,
   },
   sortTextContainer: {
     flexDirection: 'row',
@@ -559,7 +558,7 @@ const styles = StyleSheet.create({
     return {
       fontSize: 14,
       color: isSelected ? 'green' : Colors.black,
-      fontFamily: Font.AvenirRegular,
+      fontFamily: Font.AvenirMedium,
       marginHorizontal: 10,
     };
   },

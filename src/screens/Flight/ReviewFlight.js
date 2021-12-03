@@ -108,12 +108,12 @@ const styles = StyleSheet.create({
   textBold: {
     color: 'black',
     fontSize: 16,
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirHeavy,
   },
   tabTitle(isActive) {
     return {
       fontFamily: Font.AvenirMedium,
-      fontSize: 14,
+      fontSize: 12,
       color: isActive ? Colors.primary : '#6C6C6C',
     };
   },
