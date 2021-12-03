@@ -64,7 +64,7 @@ function ReviewItinerary({navigation}) {
             </View>
             <View>
               <Accordion
-                title={'Returning '}
+                title={'Returning'}
                 itinerary={'DXB - DOH'}
                 Content={<FlightCard />}
                 isCollapsed={true}

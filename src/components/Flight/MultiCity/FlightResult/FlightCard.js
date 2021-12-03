@@ -22,10 +22,10 @@ function FlightCard() {
               <FlightSvg />
             </View>
             <View style={commonStyle.marginHorizontal(8)}>
-              <Text style={styles.airlineName}>Departing </Text>
+              <Text style={styles.title}>Departing </Text>
             </View>
             <View style={commonStyle.marginHorizontal(8)}>
-              <Text style={styles.airlineName}>DOH - DXB </Text>
+              <Text style={styles.place}>DOH - DXB </Text>
             </View>
           </View>
         </View>
@@ -94,8 +94,13 @@ const styles = StyleSheet.create({
   cardBody: {
     paddingHorizontal: 12,
   },
-  airlineName: {
+  title: {
     fontFamily: Font.AvenirRoman,
+    fontSize: 14,
+    color: '#F15922',
+  },
+  place: {
+    fontFamily: Font.AvenirMedium,
     fontSize: 14,
     color: '#242A37',
   },
