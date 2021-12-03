@@ -11,7 +11,7 @@ export default function FairDetails() {
   const [InfantOpen, setInfantOpen] = useState(false);
 
   return (
-    <View style={{flex: 1}}>
+    <View style={commonStyle.flex(1)}>
       <View>
         <View
           style={[
@@ -37,13 +37,13 @@ export default function FairDetails() {
           <View style={styles.blueBackground}>
             <View style={styles.sectionContentContainer}>
               <Text style={styles.subHeading}>Fare</Text>
-              <Text style={styles.subHeading}>
+              <Text style={styles.MoneyText}>
                 <Text style={styles.qarText}>QAR</Text> 140.00
               </Text>
             </View>
             <View style={styles.sectionContentContainer}>
               <Text style={styles.subHeading}>Taxes & Fee</Text>
-              <Text style={styles.subHeading}>
+              <Text style={styles.MoneyText}>
                 <Text style={styles.qarText}>QAR</Text> 30.00
               </Text>
             </View>
@@ -75,13 +75,13 @@ export default function FairDetails() {
           <View style={styles.blueBackground}>
             <View style={styles.sectionContentContainer}>
               <Text style={styles.subHeading}>Fare</Text>
-              <Text style={styles.subHeading}>
+              <Text style={styles.MoneyText}>
                 <Text style={styles.qarText}>QAR</Text> 60.00
               </Text>
             </View>
             <View style={styles.sectionContentContainer}>
               <Text style={styles.subHeading}>Taxes & Fee</Text>
-              <Text style={styles.subHeading}>
+              <Text style={styles.MoneyText}>
                 <Text style={styles.qarText}>QAR</Text> 20.00
               </Text>
             </View>
@@ -113,13 +113,13 @@ export default function FairDetails() {
           <View style={styles.blueBackground}>
             <View style={styles.sectionContentContainer}>
               <Text style={styles.subHeading}>Fare</Text>
-              <Text style={styles.subHeading}>
+              <Text style={styles.MoneyText}>
                 <Text style={styles.qarText}>QAR</Text> 40.00
               </Text>
             </View>
             <View style={styles.sectionContentContainer}>
               <Text style={styles.subHeading}>Taxes & Fee</Text>
-              <Text style={styles.subHeading}>
+              <Text style={styles.MoneyText}>
                 <Text style={styles.qarText}>QAR</Text> 10.00
               </Text>
             </View>
@@ -133,7 +133,7 @@ export default function FairDetails() {
             Taxes and fees Included
           </Text>
         </View>
-        <Text style={styles.textBold}>
+        <Text style={styles.BlackText}>
           <Text style={styles.qarText}>QAR</Text> 300.00
         </Text>
       </View>
@@ -154,15 +154,25 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
     flex: 1,
   },
+  BlackText: {
+    fontFamily: Font.AvenirBlack,
+    color: '#0B151F',
+    fontSize: 14,
+  },
+
   subHeading: {
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirMedium,
     fontSize: 14,
     color: 'black',
+  },
+  Total: {
+    fontSize: 14,
+    fontFamily: Font.AvenirHeavy,
   },
   header: {
     fontSize: 14,
     color: Colors.primary,
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirMedium,
     marginRight: 5,
   },
   divider: {
@@ -173,7 +183,7 @@ const styles = StyleSheet.create({
   },
   qarText: {
     fontSize: 14,
-    fontFamily: Font.AvenirLight,
+    fontFamily: Font.AvenirMedium,
     color: Colors.lightText,
   },
   item: {
@@ -183,15 +193,21 @@ const styles = StyleSheet.create({
     marginRight: 15,
     marginTop: 10,
   },
+  MoneyText: {
+    fontSize: 14,
+    fontFamily: Font.AvenirMedium,
+    color: '#0B151F',
+  },
+
   textBold: {
     color: 'black',
     fontSize: 14,
-    fontFamily: Font.AvenirHeavy,
+    fontFamily: Font.AvenirBlack,
   },
   text: {
-    fontSize: 13,
+    fontSize: 12,
     color: 'black',
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirMedium,
   },
 
   blueBackground: {

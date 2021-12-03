@@ -8,8 +8,11 @@ import Colors from '../../../../layout/Colors';
 import Deer from '../../../Svg/Deer.svg';
 import Bag from '../../../Svg/Bag.svg';
 import MoreOptions from '../../FlightBy/MoreOptions';
+import {useNavigation} from '@react-navigation/native';
 
 function FlightCard({onPressSelect}) {
+  const navigation = useNavigation();
+
   const [isMoreOptionVisible, setIsMoreOptionVisible] = useState(false);
   return (
     <View style={styles.card(isMoreOptionVisible)}>
@@ -71,7 +74,9 @@ function FlightCard({onPressSelect}) {
           <View
             style={[commonStyle.rowSpaceBetween, commonStyle.marginTop(17)]}>
             <Text style={styles.LightText}>1 Stop</Text>
-            <TouchableOpacity style={commonStyle.rowFlexStart}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Review')}
+              style={commonStyle.rowFlexStart}>
               <Text style={styles.BlueText}>Details</Text>
               <View style={commonStyle.marginHorizontal(1)} />
               <Icon
@@ -121,7 +126,9 @@ function FlightCard({onPressSelect}) {
           <View
             style={[commonStyle.rowSpaceBetween, commonStyle.marginTop(17)]}>
             <Text style={styles.LightText}>1 Stop</Text>
-            <TouchableOpacity style={commonStyle.rowFlexStart}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Review')}
+              style={commonStyle.rowFlexStart}>
               <Text style={styles.BlueText}>Details</Text>
               <View style={commonStyle.marginHorizontal(1)} />
               <Icon
