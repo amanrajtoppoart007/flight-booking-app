@@ -13,6 +13,8 @@ import Search from '../screens/Flight/Search';
 import FlightResult from '../screens/Flight/FlightResults';
 import AppNavigator from './AppNavigator';
 
+import Welcome from '../screens/Welcome';
+
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = () => {
@@ -21,6 +23,11 @@ const DrawerNavigator = () => {
       screenOptions={{headerShown: false}}
       drawerContent={props => <SideBar {...props} />}
       drawerPosition="right">
+      <Drawer.Screen
+        options={{drawerPosition: 'right'}}
+        name={'Welcome'}
+        component={Welcome}
+      />
       <Drawer.Screen
         options={{drawerPosition: 'right'}}
         name={'AppNavigator'}
