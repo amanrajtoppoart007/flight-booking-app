@@ -109,20 +109,22 @@ function FlightResult({navigation}) {
             </View>
           </LinearGradient>
           <View style={commonStyle.paddingHorizontal(12)}>
-            <View
-              style={[
-                commonStyle.rowSpaceBetween,
-                commonStyle.paddingHorizontal(5),
-                {height: 60, alignItems: 'center'},
-              ]}>
+            <View style={styles.topSection}>
               <View>
                 <TouchableOpacity style={styles.priceButton}>
-                  <Text style={styles.priceButtonText}>Cheapest</Text>
+                  <Text style={styles.flightCostText}>Cheapest</Text>
                 </TouchableOpacity>
               </View>
               <View>
-                <Text>QAR 170.00</Text>
-                <Text>(For 4 travellers)</Text>
+                <View style={commonStyle.rowFlexEnd}>
+                  <View style={commonStyle.marginHorizontal(5)}>
+                    <Text style={styles.currency}>QAR</Text>
+                  </View>
+                  <View>
+                    <Text style={styles.price}>170.00</Text>
+                  </View>
+                </View>
+                <Text style={styles.travelCountText}>(For 4 travellers)</Text>
               </View>
             </View>
           </View>
@@ -155,6 +157,13 @@ const styles = StyleSheet.create({
     width: '100%',
     height: hp('14%'),
   },
+  topSection: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 5,
+    height: 60,
+  },
   rowSpaceBetween: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -182,6 +191,16 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#90E0FF',
   },
+  currency: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 12,
+    color: '#94979D',
+  },
+  travelCountText: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 12,
+    color: '#6C6C6C',
+  },
   price: {
     fontFamily: Font.AvenirHeavy,
     fontSize: 14,
@@ -195,7 +214,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'rgba(19, 168, 105, 0.16)',
   },
-  priceButtonText: {
+  flightCostText: {
     fontFamily: Font.AvenirHeavy,
     fontSize: 14,
     color: '#13A869',
