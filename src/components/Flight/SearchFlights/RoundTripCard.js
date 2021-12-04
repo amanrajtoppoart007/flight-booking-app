@@ -21,6 +21,7 @@ export default function RoundTripCard({
   setGuestEntryModal,
   Location,
   onSwap,
+  Travellers,
 }) {
   return (
     <View style={styles.card}>
@@ -91,7 +92,19 @@ export default function RoundTripCard({
         </View>
         <View style={styles.margin}>
           <TouchableOpacity onPress={() => setGuestEntryModal(true)}>
-            <Text style={styles.roomFilterText}>1 Adult, Economy</Text>
+            <Text style={styles.roomFilterText}>
+              {(Travellers?.adult > 0 ? `${Travellers?.adult} Adult` : '') +
+                (Travellers?.child > 0
+                  ? `${Travellers?.adult > 0 ? ', ' : ''}` +
+                    `${Travellers?.child} Children`
+                  : '') +
+                (Travellers?.infant > 0
+                  ? `${
+                      Travellers?.child > 0 || Travellers?.adult > 0 ? ', ' : ''
+                    }` + `${Travellers?.infant} Infant`
+                  : '') +
+                `, ${Travellers.class}`}
+            </Text>
           </TouchableOpacity>
         </View>
         <View style={styles.divider} />

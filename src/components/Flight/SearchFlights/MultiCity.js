@@ -17,6 +17,7 @@ export default function MultiCity({
   onSwap,
   handleAddFlight,
   handleDelete,
+  Travellers,
 }) {
   return (
     <View style={styles.card(Location.length)}>
@@ -102,7 +103,19 @@ export default function MultiCity({
         </View>
         <View style={styles.margin}>
           <Pressable onPress={() => setGuestEntryModal(true)}>
-            <Text style={styles.roomFilterText}>1 Adult, Economy</Text>
+            <Text style={styles.roomFilterText}>
+              {(Travellers?.adult > 0 ? `${Travellers?.adult} Adult` : '') +
+                (Travellers?.child > 0
+                  ? `${Travellers?.adult > 0 ? ', ' : ''}` +
+                    `${Travellers?.child} Children`
+                  : '') +
+                (Travellers?.infant > 0
+                  ? `${
+                      Travellers?.child > 0 || Travellers?.adult > 0 ? ', ' : ''
+                    }` + `${Travellers?.infant} Infant`
+                  : '') +
+                `, ${Travellers.class}`}
+            </Text>
           </Pressable>
         </View>
         <View style={styles.divider} />
@@ -217,7 +230,6 @@ const styles = StyleSheet.create({
     fontFamily: Font.AvenirHeavy,
     marginLeft: 5,
   },
-
   verticalLine: {
     borderLeftWidth: 1,
     borderColor: '#D9D9D9',

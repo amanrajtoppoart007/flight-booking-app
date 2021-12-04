@@ -32,6 +32,8 @@ export default function Home() {
   const [guestEntryModal, setGuestEntryModal] = useState(false);
   const [flightType, setFlightType] = useState('round-trip');
   const [isDateRangeVisible, setIsDateRangeVisible] = useState(false);
+  const [toDate, setToDate] = useState(new Date());
+  const [fromDate, setFromDate] = useState(new Date());
   const [Location, setLocation] = useState([
     {
       to: 'Dubai',
@@ -49,9 +51,18 @@ export default function Home() {
     },
   ]);
 
-  function _handleDelete() {
+  const [travellersClass, setTravellersClass] = useState({
+    adult: 1,
+    child: 0,
+    infant: 0,
+    class: 'Economy',
+  });
+
+  function _handleDelete(index) {
     let temp = [...Location];
-    temp.pop();
+    if (index > -1) {
+      temp.splice(index, 1);
+    }
     setLocation(temp);
   }
   function _handleAddFlight() {
@@ -83,6 +94,22 @@ export default function Home() {
     temp[index].fromText = temp[index].toText;
     temp[index].toText = ele;
     setLocation(temp);
+  }
+  function _setTo(index = 0, to, code) {
+    let temp = [...Location];
+    temp[index] = {
+      ...temp[index],
+      to: to,
+      toText: code,
+    };
+  }
+  function _setFrom(index = 0, from, code) {
+    let temp = [...Location];
+    temp[index] = {
+      ...temp[index],
+      from: from,
+      fromText: code,
+    };
   }
 
   return (
@@ -148,6 +175,7 @@ export default function Home() {
                       setGuestEntryModal={setGuestEntryModal}
                       Location={Location[0]}
                       onSwap={_onSwap}
+                      Travellers={travellersClass}
                     />
                   ) : flightType === 'multi-city' ? (
                     <MultiCityCard
@@ -160,6 +188,7 @@ export default function Home() {
                       onSwap={_onSwap}
                       handleAddFlight={_handleAddFlight}
                       handleDelete={_handleDelete}
+                      Travellers={travellersClass}
                     />
                   ) : (
                     <OneWayTripCard
@@ -171,6 +200,8 @@ export default function Home() {
                       Location={Location[0]}
                       onSwap={_onSwap}
                       handleAddReturn={() => setFlightType('round-trip')}
+                      Travellers={travellersClass}
+                      date={fromDate}
                     />
                   )}
                 </View>
@@ -207,10 +238,16 @@ export default function Home() {
               <TravellerAndClass
                 Visible={guestEntryModal}
                 setVisible={setGuestEntryModal}
+                data={travellersClass}
+                setData={setTravellersClass}
               />
               <DateRangePicker
                 isDateRangeVisible={isDateRangeVisible}
                 setIsDateRangeVisible={setIsDateRangeVisible}
+                toDate={toDate}
+                fromDate={fromDate}
+                setFromDate={setFromDate}
+                setToDate={setToDate}
               />
             </View>
           </View>

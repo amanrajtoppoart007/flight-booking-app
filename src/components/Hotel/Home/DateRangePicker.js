@@ -8,13 +8,22 @@ import {
 import DatepickerRange from '../../../lib/Datepicker/index';
 import Colors from '../../../layout/Colors';
 
-function DateRangePicker({isDateRangeVisible, setIsDateRangeVisible}) {
-  const [dateFrom, setDateFrom] = useState(null);
-  const [dateUpto, setDateUpto] = useState(null);
+function DateRangePicker({
+  isDateRangeVisible,
+  setIsDateRangeVisible,
+  toDate,
+  fromDate,
+  setToDate,
+  setFromDate,
+}) {
+  const [dateFrom, setDateFrom] = useState(fromDate);
+  const [dateUpto, setDateUpto] = useState(toDate);
 
   function setDate(startDate, untilDate) {
     setDateFrom(startDate);
     setDateUpto(untilDate);
+    setToDate(startDate);
+    setFromDate(untilDate);
     setIsDateRangeVisible(false);
   }
 

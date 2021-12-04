@@ -14,8 +14,7 @@ import {
 } from 'react-native-responsive-screen';
 import Font from '../../layout/Font';
 import commonStyle from '../../layout/Style';
-const Button = () => {
-  const [count, setCount] = useState(0);
+const Button = ({count, setCount}) => {
   return (
     <View style={buttonStyle.card}>
       <View>
@@ -43,20 +42,24 @@ const Button = () => {
   );
 };
 
-function Item({title, subtitle}) {
+function Item({title, subtitle, count, setCount}) {
   return (
     <View style={[commonStyle.rowSpaceBetween, commonStyle.marginVertical(10)]}>
       <View>
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.subTitle}>{subtitle}</Text>
       </View>
-      <Button />
+      <Button count={count} setCount={setCount} />
     </View>
   );
 }
 
-function TravellerAndClass({Visible, setVisible}) {
-  const [select, setSelect] = useState('Economy');
+function TravellerAndClass({Visible, setVisible, data, setData}) {
+  const [Class, setClass] = useState('Economy');
+  const [child, setChild] = useState(data?.child);
+  const [adult, setAdult] = useState(data?.adult);
+  const [infant, setInfant] = useState(data?.infant);
+  console.log(data.class);
 
   return (
     <BottomSheet isVisible={Visible}>
@@ -77,32 +80,47 @@ function TravellerAndClass({Visible, setVisible}) {
             </View>
           </View>
           <View style={[commonStyle.flex(1), commonStyle.marginTop(10)]}>
-            <Item title="Adults" subtitle="12 yrs & above" />
-            <Item title="Children" subtitle="2-12 yrs" />
-            <Item title="Infant" subtitle="Below 2 yrs" />
+            <Item
+              title="Adults"
+              subtitle="12 yrs & above"
+              count={adult}
+              setCount={setAdult}
+            />
+            <Item
+              title="Children"
+              subtitle="2-12 yrs"
+              count={child}
+              setCount={setChild}
+            />
+            <Item
+              title="Infant"
+              subtitle="Below 2 yrs"
+              count={infant}
+              setCount={setInfant}
+            />
             <View>
               <Text style={[styles.title, commonStyle.marginVertical(10)]}>
                 Select Cabin Class
               </Text>
               <View style={commonStyle.rowFlexStart}>
                 <Pressable
-                  onPress={() => setSelect('Economy')}
-                  style={styles.selectContainer(select === 'Economy')}>
-                  <Text style={styles.selectText(select === 'Economy')}>
+                  onPress={() => setClass('Economy')}
+                  style={styles.selectContainer(Class === 'Economy')}>
+                  <Text style={styles.selectText(Class === 'Economy')}>
                     Economy
                   </Text>
                 </Pressable>
                 <Pressable
-                  onPress={() => setSelect('Business')}
-                  style={styles.selectContainer(select === 'Business')}>
-                  <Text style={styles.selectText(select === 'Business')}>
+                  onPress={() => setClass('Business')}
+                  style={styles.selectContainer(Class === 'Business')}>
+                  <Text style={styles.selectText(Class === 'Business')}>
                     Business
                   </Text>
                 </Pressable>
                 <Pressable
-                  onPress={() => setSelect('First Class')}
-                  style={styles.selectContainer(select === 'First Class')}>
-                  <Text style={styles.selectText(select === 'First Class')}>
+                  onPress={() => setClass('First Class')}
+                  style={styles.selectContainer(Class === 'First Class')}>
+                  <Text style={styles.selectText(Class === 'First Class')}>
                     First Class
                   </Text>
                 </Pressable>
@@ -113,7 +131,15 @@ function TravellerAndClass({Visible, setVisible}) {
 
         <View style={styles.center}>
           <TouchableOpacity
-            onPress={() => setVisible(false)}
+            onPress={() => {
+              setData({
+                adult: adult,
+                child: child,
+                infant: infant,
+                class: Class,
+              });
+              setVisible(false);
+            }}
             style={styles.button}>
             <Text style={styles.buttonText}>Done</Text>
           </TouchableOpacity>
