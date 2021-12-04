@@ -16,7 +16,34 @@ export default function OneWayTrip({
   Location,
   onSwap,
   handleAddReturn,
+  Travellers,
+  date,
 }) {
+  function dateToYMD(date) {
+    console.log(date);
+    if (!date) {
+      return 'sun, 15 Dec';
+    }
+    let strArray = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ];
+    let d = date?.getDate();
+    let m = strArray[date.getMonth()];
+    let day = date.toString().split(' ')[0];
+    return day + ', ' + (d <= 9 ? '0' + d : d) + ' ' + m;
+  }
+
   return (
     <View style={styles.card}>
       <View style={styles.subSection}>
@@ -64,7 +91,7 @@ export default function OneWayTrip({
             </View>
             <View style={styles.margin}>
               <Pressable onPress={() => setIsDateRangeVisible(true)}>
-                <Text style={styles.dateFilterText}>Sun, 15 Sep</Text>
+                <Text style={styles.dateFilterText}>{dateToYMD(date)}</Text>
               </Pressable>
             </View>
           </View>
@@ -95,7 +122,19 @@ export default function OneWayTrip({
         </View>
         <View style={styles.margin}>
           <Pressable onPress={() => setGuestEntryModal(true)}>
-            <Text style={styles.roomFilterText}>1 Adult, Economy</Text>
+            <Text style={styles.roomFilterText}>
+              {(Travellers?.adult > 0 ? `${Travellers?.adult} Adult` : '') +
+                (Travellers?.child > 0
+                  ? `${Travellers?.adult > 0 ? ', ' : ''}` +
+                    `${Travellers?.child} Children`
+                  : '') +
+                (Travellers?.infant > 0
+                  ? `${
+                      Travellers?.child > 0 || Travellers?.adult > 0 ? ', ' : ''
+                    }` + `${Travellers?.infant} Infant`
+                  : '') +
+                `, ${Travellers.class}`}
+            </Text>
           </Pressable>
         </View>
         <View style={styles.divider} />
