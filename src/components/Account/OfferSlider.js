@@ -5,6 +5,7 @@ import Colors from '../../layout/Colors';
 import HotelImageOne from '../Svg/Slider/HotelImageOne.svg';
 import HotelImageTwo from '../Svg/Slider/HotelImageTwo.svg';
 import commonStyle from '../../layout/Style';
+import {widthPercentageToDP} from 'react-native-responsive-screen';
 
 function OfferSlider() {
   const brands = [
@@ -39,6 +40,7 @@ function OfferSlider() {
       {brands && (
         <View style={commonStyle.marginVertical(10)}>
           <FlatList
+            style={{width: widthPercentageToDP('90%'), alignSelf: 'center'}}
             showsHorizontalScrollIndicator={false}
             initialNumToRender={4}
             horizontal={true}

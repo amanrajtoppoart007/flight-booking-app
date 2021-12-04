@@ -12,7 +12,7 @@ function StickyMenu() {
   const navigation = useNavigation();
   return (
     <View style={styles.wrapper}>
-      <View style={styles.content}>
+      <View style={[styles.content, styles.flightSection]}>
         <Pressable
           onPress={() => navigation.navigate('FlightStack')}
           style={styles.card}>
@@ -24,7 +24,7 @@ function StickyMenu() {
           </View>
         </Pressable>
       </View>
-      <View style={styles.content}>
+      <View style={[styles.content, styles.hotelSection]}>
         <Pressable
           onPress={() => navigation.navigate('HotelStack')}
           style={styles.card}>
@@ -36,7 +36,7 @@ function StickyMenu() {
           </View>
         </Pressable>
       </View>
-      <View style={styles.content}>
+      <View style={[styles.content, styles.assistanceSection]}>
         <Pressable style={styles.card}>
           <View style={[styles.circle, styles.assistanceMenu]}>
             <AssistanceSvg style={styles.menuIcon} />
@@ -52,17 +52,32 @@ function StickyMenu() {
 
 const styles = StyleSheet.create({
   wrapper: {
+    width: '100%',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: Colors.white,
+    paddingHorizontal: 20,
   },
   content: {
     width: '33.33%',
-    paddingHorizontal: 10,
-    marginVertical: 5,
+    justifyContent: 'center',
+    paddingVertical: 5,
+  },
+  flightSection: {
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+  },
+  assistanceSection: {
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+  },
+  hotelSection: {
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   card: {
+    width: 100,
     height: 45,
     borderRadius: 50,
     backgroundColor: 'transparent',
@@ -71,12 +86,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 5,
   },
   circle: {
-    width: 30,
-    height: 30,
-    borderRadius: 30 / 2,
+    width: 18,
+    height: 18,
+    borderRadius: 18 / 2,
     justifyContent: 'center',
     alignItems: 'center',
   },
