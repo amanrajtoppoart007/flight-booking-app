@@ -11,10 +11,7 @@ import commonStyle from '../layout/Style';
 import CustomStatusBar from '../components/CustomStatusBar';
 import Colors from '../layout/Colors';
 import LinearGradient from 'react-native-linear-gradient';
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 import {Icon} from 'react-native-elements';
 import Font from '../layout/Font';
