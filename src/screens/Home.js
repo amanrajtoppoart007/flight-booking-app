@@ -50,12 +50,16 @@ function Home({navigation}) {
   const navbarHeight = 70;
   const headerHeight = heightPercentageToDP('40%');
 
+  const chipSectionHeight = 70;
+
   const ref = useRef(null);
 
   const scrollY = useRef(new Animated.Value(0));
   const navbarScrollYClamped = diffClamp(scrollY.current, 0, navbarHeight);
 
   const headerScrollYClamped = diffClamp(scrollY.current, 0, headerHeight);
+
+  const chipSectionScrollYClamped = diffClamp(scrollY.current, 0, headerHeight);
 
   const navBarTranslateY = navbarScrollYClamped.interpolate({
     inputRange: [0, navbarHeight],
@@ -65,6 +69,11 @@ function Home({navigation}) {
   const headerTranslateY = headerScrollYClamped.interpolate({
     inputRange: [0, headerHeight],
     outputRange: [0, -headerHeight],
+  });
+
+  const chipSectionScaleY = headerScrollYClamped.interpolate({
+    inputRange: [0, headerHeight],
+    outputRange: [0, 1],
   });
 
   const navbarTranslateYNumber = useRef();
@@ -111,16 +120,14 @@ function Home({navigation}) {
         <View style={styles.wrapper}>
           <View style={styles.content}>
             <Animated.View
-              style={{transform: [{translateY: headerTranslateY}]}}>
+              style={[{transform: [{translateY: headerTranslateY}]}]}>
               <Header />
             </Animated.View>
-            <LinearGradient
-              style={styles.chipSectionWrapper}
-              colors={['#E2F2FF', '#E2F2FF', '#E2F2FF']}>
+            <View style={styles.chipSectionWrapper}>
               <View style={styles.contentSection}>
                 <ChipSection />
               </View>
-            </LinearGradient>
+            </View>
 
             <View>
               <OfferSlider />

@@ -8,7 +8,6 @@ import ChipSection from './ChipSection';
 import Font from '../../layout/Font';
 import {useNavigation} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
-import Colors from '../../layout/Colors';
 import {heightPercentageToDP} from 'react-native-responsive-screen';
 
 const Header = () => {
@@ -40,6 +39,9 @@ const Header = () => {
               <Menu />
             </View>
           </View>
+          <View style={styles.contentSection}>
+            <ChipSection />
+          </View>
         </LinearGradient>
       </View>
     </View>
@@ -48,9 +50,11 @@ const Header = () => {
 
 const styles = StyleSheet.create({
   header: {
-    height: heightPercentageToDP('40%'),
+    height: heightPercentageToDP('50%'),
   },
-
+  contentSection: {
+    marginHorizontal: 20,
+  },
   border: {
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: '#707070',
@@ -65,6 +69,7 @@ const styles = StyleSheet.create({
   logo: {
     width: 110,
     height: 110,
+    left: -10,
   },
   drawerToggleButton: {
     width: 44,
