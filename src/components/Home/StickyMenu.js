@@ -17,7 +17,7 @@ function StickyMenu() {
           onPress={() => navigation.navigate('FlightStack')}
           style={styles.card}>
           <View style={[styles.circle, styles.flightMenu]}>
-            <PlaneSvg style={styles.menuIcon} />
+            <PlaneSvg />
           </View>
           <View style={commonStyle.marginHorizontal(5)}>
             <Text style={styles.title}>Flight</Text>
@@ -29,7 +29,7 @@ function StickyMenu() {
           onPress={() => navigation.navigate('HotelStack')}
           style={styles.card}>
           <View style={[styles.circle, styles.hotelMenu]}>
-            <HotelSvg style={styles.menuIcon} />
+            <HotelSvg />
           </View>
           <View style={commonStyle.marginHorizontal(5)}>
             <Text style={styles.title}>Hotels</Text>
@@ -39,7 +39,7 @@ function StickyMenu() {
       <View style={[styles.content, styles.assistanceSection]}>
         <Pressable style={styles.card}>
           <View style={[styles.circle, styles.assistanceMenu]}>
-            <AssistanceSvg style={styles.menuIcon} />
+            <AssistanceSvg />
           </View>
           <View style={commonStyle.marginHorizontal(5)}>
             <Text style={styles.title}>Assistance</Text>
@@ -108,7 +108,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: Colors.black,
   },
-  menuIcon: {},
 });
 
 export default StickyMenu;
