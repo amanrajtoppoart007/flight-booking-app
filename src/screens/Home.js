@@ -22,7 +22,6 @@ import RouteItem from '../components/Home/RouteItem';
 import CustomStatusBar from '../components/CustomStatusBar';
 import StickyMenu from '../components/Home/StickyMenu';
 import Header from '../components/Home/Header';
-import {getCloser} from '../utils';
 import {heightPercentageToDP} from 'react-native-responsive-screen';
 function Home({navigation}) {
   const [popularRoutes] = useState([
@@ -92,25 +91,6 @@ function Home({navigation}) {
     },
   );
 
-  const handleSnap = ({nativeEvent}) => {
-    const offsetY = nativeEvent.contentOffset.y;
-    if (
-      !(
-        navbarTranslateYNumber.current === 0 ||
-        navbarTranslateYNumber.current === -navbarHeight / 2
-      )
-    ) {
-      if (ref.current) {
-        /* ref.current.scrollToOffset({
-          offset:
-            getCloser(translateYNumber.current, -navbarHeight / 2, 0) ===
-            -navbarHeight / 2
-              ? offsetY + navbarHeight / 2
-              : offsetY - navbarHeight / 2,
-        });*/
-      }
-    }
-  };
   return (
     <SafeAreaView style={styles.container}>
       <CustomStatusBar backgroundColor={'white'} />
@@ -127,7 +107,6 @@ function Home({navigation}) {
         scrollEventThrottle={16}
         ref={ref}
         onScroll={handleScroll}
-        onMomentumScrollEnd={handleSnap}
         showsVerticalScrollIndicator={false}>
         <View style={styles.wrapper}>
           <View style={styles.content}>
@@ -136,7 +115,7 @@ function Home({navigation}) {
               <Header />
             </Animated.View>
             <LinearGradient
-              style={{height: 70, justifyContent: 'center'}}
+              style={styles.chipSectionWrapper}
               colors={['#E2F2FF', '#E2F2FF', '#E2F2FF']}>
               <View style={styles.contentSection}>
                 <ChipSection />
@@ -261,6 +240,7 @@ const styles = StyleSheet.create({
   container: {
     ...commonStyle.container,
     ...commonStyle.flex(1),
+    ...commonStyle.backgroundColor('transparent'),
   },
   wrapper: {
     ...commonStyle.wrapper,
@@ -389,6 +369,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#242A37',
   },
+  chipSectionWrapper: {height: 70, justifyContent: 'center'},
 });
 
 export default Home;

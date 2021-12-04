@@ -32,6 +32,8 @@ const styles = StyleSheet.create({
     margin: 5,
     justifyContent: 'center',
     alignItems: 'center',
+    borderWidth: 0.1,
+    borderColor: '#707070',
   },
   text: {
     fontFamily: Font.AvenirMedium,
