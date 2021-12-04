@@ -25,7 +25,7 @@ function RouteItem({item}) {
 
 const styles = StyleSheet.create({
   card: {
-    width: wp('45%'),
+    width: 160,
     height: 80,
     backgroundColor: Colors.white,
     borderRadius: 5,

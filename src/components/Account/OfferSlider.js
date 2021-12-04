@@ -1,6 +1,5 @@
 import React from 'react';
 import {FlatList, StyleSheet, View} from 'react-native';
-import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import Colors from '../../layout/Colors';
 
 import HotelImageOne from '../Svg/Slider/HotelImageOne.svg';
@@ -40,14 +39,6 @@ function OfferSlider() {
       {brands && (
         <View style={commonStyle.marginVertical(10)}>
           <FlatList
-            style={{
-              width: wp('95%'),
-            }}
-            contentContainerStyle={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}
             showsHorizontalScrollIndicator={false}
             initialNumToRender={4}
             horizontal={true}

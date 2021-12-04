@@ -1,47 +1,30 @@
 import React, {useRef, useState} from 'react';
 import {
   SafeAreaView,
+  View,
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
   Animated,
 } from 'react-native';
 import commonStyle from '../layout/Style';
-import CustomStatusBar from '../components/CustomStatusBar';
+import Font from '../layout/Font';
 import Colors from '../layout/Colors';
 import LinearGradient from 'react-native-linear-gradient';
-import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-
 import {Icon} from 'react-native-elements';
-import Font from '../layout/Font';
+import ChipSection from '../components/Account/ChipSection';
+import OfferSlider from '../components/Account/OfferSlider';
+
 import TimaticSvg from '../components/Svg/Timatic.svg';
 import ArrowRightSvg from '../components/Svg/ArrowRight.svg';
 import TimaticFeature from '../components/Home/TimaticFeature';
-
-import OfferSlider from '../components/Home/OfferSlider';
 import RouteItem from '../components/Home/RouteItem';
-import AnimatedHeader from '../components/Home/AnimatedHeader';
-import ChipSection from '../components/Home/ChipSection';
-
-const HEADER_MAX_HEIGHT = hp('40%');
-const HEADER_MIN_HEIGHT = 140;
-const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
-
+import CustomStatusBar from '../components/CustomStatusBar';
+import StickyMenu from '../components/Home/StickyMenu';
+import Header from '../components/Home/Header';
+import {getCloser} from '../utils';
+import {heightPercentageToDP} from 'react-native-responsive-screen';
 function Home({navigation}) {
-  const scrollY = useRef(new Animated.Value(0)).current;
-
-  const chipSectionScale = scrollY.interpolate({
-    inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
-    outputRange: [0, 0, 1],
-    extrapolate: 'clamp',
-  });
-  const chipSectionY = scrollY.interpolate({
-    inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
-    outputRange: [0, 0, 0],
-    extrapolate: 'clamp',
-  });
-
   const [popularRoutes] = useState([
     {
       id: 'popular-route-item-one',
@@ -64,126 +47,203 @@ function Home({navigation}) {
       to: 'Cairo (CAI)',
     },
   ]);
+  const {diffClamp} = Animated;
+  const navbarHeight = 70;
+  const headerHeight = heightPercentageToDP('40%');
 
+  const ref = useRef(null);
+
+  const scrollY = useRef(new Animated.Value(0));
+  const navbarScrollYClamped = diffClamp(scrollY.current, 0, navbarHeight);
+
+  const headerScrollYClamped = diffClamp(scrollY.current, 0, headerHeight);
+
+  const navBarTranslateY = navbarScrollYClamped.interpolate({
+    inputRange: [0, navbarHeight],
+    outputRange: [-navbarHeight, 0],
+  });
+
+  const headerTranslateY = headerScrollYClamped.interpolate({
+    inputRange: [0, headerHeight],
+    outputRange: [0, -headerHeight],
+  });
+
+  const navbarTranslateYNumber = useRef();
+  const headerTranslateYNumber = useRef();
+
+  navBarTranslateY.addListener(({value}) => {
+    navbarTranslateYNumber.current = value;
+  });
+
+  headerTranslateY.addListener(({value}) => {
+    headerTranslateYNumber.current = value;
+  });
+
+  const handleScroll = Animated.event(
+    [
+      {
+        nativeEvent: {
+          contentOffset: {y: scrollY.current},
+        },
+      },
+    ],
+    {
+      useNativeDriver: true,
+    },
+  );
+
+  const handleSnap = ({nativeEvent}) => {
+    const offsetY = nativeEvent.contentOffset.y;
+    if (
+      !(
+        navbarTranslateYNumber.current === 0 ||
+        navbarTranslateYNumber.current === -navbarHeight / 2
+      )
+    ) {
+      if (ref.current) {
+        /* ref.current.scrollToOffset({
+          offset:
+            getCloser(translateYNumber.current, -navbarHeight / 2, 0) ===
+            -navbarHeight / 2
+              ? offsetY + navbarHeight / 2
+              : offsetY - navbarHeight / 2,
+        });*/
+      }
+    }
+  };
   return (
-    <SafeAreaView style={commonStyle.container}>
+    <SafeAreaView style={styles.container}>
       <CustomStatusBar backgroundColor={'white'} />
+      <Animated.View
+        style={[
+          styles.stickyNavBar,
+          {transform: [{translateY: navBarTranslateY}]},
+        ]}>
+        <View style={styles.border}>
+          <StickyMenu />
+        </View>
+      </Animated.View>
       <Animated.ScrollView
-        showsVerticalScrollIndicator={false}
-        onScroll={Animated.event(
-          [{nativeEvent: {contentOffset: {y: scrollY}}}],
-          {useNativeDriver: true},
-        )}
         scrollEventThrottle={16}
-        contentContainerStyle={{paddingTop: HEADER_MAX_HEIGHT + 10}}>
-        <View style={commonStyle.wrapper}>
-          <View style={commonStyle.content}>
+        ref={ref}
+        onScroll={handleScroll}
+        onMomentumScrollEnd={handleSnap}
+        showsVerticalScrollIndicator={false}>
+        <View style={styles.wrapper}>
+          <View style={styles.content}>
             <Animated.View
-              style={[
-                {
-                  transform: [
-                    {scale: chipSectionScale},
-                    {translateY: chipSectionY},
-                  ],
-                },
-              ]}>
-              <ChipSection />
+              style={{transform: [{translateY: headerTranslateY}]}}>
+              <Header />
             </Animated.View>
+            <LinearGradient
+              style={{height: 70, justifyContent: 'center'}}
+              colors={['#E2F2FF', '#E2F2FF', '#E2F2FF']}>
+              <View style={styles.contentSection}>
+                <ChipSection />
+              </View>
+            </LinearGradient>
+
             <View>
               <OfferSlider />
             </View>
             <LinearGradient
               colors={['#FFFFFF', '#FFFFFF', '#E2F2FF', '#F5F7FB']}>
-              <View>
-                <Text style={styles.routeTitle}>Popular</Text>
-                <Text style={styles.routeTitle}>Routes</Text>
-              </View>
-              <View style={styles.routeWrapper}>
-                {popularRoutes &&
-                  popularRoutes.map(item => {
-                    return <RouteItem key={item?.id?.toString()} item={item} />;
-                  })}
-              </View>
-              <View style={commonStyle.marginVertical(10)}>
-                <View style={styles.card}>
-                  <View style={commonStyle.rowSpaceBetween}>
-                    <View>
-                      <Text style={styles.cardTitle}>Track your flight</Text>
-                    </View>
-                    <View>
-                      <TouchableOpacity>
-                        <ArrowRightSvg />
-                      </TouchableOpacity>
-                    </View>
-                  </View>
-                  <View style={commonStyle.marginVertical(10)}>
+              <View style={styles.contentSection}>
+                <View>
+                  <Text style={styles.routeTitle}>Popular</Text>
+                  <Text style={styles.routeTitle}>Routes</Text>
+                </View>
+                <View style={styles.routeWrapper}>
+                  {popularRoutes &&
+                    popularRoutes.map(item => {
+                      return (
+                        <RouteItem key={item?.id?.toString()} item={item} />
+                      );
+                    })}
+                </View>
+                <View style={commonStyle.marginVertical(10)}>
+                  <View style={styles.card}>
                     <View style={commonStyle.rowSpaceBetween}>
                       <View>
-                        <Icon
-                          name={'primitive-dot'}
-                          type={'octicon'}
-                          size={30}
-                          color={'#F15922'}
-                        />
+                        <Text style={styles.cardTitle}>Track your flight</Text>
                       </View>
-                      <View style={styles.divider} />
                       <View>
-                        <View style={styles.outerCircle}>
-                          <View style={styles.circle}>
-                            <Icon
-                              name={'plane'}
-                              type={'font-awesome'}
-                              size={10}
-                              color={'white'}
-                            />
+                        <TouchableOpacity>
+                          <ArrowRightSvg />
+                        </TouchableOpacity>
+                      </View>
+                    </View>
+                    <View style={commonStyle.marginVertical(10)}>
+                      <View style={commonStyle.rowSpaceBetween}>
+                        <View>
+                          <Icon
+                            name={'primitive-dot'}
+                            type={'octicon'}
+                            size={30}
+                            color={'#F15922'}
+                          />
+                        </View>
+                        <View style={styles.divider} />
+                        <View>
+                          <View style={styles.outerCircle}>
+                            <View style={styles.circle}>
+                              <Icon
+                                name={'plane'}
+                                type={'font-awesome'}
+                                size={10}
+                                color={'white'}
+                              />
+                            </View>
                           </View>
                         </View>
-                      </View>
-                      <View style={styles.divider} />
-                      <View>
-                        <Icon
-                          name={'location-pin'}
-                          type={'material-icon'}
-                          size={30}
-                          color={'#F15922'}
-                        />
+                        <View style={styles.divider} />
+                        <View>
+                          <Icon
+                            name={'location-pin'}
+                            type={'material-icon'}
+                            size={30}
+                            color={'#F15922'}
+                          />
+                        </View>
                       </View>
                     </View>
                   </View>
                 </View>
-              </View>
 
-              <View style={commonStyle.marginVertical(15)}>
-                <View style={styles.webView}>
-                  <View style={commonStyle.marginVertical(10)}>
-                    <TimaticSvg />
-                  </View>
-                  <View style={commonStyle.marginVertical(5)}>
-                    <Text style={styles.timaticSectionHelperText}>
-                      Timatic delivers airlines accurate information based on
-                      the passenger’s
-                    </Text>
-                  </View>
-                  <View style={styles.timaticFeatures}>
-                    <View style={styles.timaticFeatureSection}>
-                      <View>
-                        <TimaticFeature title="Nationality" />
-                        <View style={commonStyle.marginVertical(7.5)} />
-                        <TimaticFeature title="Destination" />
-                      </View>
-                      <View>
-                        <TimaticFeature title="Passport" />
-                        <View style={commonStyle.marginVertical(7.5)} />
-                        <TimaticFeature title="Transit Points" />
-                      </View>
-                      <View>
-                        <TimaticFeature title="Visas" />
-                      </View>
-                      <View style={commonStyle.justifyContent('flex-end')}>
-                        <TouchableOpacity
-                          onPress={() => navigation.navigate('TimaticWebView')}>
-                          <ArrowRightSvg />
-                        </TouchableOpacity>
+                <View style={commonStyle.marginVertical(15)}>
+                  <View style={styles.webView}>
+                    <View style={commonStyle.marginVertical(10)}>
+                      <TimaticSvg />
+                    </View>
+                    <View style={commonStyle.marginVertical(5)}>
+                      <Text style={styles.timaticSectionHelperText}>
+                        Timatic delivers airlines accurate information based on
+                        the passenger’s
+                      </Text>
+                    </View>
+                    <View style={styles.timaticFeatures}>
+                      <View style={styles.timaticFeatureSection}>
+                        <View>
+                          <TimaticFeature title="Nationality" />
+                          <View style={commonStyle.marginVertical(7.5)} />
+                          <TimaticFeature title="Destination" />
+                        </View>
+                        <View>
+                          <TimaticFeature title="Passport" />
+                          <View style={commonStyle.marginVertical(7.5)} />
+                          <TimaticFeature title="Transit Points" />
+                        </View>
+                        <View>
+                          <TimaticFeature title="Visas" />
+                        </View>
+                        <View style={commonStyle.justifyContent('flex-end')}>
+                          <TouchableOpacity
+                            onPress={() =>
+                              navigation.navigate('TimaticWebView')
+                            }>
+                            <ArrowRightSvg />
+                          </TouchableOpacity>
+                        </View>
                       </View>
                     </View>
                   </View>
@@ -193,12 +253,37 @@ function Home({navigation}) {
           </View>
         </View>
       </Animated.ScrollView>
-      <AnimatedHeader scrollY={scrollY} />
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    ...commonStyle.container,
+    ...commonStyle.flex(1),
+  },
+  wrapper: {
+    ...commonStyle.wrapper,
+    ...commonStyle.flex(1),
+  },
+  content: {
+    ...commonStyle.content,
+    ...commonStyle.flex(1),
+  },
+
+  stickyNavBar: {
+    position: 'absolute',
+    backgroundColor: Colors.green,
+    zIndex: 999,
+  },
+  border: {
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: '#707070',
+  },
+
+  contentSection: {
+    marginHorizontal: 20,
+  },
   navbarSection: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -232,6 +317,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'space-between',
     alignItems: 'center',
+    backgroundColor: 'transparent',
   },
   card: {
     width: '100%',
