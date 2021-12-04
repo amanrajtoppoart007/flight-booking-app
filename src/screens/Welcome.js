@@ -17,7 +17,7 @@ import Colors from '../layout/Colors';
 import commonStyle from '../layout/Style';
 import CustomStatusBar from '../components/CustomStatusBar';
 
-function Welcome() {
+function Welcome({navigation}) {
   const slider = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const slides = [
@@ -93,9 +93,11 @@ function Welcome() {
 
   const RenderDoneButton = () => {
     return (
-      <View style={styles.controlButton}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('AppNavigator')}
+        style={styles.controlButton}>
         <Text style={styles.controlButtonText}>Done</Text>
-      </View>
+      </TouchableOpacity>
     );
   };
 

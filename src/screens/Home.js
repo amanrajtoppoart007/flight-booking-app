@@ -78,12 +78,11 @@ function Home({navigation}) {
           {useNativeDriver: true},
         )}
         scrollEventThrottle={16}
-        contentContainerStyle={{paddingTop: HEADER_MAX_HEIGHT + 25}}>
+        contentContainerStyle={{paddingTop: HEADER_MAX_HEIGHT + 10}}>
         <View style={commonStyle.wrapper}>
           <View style={commonStyle.content}>
             <Animated.View
               style={[
-                commonStyle.marginHorizontal(12),
                 {
                   transform: [
                     {scale: chipSectionScale},
@@ -97,9 +96,8 @@ function Home({navigation}) {
               <OfferSlider />
             </View>
             <LinearGradient
-              style={commonStyle.paddingHorizontal(8)}
               colors={['#FFFFFF', '#FFFFFF', '#E2F2FF', '#F5F7FB']}>
-              <View style={commonStyle.marginHorizontal(5)}>
+              <View>
                 <Text style={styles.routeTitle}>Popular</Text>
                 <Text style={styles.routeTitle}>Routes</Text>
               </View>
@@ -208,7 +206,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 10,
   },
   logo: {
     width: 110,
@@ -221,12 +218,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(79, 191, 219, 0.2)',
-  },
-  menuHeader: {
-    paddingHorizontal: 10,
-  },
-  menuFooter: {
-    paddingHorizontal: 10,
   },
   title: {
     fontFamily: Font.AvenirHeavy,
@@ -246,7 +237,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   card: {
-    width: wp('95%'),
+    width: '100%',
     height: 100,
     backgroundColor: Colors.white,
     borderRadius: 8,
@@ -280,6 +271,7 @@ const styles = StyleSheet.create({
     width: 120,
   },
   webViewSection: {
+    width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
@@ -287,7 +279,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   webView: {
-    width: wp('95%'),
+    width: '100%',
     backgroundColor: Colors.white,
     borderRadius: 8,
     padding: 20,
