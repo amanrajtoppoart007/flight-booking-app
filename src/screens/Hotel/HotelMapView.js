@@ -6,6 +6,7 @@ import {
   Platform,
   TouchableOpacity,
   Text,
+  Pressable,
 } from 'react-native';
 import commonStyle from '../../layout/Style';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
@@ -44,17 +45,18 @@ function HotelMapView({navigation}) {
             <Slider />
           </View>
           <View style={styles.listViewButtonWrapper}>
-            <View style={styles.listViewButton}>
+            <Pressable
+              onPress={() => navigation.replace('SearchResult')}
+              style={styles.listViewButton}>
               <View>
                 <ListSvg />
               </View>
               <View>
-                <TouchableOpacity
-                  onPress={() => navigation.replace('SearchResult')}>
+                <View>
                   <Text style={styles.viewToggleText}>List View</Text>
-                </TouchableOpacity>
+                </View>
               </View>
-            </View>
+            </Pressable>
           </View>
           <View />
         </View>
