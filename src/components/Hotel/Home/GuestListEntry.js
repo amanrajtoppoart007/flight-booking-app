@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {
-  Image,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -14,138 +13,10 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import SelectDropdown from 'react-native-select-dropdown';
 import commonStyle from '../../../layout/Style';
 
-const Button = () => {
-  const [count, setCount] = useState(0);
-  return (
-    <View style={buttonStyle.card}>
-      <View>
-        <Icon
-          onPress={() => setCount(count - 1)}
-          name={'minus'}
-          type={'font-awesome'}
-          size={18}
-          color={Colors.lightText}
-        />
-      </View>
-      <View>
-        <Text style={buttonStyle.text}>{count}</Text>
-      </View>
-      <View>
-        <Icon
-          onPress={() => setCount(count + 1)}
-          name={'plus'}
-          type={'font-awesome'}
-          size={18}
-          color={Colors.lightText}
-        />
-      </View>
-    </View>
-  );
-};
-
-const Card = ({item}) => {
-  const [ageRange, setAgeRange] = useState([
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
-  ]);
-
-  return (
-    <View style={cardStyle.card}>
-      <View>
-        <View style={cardStyle.rowFlexStart}>
-          <View>
-            <Image
-              style={{width: 15, height: 15}}
-              source={require('../../../assets/images/icons/open-door.png')}
-            />
-          </View>
-          <View style={{marginHorizontal: 10}}>
-            <Text style={styles.helper}>{item?.title} </Text>
-          </View>
-        </View>
-        <View style={cardStyle.divider} />
-      </View>
-
-      <View>
-        <View style={cardStyle.rowSpaceBetween}>
-          <View>
-            <Text style={styles.ageSelectorText}>Adults</Text>
-            <Text style={styles.ageSelectorHelperText}>12 yrs & above</Text>
-          </View>
-          <View>
-            <Button />
-          </View>
-        </View>
-        <View style={cardStyle.rowSpaceBetween}>
-          <View>
-            <Text style={styles.ageSelectorText}>Children</Text>
-            <Text style={styles.ageSelectorHelperText}>2-12 yrs</Text>
-          </View>
-          <View>
-            <Button />
-          </View>
-        </View>
-      </View>
-
-      <View style={{marginVertical: 10}}>
-        <View style={cardStyle.selectSection}>
-          <View>
-            <Text>Specify each child’s age</Text>
-          </View>
-          <View>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                paddingVertical: 10,
-              }}>
-              <View>
-                <SelectDropdown
-                  defaultButtonText={'Select Age'}
-                  buttonStyle={cardStyle.dropDownButtonStyle}
-                  buttonTextStyle={cardStyle.dropDownButtonTextStyle}
-                  dropdownIconPosition={'right'}
-                  data={ageRange}
-                  onSelect={(selectedItem, index) => {
-                    console.log(selectedItem, index);
-                  }}
-                  buttonTextAfterSelection={(selectedItem, index) => {
-                    return selectedItem + ' Years';
-                  }}
-                  rowTextForSelection={(item, index) => {
-                    return item + ' Years';
-                  }}
-                />
-              </View>
-              <View>
-                <SelectDropdown
-                  defaultButtonText={'Select Age'}
-                  buttonStyle={cardStyle.dropDownButtonStyle}
-                  buttonTextStyle={cardStyle.dropDownButtonTextStyle}
-                  dropdownIconPosition={'right'}
-                  data={ageRange}
-                  onSelect={(selectedItem, index) => {
-                    console.log(selectedItem, index);
-                  }}
-                  buttonTextAfterSelection={(selectedItem, index) => {
-                    return selectedItem + ' Years';
-                  }}
-                  rowTextForSelection={(item, index) => {
-                    return item + ' Years';
-                  }}
-                />
-              </View>
-            </View>
-          </View>
-        </View>
-        <View style={cardStyle.divider} />
-      </View>
-    </View>
-  );
-};
+import Font from '../../../layout/Font';
+import GuestCard from './GuestCard';
 
 function GuestListEntry({
   isGuestBottomSheetVisible,
@@ -175,7 +46,7 @@ function GuestListEntry({
   return (
     <BottomSheet isVisible={isGuestBottomSheetVisible}>
       <View style={styles.bottomSheet}>
-        <View style={{flex: 1}}>
+        <View style={commonStyle.flex(1)}>
           <View style={commonStyle.rowSpaceBetween}>
             <View>
               <Text style={styles.title}>Select Room & Guests</Text>
@@ -197,20 +68,21 @@ function GuestListEntry({
               <View>
                 {rooms &&
                   rooms.map((item, index) => {
-                    return <Card key={index?.toString()} item={item} />;
+                    return (
+                      <GuestCard
+                        key={index?.toString()}
+                        index={index}
+                        item={item}
+                      />
+                    );
                   })}
               </View>
 
               <View>
-                <View
-                  style={{justifyContent: 'center', alignItems: 'flex-end'}}>
+                <View style={styles.buttonWrapper}>
                   <Pressable
                     onPress={() => addMore()}
-                    style={{
-                      flexDirection: 'row',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}>
+                    style={commonStyle.rowCenter}>
                     <View>
                       <Icon
                         name={'plus'}
@@ -219,10 +91,8 @@ function GuestListEntry({
                         color={Colors.secondary}
                       />
                     </View>
-                    <View style={{marginHorizontal: 5}}>
-                      <Text style={{fontSize: 14, color: Colors.secondary}}>
-                        Add Room
-                      </Text>
+                    <View style={commonStyle.marginHorizontal(5)}>
+                      <Text style={styles.addRoomButtonText}>Add Room</Text>
                     </View>
                   </Pressable>
                 </View>
@@ -231,7 +101,7 @@ function GuestListEntry({
           </View>
         </View>
 
-        <View style={{justifyContent: 'center', alignItems: 'center'}}>
+        <View style={commonStyle.center}>
           <TouchableOpacity
             onPress={() => setIsGuestBottomSheetVisible(false)}
             style={styles.button}>
@@ -253,15 +123,19 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   title: {
+    fontFamily: Font.AvenirHeavy,
     fontSize: 18,
     color: Colors.black,
   },
-  helper: {
-    fontSize: 16,
-    color: Colors.black,
-    fontWeight: 'bold',
+  buttonWrapper: {
+    justifyContent: 'center',
+    alignItems: 'flex-end',
   },
-
+  addRoomButtonText: {
+    fontFamily: Font.AvenirHeavy,
+    fontSize: 14,
+    color: '#F15922',
+  },
   button: {
     width: 335,
     height: 45,
@@ -273,78 +147,6 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 12,
     color: Colors.white,
-  },
-});
-const buttonStyle = StyleSheet.create({
-  card: {
-    width: 110,
-    height: 45,
-    borderWidth: StyleSheet.hairlineWidth,
-    borderColor: Colors.border,
-    borderRadius: 6,
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-    padding: 5,
-  },
-  text: {
-    fontSize: 18,
-    color: Colors.lightText,
-  },
-});
-
-const cardStyle = StyleSheet.create({
-  rowFlexStart: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-  },
-  rowSpaceBetween: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginVertical: 10,
-  },
-
-  ageSelectorText: {
-    fontSize: 18,
-    color: Colors.black,
-  },
-  ageSelectorHelperText: {
-    fontSize: 12,
-    color: Colors.lightText,
-  },
-  pickerHelper: {
-    fontSize: 14,
-    color: Colors.lightText,
-  },
-  card: {
-    marginVertical: 15,
-  },
-  divider: {
-    width: '100%',
-    borderWidth: 0.5,
-    borderColor: '#D9D9D9',
-    marginVertical: 8,
-  },
-  selectSection: {
-    width: 345,
-    height: 111,
-    borderRadius: 6,
-    backgroundColor: '#F5F5F5',
-    padding: 15,
-  },
-  dropDownButtonStyle: {
-    width: 150,
-    height: 45,
-    backgroundColor: '#FFF',
-    borderRadius: 8,
-    borderWidth: 0.5,
-    borderColor: '#FFF',
-  },
-  dropDownButtonTextStyle: {
-    fontSize: 18,
-    color: Colors.lightText,
   },
 });
 
