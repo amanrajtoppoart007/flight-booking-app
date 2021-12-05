@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {BottomSheet, Icon} from 'react-native-elements';
 import {StyleSheet, View, Text} from 'react-native';
 import {
@@ -8,6 +8,7 @@ import {
 import {SingleDatepicker} from '../../../lib/Datepicker/index';
 import Colors from '../../../layout/Colors';
 import moment from 'moment';
+import commonStyle from '../../../layout/Style';
 
 function DateRangePicker({
   isDateRangeVisible,
@@ -37,7 +38,7 @@ function DateRangePicker({
                 color={Colors.white}
               />
             </View>
-            <View style={{marginHorizontal: 12}}>
+            <View style={commonStyle.marginHorizontal(12)}>
               <Text style={styles.cardTitle}>Select dates</Text>
             </View>
           </View>
@@ -48,7 +49,7 @@ function DateRangePicker({
               selectedBackgroundColor={'#F15922'}
               todayColor={'#F15922'}
               infoText={''}
-              infoStyle={{color: 'white', fontSize: 13}}
+              infoStyle={styles.infoStyle}
             />
           </View>
         </View>
@@ -71,6 +72,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 10,
     padding: 20,
   },
+  infoStyle: {color: 'white', fontSize: 13},
   cardHeader: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
