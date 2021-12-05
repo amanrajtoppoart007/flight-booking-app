@@ -1,6 +1,5 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import Colors from '../../layout/Colors';
 import commonStyle from '../../layout/Style';
 import PathSvg from '../Svg/Path.svg';
@@ -32,8 +31,6 @@ const styles = StyleSheet.create({
     margin: 5,
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 0.1,
-    borderColor: '#707070',
   },
   text: {
     fontFamily: Font.AvenirMedium,

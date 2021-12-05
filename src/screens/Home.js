@@ -133,7 +133,7 @@ function Home({navigation}) {
               <OfferSlider />
             </View>
             <LinearGradient
-              colors={['#FFFFFF', '#FFFFFF', '#E2F2FF', '#F5F7FB']}>
+              colors={['#F5F7FB', '#E2F2FF', '#E2F2FF', '#F5F7FB']}>
               <View style={styles.contentSection}>
                 <View>
                   <Text style={styles.routeTitle}>Popular</Text>
