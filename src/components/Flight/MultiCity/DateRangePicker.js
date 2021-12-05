@@ -5,7 +5,7 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import DatepickerRange from '../../../lib/Datepicker/index';
+import {SingleDatepicker} from '../../../lib/Datepicker/index';
 import Colors from '../../../layout/Colors';
 import moment from 'moment';
 
@@ -16,7 +16,7 @@ function DateRangePicker({
   date,
   index,
 }) {
-  function setDate(startDate, untilDate) {
+  function setDate(startDate) {
     const dateFromTimeStamp = moment(startDate).format('YYYYMMDD');
     editDate(index, dateFromTimeStamp);
     setIsDateRangeVisible(-1);
@@ -43,15 +43,9 @@ function DateRangePicker({
             </View>
           </View>
           <View style={styles.card}>
-            <DatepickerRange
+            <SingleDatepicker
               showSelectionInfo={false}
-              startDate={date?.toString()}
-              untilDate={date?.toString()}
-              onConfirm={(startDate, untilDate) =>
-                setDate(startDate, untilDate)
-              }
-              buttonColor={'#F15922'}
-              showButton={true}
+              onSelect={date => setDate(date)}
               selectedBackgroundColor={'#F15922'}
               todayColor={'#F15922'}
               infoText={''}
