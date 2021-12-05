@@ -7,23 +7,21 @@ import {
 } from 'react-native-responsive-screen';
 import DatepickerRange from '../../../lib/Datepicker/index';
 import Colors from '../../../layout/Colors';
+import moment from 'moment';
 
 function DateRangePicker({
   isDateRangeVisible,
   setIsDateRangeVisible,
-  toDate,
-  fromDate,
-  setToDate,
-  setFromDate,
+  dateFrom,
+  dateUpto,
+  setDateFrom,
+  setDateUpto,
 }) {
-  const [dateFrom, setDateFrom] = useState(fromDate);
-  const [dateUpto, setDateUpto] = useState(toDate);
-
   function setDate(startDate, untilDate) {
-    setDateFrom(startDate);
-    setDateUpto(untilDate);
-    setToDate(startDate);
-    setFromDate(untilDate);
+    const dateFromTimeStamp = moment(startDate).format('YYYYMMDD');
+    const dateUptoTimeStamp = moment(untilDate).format('YYYYMMDD');
+    setDateFrom(dateFromTimeStamp);
+    setDateUpto(dateUptoTimeStamp);
     setIsDateRangeVisible(false);
   }
 

@@ -23,12 +23,21 @@ import DateRangePicker from '../../components/Hotel/Home/DateRangePicker';
 import LocationSelector from '../../components/Hotel/Home/LocationSelector';
 import commonStyle from '../../layout/Style';
 import Font from '../../layout/Font';
+import moment from 'moment';
 
 function Home({navigation}) {
   const [guestEntryModal, setGuestEntryModal] = useState(false);
   const [isDateRangeVisible, setIsDateRangeVisible] = useState(false);
   const [isLocationSelectorVisible, setIsLocationSelectorVisible] =
     useState(false);
+
+  const date = new Date();
+  const dateFromTimeStamp = moment(date).format('YYYYMMDD');
+  const dateUptoTimeStamp = moment(date).add(5, 'days').format('YYYYMMDD');
+
+  const [dateFrom, setDateFrom] = useState(dateFromTimeStamp);
+  const [dateUpto, setDateUpto] = useState(dateUptoTimeStamp);
+
   return (
     <SafeAreaView style={styles.container}>
       <CustomStatusBar backgroundColor={'#1C8CCC'} />
@@ -88,7 +97,9 @@ function Home({navigation}) {
                           <Pressable
                             onPress={() => setIsDateRangeVisible(true)}>
                             <Text style={styles.dateFilterText}>
-                              Sun, 15 Sep
+                              {moment(dateFrom, 'YYYYMMDD').format(
+                                'DD-MM-YYYY',
+                              )}
                             </Text>
                           </Pressable>
                         </View>
@@ -114,7 +125,9 @@ function Home({navigation}) {
                           <Pressable
                             onPress={() => setIsDateRangeVisible(true)}>
                             <Text style={styles.dateFilterText}>
-                              Mon, 20 Sep
+                              {moment(dateUpto, 'YYYYMMDD').format(
+                                'DD-MM-YYYY',
+                              )}
                             </Text>
                           </Pressable>
                         </View>
@@ -174,6 +187,10 @@ function Home({navigation}) {
             <DateRangePicker
               isDateRangeVisible={isDateRangeVisible}
               setIsDateRangeVisible={setIsDateRangeVisible}
+              dateFrom={dateFrom}
+              setDateFrom={setDateFrom}
+              dateUpto={dateUpto}
+              setDateUpto={setDateUpto}
             />
             <LocationSelector
               isLocationSelectorVisible={isLocationSelectorVisible}
