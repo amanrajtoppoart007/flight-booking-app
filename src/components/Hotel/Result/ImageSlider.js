@@ -1,6 +1,12 @@
 import React from 'react';
 import {FlatList, Image, StyleSheet, Text, View} from 'react-native';
 import Colors from '../../../layout/Colors';
+
+import WifiSvg from '../../Svg/Hotel/Amenities/Wifi.svg';
+import PoolSvg from '../../Svg/Hotel/Amenities/Pool.svg';
+import GymSvg from '../../Svg/Hotel/Amenities/Gym.svg';
+import MealSvg from '../../Svg/Hotel/Amenities/Meal.svg';
+import FlightSvg from '../../Svg/Hotel/Amenities/Flight.svg';
 function ImageSlider() {
   const images = [
     {
@@ -49,29 +55,21 @@ function ImageSlider() {
           />
           <View style={styles.amenityButton}>
             <View>
-              <Image
-                source={require('../../../assets/images/icons/wifi.png')}
-              />
+              <WifiSvg />
             </View>
             <View>
-              <Image
-                source={require('../../../assets/images/icons/meal.png')}
-              />
+              <MealSvg />
             </View>
             <View>
-              <Image source={require('../../../assets/images/icons/gym.png')} />
+              <GymSvg />
             </View>
             <View>
-              <Image
-                source={require('../../../assets/images/icons/pool.png')}
-              />
+              <PoolSvg />
             </View>
           </View>
           <View style={styles.ratingButton}>
             <View>
-              <Image
-                source={require('../../../assets/images/icons/flight.png')}
-              />
+              <FlightSvg />
             </View>
             <View>
               <Text style={styles.ratingCountText}>4.5/5</Text>
