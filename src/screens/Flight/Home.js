@@ -286,7 +286,6 @@ export default function Home() {
               <DateRangePickerMultiCity
                 isDateRangeVisible={!(isDateRangeMultiCityVisible === -1)}
                 setIsDateRangeVisible={setIsDateRangeMultiCityVisible}
-                date={dateMultiCity[0]}
                 editDate={editDate}
                 index={isDateRangeMultiCityVisible}
               />

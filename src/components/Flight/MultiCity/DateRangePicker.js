@@ -13,7 +13,6 @@ function DateRangePicker({
   isDateRangeVisible,
   setIsDateRangeVisible,
   editDate,
-  date,
   index,
 }) {
   function setDate(startDate) {
