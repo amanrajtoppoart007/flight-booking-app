@@ -86,7 +86,7 @@ function LocationSelector({
             </View>
             <View>
               <TextInput
-                style={styles.searchInputStyle}
+                style={[styles.searchInputStyle, styles.searchInputTextStyle]}
                 placeholder={'Search Destination, City or Hotel Name'}
                 placeholderTextColor={'#979797'}
               />
@@ -200,9 +200,10 @@ const styles = StyleSheet.create({
     borderRadius: 6,
   },
   searchInputStyle: {width: 280, height: 60},
-  cardTitle: {
-    fontSize: 18,
-    color: Colors.white,
+  searchInputTextStyle: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 14,
+    color: '#242A37',
   },
   section: {
     flex: 1,
@@ -224,16 +225,17 @@ const styles = StyleSheet.create({
   locationCard: {
     width: '100%',
     height: 60,
-    borderTopWidth: 0.5,
-    borderBottomWidth: 0.5,
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderBottomWidth: StyleSheet.hairlineWidth,
     borderColor: '#BFCAD7',
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
   locationText: {
+    fontFamily: Font.AvenirMedium,
     fontSize: 14,
-    color: Colors.lightText,
+    color: '#242A37',
   },
 });
 
