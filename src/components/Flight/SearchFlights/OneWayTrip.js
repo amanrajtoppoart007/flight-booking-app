@@ -8,6 +8,7 @@ import Colors from '../../../layout/Colors';
 import {Icon} from 'react-native-elements';
 import commonStyle from '../../../layout/Style';
 import Font from '../../../layout/Font';
+import moment from 'moment';
 
 export default function OneWayTrip({
   setIsLocationSelectorVisible,
@@ -19,31 +20,6 @@ export default function OneWayTrip({
   Travellers,
   date,
 }) {
-  function dateToYMD(date) {
-    console.log(date);
-    if (!date) {
-      return 'sun, 15 Dec';
-    }
-    let strArray = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec',
-    ];
-    let d = date?.getDate();
-    let m = strArray[date.getMonth()];
-    let day = date.toString().split(' ')[0];
-    return day + ', ' + (d <= 9 ? '0' + d : d) + ' ' + m;
-  }
-
   return (
     <View style={styles.card}>
       <View style={styles.subSection}>
@@ -91,7 +67,9 @@ export default function OneWayTrip({
             </View>
             <View style={styles.margin}>
               <Pressable onPress={() => setIsDateRangeVisible(true)}>
-                <Text style={styles.dateFilterText}>{dateToYMD(date)}</Text>
+                <Text style={styles.dateFilterText}>
+                  {moment(date).format('ddd, D MMM')}
+                </Text>
               </Pressable>
             </View>
           </View>

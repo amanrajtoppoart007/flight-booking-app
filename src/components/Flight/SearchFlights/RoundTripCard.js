@@ -14,6 +14,7 @@ import Colors from '../../../layout/Colors';
 import {Icon} from 'react-native-elements';
 import commonStyle from '../../../layout/Style';
 import Font from '../../../layout/Font';
+import moment from 'moment';
 
 export default function RoundTripCard({
   setIsLocationSelectorVisible,
@@ -22,6 +23,8 @@ export default function RoundTripCard({
   Location,
   onSwap,
   Travellers,
+  dateFrom,
+  dateUpTo,
 }) {
   return (
     <View style={styles.card}>
@@ -70,7 +73,9 @@ export default function RoundTripCard({
             </View>
             <View style={styles.margin}>
               <Pressable onPress={() => setIsDateRangeVisible(true)}>
-                <Text style={styles.dateFilterText}>Sun, 15 Sep</Text>
+                <Text style={styles.dateFilterText}>
+                  {moment(dateFrom).format('ddd, D MMM')}
+                </Text>
               </Pressable>
             </View>
           </View>
@@ -80,7 +85,9 @@ export default function RoundTripCard({
             </View>
             <View style={styles.margin}>
               <Pressable onPress={() => setIsDateRangeVisible(true)}>
-                <Text style={styles.dateFilterText}>Mon, 20 Sep</Text>
+                <Text style={styles.dateFilterText}>
+                  {moment(dateUpTo).format('ddd, D MMM')}
+                </Text>
               </Pressable>
             </View>
           </View>
