@@ -35,7 +35,7 @@ const Button = ({count, setCount}) => {
   );
 };
 
-const GuestCard = ({item}) => {
+const GuestCard = ({item, toggleCardItem, index}) => {
   const [totalAdults, setTotalAdults] = useState(0);
   const [totalChildren, setTotalChildren] = useState(0);
   const [ageRange] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
@@ -57,9 +57,7 @@ const GuestCard = ({item}) => {
           buttonTextStyle={styles.dropDownButtonTextStyle}
           dropdownIconPosition={'right'}
           data={ageRange}
-          onSelect={(selectedItem, index) => {
-            console.log(selectedItem, index);
-          }}
+          onSelect={() => {}}
           buttonTextAfterSelection={selectedItem => {
             return selectedItem + ' Years';
           }}
@@ -74,51 +72,76 @@ const GuestCard = ({item}) => {
   return (
     <View style={styles.card}>
       <View>
-        <View style={styles.rowFlexStart}>
-          <View>
-            <OpenDoorSvg />
-          </View>
-          <View style={commonStyle.marginHorizontal(10)}>
-            <Text style={styles.title}>{item?.title} </Text>
-          </View>
-        </View>
-        <View style={styles.divider} />
-      </View>
-
-      <View>
-        <View style={styles.rowSpaceBetween}>
-          <View>
-            <Text style={styles.ageSelectorTitle}>Adults</Text>
-            <Text style={styles.ageSelectorHelperText}>12 yrs & above</Text>
-          </View>
-          <View>
-            <Button count={totalAdults} setCount={setTotalAdults} />
-          </View>
-        </View>
-        <View style={styles.rowSpaceBetween}>
-          <View>
-            <Text style={styles.ageSelectorTitle}>Children</Text>
-            <Text style={styles.ageSelectorHelperText}>2-12 yrs</Text>
-          </View>
-          <View>
-            <Button count={totalChildren} setCount={setTotalChildren} />
-          </View>
-        </View>
-      </View>
-
-      {totalChildren > 0 && (
-        <View style={commonStyle.marginVertical(10)}>
-          <View style={styles.selectSection}>
+        <View style={commonStyle.rowSpaceBetween}>
+          <View style={styles.rowFlexStart}>
             <View>
-              <Text style={styles.pickerHelper}>Specify each child’s age</Text>
+              <OpenDoorSvg />
             </View>
-            <View>
-              <View>{<AddChildAgeSelectionBox />}</View>
+            <View style={commonStyle.marginHorizontal(10)}>
+              <Text style={styles.title}>{item?.title} </Text>
             </View>
           </View>
+          <View>
+            <Icon
+              name={item?.isVisible ? 'chevron-up' : 'chevron-down'}
+              type={'entypo'}
+              size={20}
+              onPress={() => {
+                item?.isVisible
+                  ? toggleCardItem(index, 'hide')
+                  : toggleCardItem(index, 'show');
+              }}
+            />
+          </View>
+        </View>
+        <View>
           <View style={styles.divider} />
         </View>
-      )}
+      </View>
+      <View>
+        {item?.isVisible && (
+          <>
+            <View>
+              <View style={styles.rowSpaceBetween}>
+                <View>
+                  <Text style={styles.ageSelectorTitle}>Adults</Text>
+                  <Text style={styles.ageSelectorHelperText}>
+                    12 yrs & above
+                  </Text>
+                </View>
+                <View>
+                  <Button count={totalAdults} setCount={setTotalAdults} />
+                </View>
+              </View>
+              <View style={styles.rowSpaceBetween}>
+                <View>
+                  <Text style={styles.ageSelectorTitle}>Children</Text>
+                  <Text style={styles.ageSelectorHelperText}>2-12 yrs</Text>
+                </View>
+                <View>
+                  <Button count={totalChildren} setCount={setTotalChildren} />
+                </View>
+              </View>
+            </View>
+
+            {totalChildren > 0 && (
+              <View style={commonStyle.marginVertical(10)}>
+                <View style={styles.selectSection}>
+                  <View>
+                    <Text style={styles.pickerHelper}>
+                      Specify each child’s age
+                    </Text>
+                  </View>
+                  <View>
+                    <View>{<AddChildAgeSelectionBox />}</View>
+                  </View>
+                </View>
+                <View style={styles.divider} />
+              </View>
+            )}
+          </>
+        )}
+      </View>
     </View>
   );
 };

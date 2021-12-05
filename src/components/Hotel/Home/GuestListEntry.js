@@ -27,6 +27,7 @@ function GuestListEntry({
       index: 0,
       id: 'room-item-1',
       title: 'Room 1',
+      isVisible: true,
     },
   ]);
 
@@ -35,11 +36,33 @@ function GuestListEntry({
       index: rooms?.length,
       id: `room-item-${rooms?.length + 1}`,
       title: `Room ${rooms?.length + 1}`,
+      isVisible: true,
     };
     const roomArray = rooms.map(item => {
-      return item;
+      return {
+        ...item,
+        isVisible: false,
+      };
     });
     roomArray.push(newRoom);
+    setRooms(roomArray);
+  };
+
+  const toggleCardItem = (index, type) => {
+    const roomArray = rooms.map((item, i) => {
+      let visible;
+
+      if (type === 'show') {
+        visible = true;
+      }
+      if (type === 'hide') {
+        visible = false;
+      }
+      return {
+        ...item,
+        isVisible: i === index ? visible : i === index,
+      };
+    });
     setRooms(roomArray);
   };
 
@@ -73,6 +96,7 @@ function GuestListEntry({
                         key={index?.toString()}
                         index={index}
                         item={item}
+                        toggleCardItem={toggleCardItem}
                       />
                     );
                   })}
