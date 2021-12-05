@@ -145,7 +145,7 @@ function MyTravelers({navigation}) {
                       value={mobile}
                       setValue={setMobile}
                       type={'mobile'}
-                      placeholder={'Contact No'}
+                      placeholder={'Contact.js No'}
                     />
                   </View>
                 </View>

@@ -4,33 +4,60 @@ import {
   Image,
   SafeAreaView,
   StyleSheet,
+  Text,
   TouchableOpacity,
   View,
 } from 'react-native';
 
 import {ListItem} from 'react-native-elements';
-import Colors from '../layout/Colors';
-import commonStyle from '../layout/Style';
+import Colors from '../../layout/Colors';
+import commonStyle from '../../layout/Style';
+
+import CloseSvg from '../Svg/SideBar/Close.svg';
+import CurrencySvg from '../Svg/SideBar/Qar.svg';
+import AboutSvg from '../Svg/SideBar/About.svg';
+import CallSvg from '../Svg/SideBar/Call.svg';
+import PolicySvg from '../Svg/SideBar/Policy.svg';
+import TermsSvg from '../Svg/SideBar/Terms.svg';
+import SocialSvg from '../Svg/SideBar/Social.svg';
+import Font from '../../layout/Font';
 
 const SideBar = props => {
   const [expanded, setExpanded] = useState(false);
   const [menus] = useState([
     {
       key: 'menu-item-one',
-      title: 'Terms & Condition',
-      image: require('../assets/icons/sideBar/terms.png'),
+      title: 'About Us',
+      image: require('../../assets/icons/sideBar/terms.png'),
+      svg: AboutSvg,
       route: 'Terms',
     },
     {
       key: 'menu-item-two',
-      title: 'FAQ’s',
-      image: require('../assets/icons/sideBar/faq.png'),
+      title: 'Contact Us',
+      image: require('../../assets/icons/sideBar/faq.png'),
+      svg: CallSvg,
       route: 'Faq',
     },
     {
       key: 'menu-item-three',
+      title: 'Privacy & Policy',
+      image: require('../../assets/icons/sideBar/social.png'),
+      svg: PolicySvg,
+      route: 'Privacy',
+    },
+    {
+      key: 'menu-item-four',
+      title: 'Terms & Conditions',
+      image: require('../../assets/icons/sideBar/social.png'),
+      svg: TermsSvg,
+      route: 'Terms',
+    },
+    {
+      key: 'menu-item-five',
       title: 'Social',
-      image: require('../assets/icons/sideBar/social.png'),
+      image: require('../../assets/icons/sideBar/social.png'),
+      svg: SocialSvg,
       route: 'Social',
     },
   ]);
@@ -40,19 +67,19 @@ const SideBar = props => {
       id: 'currency-id-one',
       name: 'Qatari Riyal',
       shortName: 'QAR',
-      image: require('../assets/icons/country/qar.png'),
+      image: require('../../assets/icons/country/qar.png'),
     },
     {
       id: 'currency-id-two',
       name: 'UAE Dirham',
       shortName: 'AED',
-      image: require('../assets/icons/country/aed.png'),
+      image: require('../../assets/icons/country/aed.png'),
     },
     {
       id: 'currency-id-three',
       name: 'Saudi Riyal',
       shortName: 'SAR',
-      image: require('../assets/icons/country/sar.png'),
+      image: require('../../assets/icons/country/sar.png'),
     },
   ]);
 
@@ -67,11 +94,7 @@ const SideBar = props => {
           : props.navigation.navigate(item.route)
       }
       bottomDivider>
-      <Image
-        resizeMode={'contain'}
-        source={item?.image}
-        style={{width: 20, height: 20}}
-      />
+      <item.svg />
       <ListItem.Content>
         <ListItem.Title style={styles.title}>{item.title}</ListItem.Title>
       </ListItem.Content>
@@ -83,13 +106,12 @@ const SideBar = props => {
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={styles.card}>
-        <View style={commonStyle.rowFlexEnd}>
+        <View style={commonStyle.rowSpaceBetween}>
+          <View>
+            <Text style={styles.moreText}>More</Text>
+          </View>
           <TouchableOpacity onPress={() => props.navigation.toggleDrawer()}>
-            <Image
-              resizeMode={'contain'}
-              source={require('../assets/icons/close.png')}
-              style={{width: 15, height: 15}}
-            />
+            <CloseSvg />
           </TouchableOpacity>
         </View>
       </View>
@@ -99,7 +121,7 @@ const SideBar = props => {
             <>
               <Image
                 resizeMode={'contain'}
-                source={require('../assets/icons/sideBar/language.png')}
+                source={require('../../assets/icons/sideBar/language.png')}
                 style={{width: 20, height: 20}}
               />
               <ListItem.Content>
@@ -151,6 +173,11 @@ const SideBar = props => {
 };
 
 const styles = StyleSheet.create({
+  moreText: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 14,
+    color: '#242A37',
+  },
   menuContainerStyle: {
     height: 60,
     backgroundColor: Colors.white,

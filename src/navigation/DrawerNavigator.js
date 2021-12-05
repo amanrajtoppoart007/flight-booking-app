@@ -1,6 +1,6 @@
 import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import SideBar from '../components/SideBar';
+import SideBar from '../components/SideBar/SideBar';
 import Terms from '../screens/Terms';
 import Faq from '../screens/Faq';
 import Social from '../screens/Social';
@@ -14,6 +14,9 @@ import FlightResult from '../screens/Flight/FlightResults';
 import AppNavigator from './AppNavigator';
 
 import Welcome from '../screens/Welcome';
+import Privacy from '../screens/Privacy';
+import About from '../screens/About';
+import Contact from '../screens/Contact';
 
 const Drawer = createDrawerNavigator();
 
@@ -32,6 +35,22 @@ const DrawerNavigator = () => {
         options={{drawerPosition: 'right'}}
         name={'AppNavigator'}
         component={AppNavigator}
+      />
+      <Drawer.Screen
+        options={{drawerPosition: 'right'}}
+        name={'About'}
+        component={About}
+      />
+      <Drawer.Screen
+        options={{drawerPosition: 'right'}}
+        name={'Contact'}
+        component={Contact}
+      />
+
+      <Drawer.Screen
+        options={{drawerPosition: 'right'}}
+        name={'Privacy'}
+        component={Privacy}
       />
 
       <Drawer.Screen
