@@ -8,6 +8,7 @@ import Colors from '../../../layout/Colors';
 import {Icon} from 'react-native-elements';
 import commonStyle from '../../../layout/Style';
 import Font from '../../../layout/Font';
+import moment from 'moment';
 
 export default function MultiCity({
   setIsLocationSelectorVisible,
@@ -18,6 +19,7 @@ export default function MultiCity({
   handleAddFlight,
   handleDelete,
   Travellers,
+  dates,
 }) {
   return (
     <View style={styles.card(Location.length)}>
@@ -78,8 +80,10 @@ export default function MultiCity({
                 <Text style={styles.Departure}>Departure</Text>
               </View>
               <View style={styles.margin}>
-                <Pressable onPress={() => setIsDateRangeVisible(true)}>
-                  <Text style={styles.dateFilterText}>Sun, 15 Sep</Text>
+                <Pressable onPress={() => setIsDateRangeVisible(index)}>
+                  <Text style={styles.dateFilterText}>
+                    {moment(dates[index]).format('ddd, D MMM')}
+                  </Text>
                 </Pressable>
               </View>
             </View>
