@@ -114,7 +114,13 @@ function Home({navigation}) {
                           />
                         </View>
                         <View style={styles.margin}>
-                          <Text style={styles.helperText}>6 Nights</Text>
+                          <Text style={styles.helperText}>
+                            {moment(dateUpto, 'YYYYMMDD').diff(
+                              moment(dateFrom, 'YYYYMMDD'),
+                              'days',
+                            )}{' '}
+                            Nights
+                          </Text>
                         </View>
                       </View>
                       <View>
