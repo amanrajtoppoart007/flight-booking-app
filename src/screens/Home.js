@@ -60,8 +60,6 @@ function Home({navigation}) {
   const navbarHeight = 70;
   const headerHeight = heightPercentageToDP('40%');
 
-  const chipSectionHeight = 70;
-
   const ref = useRef(null);
 
   const scrollY = useRef(new Animated.Value(0));
@@ -70,6 +68,8 @@ function Home({navigation}) {
   const headerScrollYClamped = diffClamp(scrollY.current, 0, headerHeight);
 
   const chipSectionScrollYClamped = diffClamp(scrollY.current, 0, headerHeight);
+
+  const contentScrollYClamped = diffClamp(scrollY.current, 0, headerHeight);
 
   const navBarTranslateY = navbarScrollYClamped.interpolate({
     inputRange: [0, navbarHeight],
@@ -86,9 +86,15 @@ function Home({navigation}) {
     outputRange: [0, 1],
   });
 
+  const contentTranslateY = contentScrollYClamped.interpolate({
+    inputRange: [0, headerHeight],
+    outputRange: [-70, 0],
+  });
+
   const navbarTranslateYNumber = useRef();
   const headerTranslateYNumber = useRef();
   const chipSectionTranslateYNumber = useRef();
+  const contentTranslateYNumber = useRef();
 
   navBarTranslateY.addListener(({value}) => {
     navbarTranslateYNumber.current = value;
@@ -99,6 +105,9 @@ function Home({navigation}) {
   });
   chipSectionScaleY.addListener(({value}) => {
     chipSectionTranslateYNumber.current = value;
+  });
+  contentTranslateY.addListener(({value}) => {
+    contentTranslateYNumber.current = value;
   });
 
   const handleScroll = Animated.event(
@@ -147,113 +156,118 @@ function Home({navigation}) {
               </Animated.View>
             </View>
 
-            <View>
-              <OfferSlider />
-            </View>
-            <LinearGradient
-              colors={['#F5F7FB', '#E2F2FF', '#E2F2FF', '#F5F7FB']}>
-              <View style={styles.contentSection}>
-                <View>
-                  <Text style={styles.routeTitle}>Popular</Text>
-                  <Text style={styles.routeTitle}>Routes</Text>
-                </View>
-                <View style={styles.routeWrapper}>
-                  {popularRoutes &&
-                    popularRoutes.map(item => {
-                      return (
-                        <RouteItem key={item?.id?.toString()} item={item} />
-                      );
-                    })}
-                </View>
-                <View style={commonStyle.marginVertical(10)}>
-                  <View style={styles.card}>
-                    <View style={commonStyle.rowSpaceBetween}>
-                      <View>
-                        <Text style={styles.cardTitle}>Track your flight</Text>
-                      </View>
-                      <View>
-                        <TouchableOpacity>
-                          <ArrowRightSvg />
-                        </TouchableOpacity>
-                      </View>
-                    </View>
-                    <View style={commonStyle.marginVertical(10)}>
+            <Animated.View
+              style={{transform: [{translateY: contentTranslateY}]}}>
+              <View>
+                <OfferSlider />
+              </View>
+              <LinearGradient
+                colors={['#F5F7FB', '#E2F2FF', '#E2F2FF', '#F5F7FB']}>
+                <View style={styles.contentSection}>
+                  <View>
+                    <Text style={styles.routeTitle}>Popular</Text>
+                    <Text style={styles.routeTitle}>Routes</Text>
+                  </View>
+                  <View style={styles.routeWrapper}>
+                    {popularRoutes &&
+                      popularRoutes.map(item => {
+                        return (
+                          <RouteItem key={item?.id?.toString()} item={item} />
+                        );
+                      })}
+                  </View>
+                  <View style={commonStyle.marginVertical(10)}>
+                    <View style={styles.card}>
                       <View style={commonStyle.rowSpaceBetween}>
                         <View>
-                          <Icon
-                            name={'primitive-dot'}
-                            type={'octicon'}
-                            size={30}
-                            color={'#F15922'}
-                          />
-                        </View>
-                        <View style={styles.divider} />
-                        <View>
-                          <View style={styles.outerCircle}>
-                            <View style={styles.circle}>
-                              <Icon
-                                name={'plane'}
-                                type={'font-awesome'}
-                                size={10}
-                                color={'white'}
-                              />
-                            </View>
-                          </View>
-                        </View>
-                        <View style={styles.divider} />
-                        <View>
-                          <Icon
-                            name={'location-pin'}
-                            type={'material-icon'}
-                            size={30}
-                            color={'#F15922'}
-                          />
-                        </View>
-                      </View>
-                    </View>
-                  </View>
-                </View>
-
-                <View style={commonStyle.marginVertical(15)}>
-                  <View style={styles.webView}>
-                    <View style={commonStyle.marginVertical(10)}>
-                      <TimaticSvg />
-                    </View>
-                    <View style={commonStyle.marginVertical(5)}>
-                      <Text style={styles.timaticSectionHelperText}>
-                        Timatic delivers airlines accurate information based on
-                        the passenger’s
-                      </Text>
-                    </View>
-                    <View style={styles.timaticFeatures}>
-                      <View style={styles.timaticFeatureSection}>
-                        <View>
-                          <TimaticFeature title="Nationality" />
-                          <View style={commonStyle.marginVertical(7.5)} />
-                          <TimaticFeature title="Destination" />
+                          <Text style={styles.cardTitle}>
+                            Track your flight
+                          </Text>
                         </View>
                         <View>
-                          <TimaticFeature title="Passport" />
-                          <View style={commonStyle.marginVertical(7.5)} />
-                          <TimaticFeature title="Transit Points" />
-                        </View>
-                        <View>
-                          <TimaticFeature title="Visas" />
-                        </View>
-                        <View style={commonStyle.justifyContent('flex-end')}>
-                          <TouchableOpacity
-                            onPress={() =>
-                              navigation.navigate('TimaticWebView')
-                            }>
+                          <TouchableOpacity>
                             <ArrowRightSvg />
                           </TouchableOpacity>
                         </View>
                       </View>
+                      <View style={commonStyle.marginVertical(10)}>
+                        <View style={commonStyle.rowSpaceBetween}>
+                          <View>
+                            <Icon
+                              name={'primitive-dot'}
+                              type={'octicon'}
+                              size={30}
+                              color={'#F15922'}
+                            />
+                          </View>
+                          <View style={styles.divider} />
+                          <View>
+                            <View style={styles.outerCircle}>
+                              <View style={styles.circle}>
+                                <Icon
+                                  name={'plane'}
+                                  type={'font-awesome'}
+                                  size={10}
+                                  color={'white'}
+                                />
+                              </View>
+                            </View>
+                          </View>
+                          <View style={styles.divider} />
+                          <View>
+                            <Icon
+                              name={'location-pin'}
+                              type={'material-icon'}
+                              size={30}
+                              color={'#F15922'}
+                            />
+                          </View>
+                        </View>
+                      </View>
+                    </View>
+                  </View>
+
+                  <View style={commonStyle.marginVertical(15)}>
+                    <View style={styles.webView}>
+                      <View style={commonStyle.marginVertical(10)}>
+                        <TimaticSvg />
+                      </View>
+                      <View style={commonStyle.marginVertical(5)}>
+                        <Text style={styles.timaticSectionHelperText}>
+                          Timatic delivers airlines accurate information based
+                          on the passenger’s
+                        </Text>
+                      </View>
+                      <View style={styles.timaticFeatures}>
+                        <View style={styles.timaticFeatureSection}>
+                          <View>
+                            <TimaticFeature title="Nationality" />
+                            <View style={commonStyle.marginVertical(7.5)} />
+                            <TimaticFeature title="Destination" />
+                          </View>
+                          <View>
+                            <TimaticFeature title="Passport" />
+                            <View style={commonStyle.marginVertical(7.5)} />
+                            <TimaticFeature title="Transit Points" />
+                          </View>
+                          <View>
+                            <TimaticFeature title="Visas" />
+                          </View>
+                          <View style={commonStyle.justifyContent('flex-end')}>
+                            <TouchableOpacity
+                              onPress={() =>
+                                navigation.navigate('TimaticWebView')
+                              }>
+                              <ArrowRightSvg />
+                            </TouchableOpacity>
+                          </View>
+                        </View>
+                      </View>
                     </View>
                   </View>
                 </View>
-              </View>
-            </LinearGradient>
+              </LinearGradient>
+            </Animated.View>
           </View>
         </View>
       </Animated.ScrollView>
