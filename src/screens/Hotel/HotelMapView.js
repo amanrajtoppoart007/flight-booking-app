@@ -15,14 +15,15 @@ import MenuSvg from '../../components/Svg/Hotel/Menu.svg';
 import ListSvg from '../../components/Svg/Hotel/List.svg';
 import Slider from '../../components/Hotel/MapView/Slider';
 import ShortFilter from '../../components/Hotel/SortFilter';
+import Font from '../../layout/Font';
 function HotelMapView({navigation}) {
   const [isFilterVisible, setIsFilterVisible] = useState(false);
   return (
     <SafeAreaView style={commonStyle.container}>
-      <View style={[commonStyle.wrapper, {flex: 1}]}>
-        <View style={[commonStyle.content, {flex: 1}]}>
+      <View style={[commonStyle.wrapper, commonStyle.flex(1)]}>
+        <View style={[commonStyle.content, commonStyle.flex(1)]}>
           <MapView
-            provider={PROVIDER_GOOGLE} // remove if not using Google Maps
+            provider={PROVIDER_GOOGLE}
             style={styles.map}
             mapType={Platform.OS === 'ios' ? 'mutedStandard' : 'standard'}
             region={{
@@ -50,7 +51,7 @@ function HotelMapView({navigation}) {
               <View>
                 <TouchableOpacity
                   onPress={() => navigation.replace('SearchResult')}>
-                  <Text>List View</Text>
+                  <Text style={styles.viewToggleText}>List View</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -68,6 +69,12 @@ function HotelMapView({navigation}) {
 const styles = StyleSheet.create({
   map: {
     ...StyleSheet.absoluteFillObject,
+  },
+
+  viewToggleText: {
+    fontFamily: Font.AvenirHeavy,
+    fontSize: 12,
+    color: '#F15922',
   },
 
   menuButton: {

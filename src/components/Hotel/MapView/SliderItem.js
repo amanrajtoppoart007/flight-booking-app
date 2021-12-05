@@ -15,13 +15,13 @@ function SliderItem({item}) {
   return (
     <View style={styles.card}>
       <View style={styles.cardBody}>
-        <View style={{width: '30%'}}>
+        <View style={commonStyle.width('30%')}>
           <Image style={styles.image} source={item?.image} />
         </View>
-        <View style={{width: '70%'}}>
+        <View style={commonStyle.width('70%')}>
           <View style={commonStyle.rowFlexStart}>
             <View>
-              <Text>W Doha</Text>
+              <Text style={styles.hotelName}>W Doha</Text>
             </View>
             <View style={commonStyle.marginHorizontal(5)}>
               <StarRating rating={4} size={15} />
@@ -32,7 +32,7 @@ function SliderItem({item}) {
               <MapPin />
             </View>
             <View style={commonStyle.marginHorizontal(5)}>
-              <Text>West Bay, Doha, QA</Text>
+              <Text style={styles.locationText}>West Bay, Doha, QA</Text>
             </View>
           </View>
           <View style={[commonStyle.rowSpaceBetween]}>
@@ -56,7 +56,7 @@ function SliderItem({item}) {
                 </View>
               </View>
               <View>
-                <Text>Bed & Breakfast</Text>
+                <Text style={styles.amenitiesText}>Bed & Breakfast</Text>
               </View>
             </View>
             <View>
@@ -66,14 +66,17 @@ function SliderItem({item}) {
                 </View>
                 <View style={commonStyle.center}>
                   <Text style={commonStyle.rowCenter}>
-                    <Text>QAR </Text>
-                    <Text style={styles.price}>4790 </Text>
+                    <Text style={styles.currency}>QAR </Text>
+                    <Text style={[styles.price, commonStyle.fontSize(12)]}>
+                      4790
+                    </Text>
                   </Text>
+                  <View style={styles.cross} />
                 </View>
                 <View>
                   <Text style={commonStyle.rowCenter}>
-                    <Text>QAR </Text>
-                    <Text style={styles.discountedPrice}>3395 </Text>
+                    <Text style={styles.currency}>QAR </Text>
+                    <Text style={styles.price}>3395 </Text>
                   </Text>
                 </View>
               </View>
@@ -86,11 +89,11 @@ function SliderItem({item}) {
 }
 const styles = StyleSheet.create({
   card: {
-    width: widthPercentageToDP('98%'),
+    width: widthPercentageToDP('100%'),
     backgroundColor: Colors.white,
     height: 146,
     justifyContent: 'center',
-    marginHorizontal: 4,
+    paddingHorizontal: 8,
   },
   cardBody: {
     flexDirection: 'row',
@@ -116,20 +119,44 @@ const styles = StyleSheet.create({
     backgroundColor: '#FF2D55',
     padding: 2,
   },
+  hotelName: {
+    fontFamily: Font.AvenirHeavy,
+    fontSize: 14,
+    color: '#242A37',
+  },
+  locationText: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 12,
+    color: '#6C6C6C',
+  },
+  amenitiesText: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 12,
+    color: '#242A37',
+  },
   offerText: {
     fontFamily: Font.AvenirHeavy,
     fontSize: 12,
     color: Colors.white,
   },
-  price: {
-    fontFamily: Font.AvenirBlack,
+  currency: {
+    fontFamily: Font.AvenirMedium,
     fontSize: 12,
-    color: '#0B151F',
+    color: '#6C6C6C',
   },
-  discountedPrice: {
+  price: {
     fontFamily: Font.AvenirBlack,
     fontSize: 14,
     color: '#0B151F',
+  },
+  cross: {
+    position: 'absolute',
+    borderColor: '#FF2D55',
+    borderBottomWidth: 2,
+    bottom: 0,
+    width: '95%',
+    borderRadius: 8,
+    transform: [{rotateZ: '170deg'}, {translateY: 10}],
   },
 });
 

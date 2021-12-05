@@ -17,7 +17,7 @@ import commonStyle from '../../layout/Style';
 import {LinearProgress} from 'react-native-elements';
 import ReviewCard from '../../components/Hotel/ReviewCard';
 function GuestReviews({navigation}) {
-  const [maxVisilbeItemCount, setMaxVisibleItemCount] = useState(3);
+  const [maxVisibleItemCount, setMaxVisibleItemCount] = useState(3);
   const [reviews] = useState([
     {
       name: 'Mohammad',
@@ -171,21 +171,21 @@ function GuestReviews({navigation}) {
               <View>
                 {reviews &&
                   reviews.map((item, index) => {
-                    if (index + 1 <= maxVisilbeItemCount) {
+                    if (index + 1 <= maxVisibleItemCount) {
                       return <ReviewCard item={item} />;
                     }
                   })}
               </View>
               <View style={styles.divider} />
               <View style={[styles.rowCenter, commonStyle.marginVertical(10)]}>
-                {maxVisilbeItemCount > reviews?.length && (
+                {maxVisibleItemCount > reviews?.length && (
                   <TouchableOpacity onPress={() => setMaxVisibleItemCount(3)}>
                     <Text style={styles.readAllReviewsText}>
                       Show less reviews
                     </Text>
                   </TouchableOpacity>
                 )}
-                {maxVisilbeItemCount < reviews?.length && (
+                {maxVisibleItemCount < reviews?.length && (
                   <TouchableOpacity
                     onPress={() => setMaxVisibleItemCount(reviews?.length + 1)}>
                     <Text style={styles.readAllReviewsText}>

@@ -11,6 +11,11 @@ const commonStyle = StyleSheet.create({
       height,
     };
   },
+  fontSize(fontSize) {
+    return {
+      fontSize,
+    };
+  },
   container: {
     flex: 1,
     backgroundColor: Colors.background,
