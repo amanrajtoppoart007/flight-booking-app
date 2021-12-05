@@ -226,17 +226,11 @@ const styles = StyleSheet.create({
       borderBottomColor: '#163D68',
     };
   },
-  menuIconStyle: {
-    fontSize: 20,
-    color: Colors.black,
-  },
-  menuIconContainerStyle: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+
   card: {},
   title: {
-    fontSize: 16,
+    fontFamily: Font.AvenirMedium,
+    fontSize: 14,
     color: '#0B151F',
   },
 });
