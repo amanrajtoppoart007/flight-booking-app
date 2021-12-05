@@ -63,7 +63,6 @@ function SearchHistorySlider() {
 const styles = StyleSheet.create({
   card: {
     width: wp('44%'),
-    height: 60,
     borderRadius: 8,
     borderWidth: 1,
     borderColor: 'rgba(206,207,208,0.76)',
