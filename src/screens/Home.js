@@ -6,6 +6,9 @@ import {
   Text,
   TouchableOpacity,
   Animated,
+  Platform,
+  UIManager,
+  LayoutAnimation,
 } from 'react-native';
 import commonStyle from '../layout/Style';
 import Font from '../layout/Font';
@@ -23,6 +26,13 @@ import CustomStatusBar from '../components/CustomStatusBar';
 import StickyMenu from '../components/Home/StickyMenu';
 import Header from '../components/Home/Header';
 import {heightPercentageToDP} from 'react-native-responsive-screen';
+
+if (
+  Platform.OS === 'android' &&
+  UIManager.setLayoutAnimationEnabledExperimental
+) {
+  UIManager.setLayoutAnimationEnabledExperimental(true);
+}
 function Home({navigation}) {
   const [popularRoutes] = useState([
     {
@@ -71,13 +81,14 @@ function Home({navigation}) {
     outputRange: [0, -headerHeight],
   });
 
-  const chipSectionScaleY = headerScrollYClamped.interpolate({
+  const chipSectionScaleY = chipSectionScrollYClamped.interpolate({
     inputRange: [0, headerHeight],
     outputRange: [0, 1],
   });
 
   const navbarTranslateYNumber = useRef();
   const headerTranslateYNumber = useRef();
+  const chipSectionTranslateYNumber = useRef();
 
   navBarTranslateY.addListener(({value}) => {
     navbarTranslateYNumber.current = value;
@@ -85,6 +96,9 @@ function Home({navigation}) {
 
   headerTranslateY.addListener(({value}) => {
     headerTranslateYNumber.current = value;
+  });
+  chipSectionScaleY.addListener(({value}) => {
+    chipSectionTranslateYNumber.current = value;
   });
 
   const handleScroll = Animated.event(
@@ -124,9 +138,13 @@ function Home({navigation}) {
               <Header />
             </Animated.View>
             <View style={styles.chipSectionWrapper}>
-              <View style={styles.contentSection}>
+              <Animated.View
+                style={[
+                  styles.contentSection,
+                  {transform: [{scaleY: chipSectionScaleY}]},
+                ]}>
                 <ChipSection />
-              </View>
+              </Animated.View>
             </View>
 
             <View>
