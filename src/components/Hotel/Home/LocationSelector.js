@@ -6,6 +6,9 @@ import SearchHistorySlider from './SearchHistorySlider';
 import commonStyle from '../../../layout/Style';
 import Font from '../../../layout/Font';
 
+import MapPinSvg from '../../Svg/Hotel/MapPin.svg';
+import HotelIconSvg from '../../Svg/Hotel/HotelIcon.svg';
+
 function LocationSelector({
   isLocationSelectorVisible,
   setIsLocationSelectorVisible,
@@ -72,17 +75,12 @@ function LocationSelector({
                 onPress={() => setIsLocationSelectorVisible(false)}
                 name={'ios-arrow-back-sharp'}
                 type={'ionicon'}
-                size={35}
+                size={18}
                 color={Colors.black}
               />
             </View>
-            <View>
-              <Icon
-                name={'location-pin'}
-                type={'material-icon'}
-                size={35}
-                color={Colors.lightText}
-              />
+            <View style={commonStyle.marginHorizontal(5)}>
+              <MapPinSvg />
             </View>
             <View>
               <TextInput
@@ -119,14 +117,9 @@ function LocationSelector({
                         key={item?.id?.toString()}
                         style={styles.locationCard}>
                         <View>
-                          <Icon
-                            name={'location-pin'}
-                            type={'material-icon'}
-                            size={35}
-                            color={Colors.lightText}
-                          />
+                          <MapPinSvg />
                         </View>
-                        <View style={commonStyle.marginHorizontal(5)}>
+                        <View style={commonStyle.marginHorizontal(8)}>
                           <Text style={styles.locationText}>{item?.name}</Text>
                         </View>
                       </View>
@@ -149,14 +142,9 @@ function LocationSelector({
                         key={item?.id?.toString()}
                         style={styles.locationCard}>
                         <View>
-                          <Icon
-                            name={'building'}
-                            type={'font-awesome-5'}
-                            size={25}
-                            color={Colors.lightText}
-                          />
+                          <HotelIconSvg />
                         </View>
-                        <View style={commonStyle.marginHorizontal(5)}>
+                        <View style={commonStyle.marginHorizontal(8)}>
                           <Text style={styles.locationText}>{item?.name}</Text>
                         </View>
                       </View>
@@ -198,6 +186,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     borderRadius: 6,
+    paddingHorizontal: 5,
   },
   searchInputStyle: {width: 280, height: 60},
   searchInputTextStyle: {
