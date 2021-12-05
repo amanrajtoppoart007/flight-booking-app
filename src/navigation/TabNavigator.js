@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
   divider(isFocused) {
     return {
       borderWidth: 2,
-      borderColor: isFocused ? '#1D8CCC' : 'white',
+      borderColor: isFocused ? '#1D8CCC' : 'transparent',
       width: 30,
     };
   },
