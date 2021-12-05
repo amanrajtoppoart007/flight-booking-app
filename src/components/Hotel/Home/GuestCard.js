@@ -7,8 +7,7 @@ import Font from '../../../layout/Font';
 import Colors from '../../../layout/Colors';
 import {Icon} from 'react-native-elements';
 
-const Button = () => {
-  const [count, setCount] = useState(0);
+const Button = ({count, setCount}) => {
   return (
     <View style={buttonStyle.card}>
       <View>
@@ -37,7 +36,40 @@ const Button = () => {
 };
 
 const GuestCard = ({item}) => {
+  const [totalAdults, setTotalAdults] = useState(0);
+  const [totalChildren, setTotalChildren] = useState(0);
   const [ageRange] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
+
+  const AddChildAgeSelectionBox = () => {
+    let rows = [];
+    for (let i = 0; i < totalChildren; i++) {
+      rows.push(<ChildSectionBox key={i} />);
+    }
+    return <View style={styles.selectBoxSection}>{rows}</View>;
+  };
+
+  const ChildSectionBox = () => {
+    return (
+      <View>
+        <SelectDropdown
+          defaultButtonText={'Select Age'}
+          buttonStyle={styles.dropDownButtonStyle}
+          buttonTextStyle={styles.dropDownButtonTextStyle}
+          dropdownIconPosition={'right'}
+          data={ageRange}
+          onSelect={(selectedItem, index) => {
+            console.log(selectedItem, index);
+          }}
+          buttonTextAfterSelection={selectedItem => {
+            return selectedItem + ' Years';
+          }}
+          rowTextForSelection={row => {
+            return row + ' Years';
+          }}
+        />
+      </View>
+    );
+  };
 
   return (
     <View style={styles.card}>
@@ -60,7 +92,7 @@ const GuestCard = ({item}) => {
             <Text style={styles.ageSelectorHelperText}>12 yrs & above</Text>
           </View>
           <View>
-            <Button />
+            <Button count={totalAdults} setCount={setTotalAdults} />
           </View>
         </View>
         <View style={styles.rowSpaceBetween}>
@@ -69,59 +101,24 @@ const GuestCard = ({item}) => {
             <Text style={styles.ageSelectorHelperText}>2-12 yrs</Text>
           </View>
           <View>
-            <Button />
+            <Button count={totalChildren} setCount={setTotalChildren} />
           </View>
         </View>
       </View>
 
-      <View style={commonStyle.marginVertical(10)}>
-        <View style={styles.selectSection}>
-          <View>
-            <Text style={styles.pickerHelper}>Specify each child’s age</Text>
-          </View>
-          <View>
-            <View style={styles.selectBoxSection}>
-              <View>
-                <SelectDropdown
-                  defaultButtonText={'Select Age'}
-                  buttonStyle={styles.dropDownButtonStyle}
-                  buttonTextStyle={styles.dropDownButtonTextStyle}
-                  dropdownIconPosition={'right'}
-                  data={ageRange}
-                  onSelect={(selectedItem, index) => {
-                    console.log(selectedItem, index);
-                  }}
-                  buttonTextAfterSelection={selectedItem => {
-                    return selectedItem + ' Years';
-                  }}
-                  rowTextForSelection={row => {
-                    return row + ' Years';
-                  }}
-                />
-              </View>
-              <View>
-                <SelectDropdown
-                  defaultButtonText={'Select Age'}
-                  buttonStyle={styles.dropDownButtonStyle}
-                  buttonTextStyle={styles.dropDownButtonTextStyle}
-                  dropdownIconPosition={'right'}
-                  data={ageRange}
-                  onSelect={(selectedItem, index) => {
-                    console.log(selectedItem, index);
-                  }}
-                  buttonTextAfterSelection={selectedItem => {
-                    return selectedItem + ' Years';
-                  }}
-                  rowTextForSelection={rowText => {
-                    return rowText + ' Years';
-                  }}
-                />
-              </View>
+      {totalChildren > 0 && (
+        <View style={commonStyle.marginVertical(10)}>
+          <View style={styles.selectSection}>
+            <View>
+              <Text style={styles.pickerHelper}>Specify each child’s age</Text>
+            </View>
+            <View>
+              <View>{<AddChildAgeSelectionBox />}</View>
             </View>
           </View>
+          <View style={styles.divider} />
         </View>
-        <View style={styles.divider} />
-      </View>
+      )}
     </View>
   );
 };
@@ -134,6 +131,7 @@ const styles = StyleSheet.create({
   },
   selectBoxSection: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingVertical: 10,
@@ -175,8 +173,6 @@ const styles = StyleSheet.create({
     marginVertical: 8,
   },
   selectSection: {
-    width: 345,
-    height: 111,
     borderRadius: 6,
     backgroundColor: '#F5F5F5',
     padding: 15,
@@ -188,6 +184,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 0.5,
     borderColor: '#FFF',
+    marginVertical: 2.5,
   },
   dropDownButtonTextStyle: {
     fontSize: 18,
