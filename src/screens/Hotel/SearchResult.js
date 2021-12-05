@@ -17,6 +17,7 @@ import ResultItem from '../../components/Hotel/Result/ResultItem';
 import commonStyle from '../../layout/Style';
 import SortFilter from '../../components/Hotel/SortFilter';
 import Font from '../../layout/Font';
+import mapImg from '../../assets/images/hotel/map.png';
 function SearchResult({navigation}) {
   const [shortVisible, setShortVisible] = useState(false);
   const result = [
@@ -188,7 +189,7 @@ function SearchResult({navigation}) {
       <View style={styles.navigationButtonWrapper}>
         <ImageBackground
           resizeMode={'contain'}
-          source={require('../../assets/images/hotel/map.png')}
+          source={mapImg}
           style={styles.navigationButton}>
           <TouchableOpacity
             onPress={() => navigation.replace('HotelMapView')}

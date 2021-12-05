@@ -6,7 +6,7 @@ import StarRating from '../../StarRating';
 import {Icon} from 'react-native-elements';
 import Font from '../../../layout/Font';
 import commonStyle from '../../../layout/Style';
-import {widthPercentageToDP} from 'react-native-responsive-screen';
+import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import {useNavigation} from '@react-navigation/native';
 
 function ResultItem() {
@@ -90,11 +90,10 @@ function ResultItem() {
 }
 const styles = StyleSheet.create({
   card: {
-    width: widthPercentageToDP('98%'),
+    width: wp('100%'),
     backgroundColor: Colors.white,
-    borderWidth: 0.1,
+    borderWidth: StyleSheet.hairlineWidth,
     borderColor: Colors.border,
-    borderRadius: 6,
     marginVertical: 10,
     padding: 10,
     paddingHorizontal: 5,
@@ -178,6 +177,7 @@ const styles = StyleSheet.create({
     color: '#6C6C6C',
   },
   days: {
+    fontFamily: Font.AvenirMedium,
     fontSize: 12,
     color: '#6C6C6C',
   },

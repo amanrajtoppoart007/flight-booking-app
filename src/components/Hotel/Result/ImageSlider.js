@@ -7,6 +7,7 @@ import PoolSvg from '../../Svg/Hotel/Amenities/Pool.svg';
 import GymSvg from '../../Svg/Hotel/Amenities/Gym.svg';
 import MealSvg from '../../Svg/Hotel/Amenities/Meal.svg';
 import FlightSvg from '../../Svg/Hotel/Amenities/Flight.svg';
+import Font from '../../../layout/Font';
 function ImageSlider() {
   const images = [
     {
@@ -122,14 +123,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   ratingCountText: {
+    fontFamily: Font.AvenirBlack,
     fontSize: 11,
     color: '#1DAD81',
-    fontWeight: 'bold',
   },
   ratingText: {
+    fontFamily: Font.AvenirMedium,
     fontSize: 11,
     color: Colors.lightText,
-    fontWeight: 'bold',
   },
 });
 

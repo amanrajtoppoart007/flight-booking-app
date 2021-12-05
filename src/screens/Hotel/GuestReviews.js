@@ -1,67 +1,118 @@
-import React from 'react';
-import {SafeAreaView, StyleSheet, Text, View, ScrollView} from 'react-native';
+import React, {useState} from 'react';
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  Platform,
+  TouchableOpacity,
+} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import Font from '../../layout/Font';
 import Colors from '../../layout/Colors';
 import CustomStatusBar from '../../components/CustomStatusBar';
-import Plane from '../../components/Svg/Hotel/Plane.svg';
 import {Icon} from 'react-native-elements';
-import {useNavigation} from '@react-navigation/native';
 import commonStyle from '../../layout/Style';
 import {LinearProgress} from 'react-native-elements';
-function GuestReviews() {
-  const navigation = useNavigation();
+import ReviewCard from '../../components/Hotel/ReviewCard';
+function GuestReviews({navigation}) {
+  const [maxVisilbeItemCount, setMaxVisibleItemCount] = useState(3);
+  const [reviews] = useState([
+    {
+      name: 'Mohammad',
+      date: 'Thu,28 Jun,2021',
+      rating: '5.0',
+      message:
+        'Wow!! So much more than I could have expected. It was a girls weekend to celebrate 2 friends that have birthday’s 5 days apart and when we walked into the hotel, the staff was super kind.',
+    },
+    {
+      name: 'Rashid',
+      date: 'Thu,30 May,2021',
+      rating: '5.0',
+      message:
+        'W hotel in Doha was amazing from the beginning of the trip until the end Hamza and the staff treated me so well. Definitely my favorite hotel in Doha',
+    },
+    {
+      name: 'Balushi',
+      date: 'Fri, 21 Aug, 2020',
+      rating: '5.0',
+      message:
+        'Great place to stay and stuff we’re very friendly and professional excellent service from front desk girl name rabeb an excellent asset for W hotel. She convinced me to stay in this hotel I was planning to stay one night some other hotel in different part of the town',
+    },
+    {
+      name: 'Mohammad',
+      date: 'Thu,28 Jun,2021',
+      rating: '5.0',
+      message:
+        'Wow!! So much more than I could have expected. It was a girls weekend to celebrate 2 friends that have birthday’s 5 days apart and when we walked into the hotel, the staff was super kind.',
+    },
+    {
+      name: 'Rashid',
+      date: 'Thu,30 May,2021',
+      rating: '5.0',
+      message:
+        'W hotel in Doha was amazing from the beginning of the trip until the end Hamza and the staff treated me so well. Definitely my favorite hotel in Doha',
+    },
+    {
+      name: 'Balushi',
+      date: 'Fri, 21 Aug, 2020',
+      rating: '5.0',
+      message:
+        'Great place to stay and stuff we’re very friendly and professional excellent service from front desk girl name rabeb an excellent asset for W hotel. She convinced me to stay in this hotel I was planning to stay one night some other hotel in different part of the town',
+    },
+  ]);
   return (
     <SafeAreaView style={styles.container}>
-      <CustomStatusBar backgroundColor={'#1D8CCC'} />
-      <ScrollView>
-        <View style={styles.wrapper}>
-          <View style={styles.Header}>
-            <Text style={styles.textBig}>Guest Reviews</Text>
-            <Icon
-              onPress={() => navigation.goBack()}
-              name={'close'}
-              type={'antdesign'}
-              size={22}
-              color={'black'}
-            />
-          </View>
-          <View style={styles.content}>
+      <CustomStatusBar backgroundColor={Colors.primary} />
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={commonStyle.wrapper}>
+          <View style={commonStyle.content}>
+            <View style={styles.header}>
+              <Text style={styles.pageTitle}>Guest Reviews</Text>
+              <Icon
+                onPress={() => navigation.goBack()}
+                name={'close'}
+                type={'antdesign'}
+                size={22}
+                color={'black'}
+              />
+            </View>
             <View style={styles.contentContainer}>
-              <View style={[commonStyle.rowFlexStart, commonStyle.margin(12)]}>
-                <Text style={styles.greenBigText}>4.5/5</Text>
+              <View style={styles.ratingHeaderSection}>
+                <Text style={styles.ratingText}>4.5/5</Text>
                 <View
-                  style={[
-                    commonStyle.rowSpaceBetween,
-                    {flex: 1},
-                    styles.marginLeft(10),
-                  ]}>
-                  <Text style={styles.blueBigText}>Excellent</Text>
-                  <Text style={styles.textLight}>312 verified review</Text>
+                  style={[commonStyle.rowSpaceBetween, commonStyle.flex(1)]}>
+                  <View style={commonStyle.marginHorizontal(8)}>
+                    <Text style={styles.airBnbRatingText}>Excellent</Text>
+                  </View>
+                  <View>
+                    <Text style={styles.verifiedReviewsText}>
+                      312 verified review
+                    </Text>
+                  </View>
                 </View>
               </View>
-              <View style={commonStyle.marginHorizontal(12)}>
-                <Text style={styles.textNormal}>Cleanliness</Text>
+              <View>
+                <Text style={styles.ratingParameterText}>Cleanliness</Text>
                 <View
                   style={[
                     commonStyle.rowSpaceBetween,
                     commonStyle.marginVertical(5),
+                    commonStyle.flex(1),
                   ]}>
                   <LinearProgress
                     trackColor="#DDDDDD"
                     color="#1DAD81"
                     variant="determinate"
                     value={4.7 / 5}
-                    style={{
-                      width: '89%',
-                      borderRadius: 5,
-                    }}
+                    style={styles.linearProgressBar}
                   />
-                  <Text style={styles.greenText}>4.7/5</Text>
+                  <Text style={styles.progressBarRatingText}>4.7/5</Text>
                 </View>
               </View>
-              <View style={commonStyle.marginHorizontal(12)}>
-                <Text style={styles.textNormal}>Staff & service</Text>
+              <View>
+                <Text style={styles.ratingParameterText}>Staff & service</Text>
                 <View
                   style={[
                     commonStyle.rowSpaceBetween,
@@ -72,16 +123,13 @@ function GuestReviews() {
                     color="#1DAD81"
                     variant="determinate"
                     value={4.6 / 5}
-                    style={{
-                      width: '89%',
-                      borderRadius: 5,
-                    }}
+                    style={styles.linearProgressBar}
                   />
-                  <Text style={styles.greenText}>4.6/5</Text>
+                  <Text style={styles.progressBarRatingText}>4.6/5</Text>
                 </View>
               </View>
-              <View style={commonStyle.marginHorizontal(12)}>
-                <Text style={styles.textNormal}>Amenities</Text>
+              <View>
+                <Text style={styles.ratingParameterText}>Amenities</Text>
                 <View
                   style={[
                     commonStyle.rowSpaceBetween,
@@ -92,16 +140,13 @@ function GuestReviews() {
                     color="#1DAD81"
                     variant="determinate"
                     value={4.7 / 5}
-                    style={{
-                      width: '89%',
-                      borderRadius: 5,
-                    }}
+                    style={styles.linearProgressBar}
                   />
-                  <Text style={styles.greenText}>4.7/5</Text>
+                  <Text style={styles.progressBarRatingText}>4.7/5</Text>
                 </View>
               </View>
-              <View style={commonStyle.marginHorizontal(12)}>
-                <Text style={styles.textNormal}>
+              <View>
+                <Text style={styles.ratingParameterText}>
                   Property conditions & facilities
                 </Text>
                 <View
@@ -114,47 +159,40 @@ function GuestReviews() {
                     color="#1DAD81"
                     variant="determinate"
                     value={4.6 / 5}
-                    style={{
-                      width: '89%',
-                      borderRadius: 5,
-                    }}
+                    style={styles.linearProgressBar}
                   />
-                  <Text style={styles.greenText}>4.6/5</Text>
+                  <Text style={styles.progressBarRatingText}>4.6/5</Text>
                 </View>
               </View>
               <View style={styles.divider} />
-              <Text
-                style={[
-                  styles.textBig,
-                  styles.fontSize(16),
-                  commonStyle.marginHorizontal(12),
-                  commonStyle.marginBottom(10),
-                ]}>
+              <Text style={styles.reviewsTitleText}>
                 Reviews from travellers
               </Text>
-              <Card
-                name="Mohammed"
-                rating="5.0"
-                date="Thu, 28 Jan, 2021"
-                message="Wow!! So much more than I could have expected. It was a girls weekend to celebrate 2 friends that have birthday’s 5 days apart and when we walked into the hotel, the staff was super kind."
-              />
-              <Card
-                name="Verified traveler"
-                rating="5.0"
-                date="Fri, 21 Aug, 2020"
-                message="W hotel in Doha was amazing from the beginning of the trip until the end Hamza and the staff treated me so well. Definitely my favorite hotel in Doha."
-              />
-              <Card
-                name="Balushi"
-                rating="5.0"
-                date="Fri, 21 Aug, 2020"
-                message="Great place to stay and stuff we’re very friendly and professional excellent service from front desk girl name rabeb an excellent asset for W hotel. She convinced me to stay in this hotel I was planning to stay one night some other hotel in different part of the town."
-              />
+              <View>
+                {reviews &&
+                  reviews.map((item, index) => {
+                    if (index + 1 <= maxVisilbeItemCount) {
+                      return <ReviewCard item={item} />;
+                    }
+                  })}
+              </View>
               <View style={styles.divider} />
-              <View style={styles.rowCenter}>
-                <Text style={[styles.blueBigText, styles.fontSize(14)]}>
-                  Read all reviews
-                </Text>
+              <View style={[styles.rowCenter, commonStyle.marginVertical(10)]}>
+                {maxVisilbeItemCount > reviews?.length && (
+                  <TouchableOpacity onPress={() => setMaxVisibleItemCount(3)}>
+                    <Text style={styles.readAllReviewsText}>
+                      Show less reviews
+                    </Text>
+                  </TouchableOpacity>
+                )}
+                {maxVisilbeItemCount < reviews?.length && (
+                  <TouchableOpacity
+                    onPress={() => setMaxVisibleItemCount(reviews?.length + 1)}>
+                    <Text style={styles.readAllReviewsText}>
+                      Read all reviews
+                    </Text>
+                  </TouchableOpacity>
+                )}
               </View>
             </View>
           </View>
@@ -164,58 +202,44 @@ function GuestReviews() {
   );
 }
 
-function Card({name, date, rating, message}) {
-  return (
-    <View style={styles.card}>
-      <View style={commonStyle.rowSpaceBetween}>
-        <View style={commonStyle.rowFlexStart}>
-          <Text style={styles.blueText}>{name} |</Text>
-          <Plane style={commonStyle.marginHorizontal(5)} />
-          <Text style={styles.textLight}>Expedia</Text>
-        </View>
-        <Text style={styles.textLight}>{date}</Text>
-      </View>
-      <View style={[commonStyle.rowFlexStart, commonStyle.marginBottom(5)]}>
-        <Text
-          style={[
-            styles.greenText,
-            styles.marginRight(5),
-            styles.fontSize(14),
-          ]}>
-          {rating}
-        </Text>
-        <Text style={[styles.blueText, styles.fontSize(14)]}> Excellent</Text>
-      </View>
-      <Text style={styles.textNormalSmall}>
-        {message}
-        <Text style={styles.textPrimary}> Read More</Text>
-      </Text>
-    </View>
-  );
-}
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F5F5F5',
   },
-  margin: {
-    marginVertical: 5,
-  },
-  Header: {
+  header: {
     width: '100%',
     height: hp('10%'),
     backgroundColor: Colors.white,
-    elevation: 10,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 10,
+    paddingHorizontal: 12,
     justifyContent: 'space-between',
+    ...Platform.select({
+      android: {
+        elevation: 10,
+      },
+      ios: {
+        borderBottomWidth: 2,
+        borderBottomColor: '#DDDDDD',
+      },
+    }),
+  },
+  pageTitle: {
+    fontFamily: Font.AvenirHeavy,
+    fontSize: 18,
+    color: '#242A37',
   },
   contentContainer: {
     flex: 1,
     marginTop: 15,
     backgroundColor: Colors.white,
+    paddingHorizontal: 12,
+  },
+  ratingHeaderSection: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   continueButton: {
     padding: 8,
@@ -226,34 +250,27 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  fontSize(t) {
-    return {
-      fontSize: t,
-    };
+  reviewsTitleText: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 16,
+    color: '#000000',
   },
+
   card: {
     backgroundColor: '#F5F5F5',
     padding: 10,
     borderRadius: 8,
     elevation: 5,
-    margin: 12,
+    marginVertical: 12,
   },
   divider: {
-    borderWidth: 0.5,
+    borderWidth: StyleSheet.hairlineWidth,
     borderColor: '#D9D9D9',
     marginVertical: 12,
     marginHorizontal: 12,
   },
-  wrapper: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   content: {
     width: '100%',
-  },
-  canvas: {
-    width: '100%',
-    height: hp('20%'),
   },
   bottomCanvas: {
     width: '100%',
@@ -272,122 +289,80 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     paddingHorizontal: 20,
   },
-  Input: {
-    borderBottomColor: '#D9D9D9',
-    borderBottomWidth: 1,
-    fontFamily: Font.AvenirMedium,
-    fontSize: 14,
-    color: Colors.black,
-    width: '100%',
+
+  linearProgressBar: {
+    width: '90%',
+    borderRadius: 5,
   },
   title: {
     fontSize: 18,
     color: Colors.white,
     fontFamily: Font.AvenirMedium,
   },
-  textNormal: {
+  ratingParameterText: {
+    fontFamily: Font.AvenirMedium,
     fontSize: 12,
-    color: Colors.black,
-    fontFamily: Font.AvenirRegular,
+    color: '#242A37',
   },
-  textNormalSmall: {
+  commentText: {
+    fontFamily: Font.AvenirMedium,
     fontSize: 12,
-    color: Colors.black,
-    fontFamily: Font.AvenirRegular,
+    color: '#242A37',
   },
-  textNormalLight: {
+  ratingParameterTextLight: {
     fontSize: 14,
     color: Colors.lightText,
     fontFamily: Font.AvenirRegular,
   },
-  textBig: {
-    fontSize: 18,
-    color: Colors.black,
-    fontFamily: Font.AvenirMedium,
-  },
-  textBigWhite: {
-    fontSize: 16,
-    color: Colors.white,
-    fontFamily: Font.AvenirMedium,
-  },
-  textPrimary: {
+  readMoreButtonText: {
+    fontFamily: Font.AvenirHeavy,
     fontSize: 12,
-    color: Colors.primary,
-    fontFamily: Font.AvenirRegular,
+    color: '#1D8CCC',
   },
   ButtonText: {
     fontSize: 12,
     color: Colors.secondary,
     fontFamily: Font.AvenirRegular,
   },
-  ContactContainer: {
-    paddingVertical: 10,
-    marginBottom: 10,
-    backgroundColor: Colors.background,
+  verifiedReviewsText: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 12,
+    color: '#6C6C6C',
+  },
+  date: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 12,
+    color: '#6C6C6C',
   },
   textLight: {
-    fontSize: 12,
-    color: Colors.lightText,
-    fontFamily: Font.AvenirLight,
-  },
-  greenText: {
-    fontSize: 12,
-    fontFamily: Font.AvenirLight,
-    color: '#1DAD81',
-  },
-  greenBigText: {
-    fontSize: 24,
     fontFamily: Font.AvenirMedium,
+    fontSize: 12,
+    color: '#6C6C6C',
+  },
+  progressBarRatingText: {
+    fontSize: 12,
+    fontFamily: Font.AvenirHeavy,
     color: '#1DAD81',
   },
-  blueText: {
+  ratingText: {
+    fontFamily: Font.AvenirHeavy,
+    fontSize: 24,
+    color: '#1DAD81',
+  },
+  userName: {
     fontSize: 12,
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirHeavy,
     color: '#26698E',
   },
-  blueBigText: {
+  airBnbRatingText: {
+    fontFamily: Font.AvenirHeavy,
     fontSize: 16,
-    fontFamily: Font.AvenirRegular,
     color: '#26698E',
   },
-  topContainer: {
-    paddingVertical: 5,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 10,
-    backgroundColor: Colors.background,
-  },
-  LoginContainer: {
-    paddingVertical: 10,
-    marginHorizontal: 5,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-evenly',
-    marginBottom: 10,
-    backgroundColor: Colors.background,
-    borderRadius: 8,
-  },
-  marginRight(t) {
-    return {
-      marginRight: t,
-    };
-  },
-  marginLeft(t) {
-    return {
-      marginLeft: t,
-    };
-  },
-  rowWrapper: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    marginHorizontal: 10,
-  },
-  rowFlexStart: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
+  readAllReviewsText: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 14,
+    color: '#1D8CCC',
   },
 });
 export default GuestReviews;
