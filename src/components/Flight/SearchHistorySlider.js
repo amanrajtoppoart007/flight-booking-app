@@ -3,6 +3,7 @@ import {StyleSheet, View, FlatList, Text} from 'react-native';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import Colors from '../../layout/Colors';
 import {Icon} from 'react-native-elements';
+import Font from '../../layout/Font';
 
 function SearchHistorySlider() {
   const list = [
@@ -70,21 +71,21 @@ function SearchHistorySlider() {
 const styles = StyleSheet.create({
   card: {
     width: 120,
-    height: 60,
     borderRadius: 8,
-    borderWidth: 2,
-    borderColor: 'gray',
+    borderWidth: 1,
+    borderColor: 'rgba(22, 61, 104, 0.3)',
     padding: 5,
     marginHorizontal: 5,
+    justifyContent: 'center',
   },
   title: {
+    fontFamily: Font.AvenirMedium,
     fontSize: 14,
     color: Colors.black,
   },
   date: {
     fontSize: 12,
-    color: Colors.lightText,
-    textAlign: 'center',
+    color: '#898989',
   },
 });
 

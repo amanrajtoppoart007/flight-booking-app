@@ -138,7 +138,6 @@ export default function Home() {
     if (index === -1) {
       return;
     }
-    console.log(date, index);
     let t = [...dateMultiCity];
     t[index] = moment(date).format('YYYYMMDD');
     setMultiCity(t);
