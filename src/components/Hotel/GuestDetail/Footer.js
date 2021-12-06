@@ -76,11 +76,6 @@ const styles = StyleSheet.create({
     color: Colors.white,
     fontFamily: Font.AvenirHeavy,
   },
-  textNormalLight: {
-    fontSize: 12,
-    color: Colors.lightText,
-    fontFamily: Font.AvenirMedium,
-  },
   currency: {
     fontFamily: Font.AvenirMedium,
     fontSize: 14,
@@ -90,17 +85,6 @@ const styles = StyleSheet.create({
     fontFamily: Font.AvenirHeavy,
     fontSize: 16,
     color: '#FFFFFF',
-  },
-  textBigWhite: {
-    fontSize: 16,
-    color: Colors.white,
-    fontFamily: Font.AvenirHeavy,
-  },
-
-  rowFlexStart: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-end',
   },
 });
 export default Footer;
