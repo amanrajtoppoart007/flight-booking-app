@@ -164,11 +164,7 @@ const styles = StyleSheet.create({
     color: Colors.black,
     fontFamily: Font.AvenirHeavy,
   },
-  helper: {
-    fontSize: 16,
-    color: Colors.black,
-    fontFamily: Font.AvenirRegular,
-  },
+
   subTitle: {
     fontSize: 12,
     color: Colors.lightText,
@@ -219,11 +215,6 @@ const buttonStyle = StyleSheet.create({
     backgroundColor: Colors.white,
     elevation: 10,
     borderRadius: 8,
-  },
-  text: {
-    fontSize: 18,
-    color: Colors.lightText,
-    fontFamily: Font.AvenirLight,
   },
 });
 export default TravellerAndClass;

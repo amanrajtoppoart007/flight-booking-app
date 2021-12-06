@@ -531,12 +531,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     marginTop: 8,
   },
-  sortText: {
-    fontSize: 15,
-    marginRight: 24,
-    color: Colors.gray,
-    fontFamily: Font.AvenirRegular,
-  },
   line: {
     marginVertical: 10,
     marginRight: 2,

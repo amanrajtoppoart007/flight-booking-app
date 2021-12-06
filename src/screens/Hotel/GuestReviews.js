@@ -309,21 +309,13 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#242A37',
   },
-  ratingParameterTextLight: {
-    fontSize: 14,
-    color: Colors.lightText,
-    fontFamily: Font.AvenirRegular,
-  },
+
   readMoreButtonText: {
     fontFamily: Font.AvenirHeavy,
     fontSize: 12,
     color: '#1D8CCC',
   },
-  ButtonText: {
-    fontSize: 12,
-    color: Colors.secondary,
-    fontFamily: Font.AvenirRegular,
-  },
+
   verifiedReviewsText: {
     fontFamily: Font.AvenirMedium,
     fontSize: 12,

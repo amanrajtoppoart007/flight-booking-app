@@ -7,10 +7,7 @@ import {
   View,
   TextInput,
 } from 'react-native';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import Font from '../../layout/Font';
 import Colors from '../../layout/Colors';
 import LinearGradient from 'react-native-linear-gradient';
@@ -63,7 +60,7 @@ function GuestDetails() {
                       color={Colors.white}
                     />
                   </View>
-                  <View style={{marginHorizontal: 5}}>
+                  <View style={commonStyle.marginHorizontal(5)}>
                     <Text style={styles.title}>Check Out</Text>
                   </View>
                 </View>
@@ -80,14 +77,7 @@ function GuestDetails() {
                 </View>
                 <View style={styles.rowWrapper}>
                   <Pin />
-                  <Text
-                    style={[
-                      styles.textLight,
-                      styles.fontSize(12),
-                      styles.marginLeft(5),
-                    ]}>
-                    West Bay, Doha, QA
-                  </Text>
+                  <Text style={styles.LightText}>West Bay, Doha, QA</Text>
                 </View>
                 <View style={styles.rowWrapper}>
                   <BlueRightArrow />
@@ -96,7 +86,7 @@ function GuestDetails() {
                   </Text>
                 </View>
               </View>
-              <View style={{alignSelf: 'flex-start'}}>
+              <View>
                 <View style={styles.rowWrapper}>
                   <Ratings />
                   <Text style={[styles.greenText, styles.marginLeft(8)]}>
@@ -104,15 +94,13 @@ function GuestDetails() {
                   </Text>
                 </View>
                 <View style={styles.rowWrapper}>
-                  <Text style={[styles.textLight, {color: Colors.black}]}>
-                    Excellent
-                  </Text>
+                  <Text style={styles.SmallHeavy}>Excellent</Text>
                 </View>
               </View>
             </View>
             <View style={styles.LoginContainer}>
               <LoginLock />
-              <Text style={styles.textNormal}>
+              <Text style={styles.LoginText}>
                 Login to view your saved traveller list.
               </Text>
               <TouchableOpacity style={styles.button}>
@@ -303,34 +291,20 @@ const AStyles = StyleSheet.create({
     borderColor: '#D9D9D9',
     marginRight: 10,
   },
-  TitleInput: {
-    fontFamily: Font.AvenirRegular,
-    color: Colors.black,
-    fontSize: 14,
-    marginRight: 8,
-    marginVertical: 0,
-    paddingVertical: 3,
-  },
-  Input: {
-    fontFamily: Font.AvenirRegular,
-    color: Colors.black,
-    fontSize: 14,
-    marginRight: 8,
-    paddingVertical: 3,
-  },
+
   blueText: {
-    fontSize: 14,
-    fontFamily: Font.AvenirLight,
+    fontSize: 12,
+    fontFamily: Font.AvenirMedium,
     color: '#26698E',
   },
   lightText: {
     fontSize: 12,
-    fontFamily: Font.AvenirLight,
+    fontFamily: Font.AvenirMedium,
     color: Colors.lightText,
   },
   secondaryText: {
     fontSize: 14,
-    fontFamily: Font.AvenirLight,
+    fontFamily: Font.AvenirMedium,
     color: Colors.secondary,
   },
   borderContainer: {
@@ -406,27 +380,37 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     color: Colors.white,
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirHeavy,
   },
   textNormal: {
     fontSize: 14,
     color: Colors.black,
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirHeavy,
+  },
+  LoginText: {
+    fontSize: 14,
+    color: Colors.black,
+    fontFamily: Font.AvenirMedium,
   },
   textNormalWhite: {
     fontSize: 14,
     color: Colors.white,
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirMedium,
   },
   textNormalLight: {
     fontSize: 14,
     color: Colors.lightText,
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirMedium,
+  },
+  LightText: {
+    fontSize: 12,
+    color: Colors.lightText,
+    fontFamily: Font.AvenirMedium,
   },
   textBig: {
     fontSize: 16,
     color: Colors.black,
-    fontFamily: Font.AvenirMedium,
+    fontFamily: Font.AvenirHeavy,
   },
   textBigWhite: {
     fontSize: 16,
@@ -436,32 +420,32 @@ const styles = StyleSheet.create({
   ButtonText: {
     fontSize: 12,
     color: Colors.secondary,
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirHeavy,
   },
   ContactContainer: {
     paddingVertical: 12,
     marginBottom: 12,
-    backgroundColor: Colors.background,
-  },
-  textLight: {
-    fontSize: 11,
-    color: Colors.lightText,
-    fontFamily: Font.AvenirLight,
+    backgroundColor: '#FFFFFF',
   },
   greenText: {
     fontSize: 11,
-    color: Colors.lightText,
-    fontFamily: Font.AvenirLight,
+    color: '#1DAD81',
+    fontFamily: Font.AvenirHeavy,
   },
   blueText: {
     fontSize: 12,
-    color: Colors.lightText,
-    fontFamily: Font.AvenirLight,
+    color: '#26698E',
+    fontFamily: Font.AvenirMedium,
   },
   fontSize(t) {
     return {
       fontSize: t,
     };
+  },
+  SmallHeavy: {
+    fontSize: 11,
+    fontFamily: Font.AvenirHeavy,
+    color: '#475F7B',
   },
   topContainer: {
     paddingVertical: 5,
@@ -470,7 +454,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 12,
     paddingTop: 11,
-    backgroundColor: Colors.background,
+    backgroundColor: '#FFFFFF',
   },
   LoginContainer: {
     paddingVertical: 12,
@@ -479,7 +463,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-evenly',
     marginBottom: 12,
-    backgroundColor: Colors.background,
+    backgroundColor: '#FFFFFF',
     borderRadius: 8,
   },
   marginRight(t) {

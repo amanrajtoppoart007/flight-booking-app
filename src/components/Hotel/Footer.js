@@ -76,12 +76,12 @@ const styles = StyleSheet.create({
   textNormalWhite: {
     fontSize: 14,
     color: Colors.white,
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirMedium,
   },
   textNormalLight: {
     fontSize: 14,
     color: Colors.lightText,
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirMedium,
   },
 
   textBigWhite: {

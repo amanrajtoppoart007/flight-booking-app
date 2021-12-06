@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
   Departure: {
     fontSize: 14,
     color: Colors.lightText,
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirMedium,
   },
   AlignSelfEnd: {
     alignSelf: 'flex-end',
@@ -207,11 +207,7 @@ const styles = StyleSheet.create({
     color: Colors.black,
     fontFamily: Font.AvenirBlack,
   },
-  searchHelperText: {
-    fontSize: 14,
-    color: Colors.lightText,
-    fontFamily: Font.AvenirLight,
-  },
+
   helperText: {
     fontSize: 14,
     color: Colors.lightText,

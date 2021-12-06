@@ -43,16 +43,16 @@ function BookingSummary({isBookingSummaryVisible, setIsBookingSummaryVisible}) {
           <View
             style={[commonStyle.rowFlexStart, commonStyle.marginVertical(10)]}>
             <HotelImage />
-            <View style={{alignSelf: 'flex-start'}}>
+            <View style={styles.flexEndSelf}>
               <View style={styles.rowWrapper}>
-                <Text style={[styles.textNormal, styles.marginRight(5)]}>
+                <Text style={[styles.textBold, styles.marginRight(5)]}>
                   W Doha
                 </Text>
                 <StarRating size={15} rating={4} />
               </View>
               <View style={styles.rowWrapper}>
                 <Pin />
-                <Text style={[styles.textLight, styles.marginLeft(5)]}>
+                <Text style={[styles.textNormal, styles.marginLeft(5)]}>
                   West Bay, Doha, QA
                 </Text>
               </View>
@@ -64,58 +64,70 @@ function BookingSummary({isBookingSummaryVisible, setIsBookingSummaryVisible}) {
               commonStyle.rowSpaceBetween,
               commonStyle.marginVertical(5),
             ]}>
-            <Text style={styles.textNormal}>
-              Check-In: {'\n'}15-10-2021
+            <Text style={styles.textBold}>
+              Check-In: {'\n'}
+              <Text style={[styles.textNormalSecondary, {color: Colors.black}]}>
+                15-10-2021
+              </Text>
               <Text style={styles.textNormalSecondary}> 03:00 PM</Text>
             </Text>
             <View style={styles.dividerVertical} />
-            <Text style={styles.textNormal}>
-              Check-In: {'\n'}15-10-2021
+            <Text style={styles.textBold}>
+              Check-In: {'\n'}
+              <Text style={[styles.textNormalSecondary, {color: Colors.black}]}>
+                15-10-2021
+              </Text>
               <Text style={styles.textNormalSecondary}> 12:00 PM</Text>
             </Text>
           </View>
           <View style={styles.divider} />
           <Card
-            title="Room 1: (1 Adult, 2 Children)"
+            title="(1 Adult, 2 Children)"
             subtitle="Spectacular Room, 2 Double…"
             price="3395.00"
             tax="0.00"
             baseFare="3,399.00"
             discount="5.00"
+            index={1}
           />
           <Card
-            title="Room 2: (1 Adult, 2 Children)"
+            title="(1 Adult, 2 Children)"
             subtitle="Spectacular Room, 1 King…"
             price="3395.00"
             tax="0.00"
             baseFare="3,399.00"
             discount="5.00"
+            index={2}
           />
           <Card
-            title="Room 3: (1 Adult, 2 Children)"
+            title="(1 Adult, 2 Children)"
             subtitle="Spectacular Room, 1 King…"
             price="3395.00"
             tax="0.00"
             baseFare="3,399.00"
             discount="5.00"
+            index={3}
           />
         </View>
       </ScrollView>
     </BottomSheet>
   );
 }
-function Card({title, subtitle, price, baseFare, tax, discount}) {
+function Card({title, subtitle, price, baseFare, tax, discount, index}) {
   const [isOpen, setOpen] = useState(false);
   return (
     <View style={styles.card}>
       <View
         style={[
           commonStyle.rowSpaceBetween,
-          {alignItems: 'flex-end'},
+          styles.flexEnd,
           commonStyle.padding(10),
         ]}>
         <View>
-          <Text style={styles.textNormalBlue}>{title}</Text>
+          <Text style={styles.textNormalBlue}>
+            <Text style={styles.textHeavyBlue}>Room {index}: </Text>
+            {title}
+          </Text>
           <Text style={styles.textNormalPrimary}>{subtitle}</Text>
         </View>
         <TouchableOpacity onPress={() => setOpen(!isOpen)}>
@@ -190,7 +202,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     color: Colors.black,
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirHeavy,
   },
   divider: {
     borderBottomWidth: 1,
@@ -205,42 +217,43 @@ const styles = StyleSheet.create({
   textNormal: {
     fontSize: 14,
     color: Colors.black,
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirMedium,
   },
   textBold: {
     fontSize: 14,
     color: Colors.black,
-    fontFamily: Font.AvenirHeavy,
+    fontFamily: Font.AvenirBlack,
   },
   textNormalBlue: {
     fontSize: 14,
     color: '#26698E',
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirMedium,
+  },
+  textHeavyBlue: {
+    fontSize: 14,
+    color: '#26698E',
+    fontFamily: Font.AvenirHeavy,
   },
   textNormalLight: {
-    fontSize: 13,
+    fontSize: 14,
     color: Colors.lightText,
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirMedium,
   },
   textNormalPrimary: {
     fontSize: 14,
     color: Colors.primary,
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirMedium,
   },
   textNormalSecondary: {
-    fontSize: 13,
+    fontSize: 14,
     color: Colors.secondary,
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirMedium,
   },
-  helper: {
-    fontSize: 16,
-    color: Colors.black,
-    fontFamily: Font.AvenirRegular,
-  },
+
   textLight: {
     fontSize: 12,
     color: Colors.lightText,
-    fontFamily: Font.AvenirLight,
+    fontFamily: Font.AvenirMedium,
   },
   rowWrapper: {
     flexDirection: 'row',
@@ -272,11 +285,7 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     marginHorizontal: 5,
   },
-  buttonText: {
-    fontSize: 12,
-    color: Colors.white,
-    fontFamily: Font.AvenirRegular,
-  },
+
   selectContainer: {
     borderWidth: 2,
     borderRadius: 8,
@@ -291,23 +300,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: 'black',
   },
-});
-const buttonStyle = StyleSheet.create({
-  card: {
-    width: 110,
-    height: 45,
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-    padding: 5,
-    backgroundColor: Colors.white,
-    elevation: 10,
-    borderRadius: 8,
+  flexEndSelf: {
+    alignSelf: 'flex-end',
   },
-  text: {
-    fontSize: 18,
-    color: Colors.lightText,
-    fontFamily: Font.AvenirLight,
+  flexEnd: {
+    alignItems: 'flex-end',
   },
 });
+
 export default BookingSummary;
