@@ -10,50 +10,51 @@ import {Icon} from 'react-native-elements';
 import Font from '../../../layout/Font';
 import RoomInfo from './RoomInfo';
 
-function HotelDetail({item, index}) {
+function HotelDetail({item}) {
   const [isVisible, setIsVisible] = useState(false);
   const [isRoomInfoVisible, setIsRoomInfoVisible] = useState(false);
   return (
-    <View>
+    <View style={styles.card(isVisible)}>
       <View style={styles.cardHeader}>
-        <View style={commonStyle.rowSpaceBetween}>
-          <View>
-            <Text style={commonStyle.rowSpaceBetween}>
-              <Text style={styles.roomCountTitle}>
-                Room {item?.roomNumber}:
-              </Text>
-              <Text style={styles.cardTitle}>{item?.title}</Text>
-            </Text>
+        <View>
+          <Text style={commonStyle.rowSpaceBetween}>
+            <Text style={styles.roomCountTitle}>Room {item?.roomNumber}:</Text>
+            <Text style={styles.cardTitle}>{item?.title}</Text>
+          </Text>
 
-            <Text style={styles.subTitle}>1 King Bed, Room Only</Text>
-          </View>
-          <View>
-            <View style={commonStyle.rowSpaceBetween}>
-              <View style={commonStyle.marginHorizontal(5)}>
-                <Text style={styles.price}>QAR</Text>
+          <Text style={styles.subTitle}>1 King Bed, Room Only</Text>
+        </View>
+        <View style={commonStyle.rowSpaceBetween}>
+          <View style={commonStyle.marginHorizontal(8)}>
+            <View>
+              <View style={commonStyle.rowSpaceBetween}>
+                <View style={commonStyle.marginHorizontal(5)}>
+                  <Text style={styles.currency}>QAR</Text>
+                </View>
+                <View>
+                  <Text style={styles.price}>4790</Text>
+                </View>
               </View>
-              <View>
-                <Text style={styles.discountedPrice}>4790</Text>
-              </View>
+              <View style={styles.cross} />
             </View>
             <View style={commonStyle.rowSpaceBetween}>
               <View style={commonStyle.marginHorizontal(5)}>
-                <Text style={styles.price}>QAR</Text>
+                <Text style={styles.currency}>QAR</Text>
               </View>
               <View>
                 <Text style={styles.discountedPrice}>3395</Text>
               </View>
             </View>
           </View>
-        </View>
-        <View>
-          <Icon
-            onPress={() => setIsVisible(!isVisible)}
-            name={isVisible ? 'chevron-up' : 'chevron-right'}
-            type={'feather'}
-            size={16}
-            color={'#242A37'}
-          />
+          <View>
+            <Icon
+              onPress={() => setIsVisible(!isVisible)}
+              name={isVisible ? 'chevron-up' : 'chevron-right'}
+              type={'feather'}
+              size={16}
+              color={'#242A37'}
+            />
+          </View>
         </View>
       </View>
       {isVisible &&
@@ -100,6 +101,14 @@ function HotelDetail({item, index}) {
 }
 
 const styles = StyleSheet.create({
+  card(isActive) {
+    return {
+      width: '100%',
+      borderWidth: 1,
+      borderRadius: 8,
+      borderColor: isActive ? '#F15922' : 'transparent',
+    };
+  },
   contentWrapper: {
     paddingHorizontal: 12,
   },
@@ -133,9 +142,9 @@ const styles = StyleSheet.create({
     color: '#6C6C6C',
   },
   price: {
-    fontFamily: Font.AvenirMedium,
+    fontFamily: Font.AvenirBlack,
     fontSize: 12,
-    color: '#6C6C6C',
+    color: '#0B151F',
   },
   discountedPrice: {
     fontFamily: Font.AvenirBlack,
@@ -155,6 +164,15 @@ const styles = StyleSheet.create({
     fontFamily: Font.AvenirHeavy,
     fontSize: 14,
     color: '#1D8CCC',
+  },
+  cross: {
+    position: 'absolute',
+    borderColor: '#FF2D55',
+    borderBottomWidth: 2,
+    bottom: 0,
+    width: '100%',
+    borderRadius: 8,
+    transform: [{rotateZ: '170deg'}, {translateY: 9}],
   },
 });
 

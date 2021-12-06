@@ -194,14 +194,14 @@ function HotelDetails({navigation}) {
                   ]}>
                   <View>
                     <Text style={commonStyle.rowSpaceBetween}>
-                      <Text style={styles.timeText('#6C6C6C')}>Check-In: </Text>
-                      <Text style={styles.timeText('#F15922')}>03:00 PM</Text>
+                      <Text style={styles.timeTitle}>Check-In: </Text>
+                      <Text style={styles.timeText}>03:00 PM</Text>
                     </Text>
                   </View>
                   <View>
                     <Text style={commonStyle.rowSpaceBetween}>
-                      <Text style={styles.timeText('#6C6C6C')}>Check-Out:</Text>
-                      <Text style={styles.timeText('#F15922')}> 12:00 PM</Text>
+                      <Text style={styles.timeTitle}>Check-Out:</Text>
+                      <Text style={styles.timeText}> 12:00 PM</Text>
                     </Text>
                   </View>
                 </View>
@@ -209,6 +209,7 @@ function HotelDetails({navigation}) {
               <View>
                 <View style={{height: hp('300%')}}>
                   <TabView
+                    swipeEnabled={false}
                     navigationState={{index, routes}}
                     renderScene={renderScene}
                     renderTabBar={_renderTabBar}
@@ -301,12 +302,15 @@ const styles = StyleSheet.create({
     fontSize: 11,
     color: '#475F7B',
   },
-  timeText(color) {
-    return {
-      fontFamily: Font.AvenirMedium,
-      fontSize: 14,
-      color,
-    };
+  timeTitle: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 14,
+    color: '#6C6C6C',
+  },
+  timeText: {
+    fontFamily: Font.AvenirHeavy,
+    fontSize: 14,
+    color: '#F15922',
   },
   headerSection: {
     flexDirection: 'row',
@@ -361,6 +365,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+    padding: 5,
   },
   continueButtonText: {
     fontFamily: Font.AvenirHeavy,

@@ -92,6 +92,7 @@ function TrackFlightModal({isVisible, setIsVisible}) {
               renderTabBar={_renderTabBar}
               onIndexChange={_handleIndexChange}
               initialLayout={{width: wp('100%')}}
+              swipeEnabled={false}
             />
           </View>
         </View>

@@ -58,7 +58,11 @@ function RoomInfo({isRoomInfoVisible, setIsRoomInfoVisible}) {
                 </View>
               </View>
               <View
-                style={[commonStyle.rowFlexStart, commonStyle.width('50%')]}>
+                style={[
+                  commonStyle.rowFlexStart,
+                  commonStyle.width('50%'),
+                  commonStyle.marginHorizontal(30),
+                ]}>
                 <View>
                   <BedSvg />
                 </View>

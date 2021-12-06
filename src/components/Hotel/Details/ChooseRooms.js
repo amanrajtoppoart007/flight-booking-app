@@ -5,7 +5,7 @@ import HotelDetail from './HotelDetail';
 import commonStyle from '../../../layout/Style';
 
 function ChooseRooms() {
-  const [result, setResult] = useState([
+  const [result] = useState([
     {
       roomNumber: 1,
       title: 'Spectacular Room, 2 Dou…',

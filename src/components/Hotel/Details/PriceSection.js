@@ -37,13 +37,14 @@ function PriceSection({item, isActive, index, setSelected}) {
               </View>
               <View style={commonStyle.center}>
                 <Text style={commonStyle.rowCenter}>
-                  <Text>QAR </Text>
+                  <Text style={styles.currency}>QAR </Text>
                   <Text style={styles.price}>4790 </Text>
                 </Text>
+                <View style={styles.cross} />
               </View>
               <View>
                 <Text style={commonStyle.rowCenter}>
-                  <Text>QAR </Text>
+                  <Text style={styles.currency}>QAR </Text>
                   <Text style={styles.discountedPrice}>3395 </Text>
                 </Text>
               </View>
@@ -148,6 +149,11 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: Colors.white,
   },
+  currency: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 12,
+    color: '#6C6C6C',
+  },
   price: {
     fontFamily: Font.AvenirBlack,
     fontSize: 12,
@@ -169,6 +175,15 @@ const styles = StyleSheet.create({
     fontFamily: Font.AvenirMedium,
     fontSize: 12,
     color: '#1D8CCC',
+  },
+  cross: {
+    position: 'absolute',
+    borderColor: '#FF2D55',
+    borderBottomWidth: 2,
+    bottom: 0,
+    width: '75%',
+    borderRadius: 8,
+    transform: [{rotateZ: '170deg'}, {translateY: 8}],
   },
 });
 

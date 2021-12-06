@@ -7,6 +7,21 @@ import RightTickSvg from '../../Svg/Hotel/RightTick.svg';
 import VisaCardSvg from '../../Svg/VisaCard.svg';
 import MasterCardSvg from '../../Svg/MasterCard.svg';
 
+const ReadMore = ({text}) => {
+  const [isReadMore, setIsReadMore] = useState(true);
+  const toggleReadMore = () => {
+    setIsReadMore(!isReadMore);
+  };
+  return (
+    <Text style={styles.primaryDescription}>
+      {isReadMore ? text.slice(0, 300) : text}
+      <Text onPress={toggleReadMore} style={styles.readMoreButtonText}>
+        {isReadMore ? '...Read More' : ' Show Less'}
+      </Text>
+    </Text>
+  );
+};
+
 function OverView() {
   const [amenitiesLimit, setAmenitiesLimit] = useState(10);
   const [amenities] = useState([
@@ -47,19 +62,11 @@ function OverView() {
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.primaryDescription}>
-          A stay at W Doha places you in the heart of Doha, within a 15-minute
-          walk of Doha Corniche and City Centre Shopping Mall. This 5-star hotel
-          is 3.1 mi (4.9 km) from Katara Beach and 4.1 mi (6.6 km) from Souq
-          Waqif Art Gallery.Relax at the full-service spa, where you can enjoy
-          massages and facials. You can take advantage of recreational amenities
-          such as an outdoor pool and a 24-hour fitness center. This hotel also
-          features complimentary wireless Internet access, concierge services,
-          and a hair salon.Featured amenities include a 24-hour business center,
-          limo/town car service, and express check-in. Planning an event in
-          Doha? This hotel has facilities measuring 8135 square feet (756 square
-          meters), including conference space. More
-        </Text>
+        <ReadMore
+          text={
+            'A stay at W Doha places you in the heart of Doha, within a 15-minute walk of Doha Corniche and City Centre Shopping Mall. This 5-star hotel is 3.1 mi (4.9 km) from Katara Beach and 4.1 mi (6.6 km) from Souq Waqif Art Gallery.Relax at the full-service spa, where you can enjoy massages and facials. You can take advantage of recreational amenities such as an outdoor pool and a 24-hour fitness center. This hotel also features complimentary wireless Internet access, concierge services, and a hair salon.Featured amenities include a 24-hour business center, limo/town car service, and express check-in. Planning an event in Doha? This hotel has facilities measuring 8135 square feet (756 square meters), including conference space. '
+          }
+        />
       </View>
       <View style={styles.dividerWrapper}>
         <View style={styles.divider} />
@@ -70,7 +77,7 @@ function OverView() {
           isVisible={true}
           Content={
             <View>
-              <View>
+              <View style={commonStyle.marginVertical(15)}>
                 <Text style={styles.amenitiesHelper}>
                   Most popular facilities
                 </Text>
@@ -91,7 +98,7 @@ function OverView() {
                           </View>
                         </View>
                       ) : (
-                        <View style={{display: 'none'}} key={index} />
+                        <View style={styles.displayNone} key={index} />
                       );
                     })}
                 </View>
@@ -128,7 +135,7 @@ function OverView() {
           isVisible={true}
           Content={
             <View>
-              <View>
+              <View style={commonStyle.marginVertical(12)}>
                 <Text style={styles.amenitiesHelper}>Check-In & Check-Out</Text>
               </View>
               <View>
@@ -303,6 +310,9 @@ function OverView() {
 }
 
 const styles = StyleSheet.create({
+  displayNone: {
+    display: 'none',
+  },
   container: {
     paddingVertical: 20,
     paddingHorizontal: 12,
@@ -311,6 +321,7 @@ const styles = StyleSheet.create({
     fontFamily: Font.AvenirMedium,
     fontSize: 14,
     color: '#6C6C6C',
+    lineHeight: 24,
   },
   dividerWrapper: {
     marginVertical: 20,
@@ -384,6 +395,11 @@ const styles = StyleSheet.create({
     fontFamily: Font.AvenirHeavy,
     fontSize: 14,
     color: '#F15922',
+  },
+  readMoreButtonText: {
+    fontFamily: Font.AvenirHeavy,
+    fontSize: 14,
+    color: '#1D8CCC',
   },
 });
 
