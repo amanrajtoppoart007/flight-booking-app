@@ -80,7 +80,7 @@ function CustomTextInput({
           onChangeText={text => setValue(text)}
           style={[styles.inputStyle(type), styles.inputTextStyle]}
           secureTextEntry={secureTextEntry}
-          placeholderTextColor={Colors.lightText}
+          placeholderTextColor={'#6C6C6C'}
         />
         {type === 'password' && (
           <Icon
@@ -105,8 +105,6 @@ const styles = StyleSheet.create({
   inputStyle(type) {
     return {
       width: type === 'mobile' ? '65%' : '90%',
-      fontSize: 14,
-      height: 35,
     };
   },
   inputTextStyle: {

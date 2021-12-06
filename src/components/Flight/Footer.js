@@ -44,16 +44,16 @@ function Footer({
       </View>
       <View
         style={[
-          styles.RightContainer,
+          styles.rightContainer,
           {justifyContent: !price ? 'center' : 'space-between'},
         ]}>
         {price && (
           <Text style={styles.textBigWhite}>
-            <Text style={styles.textBigLight}>QAR</Text> {price}
+            <Text style={styles.currency}>QAR</Text> {price}
           </Text>
         )}
         <TouchableOpacity onPress={onPress} style={[styles.continueButton]}>
-          <Text style={styles.textNormalWhite}>{buttonText}</Text>
+          <Text style={styles.buttonText}>{buttonText}</Text>
           {buttonIcon && (
             <Icon
               name={'arrowright'}
@@ -79,13 +79,15 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  RightContainer: {
+  rightContainer: {
     marginHorizontal: 5,
     alignItems: 'flex-end',
     justifyContent: 'space-between',
     alignSelf: 'stretch',
   },
   bottomCanvas: {
+    position: 'absolute',
+    bottom: 0,
     width: '100%',
     minHeight: hp('10%'),
     flexDirection: 'row',
@@ -110,12 +112,17 @@ const styles = StyleSheet.create({
     color: Colors.white,
     fontFamily: Font.AvenirHeavy,
   },
+  buttonText: {
+    fontSize: 14,
+    color: Colors.white,
+    fontFamily: Font.AvenirHeavy,
+  },
   textNormalLight: {
     fontSize: 12,
     color: Colors.lightText,
     fontFamily: Font.AvenirMedium,
   },
-  textBigLight: {
+  currency: {
     fontSize: 14,
     color: Colors.lightText,
     fontFamily: Font.AvenirMedium,

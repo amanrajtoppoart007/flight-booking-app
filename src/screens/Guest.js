@@ -32,16 +32,9 @@ import Line from '../../components/Svg/Hotel/Line.svg';
 import User from '../../components/Svg/Profile/User.svg';
 import Ratings from '../../components/Svg/Hotel/Ratings.svg';
 import BlueRightArrow from '../../components/Svg/Hotel/BlueRightArrow.svg';
-import LoginLock from '../../components/Svg/Hotel/LoginLock.svg';
-import PhoneBook from '../../components/Svg/PhoneBook.svg';
-import BackSvg from '../../components/Svg/Hotel/Back.svg';
 
 function GuestDetails() {
   const navigation = useNavigation();
-  const [email, setEmail] = useState('');
-  const [mobileNumber, setMobileNumber] = useState('');
-  const [phoneCode, setPhoneCode] = useState('');
-  const [bookingSummary, setBookingSummary] = useState(false);
 
   return (
     <SafeAreaView style={commonStyle.container}>
@@ -49,104 +42,6 @@ function GuestDetails() {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={commonStyle.wrapper}>
           <View style={commonStyle.content}>
-            <View style={{height: hp('20%')}} />
-            <View style={styles.topContainer}>
-              <View>
-                <View style={styles.rowWrapper}>
-                  <Text style={styles.textNormal}>W Doha</Text>
-                  <StarRating size={15} rating={4} />
-                </View>
-                <View style={styles.rowWrapper}>
-                  <Pin />
-                  <Text style={styles.LightText}>West Bay, Doha, QA</Text>
-                </View>
-                <View style={styles.rowWrapper}>
-                  <BlueRightArrow />
-                  <Text style={styles.blueText}>
-                    Fire Station Art Gallery - 2.1 km / 1.3 mi… I
-                  </Text>
-                </View>
-              </View>
-              <View>
-                <View style={styles.rowWrapper}>
-                  <Ratings />
-                  <Text style={styles.greenText}>4.5/5</Text>
-                </View>
-                <View style={styles.rowWrapper}>
-                  <Text style={styles.SmallHeavy}>Excellent</Text>
-                </View>
-              </View>
-            </View>
-            <View style={styles.LoginContainer}>
-              <LoginLock />
-              <Text style={styles.LoginText}>
-                Login to view your saved traveller list.
-              </Text>
-              <TouchableOpacity style={styles.button}>
-                <Text style={styles.ButtonText}>Login</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.ContactContainer}>
-              <View style={styles.rowWrapper}>
-                <PhoneBook />
-                <Text style={[styles.textBig, styles.marginLeft(10)]}>
-                  Contact Details
-                </Text>
-              </View>
-              <View style={[styles.rowWrapper, commonStyle.marginTop(5)]}>
-                <Text style={styles.textNormalLight}>
-                  Booking details will be sent to this mobile number & Email
-                  address.
-                </Text>
-              </View>
-              <View style={[styles.rowWrapper]}>
-                <TextInput
-                  placeholder="E-mail ID*"
-                  value={email}
-                  onChangeText={t => setEmail(t)}
-                  type="email"
-                  style={styles.Input}
-                  placeholderTextColor={Colors.lightText}
-                />
-              </View>
-              <View style={[styles.rowWrapper, commonStyle.marginTop(5)]}>
-                <CustomTextInput
-                  type={'mobile'}
-                  title={'Country Code'}
-                  value={mobileNumber}
-                  setValue={setMobileNumber}
-                  phoneCode={phoneCode}
-                  setPhoneCode={setPhoneCode}
-                  placeholder="Contact No."
-                />
-              </View>
-            </View>
-            <View style={styles.ContactContainer}>
-              <View style={[styles.rowWrapper, commonStyle.marginBottom(12)]}>
-                <User />
-                <Text style={[styles.textBig, styles.marginLeft(10)]}>
-                  Add Guest Details
-                </Text>
-              </View>
-              <View style={commonStyle.marginVertical(8)}>
-                <Accordion
-                  title="Room 1: (1 Adult, 2 Children)"
-                  Content={<AccordionContent />}
-                />
-              </View>
-              <View style={commonStyle.marginVertical(8)}>
-                <Accordion
-                  title="Room 2: (1 Adult)"
-                  Content={<AccordionContent />}
-                />
-              </View>
-              <View style={commonStyle.marginVertical(8)}>
-                <Accordion
-                  title="Room 3: (1 Adult)"
-                  Content={<AccordionContent />}
-                />
-              </View>
-            </View>
             <BookingSummary
               isBookingSummaryVisible={bookingSummary}
               setIsBookingSummaryVisible={setBookingSummary}

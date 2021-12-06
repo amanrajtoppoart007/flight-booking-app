@@ -187,7 +187,7 @@ function Card({title, subtitle, price, baseFare, tax, discount, index}) {
 const styles = StyleSheet.create({
   bottomSheet: {
     width: wp('100%'),
-    height: hp('60%'),
+    height: hp('75%'),
     backgroundColor: Colors.white,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
