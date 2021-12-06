@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   textSmallWhite: {
     fontSize: 12,
     color: Colors.white,
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirMedium,
   },
   textNormalWhite: {
     fontSize: 14,
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
   textBigLight: {
     fontSize: 14,
     color: Colors.lightText,
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirMedium,
   },
   textBigWhite: {
     fontSize: 16,

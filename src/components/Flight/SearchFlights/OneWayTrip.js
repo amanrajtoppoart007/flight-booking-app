@@ -210,11 +210,6 @@ const styles = StyleSheet.create({
     color: Colors.black,
     fontFamily: Font.AvenirBlack,
   },
-  searchHelperText: {
-    fontSize: 14,
-    color: Colors.lightText,
-    fontFamily: Font.AvenirLight,
-  },
   helperText: {
     fontSize: 14,
     color: Colors.lightText,

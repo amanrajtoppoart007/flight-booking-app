@@ -148,11 +148,7 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     paddingHorizontal: 20,
   },
-  title: {
-    fontSize: 18,
-    color: Colors.white,
-    fontFamily: Font.AvenirRegular,
-  },
+
   card: {
     flexDirection: 'column',
     justifyContent: 'space-evenly',
@@ -188,20 +184,10 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
 
-  cardTitle: {
-    fontSize: 14,
-    color: Colors.lightText,
-    fontFamily: Font.AvenirRegular,
-  },
   searchText: {
     fontSize: 24,
     color: Colors.black,
     fontFamily: Font.AvenirBlack,
-  },
-  searchHelperText: {
-    fontSize: 14,
-    color: Colors.lightText,
-    fontFamily: Font.AvenirLight,
   },
   helperText: {
     fontSize: 14,

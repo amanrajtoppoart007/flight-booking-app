@@ -142,16 +142,6 @@ const styles = StyleSheet.create({
       color: isActive ? Colors.primary : '#6C6C6C',
     };
   },
-  LightText: {
-    fontFamily: Font.AvenirLight,
-    color: Colors.lightText,
-    fontSize: 14,
-  },
-  smallText: {
-    fontFamily: Font.AvenirLight,
-    color: Colors.lightText,
-    fontSize: 12,
-  },
 
   tabBar: {
     height: 50,

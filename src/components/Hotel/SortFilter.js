@@ -52,7 +52,6 @@ function SortFilter({onClose}) {
     return (
       <View style={styles.tabBar}>
         {props.navigationState.routes.map((route, i) => {
-          const color = i === index ? Colors.primary : '#6C6C6C';
           return (
             <TouchableOpacity
               key={i?.toString()}
@@ -379,13 +378,13 @@ const styles = StyleSheet.create({
     return {
       fontSize: 14,
       color: !selected ? Colors.black : Colors.orange,
-      fontFamily: Font.AvenirRegular,
+      fontFamily: Font.AvenirMedium,
       marginRight: 4,
     };
   },
   tabTitle(isActive) {
     return {
-      fontFamily: Font.AvenirMedium,
+      fontFamily: Font.AvenirHeavy,
       fontSize: 14,
       color: isActive ? Colors.primary : '#6C6C6C',
     };
@@ -407,7 +406,7 @@ const styles = StyleSheet.create({
   CheckText: {
     fontSize: 14,
     color: Colors.lightText,
-    fontFamily: Font.AvenirMedium,
+    fontFamily: Font.AvenirBook,
   },
   SearchBar: {
     flexDirection: 'row',
@@ -434,14 +433,14 @@ const styles = StyleSheet.create({
     fontSize: 14,
     margin: 0,
     padding: 0,
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirMedium,
     color: Colors.black,
     flex: 0.95,
   },
   LightText: {
     fontSize: 14,
     color: Colors.lightText,
-    fontFamily: Font.AvenirLight,
+    fontFamily: Font.AvenirBook,
   },
   SvgIcon: {width: 18, height: 18, marginRight: 5},
   container: {
@@ -476,14 +475,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   sortTitle: {
-    fontFamily: Font.AvenirMedium,
+    fontFamily: Font.AvenirHeavy,
     fontSize: 14,
     color: Colors.black,
   },
   sortClear: {
     fontSize: 14,
     color: Colors.secondary,
-    fontFamily: Font.AvenirMedium,
+    fontFamily: Font.AvenirHeavy,
   },
   sortTextContainer: {
     flexDirection: 'row',
@@ -495,7 +494,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     marginRight: 24,
     color: Colors.gray,
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirMedium,
   },
   line: {
     marginVertical: 10,
@@ -532,19 +531,19 @@ const styles = StyleSheet.create({
     return {
       fontSize: 14,
       color: isSelected ? Colors.primary : Colors.black,
-      fontFamily: Font.AvenirRegular,
+      fontFamily: Font.AvenirMedium,
       marginLeft: 15,
     };
   },
   Money: {
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirMedium,
     fontSize: 14,
     color: Colors.black,
   },
   BorderBtnText: {
     fontSize: 14,
     color: Colors.black,
-    fontFamily: Font.AvenirRegular,
+    fontFamily: Font.AvenirMedium,
   },
   tabBar: {
     flexDirection: 'row',
