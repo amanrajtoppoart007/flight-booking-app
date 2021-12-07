@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {
   FlatList,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -37,106 +38,110 @@ function FlightResult({navigation}) {
   return (
     <SafeAreaView style={commonStyle.container}>
       <CustomStatusBar backgroundColor={Colors.primary} />
-      <View style={[commonStyle.flex(1), commonStyle.wrapper]}>
-        <View style={[commonStyle.flex(1), commonStyle.content]}>
-          <LinearGradient colors={['#1C8CCC', '#015F95']} style={styles.canvas}>
-            <View style={styles.header}>
-              <View style={[styles.titleSection, styles.rowSpaceBetween]}>
-                <View style={commonStyle.rowCenter}>
-                  <View>
-                    <Icon
-                      onPress={() => navigation.goBack()}
-                      name={'arrow-back'}
-                      type={'material-icon'}
-                      size={30}
-                      color={Colors.white}
-                    />
-                  </View>
-                  <View style={styles.titleWrapper}>
-                    <View style={commonStyle.rowSpaceBetween}>
-                      <View>
-                        <Text style={styles.title}>DOH</Text>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={[commonStyle.flex(1), commonStyle.wrapper]}>
+          <View style={[commonStyle.flex(1), commonStyle.content]}>
+            <LinearGradient
+              colors={['#1C8CCC', '#015F95']}
+              style={styles.canvas}>
+              <View style={styles.header}>
+                <View style={[styles.titleSection, styles.rowSpaceBetween]}>
+                  <View style={commonStyle.rowCenter}>
+                    <View>
+                      <Icon
+                        onPress={() => navigation.goBack()}
+                        name={'arrow-back'}
+                        type={'material-icon'}
+                        size={30}
+                        color={Colors.white}
+                      />
+                    </View>
+                    <View style={styles.titleWrapper}>
+                      <View style={commonStyle.rowSpaceBetween}>
+                        <View>
+                          <Text style={styles.title}>DOH</Text>
+                        </View>
+                        <View style={commonStyle.marginHorizontal(8)}>
+                          <FlightSvg />
+                        </View>
+                        <View>
+                          <Text style={styles.title}>DXB,</Text>
+                        </View>
                       </View>
-                      <View style={commonStyle.marginHorizontal(8)}>
-                        <FlightSvg />
-                      </View>
-                      <View>
-                        <Text style={styles.title}>DXB,</Text>
+                      <View
+                        style={[
+                          commonStyle.rowSpaceBetween,
+                          commonStyle.marginHorizontal(8),
+                        ]}>
+                        <View>
+                          <Text style={styles.title}>DOH</Text>
+                        </View>
+                        <View style={commonStyle.marginHorizontal(8)}>
+                          <FlightSvg />
+                        </View>
+                        <View>
+                          <Text style={styles.title}>DXB</Text>
+                        </View>
                       </View>
                     </View>
-                    <View
-                      style={[
-                        commonStyle.rowSpaceBetween,
-                        commonStyle.marginHorizontal(8),
-                      ]}>
-                      <View>
-                        <Text style={styles.title}>DOH</Text>
-                      </View>
-                      <View style={commonStyle.marginHorizontal(8)}>
-                        <FlightSvg />
-                      </View>
-                      <View>
-                        <Text style={styles.title}>DXB</Text>
-                      </View>
+                  </View>
+                  <View style={commonStyle.rowCenter}>
+                    <View style={commonStyle.marginHorizontal(5)}>
+                      <Icon
+                        name={'edit'}
+                        type={'feather'}
+                        size={18}
+                        color={Colors.white}
+                      />
+                    </View>
+                    <View style={commonStyle.marginHorizontal(5)}>
+                      <Icon
+                        onPress={() => setShortVisible(true)}
+                        name={'filter-variant'}
+                        type={'material-community'}
+                        size={18}
+                        color={Colors.white}
+                      />
                     </View>
                   </View>
                 </View>
-                <View style={commonStyle.rowCenter}>
-                  <View style={commonStyle.marginHorizontal(5)}>
-                    <Icon
-                      name={'edit'}
-                      type={'feather'}
-                      size={18}
-                      color={Colors.white}
-                    />
-                  </View>
-                  <View style={commonStyle.marginHorizontal(5)}>
-                    <Icon
-                      onPress={() => setShortVisible(true)}
-                      name={'filter-variant'}
-                      type={'material-community'}
-                      size={18}
-                      color={Colors.white}
-                    />
-                  </View>
+                <View style={styles.subTitleSection}>
+                  <Text style={styles.subTitle}>
+                    15 Sep - 20 Sep | 4 Travellers | Economy
+                  </Text>
                 </View>
               </View>
-              <View style={styles.subTitleSection}>
-                <Text style={styles.subTitle}>
-                  15 Sep - 20 Sep | 4 Travellers | Economy
-                </Text>
-              </View>
-            </View>
-          </LinearGradient>
-          <View style={commonStyle.paddingHorizontal(12)}>
-            <View style={styles.topSection}>
-              <View>
-                <TouchableOpacity style={styles.priceButton}>
-                  <Text style={styles.flightCostText}>Cheapest</Text>
-                </TouchableOpacity>
-              </View>
-              <View>
-                <View style={commonStyle.rowFlexEnd}>
-                  <View style={commonStyle.marginHorizontal(5)}>
-                    <Text style={styles.currency}>QAR</Text>
-                  </View>
-                  <View>
-                    <Text style={styles.price}>170.00</Text>
-                  </View>
+            </LinearGradient>
+            <View style={commonStyle.paddingHorizontal(12)}>
+              <View style={styles.topSection}>
+                <View>
+                  <TouchableOpacity style={styles.priceButton}>
+                    <Text style={styles.flightCostText}>Cheapest</Text>
+                  </TouchableOpacity>
                 </View>
-                <Text style={styles.travelCountText}>(For 4 travellers)</Text>
+                <View>
+                  <View style={commonStyle.rowFlexEnd}>
+                    <View style={commonStyle.marginHorizontal(5)}>
+                      <Text style={styles.currency}>QAR</Text>
+                    </View>
+                    <View>
+                      <Text style={styles.price}>170.00</Text>
+                    </View>
+                  </View>
+                  <Text style={styles.travelCountText}>(For 4 travellers)</Text>
+                </View>
               </View>
             </View>
-          </View>
-          <View>
-            <FlatList
-              keyExtractor={item => item?.id?.toString()}
-              data={flights}
-              renderItem={_renderItem}
-            />
+            <View>
+              <FlatList
+                keyExtractor={item => item?.id?.toString()}
+                data={flights}
+                renderItem={_renderItem}
+              />
+            </View>
           </View>
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }

@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {FlatList, View} from 'react-native';
-import commonStyle from '../../../../layout/Style';
 import FlightCard from './FlightCard';
+import commonStyle from '../../../../layout/Style';
 import {useNavigation} from '@react-navigation/native';
 
-function Best() {
+function SearchResult() {
   const [flights] = useState([
     {
       id: 'flight-list-id-one',
@@ -32,7 +32,7 @@ function Best() {
     />
   );
   return (
-    <View style={commonStyle.flex(1)}>
+    <View>
       <View>
         <FlatList
           keyExtractor={item => item?.id?.toString()}
@@ -44,4 +44,4 @@ function Best() {
   );
 }
 
-export default Best;
+export default SearchResult;

@@ -9,50 +9,29 @@ import {
 } from 'react-native';
 import commonStyle from '../../../layout/Style';
 
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import Colors from '../../../layout/Colors';
 import Font from '../../../layout/Font';
 import CustomStatusBar from '../../../components/CustomStatusBar';
 import LinearGradient from 'react-native-linear-gradient';
 import {Icon} from 'react-native-elements';
-import Cheapest from '../../../components/Flight/OneWay/SearchResults/Cheapest';
-import Fastest from '../../../components/Flight/OneWay/SearchResults/Fastest';
-import Best from '../../../components/Flight/OneWay/SearchResults/Best';
+import SearchResult from '../../../components/Flight/OneWay/SearchResults/SearchResult';
 import PlaneSmall from '../../../components/Svg/PlaneSmall.svg';
 
-import {TabView} from 'react-native-tab-view';
 import SortFilter from '../../../components/Flight/FlightResults/SortFilter';
 function FlightResult({navigation}) {
   const [shortVisible, setShortVisible] = useState(false);
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    {key: 'cheapest', title: 'Cheapest', price: 'QAR 170'},
+    {key: 'cheapest', title: 'SearchResult', price: 'QAR 170'},
     {key: 'fastest', title: 'Fastest', price: 'QAR 273'},
     {key: 'best', title: 'Best', price: 'QAR 170'},
   ]);
 
-  const renderScene = ({route, jumpTo}) => {
-    switch (route.key) {
-      case 'cheapest':
-        return <Cheapest jumpTo={jumpTo} />;
-      case 'fastest':
-        return <Fastest jumpTo={jumpTo} />;
-      case 'best':
-        return <Best jumpTo={jumpTo} />;
-      default:
-        return <Cheapest jumpto={jumpTo} />;
-    }
-  };
-
-  const _handleIndexChange = i => setIndex(i);
-
-  const _renderTabBar = props => {
+  const RenderTabs = props => {
     return (
       <View style={styles.tabBar}>
-        {props.navigationState.routes.map((route, i) => {
+        {props.routes.map((route, i) => {
           const isActive = i === index;
           return (
             <TouchableOpacity
@@ -133,14 +112,11 @@ function FlightResult({navigation}) {
               </View>
             </View>
           </LinearGradient>
-          <View style={commonStyle.flex(1)}>
-            <TabView
-              navigationState={{index, routes}}
-              renderScene={renderScene}
-              renderTabBar={_renderTabBar}
-              onIndexChange={_handleIndexChange}
-              initialLayout={{width: wp('100%')}}
-            />
+          <View>
+            <RenderTabs routes={routes} />
+          </View>
+          <View>
+            <SearchResult />
           </View>
         </View>
       </View>
