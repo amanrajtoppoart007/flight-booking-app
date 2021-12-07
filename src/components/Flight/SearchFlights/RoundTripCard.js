@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
     height: hp('50%'),
     backgroundColor: Colors.white,
     borderRadius: 8,
-    borderWidth: 0.1,
+    borderWidth: StyleSheet.hairlineWidth,
     borderColor: Colors.border,
     elevation: 5,
     padding: 15,

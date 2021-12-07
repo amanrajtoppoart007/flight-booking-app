@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
       width: wp('90%'),
       backgroundColor: Colors.white,
       borderRadius: 8,
-      borderWidth: 0.1,
+      borderWidth: StyleSheet.hairlineWidth,
       borderColor: Colors.border,
       elevation: 5,
       paddingHorizontal: 15,
