@@ -192,13 +192,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  topBarText: {
-    fontSize: 14,
-    color: '#F15922',
-    marginVertical: 5,
-    fontFamily: Font.AvenirHeavy,
-    marginHorizontal: 9,
-  },
 
   underline: {
     width: '100%',

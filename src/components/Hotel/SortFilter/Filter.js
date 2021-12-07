@@ -43,6 +43,7 @@ function Filter() {
       <View style={commonStyle.marginVertical(5)}>
         <Text style={styles.title}>Area</Text>
         <SearchBar text="Search by Area" />
+        <View style={commonStyle.marginVertical(5)} />
         <View
           style={[
             commonStyle.marginVertical(5),
@@ -60,6 +61,8 @@ function Filter() {
       <View style={commonStyle.marginVertical(5)}>
         <Text style={styles.title}>Landmarks</Text>
         <SearchBar text="Search by Landmarks" />
+        <View style={commonStyle.marginVertical(5)} />
+
         <View
           style={[
             commonStyle.marginVertical(5),

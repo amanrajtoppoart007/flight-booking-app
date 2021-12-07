@@ -94,6 +94,7 @@ const styles = StyleSheet.create({
     top: 0,
     right: 0,
     alignItems: 'flex-end',
+    zIndex: 0,
   },
   subContainer: {
     backgroundColor: 'white',

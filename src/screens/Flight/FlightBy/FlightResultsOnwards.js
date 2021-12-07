@@ -82,8 +82,7 @@ function SearchResult({navigation}) {
           </View>
           <View style={commonStyle.flex(1)}>
             <FlatList
-              data={[0, 1, 2]}
-              f
+              data={[0, 1, 2, 3]}
               renderItem={({_, index}) => (
                 <FlightCard
                   onPress={() => setSelectedIndex(index)}

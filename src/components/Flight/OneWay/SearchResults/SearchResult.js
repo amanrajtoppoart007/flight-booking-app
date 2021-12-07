@@ -33,13 +33,12 @@ function SearchResult() {
   );
   return (
     <View>
-      <View>
-        <FlatList
-          keyExtractor={item => item?.id?.toString()}
-          data={flights}
-          renderItem={_renderItem}
-        />
-      </View>
+      <FlatList
+        style={{height: '88%'}}
+        keyExtractor={item => item?.id?.toString()}
+        data={flights}
+        renderItem={_renderItem}
+      />
     </View>
   );
 }
