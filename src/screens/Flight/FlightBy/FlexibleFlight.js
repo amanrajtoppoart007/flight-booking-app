@@ -9,24 +9,19 @@ import {
 } from 'react-native';
 import commonStyle from '../../../layout/Style';
 
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import Colors from '../../../layout/Colors';
 import Font from '../../../layout/Font';
 import CustomStatusBar from '../../../components/CustomStatusBar';
 import LinearGradient from 'react-native-linear-gradient';
 import {Icon} from 'react-native-elements';
 import SearchResult from '../../../components/Flight/RoundTrip/SearchResults/SearchResult';
-import Fastest from '../../../components/Flight/RoundTrip/SearchResults/Fastest';
-import Best from '../../../components/Flight/RoundTrip/SearchResults/Best';
+
 import RoundTrip from '../../../components/Svg/RoundTripFlight.svg';
 import FlightTicket from '../../../components/Svg/FlightTicket.svg';
-import {TabView} from 'react-native-tab-view';
 import SortFilter from '../../../components/Flight/FlightResults/SortFilter';
 
-function FlexiFlight({navigation}) {
+function FlexibleFlight({navigation}) {
   const [shortVisible, setShortVisible] = useState(false);
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
@@ -35,12 +30,10 @@ function FlexiFlight({navigation}) {
     {key: 'best', title: 'Best', price: 'QAR 170'},
   ]);
 
-  const _handleIndexChange = i => setIndex(i);
-
-  const _renderTabBar = props => {
+  const RenderTabs = props => {
     return (
       <View style={styles.tabBar}>
-        {props.navigationState.routes.map((route, i) => {
+        {props.routes.map((route, i) => {
           const isActive = i === index;
           return (
             <TouchableOpacity
@@ -63,18 +56,6 @@ function FlexiFlight({navigation}) {
         })}
       </View>
     );
-  };
-  const renderScene = ({route, jumpTo}) => {
-    switch (route.key) {
-      case 'cheapest':
-        return <SearchResult jumpTo={jumpTo} />;
-      case 'fastest':
-        return <Fastest jumpTo={jumpTo} />;
-      case 'best':
-        return <Best jumpTo={jumpTo} />;
-      default:
-        return <SearchResult jumpto={jumpTo} />;
-    }
   };
 
   return (
@@ -134,14 +115,11 @@ function FlexiFlight({navigation}) {
               </View>
             </View>
           </LinearGradient>
-          <View style={commonStyle.flex(1)}>
-            <TabView
-              navigationState={{index, routes}}
-              renderScene={renderScene}
-              renderTabBar={_renderTabBar}
-              onIndexChange={_handleIndexChange}
-              initialLayout={{width: wp('100%')}}
-            />
+          <View>
+            <RenderTabs routes={routes} />
+          </View>
+          <View>
+            <SearchResult />
           </View>
         </View>
       </View>
@@ -273,4 +251,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FlexiFlight;
+export default FlexibleFlight;

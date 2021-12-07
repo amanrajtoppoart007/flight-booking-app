@@ -1,6 +1,6 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import FlexiFlight from '../screens/Flight/FlightBy/FlexiFlight';
+import FlexibleFlight from '../screens/Flight/FlightBy/FlexibleFlight';
 import FlightResultsOnwards from '../screens/Flight/FlightBy/FlightResultsOnwards';
 import FlightResultsReturn from '../screens/Flight/FlightBy/FlightResultsReturn';
 import ScreenSettings from './ScreenSettings';
@@ -15,7 +15,7 @@ const FlightBy = () => (
       gestureEnabled: true,
       ...ScreenSettings,
     }}>
-    <Stack.Screen name={'FlexiFlight'} component={FlexiFlight} />
+    <Stack.Screen name={'FlexibleFlight'} component={FlexibleFlight} />
     <Stack.Screen
       name={'FlightResultsOnwards'}
       component={FlightResultsOnwards}

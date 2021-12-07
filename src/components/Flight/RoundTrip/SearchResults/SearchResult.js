@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {FlatList, View} from 'react-native';
 import FlightCard from './FlightCard';
-import commonStyle from '../../../../layout/Style';
 import {useNavigation} from '@react-navigation/native';
 
 function SearchResult() {
