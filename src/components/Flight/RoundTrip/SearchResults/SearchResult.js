@@ -4,7 +4,7 @@ import FlightCard from './FlightCard';
 import commonStyle from '../../../../layout/Style';
 import {useNavigation} from '@react-navigation/native';
 
-function Cheapest() {
+function SearchResult() {
   const [flights] = useState([
     {
       id: 'flight-list-id-one',
@@ -32,7 +32,7 @@ function Cheapest() {
     />
   );
   return (
-    <View style={commonStyle.flex(1)}>
+    <View>
       <View>
         <FlatList
           keyExtractor={item => item?.id?.toString()}
@@ -44,4 +44,4 @@ function Cheapest() {
   );
 }
 
-export default Cheapest;
+export default SearchResult;

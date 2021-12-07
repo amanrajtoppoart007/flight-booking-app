@@ -18,7 +18,7 @@ import Font from '../../../layout/Font';
 import CustomStatusBar from '../../../components/CustomStatusBar';
 import LinearGradient from 'react-native-linear-gradient';
 import {Icon} from 'react-native-elements';
-import Cheapest from '../../../components/Flight/RoundTrip/SearchResults/Cheapest';
+import SearchResult from '../../../components/Flight/RoundTrip/SearchResults/SearchResult';
 import Fastest from '../../../components/Flight/RoundTrip/SearchResults/Fastest';
 import Best from '../../../components/Flight/RoundTrip/SearchResults/Best';
 import RoundTrip from '../../../components/Svg/RoundTripFlight.svg';
@@ -30,7 +30,7 @@ function FlexiFlight({navigation}) {
   const [shortVisible, setShortVisible] = useState(false);
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    {key: 'cheapest', title: 'Cheapest', price: 'QAR 170'},
+    {key: 'cheapest', title: 'SearchResult', price: 'QAR 170'},
     {key: 'fastest', title: 'Fastest', price: 'QAR 273'},
     {key: 'best', title: 'Best', price: 'QAR 170'},
   ]);
@@ -67,13 +67,13 @@ function FlexiFlight({navigation}) {
   const renderScene = ({route, jumpTo}) => {
     switch (route.key) {
       case 'cheapest':
-        return <Cheapest jumpTo={jumpTo} />;
+        return <SearchResult jumpTo={jumpTo} />;
       case 'fastest':
         return <Fastest jumpTo={jumpTo} />;
       case 'best':
         return <Best jumpTo={jumpTo} />;
       default:
-        return <Cheapest jumpto={jumpTo} />;
+        return <SearchResult jumpto={jumpTo} />;
     }
   };
 
