@@ -1,11 +1,5 @@
-import React, {useState} from 'react';
-import {
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  ScrollView,
-} from 'react-native';
+import React from 'react';
+import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import {BottomSheet, Icon} from 'react-native-elements';
 import Colors from '../../../layout/Colors';
 import {
@@ -17,6 +11,8 @@ import commonStyle from '../../../layout/Style';
 import HotelImage from '../../Svg/Hotel/HotelImage.svg';
 import Pin from '../../Svg/Hotel/Pin.svg';
 import StarRating from '../../StarRating';
+import Card from '../BookingSummary/Card';
+
 function BookingSummary({isBookingSummaryVisible, setIsBookingSummaryVisible}) {
   return (
     <BottomSheet isVisible={isBookingSummaryVisible}>
@@ -43,18 +39,20 @@ function BookingSummary({isBookingSummaryVisible, setIsBookingSummaryVisible}) {
           <View
             style={[commonStyle.rowFlexStart, commonStyle.marginVertical(10)]}>
             <HotelImage />
-            <View style={styles.flexEndSelf}>
+            <View>
               <View style={styles.rowWrapper}>
-                <Text style={[styles.textBold, styles.marginRight(5)]}>
-                  W Doha
-                </Text>
-                <StarRating size={15} rating={4} />
+                <View>
+                  <Text style={styles.placeTitle}>W Doha</Text>
+                </View>
+                <View style={commonStyle.marginHorizontal(11.5)}>
+                  <StarRating rating={4} size={15} />
+                </View>
               </View>
               <View style={styles.rowWrapper}>
                 <Pin />
-                <Text style={[styles.textNormal, styles.marginLeft(5)]}>
-                  West Bay, Doha, QA
-                </Text>
+                <View style={commonStyle.marginHorizontal(6)}>
+                  <Text style={[styles.placeText]}>West Bay, Doha, QA</Text>
+                </View>
               </View>
             </View>
           </View>
@@ -64,20 +62,16 @@ function BookingSummary({isBookingSummaryVisible, setIsBookingSummaryVisible}) {
               commonStyle.rowSpaceBetween,
               commonStyle.marginVertical(5),
             ]}>
-            <Text style={styles.textBold}>
+            <Text style={styles.checkInText}>
               Check-In: {'\n'}
-              <Text style={[styles.textNormalSecondary, {color: Colors.black}]}>
-                15-10-2021
-              </Text>
-              <Text style={styles.textNormalSecondary}> 03:00 PM</Text>
+              <Text style={styles.dateText}>15-10-2021</Text>
+              <Text style={styles.timeText}> 03:00 PM</Text>
             </Text>
             <View style={styles.dividerVertical} />
-            <Text style={styles.textBold}>
+            <Text style={styles.checkInText}>
               Check-In: {'\n'}
-              <Text style={[styles.textNormalSecondary, {color: Colors.black}]}>
-                15-10-2021
-              </Text>
-              <Text style={styles.textNormalSecondary}> 12:00 PM</Text>
+              <Text style={styles.dateText}>15-10-2021</Text>
+              <Text style={styles.timeText}> 12:00 PM</Text>
             </Text>
           </View>
           <View style={styles.divider} />
@@ -113,76 +107,6 @@ function BookingSummary({isBookingSummaryVisible, setIsBookingSummaryVisible}) {
     </BottomSheet>
   );
 }
-function Card({title, subtitle, price, baseFare, tax, discount, index}) {
-  const [isOpen, setOpen] = useState(false);
-  return (
-    <View style={styles.card}>
-      <View
-        style={[
-          commonStyle.rowSpaceBetween,
-          styles.flexEnd,
-          commonStyle.padding(10),
-        ]}>
-        <View>
-          <Text style={styles.textNormalBlue}>
-            <Text style={styles.textHeavyBlue}>Room {index}: </Text>
-            {title}
-          </Text>
-          <Text style={styles.textNormalPrimary}>{subtitle}</Text>
-        </View>
-        <TouchableOpacity onPress={() => setOpen(!isOpen)}>
-          <Icon
-            name={!isOpen ? 'down' : 'up'}
-            type={'antdesign'}
-            size={18}
-            color={Colors.lightText}
-          />
-        </TouchableOpacity>
-        <Text style={styles.textBold}>
-          <Text style={styles.textLight}>QAR</Text> {price}
-        </Text>
-      </View>
-      {isOpen && (
-        <>
-          <View style={styles.divider} />
-          <View
-            style={[
-              commonStyle.paddingHorizontal(10),
-              commonStyle.paddingVertical(5),
-            ]}>
-            <View style={commonStyle.rowSpaceBetween}>
-              <Text style={styles.textNormalLight}>Base Fare</Text>
-              <Text style={styles.textNormalLight}>
-                QAR{' '}
-                <Text style={[styles.textNormalLight, {color: Colors.black}]}>
-                  {baseFare}
-                </Text>
-              </Text>
-            </View>
-            <View style={commonStyle.rowSpaceBetween}>
-              <Text style={styles.textNormalLight}>Taxes & Fee</Text>
-              <Text style={styles.textNormalLight}>
-                QAR{' '}
-                <Text style={[styles.textNormalLight, {color: Colors.black}]}>
-                  {tax}
-                </Text>
-              </Text>
-            </View>
-            <View style={commonStyle.rowSpaceBetween}>
-              <Text style={styles.textNormalLight}>Discount</Text>
-              <Text style={styles.textNormalLight}>
-                QAR{' '}
-                <Text style={[styles.textNormalLight, {color: Colors.black}]}>
-                  {discount}
-                </Text>
-              </Text>
-            </View>
-          </View>
-        </>
-      )}
-    </View>
-  );
-}
 
 const styles = StyleSheet.create({
   bottomSheet: {
@@ -191,18 +115,37 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
-    padding: 20,
-  },
-  card: {
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: '#DDDDDD',
-    marginVertical: 8,
+    padding: 15,
   },
   title: {
     fontSize: 18,
     color: Colors.black,
     fontFamily: Font.AvenirHeavy,
+  },
+  placeTitle: {
+    fontSize: 14,
+    color: Colors.black,
+    fontFamily: Font.AvenirBlack,
+  },
+  placeText: {
+    fontSize: 12,
+    color: Colors.lightText,
+    fontFamily: Font.AvenirMedium,
+  },
+  checkInText: {
+    fontSize: 14,
+    color: Colors.black,
+    fontFamily: Font.AvenirBlack,
+  },
+  dateText: {
+    fontSize: 14,
+    color: '#6C6C6C',
+    fontFamily: Font.AvenirMedium,
+  },
+  timeText: {
+    fontSize: 14,
+    color: '#F15922',
+    fontFamily: Font.AvenirMedium,
   },
   divider: {
     borderBottomWidth: 1,
@@ -214,97 +157,11 @@ const styles = StyleSheet.create({
     borderRightWidth: 1,
     borderColor: '#DDDDDD',
   },
-  textNormal: {
-    fontSize: 14,
-    color: Colors.black,
-    fontFamily: Font.AvenirMedium,
-  },
-  textBold: {
-    fontSize: 14,
-    color: Colors.black,
-    fontFamily: Font.AvenirBlack,
-  },
-  textNormalBlue: {
-    fontSize: 14,
-    color: '#26698E',
-    fontFamily: Font.AvenirMedium,
-  },
-  textHeavyBlue: {
-    fontSize: 14,
-    color: '#26698E',
-    fontFamily: Font.AvenirHeavy,
-  },
-  textNormalLight: {
-    fontSize: 14,
-    color: Colors.lightText,
-    fontFamily: Font.AvenirMedium,
-  },
-  textNormalPrimary: {
-    fontSize: 14,
-    color: Colors.primary,
-    fontFamily: Font.AvenirMedium,
-  },
-  textNormalSecondary: {
-    fontSize: 14,
-    color: Colors.secondary,
-    fontFamily: Font.AvenirMedium,
-  },
-
-  textLight: {
-    fontSize: 12,
-    color: Colors.lightText,
-    fontFamily: Font.AvenirMedium,
-  },
   rowWrapper: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    marginHorizontal: 10,
-  },
-  marginRight(t) {
-    return {
-      marginRight: t,
-    };
-  },
-  fontSize(t) {
-    return {
-      fontSize: t,
-    };
-  },
-  marginLeft(t) {
-    return {
-      marginLeft: t,
-    };
-  },
-  button: {
-    height: 45,
-    borderRadius: 6,
-    backgroundColor: Colors.primary,
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'stretch',
-    marginHorizontal: 5,
-  },
-
-  selectContainer: {
-    borderWidth: 2,
-    borderRadius: 8,
-    marginHorizontal: 5,
-    marginVertical: 5,
-    backgroundColor: Colors.white,
-    elevation: 5,
-  },
-  selectText: {
-    marginHorizontal: 10,
-    marginVertical: 8,
-    fontSize: 16,
-    color: 'black',
-  },
-  flexEndSelf: {
-    alignSelf: 'flex-end',
-  },
-  flexEnd: {
-    alignItems: 'flex-end',
+    marginHorizontal: 15,
   },
 });
 
