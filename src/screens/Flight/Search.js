@@ -186,17 +186,14 @@ const styles = StyleSheet.create({
     elevation: 10,
     padding: 15,
   },
-  BorderContainer: {
-    backgroundColor: Colors.white,
-    elevation: 10,
-  },
+
   TopOriginContainer: {
     paddingVertical: 10,
     backgroundColor: '#F5F7FB',
     marginHorizontal: 5,
   },
   marginH: {
-    marginLeft: 10,
+    marginHorizontal: 8,
   },
   margin: {
     padding: 15,
@@ -219,7 +216,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
     backgroundColor: 'gainsboro',
     borderRadius: 8,
-    paddingHorizontal: 10,
+    paddingHorizontal: 14,
     justifyContent: 'flex-start',
     flexDirection: 'row',
     alignItems: 'center',
@@ -240,7 +237,7 @@ const styles = StyleSheet.create({
   itemTextContainer: {
     flex: 1,
     flexDirection: 'column',
-    marginHorizontal: 10,
+    marginHorizontal: 13,
     justifyContent: 'center',
   },
   itemText: {

@@ -16,7 +16,7 @@ import Font from '../../layout/Font';
 import commonStyle from '../../layout/Style';
 const Button = ({count, setCount}) => {
   return (
-    <View style={buttonStyle.card}>
+    <View style={styles.card}>
       <View>
         <Icon
           onPress={() => (count <= 0 ? null : setCount(count - 1))}
@@ -64,7 +64,7 @@ function TravellerAndClass({Visible, setVisible, data, setData}) {
   return (
     <BottomSheet isVisible={Visible}>
       <View style={styles.bottomSheet}>
-        <View style={commonStyle.flex(1)}>
+        <View style={[commonStyle.flex(1), commonStyle.marginTop(5)]}>
           <View style={commonStyle.rowSpaceBetween}>
             <View>
               <Text style={styles.title}>Select Travellers & Class</Text>
@@ -156,7 +156,18 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
-    padding: 20,
+    padding: 15,
+  },
+  card: {
+    width: 110,
+    height: 45,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    padding: 5,
+    backgroundColor: Colors.white,
+    elevation: 10,
+    borderRadius: 8,
   },
   center: {justifyContent: 'center', alignItems: 'center'},
   title: {
@@ -192,7 +203,7 @@ const styles = StyleSheet.create({
       marginVertical: 5,
       backgroundColor: Colors.white,
       elevation: 5,
-      borderColor: value ? 'darkorange' : Colors.primary,
+      borderColor: value ? 'darkorange' : '#163D68',
     };
   },
   selectText(value) {
@@ -200,21 +211,9 @@ const styles = StyleSheet.create({
       marginHorizontal: 10,
       marginVertical: 8,
       fontSize: 14,
-      color: value ? 'darkorange' : Colors.primary,
+      color: value ? 'darkorange' : '#163D68',
     };
   },
 });
-const buttonStyle = StyleSheet.create({
-  card: {
-    width: 110,
-    height: 45,
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-    padding: 5,
-    backgroundColor: Colors.white,
-    elevation: 10,
-    borderRadius: 8,
-  },
-});
+
 export default TravellerAndClass;

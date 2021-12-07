@@ -82,6 +82,12 @@ const styles = StyleSheet.create({
     fontFamily: Font.AvenirMedium,
     fontSize: 14,
     color: Colors.black,
+    fontFamily: Font.AvenirMedium,
+  },
+  container: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    margin: 3,
   },
   date: {
     fontSize: 12,
