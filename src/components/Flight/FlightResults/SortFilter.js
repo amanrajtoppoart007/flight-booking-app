@@ -1,17 +1,13 @@
-import React, {useState, useCallback} from 'react';
+import React from 'react';
 import {
   View,
-  Text,
   StyleSheet,
   SafeAreaView,
-  ScrollView,
   TouchableOpacity,
   Animated,
 } from 'react-native';
-import {Icon} from 'react-native-elements';
 import Colors from '../../../layout/Colors';
 import {TabView} from 'react-native-tab-view';
-import RangeSlider from 'rn-range-slider';
 import Font from '../../../layout/Font';
 import {
   widthPercentageToDP as wp,
@@ -83,9 +79,6 @@ function SortFilter({onClose}) {
 export default SortFilter;
 
 const styles = StyleSheet.create({
-  Rail: {flex: 1, height: 6, backgroundColor: '#E4E9F7'},
-  RailSelected: {flex: 1, height: 6, backgroundColor: Colors.primary},
-
   ButtonText(selected = false) {
     return {
       fontSize: 14,
@@ -100,41 +93,7 @@ const styles = StyleSheet.create({
       color: isActive ? Colors.primary : '#6C6C6C',
     };
   },
-  BorderButton(selected = false) {
-    return {
-      paddingHorizontal: 10,
-      borderWidth: 1,
-      borderColor: !selected ? Colors.border : Colors.orange,
-      borderRadius: 6,
-      paddingVertical: 5,
-      backgroundColor: Colors.white,
-      elevation: 8,
-    };
-  },
-  CheckText: {
-    fontSize: 14,
-    color: Colors.lightText,
-    fontFamily: Font.AvenirBook,
-  },
-  IconButton: {
-    flex: 1,
-    borderWidth: 1,
-    borderColor: Colors.border,
-    backgroundColor: 'white',
-    borderRadius: 6,
-    paddingVertical: 5,
-    marginHorizontal: 5,
-  },
-  LightText: {
-    fontSize: 14,
-    color: Colors.lightText,
-    fontFamily: Font.AvenirBook,
-  },
-  title: {
-    fontFamily: Font.AvenirHeavy,
-    fontSize: 14,
-  },
-  SvgIcon: {width: 18, height: 18, marginRight: 5},
+
   container: {
     width: wp('100%'),
     height: hp('100%'),
@@ -150,63 +109,7 @@ const styles = StyleSheet.create({
     height: hp('100%'),
     paddingTop: 15,
   },
-  FlightTabContainer: {
-    backgroundColor: 'white',
-    width: wp('75%'),
-    height: hp('105%'),
-  },
-  HeaderContainer: {
-    backgroundColor: 'white',
-    paddingHorizontal: 10,
-    paddingTop: 10,
-    width: '75%',
-  },
-  sortContainer2: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  sortTitle: {
-    fontFamily: Font.AvenirHeavy,
-    fontSize: 14,
-    color: Colors.black,
-  },
-  sortClear: {
-    fontSize: 14,
-    color: Colors.secondary,
-    fontFamily: Font.AvenirHeavy,
-  },
-  sortTextContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    marginTop: 8,
-  },
-  line: {
-    marginVertical: 10,
-    marginRight: 2,
-  },
-  listContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderColor: Colors.gray,
-    borderBottomWidth: 0.5,
-    borderBottomColor: '#DDDDDD',
-    paddingVertical: 14,
-    paddingHorizontal: 10,
-  },
-  listIcon: {
-    marginRight: 8,
-    color: Colors.black,
-  },
-  listTitle(isSelected = false) {
-    return {
-      fontSize: 14,
-      color: isSelected ? 'green' : Colors.black,
-      fontFamily: Font.AvenirMedium,
-      marginHorizontal: 10,
-    };
-  },
+
   tabBar: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
@@ -230,11 +133,5 @@ const styles = StyleSheet.create({
   tabItem: {
     alignItems: 'center',
     marginHorizontal: 10,
-  },
-  SliderIconContainer: {
-    margin: 3,
-    padding: 2,
-    borderRadius: 22,
-    backgroundColor: Colors.white,
   },
 });

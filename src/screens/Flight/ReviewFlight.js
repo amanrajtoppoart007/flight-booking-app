@@ -51,7 +51,7 @@ function ReviewFlight() {
               key={i?.toString()}
               style={styles.tabItem}
               onPress={() => setIndex(i)}>
-              <Animated.Text style={styles.tabTitle(i == index)}>
+              <Animated.Text style={styles.tabTitle(i === index)}>
                 {route.title}
               </Animated.Text>
               {i === index ? (

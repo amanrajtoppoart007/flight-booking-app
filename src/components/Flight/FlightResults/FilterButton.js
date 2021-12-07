@@ -15,11 +15,11 @@ export default BorderButton;
 const styles = StyleSheet.create({
   BorderButton(selected = false) {
     return {
-      paddingHorizontal: 10,
+      paddingHorizontal: 13,
       borderWidth: 1,
-      borderColor: !selected ? Colors.border : Colors.orange,
-      borderRadius: 6,
-      paddingVertical: 5,
+      borderColor: !selected ? Colors.border : '#F15922',
+      borderRadius: 8,
+      paddingVertical: 10,
       backgroundColor: Colors.white,
       elevation: 8,
     };
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   ButtonText(selected = false) {
     return {
       fontSize: 14,
-      color: !selected ? Colors.black : Colors.orange,
+      color: !selected ? '#242A37' : '#F15922',
       fontFamily: Font.AvenirMedium,
     };
   },
