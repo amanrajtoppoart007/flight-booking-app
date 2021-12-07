@@ -109,25 +109,30 @@ function ReviewItinerary({navigation}) {
             <View style={styles.checkoutBtnWrapper}>
               <View style={styles.checkOutBtnSection}>
                 <View style={commonStyle.rowSpaceBetween}>
-                  <View style={commonStyle.rowSpaceBetween}>
-                    <View>
-                      <Icon
-                        name={isFareSectionVisible ? 'up' : 'down'}
-                        onPress={() =>
-                          setIsFareSectionVisible(!isFareSectionVisible)
-                        }
-                        type={'antdesign'}
-                        size={16}
-                        color={Colors.primary}
-                      />
-                    </View>
+                  <View>
                     <View style={commonStyle.rowSpaceBetween}>
-                      <View style={commonStyle.marginHorizontal(4)}>
-                        <Text>QAR</Text>
-                      </View>
                       <View>
-                        <Text style={styles.textBold}> 300.00</Text>
+                        <Icon
+                          name={isFareSectionVisible ? 'up' : 'down'}
+                          onPress={() =>
+                            setIsFareSectionVisible(!isFareSectionVisible)
+                          }
+                          type={'antdesign'}
+                          size={16}
+                          color={'#898989'}
+                        />
                       </View>
+                      <View style={commonStyle.rowSpaceBetween}>
+                        <View style={commonStyle.marginHorizontal(4)}>
+                          <Text style={styles.currency}>QAR</Text>
+                        </View>
+                        <View>
+                          <Text style={styles.totalPrice}> 300.00</Text>
+                        </View>
+                      </View>
+                    </View>
+                    <View>
+                      <Text>(For 4 Travellers)</Text>
                     </View>
                   </View>
                   <View>
@@ -181,7 +186,7 @@ const styles = StyleSheet.create({
     width: 150,
     height: 34,
     borderWidth: 1,
-    borderRadius: 8,
+    borderRadius: 6,
     borderColor: '#AAAAAA',
     paddingHorizontal: 8,
   },
@@ -220,10 +225,20 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
     paddingVertical: 8,
   },
-  textBold: {
-    fontFamily: Font.AvenirBlack,
-    fontSize: 18,
+  currency: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 14,
     color: Colors.black,
+  },
+  totalPrice: {
+    fontFamily: Font.AvenirBlack,
+    fontSize: 16,
+    color: Colors.black,
+  },
+  helperText: {
+    fontFamily: Font.AvenirRoman,
+    fontSize: 12,
+    color: '#6C6C6C',
   },
   checkOutBtn: {
     width: 110,

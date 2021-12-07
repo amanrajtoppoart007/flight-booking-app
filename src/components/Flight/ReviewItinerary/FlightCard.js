@@ -6,6 +6,7 @@ import Colors from '../../../layout/Colors';
 import ClockSmSvg from '../../Svg/ClockSm.svg';
 import ItineraryCard from '../../TrackFlight/Route/ItineraryCard';
 import ClockRedSvg from '../../Svg/ClockRed.svg';
+
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 function FlightCard() {
@@ -26,7 +27,7 @@ function FlightCard() {
         <View
           style={[commonStyle.rowSpaceBetween, commonStyle.marginVertical(4)]}>
           <View>
-            <Text style={styles.timeText}>Wed, 15 Sep</Text>
+            <Text style={styles.date}>Wed, 15 Sep</Text>
           </View>
           <View style={commonStyle.rowCenter}>
             <View>
@@ -87,6 +88,11 @@ const styles = StyleSheet.create({
   durationTitle: {
     fontFamily: Font.AvenirRoman,
     fontSize: 14,
+    color: '#6C6C6C',
+  },
+  date: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 12,
     color: '#6C6C6C',
   },
   timeText: {

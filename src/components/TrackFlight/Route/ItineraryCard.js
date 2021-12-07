@@ -3,10 +3,12 @@ import {StyleSheet, Text, View} from 'react-native';
 import commonStyle from '../../../layout/Style';
 import AirPlaneDepartureSvg from '../../Svg/AirplaneDeparture.svg';
 import Font from '../../../layout/Font';
+import Colors from '../../../layout/Colors';
+
 import DeerSvg from '../../Svg/Deer.svg';
 import BusySvg from '../../Svg/Busy.svg';
 import BaggageSvg from '../../Svg/Baggage.svg';
-import Colors from '../../../layout/Colors';
+import ClockSvg from '../../../components/Svg/Flight/Clock.svg';
 
 function ItineraryCard() {
   return (
@@ -89,8 +91,13 @@ function ItineraryCard() {
               <View>
                 <Text style={styles.airPortText}>Hamad Int Airport</Text>
               </View>
-              <View>
-                <Text style={styles.airPortText}>2h 30m</Text>
+              <View style={commonStyle.rowSpaceBetween}>
+                <View>
+                  <ClockSvg />
+                </View>
+                <View style={commonStyle.marginHorizontal(5)}>
+                  <Text style={styles.airPortText}>2h 30m</Text>
+                </View>
               </View>
               <View>
                 <Text style={styles.airPortText}>Queen Alia Int Airport</Text>
