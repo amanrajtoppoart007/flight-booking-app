@@ -91,6 +91,7 @@ function FlexibleFlight({navigation}) {
                 <View style={commonStyle.rowCenter}>
                   <View style={commonStyle.marginHorizontal(5)}>
                     <Icon
+                      onPress={() => navigation.navigate('ModifySearch')}
                       name={'edit'}
                       type={'feather'}
                       size={18}
@@ -123,13 +124,13 @@ function FlexibleFlight({navigation}) {
           </View>
         </View>
       </View>
-      {shortVisible && <SortFilter onClose={() => setShortVisible(false)} />}
       <TouchableOpacity
         onPress={() => navigation.navigate('FlightResultsOnwards')}
         style={styles.flexibleButton}>
         <FlightTicket style={commonStyle.marginRight(5)} />
         <Text style={styles.whiteText}>Flexible Flight Option</Text>
       </TouchableOpacity>
+      {shortVisible && <SortFilter onClose={() => setShortVisible(false)} />}
     </SafeAreaView>
   );
 }

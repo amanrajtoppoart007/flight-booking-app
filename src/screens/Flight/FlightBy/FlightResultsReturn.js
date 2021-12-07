@@ -51,6 +51,7 @@ function SearchResult({navigation}) {
                 <View style={commonStyle.rowCenter}>
                   <View style={commonStyle.marginHorizontal(5)}>
                     <Icon
+                      onPress={() => navigation.navigate('ModifySearch')}
                       name={'edit'}
                       type={'feather'}
                       size={18}
@@ -77,6 +78,7 @@ function SearchResult({navigation}) {
           </LinearGradient>
           <View style={styles.topBarContainer}>
             <Departure />
+            <View style={commonStyle.marginHorizontal(5)} />
             <Text style={styles.topBarText}>Select your return flight</Text>
           </View>
           <View style={commonStyle.flex(1)}>
@@ -174,7 +176,6 @@ const styles = StyleSheet.create({
     color: '#F15922',
     marginVertical: 5,
     fontFamily: Font.AvenirHeavy,
-    marginHorizontal: 9,
   },
   underline: {
     width: '100%',

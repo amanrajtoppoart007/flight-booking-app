@@ -50,6 +50,7 @@ function SearchResult({navigation}) {
                 <View style={commonStyle.rowCenter}>
                   <View style={commonStyle.marginHorizontal(5)}>
                     <Icon
+                      onPress={() => navigation.navigate('ModifySearch')}
                       name={'edit'}
                       type={'feather'}
                       size={18}
@@ -76,11 +77,13 @@ function SearchResult({navigation}) {
           </LinearGradient>
           <View style={styles.topBarContainer}>
             <Departure />
+            <View style={commonStyle.marginHorizontal(5)} />
             <Text style={styles.topBarText}>Select your onward flight</Text>
           </View>
           <View style={commonStyle.flex(1)}>
             <FlatList
               data={[0, 1, 2]}
+              f
               renderItem={({_, index}) => (
                 <FlightCard
                   onPress={() => setSelectedIndex(index)}
@@ -169,7 +172,6 @@ const styles = StyleSheet.create({
     color: '#F15922',
     marginVertical: 5,
     fontFamily: Font.AvenirHeavy,
-    marginHorizontal: 9,
   },
   underline: {
     width: '100%',
