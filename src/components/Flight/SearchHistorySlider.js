@@ -3,6 +3,7 @@ import {StyleSheet, View, FlatList, Text} from 'react-native';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import Colors from '../../layout/Colors';
 import {Icon} from 'react-native-elements';
+import Font from '../../layout/Font';
 
 function SearchHistorySlider() {
   const list = [
@@ -30,12 +31,7 @@ function SearchHistorySlider() {
 
   const _renderItem = ({item}) => (
     <View style={styles.card}>
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          margin: 3,
-        }}>
+      <View style={styles.container}>
         <Text style={styles.title}>{item.from}</Text>
         <Icon
           name={'swap-horizontal'}
@@ -80,11 +76,18 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 14,
     color: Colors.black,
+    fontFamily: Font.AvenirMedium,
+  },
+  container: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    margin: 3,
   },
   date: {
     fontSize: 12,
     color: Colors.lightText,
     textAlign: 'center',
+    fontFamily: Font.AvenirMedium,
   },
 });
 
