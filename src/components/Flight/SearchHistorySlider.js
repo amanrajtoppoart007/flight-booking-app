@@ -31,7 +31,7 @@ function SearchHistorySlider() {
 
   const _renderItem = ({item}) => (
     <View style={styles.card}>
-      <View style={styles.container}>
+      <View style={styles.item}>
         <Text style={styles.title}>{item.from}</Text>
         <Icon
           name={'swap-horizontal'}
@@ -66,14 +66,20 @@ function SearchHistorySlider() {
 const styles = StyleSheet.create({
   card: {
     width: 120,
-    height: 60,
     borderRadius: 8,
-    borderWidth: 2,
-    borderColor: 'gray',
+    borderWidth: 1,
+    borderColor: 'rgba(22, 61, 104, 0.3)',
     padding: 5,
     marginHorizontal: 5,
+    justifyContent: 'center',
+  },
+  item: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    margin: 3,
   },
   title: {
+    fontFamily: Font.AvenirMedium,
     fontSize: 14,
     color: Colors.black,
     fontFamily: Font.AvenirMedium,
@@ -85,9 +91,7 @@ const styles = StyleSheet.create({
   },
   date: {
     fontSize: 12,
-    color: Colors.lightText,
-    textAlign: 'center',
-    fontFamily: Font.AvenirMedium,
+    color: '#898989',
   },
 });
 
