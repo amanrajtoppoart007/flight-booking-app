@@ -31,12 +31,7 @@ function SearchHistorySlider() {
 
   const _renderItem = ({item}) => (
     <View style={styles.card}>
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          margin: 3,
-        }}>
+      <View style={styles.item}>
         <Text style={styles.title}>{item.from}</Text>
         <Icon
           name={'swap-horizontal'}
@@ -77,6 +72,11 @@ const styles = StyleSheet.create({
     padding: 5,
     marginHorizontal: 5,
     justifyContent: 'center',
+  },
+  item: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    margin: 3,
   },
   title: {
     fontFamily: Font.AvenirMedium,
