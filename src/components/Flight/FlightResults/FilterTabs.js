@@ -187,7 +187,6 @@ const styles = StyleSheet.create({
     width: wp('75%'),
     height: hp('100%'),
   },
-
   tabBar: {
     flexDirection: 'row',
     justifyContent: 'flex-start',

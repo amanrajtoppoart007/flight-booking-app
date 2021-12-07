@@ -118,22 +118,6 @@ export default function Home() {
     temp[index].toText = ele;
     setLocation(temp);
   }
-  function _setTo(index = 0, to, code) {
-    let temp = [...Location];
-    temp[index] = {
-      ...temp[index],
-      to: to,
-      toText: code,
-    };
-  }
-  function _setFrom(index = 0, from, code) {
-    let temp = [...Location];
-    temp[index] = {
-      ...temp[index],
-      from: from,
-      fromText: code,
-    };
-  }
   function editDate(index, date) {
     if (index === -1) {
       return;

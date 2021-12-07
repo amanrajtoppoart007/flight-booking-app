@@ -146,9 +146,11 @@ function Search() {
       <FlatList
         data={data}
         ListHeaderComponent={
-          <View style={styles.TopOriginContainer}>
-            <Text style={styles.headerText}>Top Origins</Text>
-          </View>
+          !(searchText.length > 0) && (
+            <View style={styles.TopOriginContainer}>
+              <Text style={styles.headerText}>Top Origins</Text>
+            </View>
+          )
         }
         renderItem={({item}) => {
           return (
@@ -241,17 +243,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   itemText: {
-    color: 'black',
+    color: '#242A37',
     fontSize: 14,
     fontFamily: Font.AvenirMedium,
   },
   itemSmallText: {
-    color: Colors.lightText,
+    color: '#6C6C6C',
     fontSize: 12,
     fontFamily: Font.AvenirMedium,
   },
   itemTextBold: {
-    color: 'black',
+    color: '#242A37',
     fontSize: 14,
     fontFamily: Font.AvenirHeavy,
   },
