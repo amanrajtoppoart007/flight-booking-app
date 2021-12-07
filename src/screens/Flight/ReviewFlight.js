@@ -69,7 +69,12 @@ function ReviewFlight() {
   return (
     <SafeAreaView style={styles.container}>
       <CustomStatusBar backgroundColor={Colors.backgroundColor} />
-      <View style={[commonStyle.rowSpaceBetween, commonStyle.margin(10)]}>
+      <View
+        style={[
+          commonStyle.rowSpaceBetween,
+          commonStyle.margin(10),
+          commonStyle.marginHorizontal(15),
+        ]}>
         <Text style={styles.textBold}>Review your flight to Dubai</Text>
         <Icon
           onPress={() => navigation.goBack()}

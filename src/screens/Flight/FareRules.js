@@ -36,12 +36,12 @@ export default function FareRules() {
   ];
   return (
     <ScrollView>
-      <View style={commonStyle.flex(1)}>
-        <Text style={[styles.textBold, commonStyle.marginHorizontal(5)]}>
+      <View style={[commonStyle.flex(1)]}>
+        <Text style={[styles.textBold, commonStyle.marginHorizontal(15)]}>
           Flight Long Fare Rules
         </Text>
         <View style={styles.warningBackground}>
-          <Text style={[styles.redText, commonStyle.marginBottom(5)]}>
+          <Text style={[styles.redText, commonStyle.marginBottom(8)]}>
             Tickets are non-refundable
           </Text>
           <Text style={[styles.text]}>
@@ -135,8 +135,8 @@ const styles = StyleSheet.create({
   divider: {
     borderWidth: 0.5,
     borderColor: '#D9D9D9',
-    marginVertical: 10,
-    marginHorizontal: 10,
+    marginVertical: 13,
+    marginHorizontal: 15,
   },
   headerText: {
     color: 'black',
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
   itemContainer: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    marginHorizontal: 10,
+    marginHorizontal: 15,
     borderBottomWidth: 1,
     borderColor: '#D9D9D9',
   },
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginHorizontal: 10,
+    marginHorizontal: 15,
     marginTop: 10,
   },
   expandableSectionsText: {
@@ -186,15 +186,14 @@ const styles = StyleSheet.create({
   },
   warningBackground: {
     backgroundColor: 'rgba(150,150,150,0.1)',
-    marginHorizontal: 15,
+    marginHorizontal: 16,
     borderRadius: 5,
     marginVertical: 10,
-    padding: 10,
+    padding: 12,
   },
   termsContainer: {
     backgroundColor: 'rgba(61, 181, 255, 0.15)',
-    padding: 10,
-    marginVertical: 5,
+    padding: 12,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },

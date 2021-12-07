@@ -16,10 +16,12 @@ export default function FairDetails() {
         <View
           style={[
             commonStyle.rowSpaceBetween,
-            commonStyle.marginHorizontal(10),
+            commonStyle.marginHorizontal(15),
+            commonStyle.marginTop(18),
           ]}>
           <View style={styles.rowFlexStartBaseline}>
             <Text style={styles.header}>Adult 1</Text>
+            <View style={commonStyle.marginHorizontal(2)} />
             <Icon
               name={AdultOpen ? 'up' : 'down'}
               onPress={() => setAdultOpen(!AdultOpen)}
@@ -54,10 +56,12 @@ export default function FairDetails() {
         <View
           style={[
             commonStyle.rowSpaceBetween,
-            commonStyle.marginHorizontal(10),
+            commonStyle.marginHorizontal(15),
           ]}>
           <View style={styles.rowFlexStartBaseline}>
             <Text style={styles.header}>Child 1</Text>
+            <View style={commonStyle.marginHorizontal(2)} />
+
             <Icon
               name={ChildOpen ? 'up' : 'down'}
               onPress={() => setChildOpen(!ChildOpen)}
@@ -92,10 +96,12 @@ export default function FairDetails() {
         <View
           style={[
             commonStyle.rowSpaceBetween,
-            commonStyle.marginHorizontal(10),
+            commonStyle.marginHorizontal(15),
           ]}>
           <View style={styles.rowFlexStartBaseline}>
             <Text style={styles.header}>Infant 1</Text>
+            <View style={commonStyle.marginHorizontal(2)} />
+
             <Icon
               name={InfantOpen ? 'up' : 'down'}
               onPress={() => setInfantOpen(!InfantOpen)}
@@ -173,13 +179,12 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: Colors.primary,
     fontFamily: Font.AvenirMedium,
-    marginRight: 5,
   },
   divider: {
     borderWidth: 0.5,
     borderColor: '#D9D9D9',
-    marginVertical: 10,
-    marginHorizontal: 10,
+    marginVertical: 13,
+    marginHorizontal: 15,
   },
   qarText: {
     fontSize: 14,
@@ -211,7 +216,7 @@ const styles = StyleSheet.create({
   },
 
   blueBackground: {
-    backgroundColor: 'rgba(61, 181, 255, 0.05)',
+    backgroundColor: '#F5F7FB',
     marginHorizontal: 10,
     borderRadius: 5,
     paddingHorizontal: 5,
@@ -231,6 +236,6 @@ const styles = StyleSheet.create({
   totalContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginHorizontal: 10,
+    marginHorizontal: 15,
   },
 });

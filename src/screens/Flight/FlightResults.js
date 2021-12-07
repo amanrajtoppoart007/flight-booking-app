@@ -57,7 +57,6 @@ function FlightResult({navigation}) {
       </View>
     );
   };
-
   return (
     <SafeAreaView style={commonStyle.container}>
       <CustomStatusBar backgroundColor={Colors.primary} />
@@ -91,6 +90,7 @@ function FlightResult({navigation}) {
                 <View style={commonStyle.rowCenter}>
                   <View style={commonStyle.marginHorizontal(5)}>
                     <Icon
+                      onPress={() => navigation.navigate('ModifySearch')}
                       name={'edit'}
                       type={'feather'}
                       size={18}

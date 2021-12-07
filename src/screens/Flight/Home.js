@@ -17,7 +17,6 @@ import LinearGradient from 'react-native-linear-gradient';
 import CustomStatusBar from '../../components/CustomStatusBar';
 import {Icon} from 'react-native-elements';
 import SearchHistorySlider from '../../components/Flight/SearchHistorySlider';
-import {useNavigation} from '@react-navigation/native';
 import DateRangePicker from '../../components/Hotel/Home/DateRangePicker';
 import DateRangePickerMultiCity from '../../components/Flight/MultiCity/DateRangePicker';
 import TravellerAndClass from '../../components/Flight/TravellerAndClass';
@@ -29,8 +28,7 @@ import commonStyle from '../../layout/Style';
 import Back from '../../assets/icons/svg/Back.svg';
 import moment from 'moment';
 
-export default function Home() {
-  const navigation = useNavigation();
+export default function Home({navigation}) {
   const [guestEntryModal, setGuestEntryModal] = useState(false);
   const [flightType, setFlightType] = useState('round-trip');
   const [isDateRangeVisible, setIsDateRangeVisible] = useState(false);
