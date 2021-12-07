@@ -27,7 +27,9 @@ function GraphSlider() {
   );
   return (
     <View>
-      <Text style={styles.listTitle()}>Price</Text>
+      <View style={commonStyle.marginHorizontal(15)}>
+        <Text style={styles.listTitle()}>Price</Text>
+      </View>
       <RangeSlider
         style={[commonStyle.margin(10), commonStyle.marginTop(40)]}
         min={0}
@@ -67,7 +69,6 @@ const styles = StyleSheet.create({
       fontSize: 14,
       color: isSelected ? Colors.primary : Colors.black,
       fontFamily: Font.AvenirMedium,
-      marginLeft: 15,
     };
   },
   Money: {
