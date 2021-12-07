@@ -23,7 +23,7 @@ function EnquiryModal({isVisible, setIsVisible}) {
     <BottomSheet isVisible={isVisible} containerStyle={styles.bottomSheetStyle}>
       <View style={styles.card}>
         <View
-          style={[commonStyle.rowSpaceBetween, commonStyle.marginVertical(5)]}>
+          style={[commonStyle.rowSpaceBetween, commonStyle.marginVertical(10)]}>
           <View>
             <Text style={styles.title}>Enquiry</Text>
           </View>

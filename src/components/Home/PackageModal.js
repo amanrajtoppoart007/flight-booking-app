@@ -173,6 +173,16 @@ const styles = StyleSheet.create({
       marginRight: m,
     };
   },
+  smallText: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 12,
+    color: '#6C6C6C',
+  },
+  LightText: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 14,
+    color: '#6C6C6C',
+  },
   card: {
     height: hp('90%'),
     backgroundColor: Colors.white,
