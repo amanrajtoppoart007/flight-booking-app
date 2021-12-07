@@ -126,9 +126,9 @@ function FlexibleFlight({navigation}) {
       {shortVisible && <SortFilter onClose={() => setShortVisible(false)} />}
       <TouchableOpacity
         onPress={() => navigation.navigate('FlightResultsOnwards')}
-        style={styles.FlexiButton}>
+        style={styles.flexibleButton}>
         <FlightTicket style={commonStyle.marginRight(5)} />
-        <Text style={styles.whiteText}>Flexi Flight Option</Text>
+        <Text style={styles.whiteText}>Flexible Flight Option</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
     color: 'white',
   },
 
-  FlexiButton: {
+  flexibleButton: {
     position: 'absolute',
     bottom: 12,
     right: 12,
