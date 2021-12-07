@@ -13,15 +13,7 @@ function FlightDetails() {
       <View style={styles.DetailHeader}>
         <View>
           <View style={[commonStyle.rowCenter, commonStyle.marginVertical(5)]}>
-            <Text style={styles.textBold}>Doha (DOH)</Text>
-            <Icon
-              name={'arrowright'}
-              type={'antdesign'}
-              size={18}
-              style={commonStyle.marginHorizontal(3)}
-              color={'black'}
-            />
-            <Text style={styles.textBold}>Dubai (DXB)</Text>
+            <Text style={styles.titleText}>Doha (DOH) → Dubai (DXB)</Text>
           </View>
           <Text style={styles.Roman(12)}>Wed, 15 Sep</Text>
         </View>
@@ -62,7 +54,7 @@ function FlightDetails() {
         <View
           style={[
             commonStyle.rowSpaceBetween,
-            commonStyle.marginHorizontal(5),
+            commonStyle.marginHorizontal(15),
           ]}>
           <View style={commonStyle.marginVertical(10)}>
             <Text style={styles.timeText}>07:55</Text>
@@ -98,7 +90,7 @@ function FlightDetails() {
         </View>
       </View>
       <View style={styles.layoverContainer}>
-        <Text style={[styles.redText, commonStyle.marginVertical(5)]}>
+        <Text style={[styles.redText, commonStyle.marginVertical(10)]}>
           Layover: 7h 5m Queen Alia International Airport
         </Text>
       </View>
@@ -134,7 +126,7 @@ function FlightDetails() {
         <View
           style={[
             commonStyle.rowSpaceBetween,
-            commonStyle.marginHorizontal(5),
+            commonStyle.marginHorizontal(15),
           ]}>
           <View style={commonStyle.marginVertical(10)}>
             <Text style={styles.timeText}>10:00</Text>
@@ -158,7 +150,7 @@ function FlightDetails() {
           </View>
 
           <View style={styles.flexEndColumn}>
-            <Text style={styles.textBold}>
+            <Text style={styles.timeText}>
               12:15
               <Text
                 style={[styles.redHeavyText, commonStyle.marginHorizontal(3)]}>
@@ -197,6 +189,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-start',
     margin: 10,
+    marginHorizontal: 15,
   },
   redHeavyText: {
     fontFamily: Font.AvenirHeavy,
@@ -229,7 +222,7 @@ const styles = StyleSheet.create({
   HeavyText: {
     fontFamily: Font.AvenirHeavy,
     fontSize: 12,
-    color: 'black',
+    color: '#0B151F',
   },
   redText: {
     color: '#F15922',
@@ -260,8 +253,8 @@ const styles = StyleSheet.create({
     marginRight: 15,
     marginTop: 10,
   },
-  textBold: {
-    color: 'black',
+  titleText: {
+    color: '#242A37',
     fontSize: 16,
     fontFamily: Font.AvenirMedium,
   },
@@ -275,6 +268,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     margin: 5,
     alignItems: 'center',
+    marginHorizontal: 15,
   },
 
   flexEndColumn: {
@@ -301,7 +295,7 @@ const styles = StyleSheet.create({
   layoverContainer: {
     backgroundColor: 'rgba(255, 74, 74, 0.2)',
     alignItems: 'center',
-    marginBottom: 10,
+    marginVertical: 15,
   },
   timeText: {
     fontSize: 16,

@@ -86,8 +86,8 @@ function TabFlightView() {
         <View
           style={[
             commonStyle.rowSpaceBetween,
-            commonStyle.marginHorizontal(15),
             commonStyle.margin(6),
+            commonStyle.marginHorizontal(9),
           ]}>
           <IconButton
             icon="partly-sunny-outline"
@@ -100,7 +100,7 @@ function TabFlightView() {
           style={[
             commonStyle.rowSpaceBetween,
             commonStyle.margin(6),
-            commonStyle.marginHorizontal(15),
+            commonStyle.marginHorizontal(9),
           ]}>
           <IconButton
             icon="cloudy-night-outline"
@@ -123,7 +123,7 @@ function TabFlightView() {
           style={[
             commonStyle.rowSpaceBetween,
             commonStyle.margin(6),
-            commonStyle.marginHorizontal(15),
+            commonStyle.marginHorizontal(9),
           ]}>
           <IconButton
             icon="partly-sunny-outline"
@@ -136,7 +136,7 @@ function TabFlightView() {
           style={[
             commonStyle.rowSpaceBetween,
             commonStyle.margin(6),
-            commonStyle.marginHorizontal(15),
+            commonStyle.marginHorizontal(9),
           ]}>
           <IconButton
             icon="cloudy-night-outline"
@@ -185,9 +185,8 @@ const styles = StyleSheet.create({
   FlightTabContainer: {
     backgroundColor: 'white',
     width: wp('75%'),
-    height: hp('100%'),
+    height: hp('110%'),
   },
-
   tabBar: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
@@ -201,7 +200,7 @@ const styles = StyleSheet.create({
     width: '100%',
     borderWidth: 0.5,
     borderColor: '#D9D9D9',
-    marginVertical: 10,
+    marginVertical: 20,
     marginHorizontal: 10,
   },
   underline: {

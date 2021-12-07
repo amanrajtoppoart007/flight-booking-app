@@ -186,6 +186,7 @@ function SearchResult({navigation}) {
           </View>
         </View>
       </ScrollView>
+      {shortVisible && <SortFilter onClose={() => setShortVisible(false)} />}
       <View style={styles.navigationButtonWrapper}>
         <ImageBackground
           resizeMode={'contain'}
@@ -198,7 +199,6 @@ function SearchResult({navigation}) {
           </TouchableOpacity>
         </ImageBackground>
       </View>
-      {shortVisible && <SortFilter onClose={() => setShortVisible(false)} />}
     </SafeAreaView>
   );
 }

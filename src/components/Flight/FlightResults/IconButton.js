@@ -23,8 +23,9 @@ const styles = StyleSheet.create({
     borderColor: Colors.border,
     backgroundColor: 'white',
     borderRadius: 6,
-    paddingVertical: 5,
-    marginHorizontal: 5,
+    paddingVertical: 10,
+    marginHorizontal: 6,
+    paddingHorizontal: 8,
   },
   ButtonText: {
     fontSize: 14,

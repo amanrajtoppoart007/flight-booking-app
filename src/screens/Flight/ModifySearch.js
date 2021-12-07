@@ -15,8 +15,6 @@ import {
 import Colors from '../../layout/Colors';
 import LinearGradient from 'react-native-linear-gradient';
 import CustomStatusBar from '../../components/CustomStatusBar';
-import {Icon} from 'react-native-elements';
-import {useNavigation} from '@react-navigation/native';
 import DateRangePicker from '../../components/Hotel/Home/DateRangePicker';
 import TravellerAndClass from '../../components/Flight/TravellerAndClass';
 import RoundTripCard from '../../components/Flight/SearchFlights/RoundTripCard';
@@ -25,12 +23,26 @@ import MultiCityCard from '../../components/Flight/SearchFlights/MultiCity';
 import Font from '../../layout/Font';
 import commonStyle from '../../layout/Style';
 import Back from '../../assets/icons/svg/Back.svg';
+import moment from 'moment';
+import DateRangePickerMultiCity from '../../components/Flight/MultiCity/DateRangePicker';
 
-export default function Home() {
-  const navigation = useNavigation();
+export default function Home({navigation}) {
   const [guestEntryModal, setGuestEntryModal] = useState(false);
   const [flightType, setFlightType] = useState('round-trip');
   const [isDateRangeVisible, setIsDateRangeVisible] = useState(false);
+  const [isDateRangeMultiCityVisible, setIsDateRangeMultiCityVisible] =
+    useState(-1);
+
+  const date = new Date();
+  const dateFromTimeStamp = moment(date).format('YYYYMMDD');
+  const dateUptoTimeStamp = moment(date).add(5, 'days').format('YYYYMMDD');
+  const [dateFrom, setDateFrom] = useState(dateFromTimeStamp);
+  const [dateUpto, setDateUpto] = useState(dateUptoTimeStamp);
+  const [dateMultiCity, setMultiCity] = useState([
+    dateFromTimeStamp,
+    dateUptoTimeStamp,
+  ]);
+
   const [Location, setLocation] = useState([
     {
       to: 'Dubai',
@@ -48,9 +60,22 @@ export default function Home() {
     },
   ]);
 
-  function _handleDelete() {
+  const [travellersClass, setTravellersClass] = useState({
+    adult: 1,
+    child: 0,
+    infant: 0,
+    class: 'Economy',
+  });
+
+  function _handleDelete(index) {
     let temp = [...Location];
-    temp.pop();
+    let t = [...dateMultiCity];
+    if (index > -1) {
+      temp.splice(index, 1);
+      t.splice(index, 1);
+    }
+    setMultiCity(t);
+
     setLocation(temp);
   }
   function _handleAddFlight() {
@@ -61,7 +86,13 @@ export default function Home() {
       from: Location[Location.length - 1].to,
       fromText: Location[Location.length - 1].toText,
     });
-
+    let t = [...dateMultiCity];
+    t.push(
+      moment(moment(t[t.length - 1]).format('YYYYMMDD'))
+        .add(5, 'days')
+        .format('YYYYMMDD'),
+    );
+    setMultiCity(t);
     setLocation(temp);
   }
   function _handleSearchFlight() {
@@ -83,7 +114,14 @@ export default function Home() {
     temp[index].toText = ele;
     setLocation(temp);
   }
-
+  function editDate(index, date) {
+    if (index === -1) {
+      return;
+    }
+    let t = [...dateMultiCity];
+    t[index] = moment(date).format('YYYYMMDD');
+    setMultiCity(t);
+  }
   return (
     <SafeAreaView style={styles.container}>
       <CustomStatusBar backgroundColor={'#1C8CCC'} />
@@ -110,7 +148,7 @@ export default function Home() {
                     </TouchableOpacity>
                   </View>
                   <View style={commonStyle.marginHorizontal(10)}>
-                    <Text style={styles.title}>Modify Search</Text>
+                    <Text style={styles.title}>Search flights</Text>
                   </View>
                 </View>
 
@@ -147,18 +185,23 @@ export default function Home() {
                       setGuestEntryModal={setGuestEntryModal}
                       Location={Location[0]}
                       onSwap={_onSwap}
+                      Travellers={travellersClass}
+                      dateFrom={dateFrom}
+                      dateUpTo={dateUpto}
                     />
                   ) : flightType === 'multi-city' ? (
                     <MultiCityCard
                       setIsLocationSelectorVisible={() =>
                         navigation.navigate('Search')
                       }
-                      setIsDateRangeVisible={setIsDateRangeVisible}
+                      setIsDateRangeVisible={setIsDateRangeMultiCityVisible}
                       setGuestEntryModal={setGuestEntryModal}
                       Location={Location}
                       onSwap={_onSwap}
                       handleAddFlight={_handleAddFlight}
                       handleDelete={_handleDelete}
+                      Travellers={travellersClass}
+                      dates={dateMultiCity}
                     />
                   ) : (
                     <OneWayTripCard
@@ -170,6 +213,8 @@ export default function Home() {
                       Location={Location[0]}
                       onSwap={_onSwap}
                       handleAddReturn={() => setFlightType('round-trip')}
+                      Travellers={travellersClass}
+                      date={dateFrom}
                     />
                   )}
                 </View>
@@ -193,10 +238,22 @@ export default function Home() {
               <TravellerAndClass
                 Visible={guestEntryModal}
                 setVisible={setGuestEntryModal}
+                data={travellersClass}
+                setData={setTravellersClass}
               />
               <DateRangePicker
                 isDateRangeVisible={isDateRangeVisible}
                 setIsDateRangeVisible={setIsDateRangeVisible}
+                dateUpto={dateUpto}
+                dateFrom={dateFrom}
+                setDateFrom={setDateFrom}
+                setDateUpto={setDateUpto}
+              />
+              <DateRangePickerMultiCity
+                isDateRangeVisible={!(isDateRangeMultiCityVisible === -1)}
+                setIsDateRangeVisible={setIsDateRangeMultiCityVisible}
+                editDate={editDate}
+                index={isDateRangeMultiCityVisible}
               />
             </View>
           </View>

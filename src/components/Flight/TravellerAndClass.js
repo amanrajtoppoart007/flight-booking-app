@@ -79,7 +79,7 @@ function TravellerAndClass({Visible, setVisible, data, setData}) {
               />
             </View>
           </View>
-          <View style={[commonStyle.flex(1), commonStyle.marginTop(10)]}>
+          <View style={[commonStyle.flex(1), commonStyle.marginTop(30)]}>
             <Item
               title="Adults"
               subtitle="12 yrs & above"
@@ -99,7 +99,12 @@ function TravellerAndClass({Visible, setVisible, data, setData}) {
               setCount={setInfant}
             />
             <View>
-              <Text style={[styles.title, commonStyle.marginVertical(10)]}>
+              <Text
+                style={[
+                  styles.title,
+                  commonStyle.marginTop(30),
+                  commonStyle.marginBottom(20),
+                ]}>
                 Select Cabin Class
               </Text>
               <View style={commonStyle.rowFlexStart}>
@@ -152,7 +157,7 @@ function TravellerAndClass({Visible, setVisible, data, setData}) {
 const styles = StyleSheet.create({
   bottomSheet: {
     width: wp('100%'),
-    height: hp('60%'),
+    height: hp('66%'),
     backgroundColor: Colors.white,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,

@@ -1,8 +1,9 @@
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Icon} from 'react-native-elements';
 import Colors from '../../../layout/Colors';
 import React from 'react';
 import Font from '../../../layout/Font';
+import commonStyle from '../../../layout/Style';
 
 const SortList = ({isSelected = false, listTitle, onPress}) => {
   return (
@@ -13,6 +14,7 @@ const SortList = ({isSelected = false, listTitle, onPress}) => {
         size={22}
         color={isSelected ? 'green' : Colors.transparent}
       />
+      <View style={commonStyle.marginHorizontal(7.5)} />
       <Text style={styles.listTitle(isSelected)}>{listTitle}</Text>
     </TouchableOpacity>
   );
@@ -27,14 +29,13 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.5,
     borderBottomColor: '#DDDDDD',
     paddingVertical: 14,
-    paddingHorizontal: 10,
+    marginHorizontal: 15,
   },
   listTitle(isSelected = false) {
     return {
       fontSize: 14,
       color: isSelected ? 'green' : Colors.black,
       fontFamily: Font.AvenirMedium,
-      marginHorizontal: 10,
     };
   },
 });
