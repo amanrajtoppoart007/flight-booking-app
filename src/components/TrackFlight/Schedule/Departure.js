@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     height: 50,
     alignContent: 'center',
     backgroundColor: 'white',
-    borderBottomWidth: 0.5,
+    borderBottomWidth: StyleSheet.hairlineWidth5,
     borderBottomColor: '#DDDDDD',
     justifyContent: 'center',
     alignItems: 'center',
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
   row: {
     height: 45,
     flexDirection: 'row',
-    borderBottomWidth: 0.5,
+    borderBottomWidth: StyleSheet.hairlineWidth5,
     borderBottomColor: '#DDDDDD',
   },
 });

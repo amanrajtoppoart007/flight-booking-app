@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
   },
   divider: {
     width: '100%',
-    borderBottomWidth: 0.5,
+    borderBottomWidth: StyleSheet.hairlineWidth5,
     borderBottomColor: '#707070',
     marginVertical: 10,
   },

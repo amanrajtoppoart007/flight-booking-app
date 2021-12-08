@@ -130,16 +130,7 @@ export default function Home({navigation}) {
       <ScrollView>
         <View style={styles.wrapper}>
           <View style={styles.content}>
-            <View
-              style={{
-                height: hp(
-                  `${
-                    flightType === 'multi-city' && Location.length > 2
-                      ? Location.length * 16.7 + 48.5
-                      : 74
-                  }%`,
-                ),
-              }}>
+            <View>
               <LinearGradient
                 colors={['#1C8CCC', '#015F95']}
                 style={styles.canvas(Location.length)}>
@@ -178,69 +169,45 @@ export default function Home({navigation}) {
                       </Text>
                     </Pressable>
                   </View>
-                  {flightType === 'round-trip' ? (
-                    <RoundTripCard
-                      setIsLocationSelectorVisible={() =>
-                        navigation.navigate('Search')
-                      }
-                      setIsDateRangeVisible={setIsDateRangeVisible}
-                      setGuestEntryModal={setGuestEntryModal}
-                      Location={Location[0]}
-                      onSwap={_onSwap}
-                      Travellers={travellersClass}
-                      dateFrom={dateFrom}
-                      dateUpTo={dateUpto}
-                    />
-                  ) : flightType === 'multi-city' ? (
-                    <MultiCityCard
-                      setIsLocationSelectorVisible={() =>
-                        navigation.navigate('Search')
-                      }
-                      setIsDateRangeVisible={setIsDateRangeMultiCityVisible}
-                      setGuestEntryModal={setGuestEntryModal}
-                      Location={Location}
-                      onSwap={_onSwap}
-                      handleAddFlight={_handleAddFlight}
-                      handleDelete={_handleDelete}
-                      Travellers={travellersClass}
-                      dates={dateMultiCity}
-                    />
-                  ) : (
-                    <OneWayTripCard
-                      setIsLocationSelectorVisible={() =>
-                        navigation.navigate('Search')
-                      }
-                      setIsDateRangeVisible={setIsDateRangeVisible}
-                      setGuestEntryModal={setGuestEntryModal}
-                      Location={Location[0]}
-                      onSwap={_onSwap}
-                      handleAddReturn={() => setFlightType('round-trip')}
-                      Travellers={travellersClass}
-                      date={dateFrom}
-                    />
-                  )}
+                </View>
+                <View>
+                  <RoundTripCard
+                    setIsLocationSelectorVisible={() =>
+                      navigation.navigate('Search')
+                    }
+                    setIsDateRangeVisible={setIsDateRangeVisible}
+                    setGuestEntryModal={setGuestEntryModal}
+                    Location={Location[0]}
+                    onSwap={_onSwap}
+                    Travellers={travellersClass}
+                    dateFrom={dateFrom}
+                    dateUpTo={dateUpto}
+                  />
                 </View>
               </LinearGradient>
             </View>
-            <View style={commonStyle.center}>
-              <Pressable
-                onPress={_handleSearchFlight}
-                style={styles.searchButton}>
-                <Icon
-                  name={'search'}
-                  type={'font-awesome'}
-                  size={18}
-                  color={Colors.white}
-                />
-                <Text
-                  style={[
-                    styles.searchButtonText,
-                    commonStyle.marginHorizontal(5),
-                  ]}>
-                  Search flights
-                </Text>
-              </Pressable>
-            </View>
+
+            {!(flightType === 'multi-city') && (
+              <View style={commonStyle.center}>
+                <Pressable
+                  onPress={_handleSearchFlight}
+                  style={styles.searchButton}>
+                  <Icon
+                    name={'search'}
+                    type={'font-awesome'}
+                    size={18}
+                    color={Colors.white}
+                  />
+                  <Text
+                    style={[
+                      styles.searchButtonText,
+                      commonStyle.marginHorizontal(5),
+                    ]}>
+                    Search flights
+                  </Text>
+                </Pressable>
+              </View>
+            )}
             <View style={commonStyle.paddingHorizontal(10)}>
               <View style={commonStyle.marginVertical(15)}>
                 <Text style={styles.recentSearchTitle}>Recently Searched</Text>
@@ -278,6 +245,47 @@ export default function Home({navigation}) {
   );
 }
 
+// {flightType === 'round-trip' ? (
+//     <RoundTripCard
+//         setIsLocationSelectorVisible={() =>
+//             navigation.navigate('Search')
+//         }
+//         setIsDateRangeVisible={setIsDateRangeVisible}
+//         setGuestEntryModal={setGuestEntryModal}
+//         Location={Location[0]}
+//         onSwap={_onSwap}
+//         Travellers={travellersClass}
+//         dateFrom={dateFrom}
+//         dateUpTo={dateUpto}
+//     />
+// ) : flightType === 'multi-city' ? (
+//     <MultiCityCard
+//         setIsLocationSelectorVisible={() =>
+//             navigation.navigate('Search')
+//         }
+//         setIsDateRangeVisible={setIsDateRangeMultiCityVisible}
+//         setGuestEntryModal={setGuestEntryModal}
+//         Location={Location}
+//         onSwap={_onSwap}
+//         handleAddFlight={_handleAddFlight}
+//         handleDelete={_handleDelete}
+//         Travellers={travellersClass}
+//         dates={dateMultiCity}
+//     />
+// ) : (
+//     <OneWayTripCard
+//         setIsLocationSelectorVisible={() =>
+//             navigation.navigate('Search')
+//         }
+//         setIsDateRangeVisible={setIsDateRangeVisible}
+//         setGuestEntryModal={setGuestEntryModal}
+//         Location={Location[0]}
+//         onSwap={_onSwap}
+//         handleAddReturn={() => setFlightType('round-trip')}
+//         Travellers={travellersClass}
+//         date={dateFrom}
+//     />
+// )}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -293,15 +301,14 @@ const styles = StyleSheet.create({
   content: {
     width: '100%',
   },
-  canvas(lo) {
+  canvas(length) {
     return {
       width: '100%',
-      height: hp(`${lo > 2 ? lo / 2 + 21.5 : 21}%`),
+      flex: 0.8,
     };
   },
   HeaderContainer(length) {
     return {
-      top: hp(`${length > 2 ? length * 4.2 : 9}%`),
       justifyContent: 'center',
       alignItems: 'center',
     };
@@ -319,18 +326,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: Colors.white,
     fontFamily: Font.AvenirHeavy,
-  },
-  card: {
-    flexDirection: 'column',
-    justifyContent: 'space-evenly',
-    width: wp('90%'),
-    height: hp('50%'),
-    backgroundColor: Colors.white,
-    borderRadius: 8,
-    borderWidth: 0.1,
-    borderColor: Colors.border,
-    elevation: 5,
-    padding: 15,
   },
 
   topBar: {
@@ -365,7 +360,7 @@ const styles = StyleSheet.create({
     };
   },
   searchButton: {
-    width: 335,
+    width: wp('90%'),
     height: 56,
     borderRadius: 8,
     flexDirection: 'row',

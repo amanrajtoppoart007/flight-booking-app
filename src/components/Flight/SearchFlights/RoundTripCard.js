@@ -152,14 +152,15 @@ const styles = StyleSheet.create({
   card: {
     flexDirection: 'column',
     justifyContent: 'space-evenly',
-    width: wp('90%'),
-    height: hp('50%'),
+    alignSelf: 'stretch',
+    marginHorizontal: 15,
     backgroundColor: Colors.white,
     borderRadius: 8,
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: Colors.border,
     elevation: 5,
     padding: 15,
+    position: 'absolute',
   },
   subSection: {
     justifyContent: 'center',
