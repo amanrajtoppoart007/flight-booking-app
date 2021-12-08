@@ -1,9 +1,5 @@
 import React from 'react';
 import {Pressable, StyleSheet, Text, View} from 'react-native';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
 import Colors from '../../../layout/Colors';
 import {Icon} from 'react-native-elements';
 import commonStyle from '../../../layout/Style';
@@ -22,15 +18,17 @@ export default function MultiCity({
   dates,
 }) {
   return (
-    <View style={styles.card(Location.length)}>
+    <View style={styles.card}>
       <View style={styles.subSection}>
         {Location.map((_, index) => (
-          <View key={index} style={styles.dataContainer}>
+          <View
+            key={index}
+            style={[styles.dataContainer(index === Location.length - 1)]}>
             <View style={styles.fromContainer}>
-              <View style={styles.margin}>
+              <View style={commonStyle.marginBottom(7)}>
                 <Text style={styles.helperText}>From</Text>
               </View>
-              <View style={styles.margin}>
+              <View style={commonStyle.marginBottom(7)}>
                 <Pressable onPress={() => setIsLocationSelectorVisible(true)}>
                   <Text style={styles.searchText}>
                     {Location[index].fromText}
@@ -49,10 +47,10 @@ export default function MultiCity({
               onPress={() => onSwap(index)}
             />
             <View style={styles.toContainer}>
-              <View style={styles.margin}>
+              <View style={commonStyle.marginBottom(7)}>
                 <Text style={styles.helperText}>To</Text>
               </View>
-              <View style={styles.margin}>
+              <View style={commonStyle.marginBottom(7)}>
                 <Pressable onPress={() => setIsLocationSelectorVisible(true)}>
                   <Text style={styles.searchText}>
                     {Location[index].toText}
@@ -76,10 +74,10 @@ export default function MultiCity({
                   />
                 </View>
               ) : null}
-              <View style={styles.margin}>
+              <View style={commonStyle.marginBottom(10)}>
                 <Text style={styles.Departure}>Departure</Text>
               </View>
-              <View style={styles.margin}>
+              <View>
                 <Pressable onPress={() => setIsDateRangeVisible(index)}>
                   <Text style={styles.dateFilterText}>
                     {moment(dates[index]).format('ddd, D MMM')}
@@ -102,10 +100,10 @@ export default function MultiCity({
         <Text style={styles.addFlightText}>Add Flight</Text>
       </Pressable>
       <View style={styles.bottomContainer}>
-        <View style={styles.margin}>
+        <View style={commonStyle.marginBottom(8)}>
           <Text style={styles.helperText}>Travellers & Class</Text>
         </View>
-        <View style={styles.margin}>
+        <View style={commonStyle.marginBottom(8)}>
           <Pressable onPress={() => setGuestEntryModal(true)}>
             <Text style={styles.roomFilterText}>
               {(Travellers?.adult > 0 ? `${Travellers?.adult} Adult` : '') +
@@ -124,20 +122,6 @@ export default function MultiCity({
         </View>
         <View style={styles.divider} />
       </View>
-      <View style={commonStyle.center}>
-        <Pressable style={styles.searchButton}>
-          <Icon
-            name={'search'}
-            type={'font-awesome'}
-            size={18}
-            color={Colors.white}
-          />
-          <Text
-            style={[styles.searchButtonText, commonStyle.marginHorizontal(5)]}>
-            Search flights
-          </Text>
-        </Pressable>
-      </View>
     </View>
   );
 }
@@ -150,20 +134,7 @@ const styles = StyleSheet.create({
   margin: {
     marginVertical: 5,
   },
-  searchButton: {
-    width: wp('90%'),
-    height: 56,
-    borderRadius: 8,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: Colors.secondary,
-  },
-  searchButtonText: {
-    fontSize: 16,
-    color: Colors.white,
-    fontFamily: Font.AvenirHeavy,
-  },
+
   wrapper: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -193,29 +164,27 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: Colors.white,
   },
-  card(length) {
-    return {
-      flexDirection: 'column',
-      justifyContent: 'flex-start',
-      width: wp('90%'),
-      backgroundColor: Colors.white,
-      borderRadius: 8,
-      borderWidth: StyleSheet.hairlineWidth,
-      borderColor: Colors.border,
-      elevation: 5,
-      paddingHorizontal: 15,
-      height: hp(`${length > 2 ? length * 18 + 15 : 56}%`),
-    };
+  card: {
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
+    alignSelf: 'stretch',
+    marginHorizontal: 20,
+    backgroundColor: Colors.white,
+    borderRadius: 8,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: Colors.border,
+    elevation: 5,
+    padding: 15,
+    top: -40,
   },
   subSection: {
     justifyContent: 'center',
-    paddingTop: 10,
+    marginBottom: 20,
   },
   divider: {
-    width: '100%',
     borderWidth: 0.5,
     borderColor: '#D9D9D9',
-    marginVertical: 8,
+    marginTop: 15,
   },
   underline: {
     borderBottomWidth: 1,
@@ -260,7 +229,7 @@ const styles = StyleSheet.create({
     borderColor: '#D9D9D9',
     height: '50%',
     alignSelf: 'center',
-    marginHorizontal: 10,
+    marginHorizontal: 20,
   },
   fromContainer: {
     marginRight: 15,
@@ -269,15 +238,17 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     alignItems: 'flex-end',
   },
-  dataContainer: {
-    alignSelf: 'stretch',
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-    borderBottomWidth: 1,
-    borderColor: '#D9D9D9',
-    height: hp('15%'),
-    marginVertical: 5,
+  dataContainer(isLastElement) {
+    return {
+      alignSelf: 'stretch',
+      flexDirection: 'row',
+      justifyContent: 'space-evenly',
+      alignItems: 'center',
+      borderBottomWidth: 1,
+      borderColor: '#D9D9D9',
+      paddingBottom: 14,
+      marginBottom: isLastElement ? 0 : 15,
+    };
   },
   addFlightContainer: {
     flexDirection: 'row',
@@ -285,13 +256,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderBottomWidth: 1,
     borderColor: '#D9D9D9',
-    paddingBottom: 5,
-    height: hp('7.5%'),
+    paddingBottom: 15,
     paddingHorizontal: 3,
   },
   bottomContainer: {
     justifyContent: 'center',
-    height: hp('12%'),
-    marginVertical: 10,
+    marginTop: 15,
   },
 });
