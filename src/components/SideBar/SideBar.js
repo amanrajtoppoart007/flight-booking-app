@@ -138,15 +138,13 @@ const SideBar = props => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={commonStyle.flex(1)}>
-        <View style={styles.card}>
-          <View style={commonStyle.rowSpaceBetween}>
-            <View>
-              <Text style={styles.moreText}>More</Text>
-            </View>
-            <TouchableOpacity onPress={() => props.navigation.toggleDrawer()}>
-              <CloseSvg />
-            </TouchableOpacity>
+        <View style={styles.headerSection}>
+          <View>
+            <Text style={styles.moreText}>More</Text>
           </View>
+          <TouchableOpacity onPress={() => props.navigation.toggleDrawer()}>
+            <CloseSvg />
+          </TouchableOpacity>
         </View>
         <View style={commonStyle.marginVertical(10)}>
           <View style={commonStyle.marginVertical(15)}>
@@ -184,6 +182,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 15,
+  },
+  headerSection: {
+    ...commonStyle.rowSpaceBetween,
+    ...commonStyle.marginVertical(10),
   },
   moreText: {
     fontFamily: Font.AvenirMedium,
@@ -227,7 +229,6 @@ const styles = StyleSheet.create({
     };
   },
 
-  card: {},
   title: {
     fontFamily: Font.AvenirMedium,
     fontSize: 14,

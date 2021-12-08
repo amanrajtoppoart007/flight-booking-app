@@ -29,8 +29,9 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
     borderRadius: 5,
     margin: 5,
+    padding: 8,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'flex-start',
   },
   text: {
     fontFamily: Font.AvenirMedium,
