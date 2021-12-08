@@ -154,7 +154,7 @@ export default function Home({navigation}) {
                   </View>
                 </View>
 
-                <View style={styles.HeaderContainer(Location.length)}>
+                <View style={styles.headerContainer(Location.length)}>
                   <View style={styles.topBar}>
                     <Pressable
                       onPress={() => setFlightType('round-trip')}
@@ -299,7 +299,7 @@ const styles = StyleSheet.create({
       height: hp(`${lo > 2 ? lo / 2 + 21.5 : 21}%`),
     };
   },
-  HeaderContainer(length) {
+  headerContainer(length) {
     return {
       top: hp(`${length > 2 ? length * 4.2 : 9}%`),
       justifyContent: 'center',
@@ -323,7 +323,7 @@ const styles = StyleSheet.create({
   card: {
     flexDirection: 'column',
     justifyContent: 'space-evenly',
-    width: wp('90%'),
+    width: '100%',
     height: hp('50%'),
     backgroundColor: Colors.white,
     borderRadius: 8,
