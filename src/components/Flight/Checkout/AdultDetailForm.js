@@ -9,6 +9,7 @@ import InfoSvg from '../../Svg/Info.svg';
 import PhoneBookSvg from '../../Svg/PhoneBook.svg';
 import PhoneTextInput from '../../Common/PhoneTextInput';
 import CountrySelectBox from './CountrySelectBox';
+import ExtraSection from './ExtraSection';
 function Label({title}) {
   return (
     <View style={commonStyle.rowFlexStart}>
@@ -166,7 +167,25 @@ function AdultDetailForm() {
         <CountrySelectBox title={'Select Nationality'} />
       </View>
       <View style={commonStyle.marginVertical(8)}>
-        <CountrySelectBox title={'Issued Country*'} />
+        <CountrySelectBox title={'Issued Country'} />
+      </View>
+      <View style={commonStyle.marginVertical(8)}>
+        <Input
+          placeholder={'Expiry Date'}
+          inputContainerStyle={styles.inputContainerStyle}
+          inputStyle={styles.inputTextStyle}
+          rightIcon={<CalenderSvg />}
+        />
+      </View>
+      <View>
+        <View style={commonStyle.rowFlexEnd}>
+          <View>
+            <Text>Hello</Text>
+          </View>
+        </View>
+        <View style={commonStyle.marginHorizontal(12)}>
+          <ExtraSection />
+        </View>
       </View>
     </View>
   );

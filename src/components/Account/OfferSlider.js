@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     width: 160,
     height: 160,
     borderRadius: 8,
-    marginHorizontal: 8,
+    marginHorizontal: 5,
     backgroundColor: Colors.transparent,
   },
   image: {

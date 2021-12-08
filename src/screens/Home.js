@@ -8,7 +8,6 @@ import {
   Animated,
   Platform,
   UIManager,
-  LayoutAnimation,
 } from 'react-native';
 import commonStyle from '../layout/Style';
 import Font from '../layout/Font';
@@ -162,7 +161,7 @@ function Home({navigation}) {
                 <OfferSlider />
               </View>
               <LinearGradient
-                colors={['#F5F7FB', '#E2F2FF', '#E2F2FF', '#F5F7FB']}>
+                colors={['#FFFFFF', '#E2F2FF', '#FFFFFF', '#F5F7FB']}>
                 <View style={styles.contentSection}>
                   <View>
                     <Text style={styles.routeTitle}>Popular</Text>

@@ -116,12 +116,12 @@ export default function Home({navigation}) {
     temp[index].toText = ele;
     setLocation(temp);
   }
-  function editDate(index, date) {
+  function editDate(index, editDateItem) {
     if (index === -1) {
       return;
     }
     let t = [...dateMultiCity];
-    t[index] = moment(date).format('YYYYMMDD');
+    t[index] = moment(editDateItem).format('YYYYMMDD');
     setMultiCity(t);
   }
   return (
@@ -340,7 +340,7 @@ const styles = StyleSheet.create({
     width: wp('90%'),
     backgroundColor: Colors.white,
     borderRadius: 8,
-    borderWidth: 0.1,
+    borderWidth: StyleSheet.hairlineWidth,
     borderColor: Colors.border,
     elevation: 5,
     paddingVertical: 5,

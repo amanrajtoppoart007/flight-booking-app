@@ -52,7 +52,7 @@ function Menu() {
 
 const styles = StyleSheet.create({
   card: {
-    width: 85,
+    width: 90,
     height: 130,
     borderRadius: 80,
     backgroundColor: 'transparent',

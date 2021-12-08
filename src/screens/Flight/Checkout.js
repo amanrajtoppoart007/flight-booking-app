@@ -13,7 +13,6 @@ import Colors from '../../layout/Colors';
 import LinearGradient from 'react-native-linear-gradient';
 import {
   heightPercentageToDP as hp,
-  widthPercentageToDP,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import Font from '../../layout/Font';
@@ -25,7 +24,8 @@ import AdultDetailForm from '../../components/Flight/Checkout/AdultDetailForm';
 
 function Checkout({navigation}) {
   return (
-    <SafeAreaView style={commonStyle.container}>
+    <SafeAreaView
+      style={[commonStyle.container, commonStyle.backgroundColor('F5F7FB')]}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={commonStyle.wrapper}>
           <View style={commonStyle.content}>
@@ -90,7 +90,7 @@ function Checkout({navigation}) {
                 </View>
               </View>
             </View>
-            <View style={[commonStyle.center, commonStyle.marginVertical(10)]}>
+            <View style={styles.loginSectionWrapper}>
               <View style={styles.loginSection}>
                 <View style={commonStyle.rowSpaceBetween}>
                   <View>
@@ -149,7 +149,7 @@ function Checkout({navigation}) {
               />
             </View>
           </View>
-          <View>
+          <View style={commonStyle.marginVertical(20)}>
             <TouchableOpacity
               onPress={() => navigation.navigate('ReviewItinerary')}
               style={styles.checkOutBtn}>
@@ -168,7 +168,10 @@ const styles = StyleSheet.create({
     height: hp('20%'),
     justifyContent: 'center',
     alignItems: 'flex-start',
-    paddingHorizontal: 10,
+    paddingHorizontal: 12,
+  },
+  section: {
+    paddingHorizontal: 12,
   },
   icon: {
     fontFamily: Font.AvenirHeavy,
@@ -185,9 +188,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     marginVertical: 8,
+    paddingHorizontal: 12,
   },
   middleSection: {
-    paddingHorizontal: 15,
+    paddingHorizontal: 12,
   },
   dataDefinition: {
     fontFamily: Font.AvenirHeavy,
@@ -204,8 +208,12 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#6C6C6C',
   },
+  loginSectionWrapper: {
+    ...commonStyle.marginVertical(10),
+    paddingHorizontal: 12,
+  },
   loginSection: {
-    width: wp('95%'),
+    width: '100%',
     height: 45,
     backgroundColor: 'rgba(28, 140, 204, 0.16)',
     borderRadius: 4,
@@ -232,7 +240,7 @@ const styles = StyleSheet.create({
     color: '#242A37',
   },
   addPassengerHeaderSection: {
-    paddingHorizontal: 15,
+    paddingHorizontal: 12,
     marginVertical: 8,
   },
   addPassengerTitle: {
@@ -241,7 +249,7 @@ const styles = StyleSheet.create({
     color: '#242A37',
   },
   checkOutBtn: {
-    width: widthPercentageToDP('80%'),
+    width: wp('80%'),
     height: 56,
     borderRadius: 6,
     backgroundColor: '#F15922',
