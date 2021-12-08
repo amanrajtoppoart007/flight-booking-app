@@ -1,9 +1,6 @@
 import React from 'react';
 import {Pressable, StyleSheet, Text, View} from 'react-native';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
+
 import Colors from '../../../layout/Colors';
 import {Icon} from 'react-native-elements';
 import commonStyle from '../../../layout/Style';
@@ -24,16 +21,16 @@ export default function OneWayTrip({
     <View style={styles.card}>
       <View style={styles.subSection}>
         <View style={commonStyle.rowCenter}>
-          <View style={styles.underlineLeft}>
-            <View style={styles.margin}>
+          <View style={[styles.underlineRight]}>
+            <View style={commonStyle.marginBottom(6)}>
               <Text style={styles.helperText}>From</Text>
             </View>
-            <View style={styles.margin}>
+            <View style={commonStyle.marginBottom(6)}>
               <Pressable onPress={() => setIsLocationSelectorVisible(true)}>
                 <Text style={styles.searchText}>{Location.fromText}</Text>
               </Pressable>
             </View>
-            <View style={commonStyle.marginBottom(10)}>
+            <View style={commonStyle.marginBottom(15)}>
               <Text style={styles.helperText}>{Location.from}</Text>
             </View>
           </View>
@@ -44,16 +41,16 @@ export default function OneWayTrip({
             color={Colors.primary}
             onPress={() => onSwap()}
           />
-          <View style={styles.underlineRight}>
-            <View style={styles.margin}>
+          <View style={[styles.underlineLeft]}>
+            <View style={commonStyle.marginBottom(6)}>
               <Text style={styles.helperText}>To</Text>
             </View>
-            <View style={styles.margin}>
+            <View style={commonStyle.marginBottom(6)}>
               <Pressable onPress={() => setIsLocationSelectorVisible(true)}>
                 <Text style={styles.searchText}>{Location.toText}</Text>
               </Pressable>
             </View>
-            <View style={commonStyle.marginBottom(10)}>
+            <View style={commonStyle.marginBottom(15)}>
               <Text style={styles.helperText}>{Location.to}</Text>
             </View>
           </View>
@@ -61,11 +58,11 @@ export default function OneWayTrip({
       </View>
       <View style={styles.subSection}>
         <View style={commonStyle.rowSpaceBetween}>
-          <View style={styles.LeftUnderline}>
-            <View style={styles.margin}>
+          <View style={styles.underlineRight}>
+            <View style={commonStyle.marginBottom(8)}>
               <Text style={styles.helperText}>Departure</Text>
             </View>
-            <View style={styles.margin}>
+            <View style={commonStyle.marginBottom(8)}>
               <Pressable onPress={() => setIsDateRangeVisible(true)}>
                 <Text style={styles.dateFilterText}>
                   {moment(date).format('ddd, D MMM')}
@@ -73,11 +70,11 @@ export default function OneWayTrip({
               </Pressable>
             </View>
           </View>
-          <View style={styles.RightUnderline}>
-            <View style={styles.margin}>
+          <View style={[styles.underlineLeft]}>
+            <View style={commonStyle.marginBottom(8)}>
               <Text style={styles.helperText}>Add Return?</Text>
             </View>
-            <View style={styles.margin}>
+            <View style={commonStyle.marginBottom(8)}>
               <Pressable
                 style={styles.addButton}
                 onPress={() => handleAddReturn()}>
@@ -95,10 +92,10 @@ export default function OneWayTrip({
         </View>
       </View>
       <View style={styles.subSection}>
-        <View style={styles.margin}>
+        <View style={commonStyle.marginBottom(8)}>
           <Text style={styles.helperText}>Travellers & Class</Text>
         </View>
-        <View style={styles.margin}>
+        <View style={commonStyle.marginBottom(15)}>
           <Pressable onPress={() => setGuestEntryModal(true)}>
             <Text style={styles.roomFilterText}>
               {(Travellers?.adult > 0 ? `${Travellers?.adult} Adult` : '') +
@@ -136,10 +133,7 @@ const styles = StyleSheet.create({
   content: {
     width: '100%',
   },
-  canvas: {
-    width: '100%',
-    height: hp('20%'),
-  },
+
   rowCenter: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
@@ -156,36 +150,36 @@ const styles = StyleSheet.create({
   card: {
     flexDirection: 'column',
     justifyContent: 'space-evenly',
-    width: wp('90%'),
-    height: hp('50%'),
+    alignSelf: 'stretch',
+    marginHorizontal: 20,
     backgroundColor: Colors.white,
     borderRadius: 8,
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: Colors.border,
     elevation: 5,
     padding: 15,
+    top: -40,
   },
   subSection: {
     justifyContent: 'center',
+    marginBottom: 20,
   },
   divider: {
-    width: '100%',
     borderWidth: 0.5,
     borderColor: '#D9D9D9',
-    marginVertical: 8,
   },
   underlineRight: {
     borderBottomWidth: 1,
     borderColor: '#D9D9D9',
     flex: 1,
-    marginLeft: 15,
-    alignItems: 'flex-end',
+    marginRight: 15,
   },
   underlineLeft: {
     borderBottomWidth: 1,
     borderColor: '#D9D9D9',
     flex: 1,
-    marginRight: 15,
+    marginLeft: 15,
+    alignItems: 'flex-end',
   },
   LeftUnderline: {
     borderBottomWidth: 1,
@@ -216,7 +210,7 @@ const styles = StyleSheet.create({
     fontFamily: Font.AvenirMedium,
   },
   dateFilterText: {
-    fontSize: 20,
+    fontSize: 18,
     color: Colors.black,
     fontFamily: Font.AvenirHeavy,
     marginVertical: 5,

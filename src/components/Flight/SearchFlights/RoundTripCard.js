@@ -6,10 +6,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
+
 import Colors from '../../../layout/Colors';
 import {Icon} from 'react-native-elements';
 import commonStyle from '../../../layout/Style';
@@ -31,15 +28,15 @@ export default function RoundTripCard({
       <View style={styles.subSection}>
         <View style={commonStyle.rowCenter}>
           <View style={[styles.underlineRight]}>
-            <View style={styles.margin}>
+            <View style={commonStyle.marginBottom(6)}>
               <Text style={styles.helperText}>From</Text>
             </View>
-            <View style={styles.margin}>
+            <View style={commonStyle.marginBottom(6)}>
               <Pressable onPress={() => setIsLocationSelectorVisible(true)}>
                 <Text style={styles.searchText}>{Location.fromText}</Text>
               </Pressable>
             </View>
-            <View style={commonStyle.marginBottom(5)}>
+            <View style={commonStyle.marginBottom(15)}>
               <Text style={styles.helperText}>{Location.from}</Text>
             </View>
           </View>
@@ -51,15 +48,15 @@ export default function RoundTripCard({
             onPress={() => onSwap()}
           />
           <View style={[styles.underlineLeft]}>
-            <View style={styles.margin}>
+            <View style={commonStyle.marginBottom(6)}>
               <Text style={styles.helperText}>To</Text>
             </View>
-            <View style={styles.margin}>
+            <View style={commonStyle.marginBottom(6)}>
               <Pressable onPress={() => setIsLocationSelectorVisible(true)}>
                 <Text style={styles.searchText}>{Location.toText}</Text>
               </Pressable>
             </View>
-            <View style={commonStyle.marginBottom(5)}>
+            <View style={commonStyle.marginBottom(15)}>
               <Text style={styles.helperText}>{Location.to}</Text>
             </View>
           </View>
@@ -68,10 +65,10 @@ export default function RoundTripCard({
       <View style={styles.subSection}>
         <View style={commonStyle.rowSpaceBetween}>
           <View style={styles.underlineRight}>
-            <View style={styles.margin}>
+            <View style={commonStyle.marginBottom(8)}>
               <Text style={styles.helperText}>Departure</Text>
             </View>
-            <View style={styles.margin}>
+            <View style={commonStyle.marginBottom(8)}>
               <Pressable onPress={() => setIsDateRangeVisible(true)}>
                 <Text style={styles.dateFilterText}>
                   {moment(dateFrom).format('ddd, D MMM')}
@@ -80,10 +77,10 @@ export default function RoundTripCard({
             </View>
           </View>
           <View style={[styles.underlineLeft]}>
-            <View style={styles.margin}>
+            <View style={commonStyle.marginBottom(8)}>
               <Text style={styles.helperText}>X Return</Text>
             </View>
-            <View style={styles.margin}>
+            <View style={commonStyle.marginBottom(8)}>
               <Pressable onPress={() => setIsDateRangeVisible(true)}>
                 <Text style={styles.dateFilterText}>
                   {moment(dateUpTo).format('ddd, D MMM')}
@@ -94,10 +91,10 @@ export default function RoundTripCard({
         </View>
       </View>
       <View style={styles.subSection}>
-        <View style={styles.margin}>
+        <View style={commonStyle.marginBottom(8)}>
           <Text style={styles.helperText}>Travellers & Class</Text>
         </View>
-        <View style={styles.margin}>
+        <View style={commonStyle.marginBottom(15)}>
           <TouchableOpacity onPress={() => setGuestEntryModal(true)}>
             <Text style={styles.roomFilterText}>
               {(Travellers?.adult > 0 ? `${Travellers?.adult} Adult` : '') +
@@ -126,7 +123,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.background,
   },
   margin: {
-    marginVertical: 5,
+    marginVertical: 7,
   },
   wrapper: {
     justifyContent: 'center',
@@ -135,10 +132,7 @@ const styles = StyleSheet.create({
   content: {
     width: '100%',
   },
-  canvas: {
-    width: '100%',
-    height: hp('20%'),
-  },
+
   rowCenter: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
@@ -148,28 +142,26 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     paddingHorizontal: 20,
   },
-
   card: {
     flexDirection: 'column',
     justifyContent: 'space-evenly',
     alignSelf: 'stretch',
-    marginHorizontal: 15,
+    marginHorizontal: 20,
     backgroundColor: Colors.white,
     borderRadius: 8,
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: Colors.border,
     elevation: 5,
     padding: 15,
-    position: 'absolute',
+    top: -40,
   },
   subSection: {
     justifyContent: 'center',
+    marginBottom: 20,
   },
   divider: {
-    width: '100%',
     borderWidth: 0.5,
     borderColor: '#D9D9D9',
-    marginVertical: 8,
   },
   underlineRight: {
     borderBottomWidth: 1,
