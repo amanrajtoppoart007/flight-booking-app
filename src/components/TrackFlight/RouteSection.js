@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {
+  Pressable,
   ScrollView,
   StyleSheet,
   Text,
@@ -36,7 +37,7 @@ function RouteSection() {
           />
         </View>
         <View>
-          <TouchableOpacity
+          <Pressable
             onPress={() => setIsDatePickerVisible(true)}
             style={styles.dateCard}>
             <View style={styles.date}>
@@ -45,7 +46,7 @@ function RouteSection() {
             <View style={commonStyle.center}>
               <Text style={styles.dateText}>20</Text>
             </View>
-          </TouchableOpacity>
+          </Pressable>
         </View>
         <View>
           <TouchableOpacity style={styles.searchButton}>
