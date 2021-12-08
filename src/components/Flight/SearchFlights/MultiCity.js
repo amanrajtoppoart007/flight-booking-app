@@ -124,6 +124,20 @@ export default function MultiCity({
         </View>
         <View style={styles.divider} />
       </View>
+      <View style={commonStyle.center}>
+        <Pressable style={styles.searchButton}>
+          <Icon
+            name={'search'}
+            type={'font-awesome'}
+            size={18}
+            color={Colors.white}
+          />
+          <Text
+            style={[styles.searchButtonText, commonStyle.marginHorizontal(5)]}>
+            Search flights
+          </Text>
+        </Pressable>
+      </View>
     </View>
   );
 }
@@ -136,6 +150,20 @@ const styles = StyleSheet.create({
   margin: {
     marginVertical: 5,
   },
+  searchButton: {
+    width: wp('90%'),
+    height: 56,
+    borderRadius: 8,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: Colors.secondary,
+  },
+  searchButtonText: {
+    fontSize: 16,
+    color: Colors.white,
+    fontFamily: Font.AvenirHeavy,
+  },
   wrapper: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -143,10 +171,7 @@ const styles = StyleSheet.create({
   content: {
     width: '100%',
   },
-  canvas: {
-    width: '100%',
-    height: hp('20%'),
-  },
+
   Departure: {
     fontSize: 14,
     color: Colors.lightText,
@@ -168,7 +193,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: Colors.white,
   },
-  card(lo) {
+  card(length) {
     return {
       flexDirection: 'column',
       justifyContent: 'flex-start',
@@ -179,7 +204,7 @@ const styles = StyleSheet.create({
       borderColor: Colors.border,
       elevation: 5,
       paddingHorizontal: 15,
-      height: hp(`${lo > 2 ? lo * 18 + 19 : 56}%`),
+      height: hp(`${length > 2 ? length * 18 + 15 : 56}%`),
     };
   },
   subSection: {

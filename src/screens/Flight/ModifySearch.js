@@ -305,18 +305,6 @@ const styles = StyleSheet.create({
     color: Colors.white,
     fontFamily: Font.AvenirHeavy,
   },
-  card: {
-    flexDirection: 'column',
-    justifyContent: 'space-evenly',
-    width: wp('90%'),
-    height: hp('50%'),
-    backgroundColor: Colors.white,
-    borderRadius: 8,
-    borderWidth: 0.1,
-    borderColor: Colors.border,
-    elevation: 5,
-    padding: 15,
-  },
 
   topBar: {
     height: 50,
@@ -325,7 +313,7 @@ const styles = StyleSheet.create({
     width: wp('90%'),
     backgroundColor: Colors.white,
     borderRadius: 8,
-    borderWidth: 0.1,
+    borderWidth: StyleSheet.hairlineWidth,
     borderColor: Colors.border,
     elevation: 5,
     paddingVertical: 5,

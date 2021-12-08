@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    borderBottomWidth: 0.5,
+    borderBottomWidth: StyleSheet.hairlineWidth5,
     borderBottomColor: '#DDDDDD',
   },
   underline: {

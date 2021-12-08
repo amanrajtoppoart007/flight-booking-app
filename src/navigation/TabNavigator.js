@@ -13,8 +13,7 @@ import {View, TouchableOpacity, StyleSheet} from 'react-native';
 import Colors from '../layout/Colors';
 import commonStyle from '../layout/Style';
 import {useState} from 'react';
-// import TrackFlightModal from '../components/TrackFlight/TrackFlightModal';
-import PackageModal from '../components/Home/PackageModal';
+import TrackFlightModal from '../components/TrackFlight/TrackFlightModal';
 import AccountNavigator from './AccountNavigator';
 const Tab = createBottomTabNavigator();
 
@@ -55,7 +54,7 @@ function MyTabBar({state, descriptors, navigation}) {
   const [isVisible, setIsVisible] = useState(false);
   return (
     <View style={styles.tabBar}>
-      <PackageModal isVisible={isVisible} setIsVisible={setIsVisible} />
+      <TrackFlightModal isVisible={isVisible} setIsVisible={setIsVisible} />
       {state.routes.map((route, index) => {
         const {options} = descriptors[route.key];
 

@@ -301,7 +301,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   cardBody: {
-    borderBottomWidth: 0.5,
+    borderBottomWidth: StyleSheet.hairlineWidth5,
     borderBottomColor: Colors.lightText,
     marginVertical: 8,
     paddingVertical: 8,
