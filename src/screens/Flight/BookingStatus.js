@@ -25,6 +25,7 @@ import CallSvg from '../../components/Svg/Call.svg';
 import CallBackSvg from '../../components/Svg/CallBack.svg';
 import EmailSvg from '../../components/Svg/Email.svg';
 import SendRequestModal from '../../components/Flight/Booking/SendRequestModal';
+import TicketList from '../../components/Flight/Booking/TicketList';
 
 function AssistanceCard({isVisible, setIsSendRequestVisible}) {
   return (
@@ -143,42 +144,7 @@ function BookingStatus() {
               <View style={commonStyle.marginVertical(8)}>
                 <Accordion
                   title={'Passenger Details'}
-                  Content={
-                    <View>
-                      <View style={commonStyle.rowSpaceBetween}>
-                        <View>
-                          <Text>John Doe (ADT)</Text>
-                        </View>
-                        <View>
-                          <Text>Ticket# - 157-48822596</Text>
-                        </View>
-                      </View>
-                      <View style={commonStyle.marginVertical(5)}>
-                        <Text>Special Request +</Text>
-                      </View>
-                      <View style={styles.divider} />
-                      <View style={commonStyle.rowSpaceBetween}>
-                        <View>
-                          <Text>John Doe (ADT)</Text>
-                        </View>
-                        <View>
-                          <Text>Ticket# - 157-48822596</Text>
-                        </View>
-                      </View>
-                      <View style={commonStyle.marginVertical(5)}>
-                        <Text>Special Request +</Text>
-                      </View>
-                      <View style={commonStyle.marginVertical(5)}>
-                        <Text>Special Assistance: Meet & Assist</Text>
-                      </View>
-                      <View style={commonStyle.marginVertical(5)}>
-                        <Text>Seat Preference: Window</Text>
-                      </View>
-                      <View style={commonStyle.marginVertical(5)}>
-                        <Text>Meal Preference: Indian Meal</Text>
-                      </View>
-                    </View>
-                  }
+                  Content={<TicketList />}
                 />
               </View>
               <View style={commonStyle.marginVertical(8)}>
