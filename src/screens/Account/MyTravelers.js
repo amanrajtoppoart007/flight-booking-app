@@ -21,6 +21,7 @@ import {Icon, Input} from 'react-native-elements';
 import CalenderSvg from '../../components/Svg/Calender.svg';
 import PhoneTextInput from '../../components/Common/PhoneTextInput';
 import SelectBox from '../../components/Common/SelectBox';
+import Info from '../../components/Svg/Info.svg';
 
 function Label({title}) {
   return (
@@ -69,6 +70,16 @@ function MyTravelers({navigation}) {
               </View>
             </LinearGradient>
             <View style={styles.bottomSection}>
+              <View style={commonStyle.marginVertical(10)}>
+                <View style={styles.warningSection}>
+                  <Info />
+                  <View style={commonStyle.marginHorizontal(4)} />
+                  <Text style={styles.warningText}>
+                    Please make sure your information matches your
+                    government-issued identification
+                  </Text>
+                </View>
+              </View>
               <View style={styles.formCard}>
                 <View
                   style={[
@@ -139,6 +150,7 @@ function MyTravelers({navigation}) {
                   </View>
                   <View style={styles.phoneNumberSection}>
                     <PhoneTextInput
+                      cardStyle={styles.inputStyle}
                       title={'Country Code'}
                       setPhoneCode={setPhoneCode}
                       phoneCode={'+974'}
@@ -188,10 +200,26 @@ const styles = StyleSheet.create({
   canvasContent: {
     width: '100%',
   },
+  warningSection: {
+    backgroundColor: 'rgba(28, 140, 204, 0.2)',
+    borderRadius: 8,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    padding: 8,
+    paddingVertical: 12,
+    paddingHorizontal: 15,
+  },
+  warningText: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 14,
+    color: Colors.primary,
+  },
   bottomSection: {
     backgroundColor: '#F5F7FB',
     justifyContent: 'center',
     alignItems: 'center',
+    paddingHorizontal: 15,
   },
   name: {
     fontFamily: Font.AvenirHeavy,
@@ -240,13 +268,13 @@ const styles = StyleSheet.create({
     color: '#FF0000',
   },
   formCard: {
-    width: '95%',
     borderWidth: 0.5,
     borderRadius: 8,
     borderColor: '#707070',
     paddingHorizontal: 4,
     marginVertical: 15,
     backgroundColor: Colors.white,
+    alignSelf: 'stretch',
   },
   phoneNumberSection: {
     justifyContent: 'center',
@@ -255,17 +283,21 @@ const styles = StyleSheet.create({
     paddingHorizontal: 2,
   },
   button: {
-    width: wp('80%'),
-    height: 56,
     borderRadius: 6,
     backgroundColor: Colors.secondary,
     justifyContent: 'center',
     alignItems: 'center',
+    alignSelf: 'stretch',
+    marginHorizontal: 15,
   },
   buttonText: {
     fontFamily: Font.AvenirHeavy,
     fontSize: 16,
     color: Colors.white,
+    marginVertical: 16,
+  },
+  inputStyle: {
+    marginHorizontal: 20,
   },
 });
 

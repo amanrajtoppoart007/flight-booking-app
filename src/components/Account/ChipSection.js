@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginVertical: 10,
+    marginHorizontal: 10,
   },
   chip: {
     height: 45,

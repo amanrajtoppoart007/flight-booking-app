@@ -23,7 +23,7 @@ function FlightResult({navigation}) {
   const [shortVisible, setShortVisible] = useState(false);
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    {key: 'cheapest', title: 'SearchResult', price: 'QAR 170'},
+    {key: 'cheapest', title: 'Cheapest', price: 'QAR 170'},
     {key: 'fastest', title: 'Fastest', price: 'QAR 273'},
     {key: 'best', title: 'Best', price: 'QAR 170'},
   ]);

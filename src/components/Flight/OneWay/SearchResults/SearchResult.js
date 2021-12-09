@@ -28,7 +28,7 @@ function SearchResult() {
     <FlightCard
       onPress={() => setSelectedIndex(index)}
       isSelected={SelectedIndex === index}
-      onPressSelect={() => navigation.navigate('OneWayReviewItinerary')}
+      onPressSelect={() => navigation.navigate('ReviewItineraryOneWay')}
     />
   );
   return (
