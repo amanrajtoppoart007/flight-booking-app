@@ -31,7 +31,7 @@ import {Input, CheckBox} from 'react-native-elements';
 function Payment({navigation}) {
   const [isAccepted, setIsAccepted] = useState(false);
   return (
-    <SafeAreaView style={commonStyle.container}>
+    <SafeAreaView style={styles.container}>
       <CustomStatusBar backgroundColor={Colors.primary} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={commonStyle.wrapper}>
@@ -39,8 +39,12 @@ function Payment({navigation}) {
             <LinearGradient
               colors={['#1C8CCC', '#015F95']}
               style={styles.canvas}>
-              <View style={commonStyle.rowFlexStart}>
-                <View style={commonStyle.center}>
+              <View
+                style={[
+                  commonStyle.rowFlexStart,
+                  commonStyle.marginVertical(20),
+                ]}>
+                <View>
                   <Icon
                     name={'md-arrow-back-sharp'}
                     type={'ionicon'}
@@ -56,11 +60,7 @@ function Payment({navigation}) {
                 <StatusStepBar activeIndex={2} />
               </View>
             </LinearGradient>
-            <View
-              style={[
-                commonStyle.paddingHorizontal(8),
-                commonStyle.paddingVertical(15),
-              ]}>
+            <View style={styles.topSection}>
               <View style={[commonStyle.rowSpaceBetween]}>
                 <View>
                   <Text style={styles.dataDefinition}>
@@ -82,22 +82,22 @@ function Payment({navigation}) {
                   <Text style={styles.priceTitle}>170.00</Text>
                 </View>
               </View>
-              <View>
-                <Text style={styles.dataDefinition}>
-                  Dubai (DXB) → Doha (DOH)
-                </Text>
-              </View>
-              <View>
-                <Text style={styles.mutedText}>Mon, 20 Sep, 4 Travellers</Text>
+              <View style={commonStyle.marginVertical(12)}>
+                <View>
+                  <Text style={styles.dataDefinition}>
+                    Dubai (DXB) → Doha (DOH)
+                  </Text>
+                </View>
+                <View>
+                  <Text style={styles.mutedText}>
+                    Mon, 20 Sep, 4 Travellers
+                  </Text>
+                </View>
               </View>
             </View>
-            <View>
-              <View
-                style={[
-                  commonStyle.marginVertical(10),
-                  commonStyle.paddingHorizontal(8),
-                ]}>
-                <View style={commonStyle.rowFlexStart}>
+            <View style={styles.paymentSection}>
+              <View style={[commonStyle.marginVertical(10)]}>
+                <View style={styles.paymentSectionHeader}>
                   <View>
                     <CardSvg />
                   </View>
@@ -115,12 +115,14 @@ function Payment({navigation}) {
                       <View>
                         <Input
                           inputStyle={styles.inputTextStyle}
+                          inputContainerStyle={styles.inputContainerStyle}
                           placeholder={'Card Number'}
                         />
                       </View>
                       <View>
                         <Input
                           inputStyle={styles.inputTextStyle}
+                          inputContainerStyle={styles.inputContainerStyle}
                           placeholder={'Name on card'}
                         />
                       </View>
@@ -128,6 +130,7 @@ function Payment({navigation}) {
                         <View style={commonStyle.width('50%')}>
                           <Input
                             inputStyle={styles.inputTextStyle}
+                            inputContainerStyle={styles.inputContainerStyle}
                             placeholder={'Expiry Date'}
                             rightIcon={<CalenderSvg />}
                           />
@@ -135,6 +138,7 @@ function Payment({navigation}) {
                         <View style={commonStyle.width('50%')}>
                           <Input
                             inputStyle={styles.inputTextStyle}
+                            inputContainerStyle={styles.inputContainerStyle}
                             keyboardType={'numeric'}
                             placeholder={'CVV'}
                             rightIcon={<LockSvg />}
@@ -144,9 +148,11 @@ function Payment({navigation}) {
                       <View style={commonStyle.rowFlexEnd}>
                         <View style={commonStyle.width('50%')} />
                         <View style={commonStyle.width('50%')}>
-                          <Text style={styles.cvvHelper}>
-                            The 3 digit number printed on the back of the card
-                          </Text>
+                          <View style={commonStyle.paddingHorizontal(5)}>
+                            <Text style={styles.cvvHelper}>
+                              The 3 digit number printed on the back of the card
+                            </Text>
+                          </View>
                         </View>
                       </View>
                     </View>
@@ -204,12 +210,35 @@ function Payment({navigation}) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    ...commonStyle.container,
+    backgroundColor: '#F5F7FB',
+  },
   canvas: {
     width: '100%',
-    height: hp('15%'),
+    height: hp('20%'),
     justifyContent: 'center',
     alignItems: 'flex-start',
     paddingHorizontal: 10,
+  },
+  topSection: {
+    padding: 12,
+    backgroundColor: Colors.white,
+  },
+  paymentSection: {
+    marginVertical: 12,
+    backgroundColor: Colors.white,
+  },
+  paymentSectionHeader: {
+    ...commonStyle.rowFlexStart,
+    paddingHorizontal: 12,
+  },
+  section: {
+    paddingHorizontal: 12,
+  },
+  inputContainerStyle: {
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: '#D9D9D9',
   },
   inputTextStyle: {
     fontFamily: Font.AvenirMedium,

@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: 'rgba(157,196,241,0.5)',
-    paddingHorizontal: 8,
+    paddingHorizontal: 20,
   },
   title: {
     fontFamily: Font.AvenirMedium,
