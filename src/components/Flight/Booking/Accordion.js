@@ -1,37 +1,48 @@
 import React, {useState} from 'react';
-import {StyleSheet, View} from 'react-native';
-import {ListItem} from 'react-native-elements';
+import {StyleSheet, Text, View} from 'react-native';
 import Font from '../../../layout/Font';
+import commonStyle from '../../../layout/Style';
+import Colors from '../../../layout/Colors';
+import {Icon} from 'react-native-elements';
 
-function Accordion({title, Content}) {
-  const [expanded, setExpanded] = useState(false);
+function Accordion({title, visible, Content}) {
+  const [expanded, setExpanded] = useState(visible);
 
   return (
-    <View>
-      <ListItem.Accordion
-        containerStyle={styles.container}
-        icon={{name: 'plus', type: 'font-awesome', size: 20}}
-        expandIcon={{name: 'minus', type: 'font-awesome', size: 20}}
-        content={
-          <>
-            <ListItem.Content>
-              <ListItem.Title style={styles.title}>{title}</ListItem.Title>
-            </ListItem.Content>
-          </>
-        }
-        isExpanded={expanded}
-        onPress={() => {
-          setExpanded(!expanded);
-        }}>
-        {expanded && Content}
-      </ListItem.Accordion>
+    <View style={styles.container}>
+      <View style={styles.cardHeader}>
+        <View style={commonStyle.rowFlexStart}>
+          <View>
+            <Text style={styles.title}>{title}</Text>
+          </View>
+        </View>
+        <View style={commonStyle.marginHorizontal(8)}>
+          <Icon
+            name={expanded ? 'minus' : 'plus'}
+            onPress={() => setExpanded(!expanded)}
+            type={'font-awesome'}
+            size={16}
+            color={Colors.primary}
+          />
+        </View>
+      </View>
+      <View>{expanded && Content}</View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'rgba(157,196,241,0.5)',
+    width: '100%',
+  },
+  cardHeader: {
+    width: '100%',
+    height: 45,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: 'rgba(157,196,241,0.2)',
+    paddingHorizontal: 15,
   },
   title: {
     fontFamily: Font.AvenirMedium,

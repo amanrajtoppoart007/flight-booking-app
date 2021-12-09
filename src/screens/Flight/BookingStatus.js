@@ -90,7 +90,6 @@ function BookingStatus() {
                 colors={['#13A869', '#025A35']}
                 style={styles.canvas}>
                 <View style={styles.headerSection}>
-                  <View />
                   <View style={commonStyle.marginHorizontal(14)}>
                     <TouchableOpacity
                       onPress={() =>
@@ -251,6 +250,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
+    paddingHorizontal: 20,
   },
   title: {
     fontFamily: Font.AvenirHeavy,
@@ -273,19 +273,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: Colors.primary,
     height: 40,
+    paddingHorizontal: 23,
   },
-  cardBody: {},
   headTitle: {
     fontFamily: Font.AvenirMedium,
-    fontSize: 15,
+    fontSize: 14,
     color: Colors.white,
   },
   divider: {
-    width: '95%',
-    borderWidth: 0.3,
+    width: '100%',
+    borderWidth: StyleSheet.hairlineWidth,
     borderColor: Colors.lightText,
     alignSelf: 'center',
-    marginVertical: 18,
   },
 });
 

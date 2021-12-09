@@ -81,8 +81,8 @@ function Home({navigation}) {
   });
 
   const chipSectionScaleY = chipSectionScrollYClamped.interpolate({
-    inputRange: [0, headerHeight],
-    outputRange: [0, 1],
+    inputRange: [0, headerHeight / 2, headerHeight],
+    outputRange: [0, 0, 1],
   });
 
   const contentTranslateY = contentScrollYClamped.interpolate({
