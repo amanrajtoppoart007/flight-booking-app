@@ -18,7 +18,7 @@ import ShareSvg from '../../assets/icons/svg/Share.svg';
 import ConfirmSvg from '../../assets/icons/svg/Confirm.svg';
 import Font from '../../layout/Font';
 import Colors from '../../layout/Colors';
-import BookingConfirmCard from '../../components/Flight/Booking/BookingConfirmCard';
+import BookingDetailCard from '../../components/Flight/Booking/BookingDetailCard';
 import Accordion from '../../components/Flight/Booking/Accordion';
 import FairDetail from '../../components/Flight/Booking/FareDetail';
 import CallSvg from '../../components/Svg/Call.svg';
@@ -137,7 +137,7 @@ function BookingStatus() {
               <View>
                 {list &&
                   list.map((item, index) => (
-                    <BookingConfirmCard key={index?.toString()} item={item} />
+                    <BookingDetailCard key={index?.toString()} item={item} />
                   ))}
               </View>
               <View style={commonStyle.marginVertical(8)}>

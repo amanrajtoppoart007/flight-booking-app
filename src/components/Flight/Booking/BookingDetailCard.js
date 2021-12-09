@@ -10,7 +10,7 @@ import DeerSvg from '../../Svg/Deer.svg';
 import BagSvg from '../../Svg/Baggage.svg';
 import ClockSvg from '../../Svg/Flight/Clock.svg';
 
-function BookingConfirmCard() {
+function BookingDetailCard() {
   return (
     <View style={styles.card}>
       <View style={commonStyle.marginVertical(12)}>
@@ -360,4 +360,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BookingConfirmCard;
+export default BookingDetailCard;
