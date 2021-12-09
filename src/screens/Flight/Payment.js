@@ -177,7 +177,7 @@ function Payment({navigation}) {
 
             <View style={[commonStyle.center, styles.section]}>
               <TouchableOpacity
-                onPress={() => navigation.navigate('BookingConfirm')}
+                onPress={() => navigation.navigate('BookingStatus')}
                 style={styles.payButton}>
                 <View style={commonStyle.rowSpaceBetween}>
                   <View style={commonStyle.marginHorizontal(2)}>

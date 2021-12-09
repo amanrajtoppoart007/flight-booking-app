@@ -4,7 +4,7 @@ import Home from '../screens/Flight/Home';
 import Search from '../screens/Flight/Search';
 import Review from '../screens/Flight/ReviewFlight';
 import FlightResults from '../screens/Flight/FlightResults';
-import BookingConfirm from '../screens/Flight/BookingConfirm';
+import BookingStatus from '../screens/Flight/BookingStatus';
 import ModifySearch from '../screens/Flight/ModifySearch';
 import Checkout from '../screens/Flight/Checkout';
 import Payment from '../screens/Flight/Payment';
@@ -31,7 +31,7 @@ const FlightNavigator = () => {
       <Stack.Screen name="FlightBy" component={FlightByNavigator} />
       <Stack.Screen name="FlightResult" component={FlightResults} />
       <Stack.Screen name="Review" component={Review} />
-      <Stack.Screen name="BookingConfirm" component={BookingConfirm} />
+      <Stack.Screen name="BookingStatus" component={BookingStatus} />
       <Stack.Screen name="Search" component={Search} />
       <Stack.Screen name="Checkout" component={Checkout} />
       <Stack.Screen name="ReviewItinerary" component={ReviewItinerary} />

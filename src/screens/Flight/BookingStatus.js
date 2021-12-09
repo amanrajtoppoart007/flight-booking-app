@@ -65,7 +65,7 @@ function AssistanceCard({isVisible, setIsVisible, setIsSendRequestVisible}) {
   );
 }
 
-function BookingConfirm() {
+function BookingStatus() {
   const [isAssistanceEnabled, setIsAssistanceEnabled] = useState(false);
   const [isSendRequestVisible, setIsSendRequestVisible] = useState(false);
   const [list] = useState([
@@ -305,4 +305,4 @@ const cardStyle = StyleSheet.create({
   },
 });
 
-export default BookingConfirm;
+export default BookingStatus;
