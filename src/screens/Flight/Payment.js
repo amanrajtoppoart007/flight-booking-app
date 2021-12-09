@@ -178,7 +178,7 @@ function Payment({navigation}) {
               </View>
             </View>
 
-            <View style={commonStyle.center}>
+            <View style={[commonStyle.center, styles.section]}>
               <TouchableOpacity
                 onPress={() => navigation.navigate('BookingConfirm')}
                 style={styles.payButton}>
@@ -276,7 +276,6 @@ const styles = StyleSheet.create({
     color: '#242A37',
   },
 
-  dataDescription: {},
   horizontalStepBarSection: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -284,7 +283,7 @@ const styles = StyleSheet.create({
     marginVertical: 8,
   },
   payButton: {
-    width: wp('80%'),
+    width: '100%',
     height: 56,
     backgroundColor: '#13A869',
     borderRadius: 6,
@@ -293,7 +292,7 @@ const styles = StyleSheet.create({
   },
   payButtonText: {
     fontFamily: Font.AvenirBlack,
-    fontSize: 18,
+    fontSize: 20,
     color: Colors.white,
   },
   payButtonTextHelper: {
