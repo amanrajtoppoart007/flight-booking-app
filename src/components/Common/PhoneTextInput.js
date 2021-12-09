@@ -15,12 +15,13 @@ function PhoneTextInput({
   phoneCode = '+974',
   setPhoneCode = null,
   placeholder,
+  cardStyle = {},
 }) {
   const [countryList, setCountryList] = useState(countries);
   const [countryCode, setCountryCode] = useState(phoneCode);
 
   return (
-    <View style={styles.card}>
+    <View style={styles.card(cardStyle)}>
       <View style={[commonStyle.rowFlexStart, commonStyle.marginHorizontal(4)]}>
         <View>
           <Text style={styles.label}>{title}</Text>
@@ -31,7 +32,7 @@ function PhoneTextInput({
       </View>
 
       <View style={commonStyle.rowSpaceBetween}>
-        <View style={commonStyle.width('25%')}>
+        <View>
           <SelectDropdown
             defaultButtonText={'+97'}
             buttonStyle={styles.dropDownButtonStyle}
@@ -78,7 +79,7 @@ function PhoneTextInput({
           />
         </View>
         <View
-          style={[commonStyle.width('75%'), commonStyle.marginHorizontal(5)]}>
+          style={[commonStyle.width('75%'), commonStyle.paddingHorizontal(10)]}>
           <TextInput
             value={value}
             placeholder={placeholder}
@@ -92,8 +93,11 @@ function PhoneTextInput({
 }
 
 const styles = StyleSheet.create({
-  card: {
-    marginVertical: 5,
+  card(cardStyle) {
+    return {
+      ...cardStyle,
+      marginVertical: 5,
+    };
   },
   label: {
     fontFamily: Font.AvenirMedium,
@@ -115,7 +119,9 @@ const styles = StyleSheet.create({
     height: 45,
     fontSize: 14,
     borderBottomColor: '#D9D9D9',
-    borderBottomWidth: 1,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    paddingHorizontal: 5,
+    marginHorizontal: 5,
   },
   inputTextStyle: {
     fontFamily: Font.AvenirMedium,
@@ -130,10 +136,9 @@ const styles = StyleSheet.create({
   dropDownButtonStyle: {
     width: 100,
     height: 45,
-    backgroundColor: '#FFFFFF',
-    borderRadius: 8,
+    backgroundColor: 'white',
     borderBottomColor: '#D9D9D9',
-    borderBottomWidth: 1,
+    borderBottomWidth: StyleSheet.hairlineWidth,
   },
   dropDownButtonTextStyle: {
     fontSize: 18,

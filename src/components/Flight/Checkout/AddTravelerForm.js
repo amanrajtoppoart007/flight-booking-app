@@ -3,7 +3,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import commonStyle from '../../../layout/Style';
 import Font from '../../../layout/Font';
 import Colors from '../../../layout/Colors';
-import {Input} from 'react-native-elements';
+import {Icon, Input} from 'react-native-elements';
 import CalenderSvg from '../../../components/Svg/Calender.svg';
 import InfoSvg from '../../Svg/Info.svg';
 import PhoneBookSvg from '../../Svg/PhoneBook.svg';
@@ -23,7 +23,8 @@ function Label({title}) {
   );
 }
 
-function AdultDetailForm() {
+function AddTravelerForm() {
+  const [extraSectionVisible, setExtraSectionVisible] = useState(false);
   const [tags, setTags] = useState([
     {
       title: 'Mr.',
@@ -54,7 +55,7 @@ function AdultDetailForm() {
     setTags(list);
   }
   return (
-    <View>
+    <View style={commonStyle.paddingHorizontal(12)}>
       <View style={styles.tagSection}>
         {tags &&
           tags.map((item, index) => {
@@ -116,11 +117,12 @@ function AdultDetailForm() {
         <PhoneTextInput
           title={'Country Code'}
           setPhoneCode={setPhoneCode}
-          phoneCode={'+974'}
+          phoneCode={phoneCode}
           value={mobile}
           setValue={setMobile}
           type={'mobile'}
-          placeholder={'Contact.js No'}
+          placeholder={'Contact No'}
+          cardStyle={{paddingHorizontal: 10}}
         />
       </View>
 
@@ -136,7 +138,7 @@ function AdultDetailForm() {
         <View />
       </View>
 
-      <View style={commonStyle.marginHorizontal(10)}>
+      <View>
         <Text style={styles.header}>Passport Detail</Text>
       </View>
       <View style={commonStyle.marginVertical(8)}>
@@ -178,14 +180,27 @@ function AdultDetailForm() {
         />
       </View>
       <View>
-        <View style={commonStyle.rowFlexEnd}>
-          <View>
-            <Text>Hello</Text>
+        <View style={styles.extraSectionHeader}>
+          <View style={commonStyle.rowSpaceBetween}>
+            <View style={commonStyle.marginHorizontal(8)}>
+              <Text style={styles.extraSectionTitle}>Extra</Text>
+            </View>
+            <View>
+              <Icon
+                onPress={() => setExtraSectionVisible(!extraSectionVisible)}
+                name={extraSectionVisible ? 'caret-up' : 'caret-down'}
+                type={'font-awesome'}
+                size={18}
+                color={'#1C8CCC'}
+              />
+            </View>
           </View>
         </View>
-        <View style={commonStyle.marginHorizontal(12)}>
-          <ExtraSection />
-        </View>
+        {extraSectionVisible && (
+          <View style={commonStyle.marginHorizontal(12)}>
+            <ExtraSection />
+          </View>
+        )}
       </View>
     </View>
   );
@@ -218,6 +233,8 @@ const styles = StyleSheet.create({
   },
   inputContainerStyle: {
     height: 35,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: '#D9D9D9',
   },
   inputTextStyle: {
     fontFamily: Font.AvenirMedium,
@@ -235,7 +252,6 @@ const styles = StyleSheet.create({
     color: '#FF0000',
   },
   headerSection: {
-    paddingHorizontal: 15,
     marginVertical: 8,
   },
   headerTitle: {
@@ -257,8 +273,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginVertical: 8,
-    paddingHorizontal: 2,
+  },
+  extraSectionHeader: {
+    ...commonStyle.rowFlexEnd,
+    marginHorizontal: 12,
+    marginVertical: 7.5,
+  },
+  extraSectionTitle: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 12,
+    color: '#1C8CCC',
   },
 });
 
-export default AdultDetailForm;
+export default AddTravelerForm;

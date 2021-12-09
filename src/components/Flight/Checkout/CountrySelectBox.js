@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderRadius: 8,
     borderBottomColor: '#D9D9D9',
-    borderBottomWidth: 1,
+    borderBottomWidth: StyleSheet.hairlineWidth,
   },
   dropDownButtonTextStyle: {
     fontSize: 18,

@@ -20,7 +20,7 @@ function StatusStepBar({activeIndex}) {
               )}
             </View>
           </View>
-          <View>
+          <View style={commonStyle.marginVertical(8)}>
             <Text style={styles.title}>Traveller Info</Text>
           </View>
         </View>
@@ -35,7 +35,7 @@ function StatusStepBar({activeIndex}) {
               </View>
             </View>
           </View>
-          <View>
+          <View style={commonStyle.marginVertical(8)}>
             <Text style={styles.textDisplayNone}>→ </Text>
           </View>
         </View>
@@ -49,7 +49,7 @@ function StatusStepBar({activeIndex}) {
               )}
             </View>
           </View>
-          <View>
+          <View style={commonStyle.marginVertical(8)}>
             <Text style={styles.title}>Payment</Text>
           </View>
         </View>
@@ -64,7 +64,7 @@ function StatusStepBar({activeIndex}) {
               </View>
             </View>
           </View>
-          <View>
+          <View style={commonStyle.marginVertical(8)}>
             <Text style={styles.textDisplayNone}>→ </Text>
           </View>
         </View>
@@ -79,7 +79,7 @@ function StatusStepBar({activeIndex}) {
               )}
             </View>
           </View>
-          <View>
+          <View style={commonStyle.marginVertical(8)}>
             <Text style={styles.title}>Success</Text>
           </View>
         </View>
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
   divider: {
     borderTopWidth: 5,
     borderTopColor: 'white',
-    width: widthPercentageToDP('15%'),
+    width: widthPercentageToDP('12%'),
   },
   CircleDivider: {
     width: 5,

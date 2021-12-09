@@ -4,6 +4,7 @@ import Font from '../../../../layout/Font';
 
 import OtherPreference from './OtherPreference';
 import FrequentFlyer from './FrequentFlyer';
+import commonStyle from '../../../../layout/Style';
 
 function Index() {
   const [currentIndex, setCurrentIndex] = useState(0);

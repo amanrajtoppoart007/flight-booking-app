@@ -82,7 +82,7 @@ function FrequentFlyer() {
               );
             }}
             data={airLines}
-            onSelect={selectedItem => {}}
+            onSelect={() => {}}
             buttonTextAfterSelection={selectedItem => {
               return selectedItem?.title;
             }}
@@ -121,13 +121,13 @@ function FrequentFlyer() {
 
 const styles = StyleSheet.create({
   addSection: {
-    ...commonStyle.rowCenter,
+    ...commonStyle.rowSpaceBetween,
     marginVertical: 10,
   },
   dropDownButtonStyle: {
-    width: 100,
+    width: 80,
     backgroundColor: Colors.white,
-    borderBottomWidth: 1,
+    borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: '#D9D9D9',
   },
   dropDownButtonTextStyle: {
@@ -136,9 +136,9 @@ const styles = StyleSheet.create({
     color: '#6C6C6C',
   },
   inputContainerStyle: {
-    width: 200,
+    width: 210,
     backgroundColor: Colors.white,
-    borderBottomWidth: 1,
+    borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: '#D9D9D9',
   },
   inputTextStyle: {

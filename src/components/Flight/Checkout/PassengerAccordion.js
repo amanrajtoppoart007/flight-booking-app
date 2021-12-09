@@ -41,8 +41,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'rgba(157,196,241,0.5)',
-    paddingHorizontal: 12,
+    backgroundColor: 'rgba(157,196,241,0.2)',
+    paddingHorizontal: 15,
   },
   title: {
     fontFamily: Font.AvenirMedium,

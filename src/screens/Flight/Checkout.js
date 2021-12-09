@@ -11,33 +11,25 @@ import commonStyle from '../../layout/Style';
 import {Icon} from 'react-native-elements';
 import Colors from '../../layout/Colors';
 import LinearGradient from 'react-native-linear-gradient';
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import Font from '../../layout/Font';
 import StatusStepBar from '../../components/Flight/Checkout/StatusStepBar';
 import LoginSvg from '../../components/Svg/Login.svg';
 import UserAddSvg from '../../components/Svg/UserAdd.svg';
 import PassengerAccordion from '../../components/Flight/Checkout/PassengerAccordion';
-import AdultDetailForm from '../../components/Flight/Checkout/AdultDetailForm';
+import AddTravelerForm from '../../components/Flight/Checkout/AddTravelerForm';
 
 function Checkout({navigation}) {
   return (
-    <SafeAreaView
-      style={[commonStyle.container, commonStyle.backgroundColor('F5F7FB')]}>
+    <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={commonStyle.wrapper}>
           <View style={commonStyle.content}>
             <LinearGradient
               colors={['#1C8CCC', '#015F95']}
               style={styles.canvas}>
-              <View
-                style={[
-                  commonStyle.rowFlexStart,
-                  commonStyle.marginVertical(10),
-                ]}>
-                <View style={commonStyle.center}>
+              <View style={styles.headerSection}>
+                <View>
                   <Icon
                     name={'md-arrow-back-sharp'}
                     type={'ionicon'}
@@ -53,11 +45,11 @@ function Checkout({navigation}) {
                 <StatusStepBar activeIndex={2} />
               </View>
             </LinearGradient>
-            <View style={styles.middleSection}>
+            <View style={styles.section}>
               <View style={commonStyle.marginVertical(10)}>
                 <View style={[commonStyle.rowSpaceBetween]}>
                   <View>
-                    <Text style={styles.dataDefinition}>
+                    <Text style={styles.itineraryTitle}>
                       Doha (DOH) → Dubai (DXB)
                     </Text>
                   </View>
@@ -72,13 +64,13 @@ function Checkout({navigation}) {
                     </Text>
                   </View>
                   <View style={commonStyle.rowSpaceBetween}>
-                    <Text>QAR </Text>
+                    <Text style={styles.currency}>QAR </Text>
                     <Text style={styles.priceTitle}>170.00</Text>
                   </View>
                 </View>
-                <View>
+                <View style={commonStyle.marginVertical(12)}>
                   <View>
-                    <Text style={styles.dataDefinition}>
+                    <Text style={styles.itineraryTitle}>
                       Dubai (DXB) → Doha (DOH)
                     </Text>
                   </View>
@@ -127,31 +119,31 @@ function Checkout({navigation}) {
             <View style={commonStyle.marginVertical(4)}>
               <PassengerAccordion
                 title={'Adult 1'}
-                Content={<AdultDetailForm />}
+                Content={<AddTravelerForm />}
               />
             </View>
             <View style={commonStyle.marginVertical(4)}>
               <PassengerAccordion
                 title={'Adult 2'}
-                Content={<AdultDetailForm />}
+                Content={<AddTravelerForm />}
               />
             </View>
             <View style={commonStyle.marginVertical(4)}>
               <PassengerAccordion
                 title={'Child 1'}
-                Content={<AdultDetailForm />}
+                Content={<AddTravelerForm />}
               />
             </View>
             <View style={commonStyle.marginVertical(4)}>
               <PassengerAccordion
                 title={'Infant 1'}
-                Content={<AdultDetailForm />}
+                Content={<AddTravelerForm />}
               />
             </View>
           </View>
-          <View style={commonStyle.marginVertical(20)}>
+          <View style={styles.checkButtonSection}>
             <TouchableOpacity
-              onPress={() => navigation.navigate('ReviewItinerary')}
+              onPress={() => navigation.navigate('Payment')}
               style={styles.checkOutBtn}>
               <Text style={styles.checkOutBtnText}>Continue</Text>
             </TouchableOpacity>
@@ -163,12 +155,20 @@ function Checkout({navigation}) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    ...commonStyle.container,
+    ...commonStyle.backgroundColor('white'),
+  },
   canvas: {
     width: '100%',
     height: hp('20%'),
     justifyContent: 'center',
     alignItems: 'flex-start',
-    paddingHorizontal: 12,
+  },
+  headerSection: {
+    ...commonStyle.rowFlexStart,
+    ...commonStyle.marginVertical(10),
+    ...commonStyle.marginHorizontal(20),
   },
   section: {
     paddingHorizontal: 12,
@@ -184,16 +184,12 @@ const styles = StyleSheet.create({
     color: Colors.white,
   },
   horizontalStepBarSection: {
+    width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    width: '100%',
     marginVertical: 8,
-    paddingHorizontal: 12,
   },
-  middleSection: {
-    paddingHorizontal: 12,
-  },
-  dataDefinition: {
+  itineraryTitle: {
     fontFamily: Font.AvenirHeavy,
     fontSize: 14,
     color: '#242A37',
@@ -203,14 +199,22 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#26698E',
   },
+  currency: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 14,
+    color: '#6C6C6C',
+  },
   mutedText: {
     fontFamily: Font.AvenirRoman,
     fontSize: 12,
     color: '#6C6C6C',
   },
   loginSectionWrapper: {
+    height: 70,
     ...commonStyle.marginVertical(10),
     paddingHorizontal: 12,
+    ...commonStyle.backgroundColor('#F5F7FB'),
+    justifyContent: 'center',
   },
   loginSection: {
     width: '100%',
@@ -248,8 +252,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#242A37',
   },
+  checkButtonSection: {
+    width: '100%',
+    paddingHorizontal: 12,
+    ...commonStyle.marginVertical(20),
+  },
   checkOutBtn: {
-    width: wp('80%'),
+    width: '100%',
     height: 56,
     borderRadius: 6,
     backgroundColor: '#F15922',
