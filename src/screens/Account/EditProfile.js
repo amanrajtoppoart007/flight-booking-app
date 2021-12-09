@@ -126,6 +126,7 @@ function EditProfile() {
                   </View>
                   <View style={styles.phoneNumberSection}>
                     <PhoneTextInput
+                      cardStyle={styles.inputStyle}
                       title={'Country Code'}
                       setPhoneCode={setPhoneCode}
                       phoneCode={'+974'}
@@ -157,7 +158,7 @@ function EditProfile() {
 
 const styles = StyleSheet.create({
   contentWrapper: {
-    paddingHorizontal: 10,
+    paddingHorizontal: 20,
     width: '100%',
   },
   canvas: {
@@ -228,13 +229,14 @@ const styles = StyleSheet.create({
     color: '#FF0000',
   },
   formCard: {
-    width: '95%',
     borderWidth: 0.5,
     borderRadius: 8,
     borderColor: '#707070',
     paddingHorizontal: 4,
     marginVertical: 15,
     backgroundColor: Colors.white,
+    marginHorizontal: 15,
+    alignSelf: 'stretch',
   },
   phoneNumberSection: {
     justifyContent: 'center',
@@ -243,17 +245,21 @@ const styles = StyleSheet.create({
     paddingHorizontal: 2,
   },
   button: {
-    width: wp('80%'),
-    height: 56,
     borderRadius: 6,
     backgroundColor: Colors.secondary,
     justifyContent: 'center',
     alignItems: 'center',
+    alignSelf: 'stretch',
+    marginHorizontal: 15,
   },
   buttonText: {
     fontFamily: Font.AvenirHeavy,
     fontSize: 16,
     color: Colors.white,
+    marginVertical: 15,
+  },
+  inputStyle: {
+    marginHorizontal: 20,
   },
 });
 

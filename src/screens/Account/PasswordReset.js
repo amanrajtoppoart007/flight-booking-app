@@ -17,6 +17,7 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import CustomStatusBar from '../../components/CustomStatusBar';
 import {Icon, Input} from 'react-native-elements';
+import Info from '../../components/Svg/Info.svg';
 
 function Label({title}) {
   return (
@@ -67,12 +68,8 @@ function PasswordReset({navigation}) {
             <View style={styles.bottomSection}>
               <View style={commonStyle.marginVertical(10)}>
                 <View style={styles.warningSection}>
-                  <Icon
-                    name={'warning'}
-                    type={'font-awesome'}
-                    color={Colors.primary}
-                    size={30}
-                  />
+                  <Info />
+                  <View style={commonStyle.marginHorizontal(4)} />
                   <Text style={styles.warningText}>
                     Enter your current password, set a new one and then re-enter
                     the new password for confirmation.
@@ -137,19 +134,17 @@ const styles = StyleSheet.create({
   },
 
   warningSection: {
-    width: wp('95%'),
-    height: 80,
     backgroundColor: 'rgba(28, 140, 204, 0.2)',
     borderRadius: 8,
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    flexWrap: 'wrap',
-    alignItems: 'center',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
     padding: 8,
-    paddingVertical: 20,
+    paddingVertical: 12,
+    paddingHorizontal: 15,
+    marginHorizontal: 15,
   },
   warningText: {
-    width: '90%',
     fontFamily: Font.AvenirMedium,
     fontSize: 14,
     color: Colors.primary,
@@ -197,27 +192,29 @@ const styles = StyleSheet.create({
     color: '#FF0000',
   },
   formCard: {
-    width: '95%',
     borderWidth: 0.5,
     borderRadius: 8,
     borderColor: '#707070',
     paddingHorizontal: 4,
     marginVertical: 15,
     backgroundColor: Colors.white,
+    alignSelf: 'stretch',
+    marginHorizontal: 15,
   },
 
   button: {
-    width: wp('95%'),
-    height: 56,
     borderRadius: 6,
     backgroundColor: Colors.secondary,
     justifyContent: 'center',
     alignItems: 'center',
+    alignSelf: 'stretch',
+    marginHorizontal: 15,
   },
   buttonText: {
     fontFamily: Font.AvenirHeavy,
     fontSize: 16,
     color: Colors.white,
+    marginVertical: 16,
   },
 });
 

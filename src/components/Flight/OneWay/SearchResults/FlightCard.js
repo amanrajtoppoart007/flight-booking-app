@@ -28,7 +28,7 @@ function FlightCard({isSelected, onPress, onPressSelect}) {
           </View>
         </View>
         <View style={styles.colFlexEnd}>
-          <Text style={styles.LightText}>
+          <Text style={styles.qarText}>
             QAR <Text style={styles.price}>170.00</Text>
           </Text>
           <View style={commonStyle.rowSpaceBetween}>
@@ -52,11 +52,11 @@ function FlightCard({isSelected, onPress, onPressSelect}) {
         <View style={commonStyle.rowSpaceBetween}>
           <View>
             <Text style={styles.TimeText}>10:00</Text>
-            <Text style={styles.LightText}>DOH</Text>
+            <Text style={styles.qarText}>DOH</Text>
           </View>
           <View style={commonStyle.rowFlexStart}>
             <View style={styles.alignItemsCenter}>
-              <Text style={styles.LightText}>AMM</Text>
+              <Text style={styles.qarText}>AMM</Text>
               <View style={commonStyle.rowFlexStart}>
                 <Icon
                   name={'circle'}
@@ -72,16 +72,16 @@ function FlightCard({isSelected, onPress, onPressSelect}) {
                   color={'#D9D9D9'}
                 />
               </View>
-              <Text style={[styles.LightText]}>2h 30m</Text>
+              <Text style={[styles.qarText]}>2h 30m</Text>
             </View>
           </View>
           <View style={styles.alignItemsEnd}>
             <Text style={styles.TimeText}>10:00</Text>
-            <Text style={styles.LightText}>DOH</Text>
+            <Text style={styles.qarText}>DOH</Text>
           </View>
           <View style={styles.alignItemsEnd}>
             <Text style={styles.smallText}>Total Duration</Text>
-            <Text style={styles.LightText}>5h 30m</Text>
+            <Text style={styles.qarText}>5h 30m</Text>
           </View>
         </View>
       </View>
@@ -92,13 +92,13 @@ function FlightCard({isSelected, onPress, onPressSelect}) {
           commonStyle.marginHorizontal(12),
         ]}>
         <View style={commonStyle.rowFlexStart}>
-          <Text style={styles.LightText}>1 Stop |</Text>
+          <Text style={styles.qarText}>1 Stop |</Text>
           <Bag style={commonStyle.marginHorizontal(8)} />
-          <Text style={styles.LightText}>
+          <Text style={styles.qarText}>
             Check In: <Text style={styles.LightHeavyText}>1 piece</Text>
           </Text>
         </View>
-        <Text style={styles.LightText}>Cabin: 7 Kg</Text>
+        <Text style={styles.qarText}>Cabin: 7 Kg</Text>
         <TouchableOpacity
           onPress={() => navigation.navigate('Review')}
           style={commonStyle.rowCenter}>
@@ -111,12 +111,12 @@ function FlightCard({isSelected, onPress, onPressSelect}) {
           />
         </TouchableOpacity>
       </View>
-      <View style={[commonStyle.rowSpaceAround, commonStyle.marginTop(6)]}>
+      <View style={[commonStyle.rowSpaceAround, commonStyle.marginTop(10)]}>
         <TouchableOpacity
           onPress={() => setIsMoreOptionVisible(!isMoreOptionVisible)}
           style={styles.MoreOptionsButton}>
-          <Text style={styles.LightText}>More Flight Options</Text>
-          <View style={commonStyle.marginHorizontal(3)} />
+          <Text style={styles.qarText}>More Flight Options</Text>
+          <View style={commonStyle.marginHorizontal(4)} />
           <Icon
             name={isMoreOptionVisible ? 'angle-double-up' : 'angle-double-down'}
             type={'font-awesome'}
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
   card(value) {
     return {
       backgroundColor: value ? 'rgba(29,140,204,0.1)' : Colors.white,
-      marginBottom: 12,
+      marginVertical: 6,
       borderWidth: value ? 1 : 0,
       borderColor: '#1D8CCC',
     };
@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     fontFamily: Font.AvenirHeavy,
   },
-  LightText: {
+  qarText: {
     fontFamily: Font.AvenirMedium,
     fontSize: 12,
     color: '#50555F',
