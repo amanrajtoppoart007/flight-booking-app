@@ -1,12 +1,10 @@
 import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
-import commonStyle from '../../../layout/Style';
 import Colors from '../../../layout/Colors';
-import Font from '../../../layout/Font';
 import TicketCard from './TicketCard';
 
 function TicketList() {
-  const [tickets, setTickets] = useState([
+  const [tickets] = useState([
     {
       ticketNumber: '2132-43434343434',
       name: 'John Doe',
@@ -21,7 +19,7 @@ function TicketList() {
     },
   ]);
   return (
-    <View style={commonStyle.padding(15)}>
+    <View style={styles.container}>
       {tickets.map((item, index) => {
         return <TicketCard key={index} item={item} />;
       })}
@@ -30,49 +28,9 @@ function TicketList() {
 }
 
 const styles = StyleSheet.create({
-  name: {
-    fontFamily: Font.AvenirMedium,
-    fontSize: 14,
-    color: '#26698E',
-  },
-  ticketTitle: {
-    fontFamily: Font.AvenirMedium,
-    fontSize: 14,
-    color: '#6C6C6C',
-  },
-  ticketNumber: {
-    fontFamily: Font.AvenirMedium,
-    fontSize: 14,
-    color: '#26698E',
-  },
-  textSection: {
-    marginVertical: 5.5,
-  },
-  textRow: {
-    ...commonStyle.rowFlexStart,
-    ...commonStyle.flex(1),
-  },
-
-  dataTitle: {
-    fontFamily: Font.AvenirMedium,
-    fontSize: 14,
-    color: '#6C6C6C',
-  },
-  dataDescription: {
-    fontFamily: Font.AvenirMedium,
-    fontSize: 14,
-    color: '#26698E',
-  },
-  specialRequestTitle: {
-    fontFamily: Font.AvenirHeavy,
-    fontSize: 14,
-    color: '#242A37',
-  },
-  divider: {
-    width: '100%',
-    borderWidth: StyleSheet.hairlineWidth,
-    borderColor: Colors.lightText,
-    alignSelf: 'center',
+  container: {
+    padding: 15,
+    backgroundColor: Colors.white,
   },
 });
 

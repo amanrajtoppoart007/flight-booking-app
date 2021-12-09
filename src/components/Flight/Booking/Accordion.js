@@ -26,7 +26,7 @@ function Accordion({title, visible, Content}) {
           />
         </View>
       </View>
-      <View>{expanded && Content}</View>
+      <View style={styles.cardBody}>{expanded && Content}</View>
     </View>
   );
 }
@@ -48,6 +48,9 @@ const styles = StyleSheet.create({
     fontFamily: Font.AvenirMedium,
     fontSize: 14,
     color: '#26698E',
+  },
+  cardBody: {
+    backgroundColor: Colors.white,
   },
 });
 export default Accordion;

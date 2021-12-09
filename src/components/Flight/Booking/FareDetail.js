@@ -1,282 +1,159 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import Colors from '../../../layout/Colors';
-import {Icon} from 'react-native-elements';
 import commonStyle from '../../../layout/Style';
 import Font from '../../../layout/Font';
+import FareCard from './FareCard';
 
 function FairDetail() {
-  const [adultOpen, setAdultOpen] = useState(false);
-  const [childOpen, setChildOpen] = useState(false);
-  const [infantOpen, setInfantOpen] = useState(false);
+  const [list] = useState([
+    {
+      section: 'Adult',
+      count: 1,
+      fare: [
+        {
+          title: 'Fare',
+          value: 140,
+          currency: 'QAR',
+        },
+        {
+          title: 'Taxes & Fee',
+          value: 30,
+          currency: 'QAR',
+        },
+      ],
+    },
+    {
+      section: 'Child',
+      count: 1,
+      fare: [
+        {
+          title: 'Fare',
+          value: 140,
+          currency: 'QAR',
+        },
+        {
+          title: 'Taxes & Fee',
+          value: 30,
+          currency: 'QAR',
+        },
+      ],
+    },
+    {
+      section: 'Infant',
+      count: 1,
+      fare: [
+        {
+          title: 'Fare',
+          value: 140,
+          currency: 'QAR',
+        },
+        {
+          title: 'Taxes & Fee',
+          value: 30,
+          currency: 'QAR',
+        },
+      ],
+    },
+  ]);
 
   return (
-    <View style={commonStyle.marginVertical(8)}>
+    <View style={styles.card}>
       <View>
-        <View
-          style={[
-            commonStyle.rowSpaceBetween,
-            commonStyle.marginHorizontal(10),
-          ]}>
-          <View style={styles.rowFlexStartBaseline}>
-            <View>
-              <Text style={styles.headTitle}>Adult 1</Text>
-            </View>
-            <View style={commonStyle.marginHorizontal(5)}>
-              <Icon
-                name={adultOpen ? 'up' : 'down'}
-                onPress={() => setAdultOpen(!adultOpen)}
-                type={'antdesign'}
-                size={16}
-                color={Colors.primary}
-              />
-            </View>
-          </View>
-          <View style={commonStyle.rowSpaceBetween}>
-            <View style={commonStyle.marginHorizontal(5)}>
-              <Text style={styles.textHelper}>QAR</Text>
-            </View>
-            <View>
-              <Text style={styles.textBold}>170.00</Text>
-            </View>
-          </View>
-        </View>
-        <View style={styles.divider} />
-        {adultOpen && (
-          <View style={styles.blueBackground}>
-            <View style={styles.sectionContentContainer}>
-              <View>
-                <Text style={styles.title}>Fare</Text>
-              </View>
-              <View style={commonStyle.rowSpaceBetween}>
-                <View style={commonStyle.marginHorizontal(5)}>
-                  <Text style={styles.textHelper}>QAR</Text>
-                </View>
-                <View>
-                  <Text style={styles.text}>140.00</Text>
-                </View>
-              </View>
-            </View>
-            <View style={styles.sectionContentContainer}>
-              <View>
-                <Text style={styles.title}>Taxes & Fee</Text>
-              </View>
-              <View style={commonStyle.rowSpaceBetween}>
-                <View style={commonStyle.marginHorizontal(5)}>
-                  <Text style={styles.textHelper}>QAR</Text>
-                </View>
-                <View>
-                  <Text style={styles.text}>30.00</Text>
-                </View>
-              </View>
-            </View>
-          </View>
-        )}
-      </View>
-
-      <View>
-        <View
-          style={[
-            commonStyle.rowSpaceBetween,
-            commonStyle.marginHorizontal(10),
-          ]}>
-          <View style={styles.rowFlexStartBaseline}>
-            <View>
-              <Text style={styles.headTitle}>Child 1</Text>
-            </View>
-            <View style={commonStyle.marginHorizontal(5)}>
-              <Icon
-                name={adultOpen ? 'up' : 'down'}
-                onPress={() => setChildOpen(!childOpen)}
-                type={'antdesign'}
-                size={16}
-                color={Colors.primary}
-              />
-            </View>
-          </View>
-          <View style={commonStyle.rowSpaceBetween}>
-            <View style={commonStyle.marginHorizontal(5)}>
-              <Text style={styles.textHelper}>QAR</Text>
-            </View>
-            <View>
-              <Text style={styles.textBold}>170.00</Text>
-            </View>
-          </View>
-        </View>
-        <View style={styles.divider} />
-        {childOpen && (
-          <View style={styles.blueBackground}>
-            <View style={styles.sectionContentContainer}>
-              <View>
-                <Text style={styles.title}>Fare</Text>
-              </View>
-              <View style={commonStyle.rowSpaceBetween}>
-                <View style={commonStyle.marginHorizontal(5)}>
-                  <Text style={styles.textHelper}>QAR</Text>
-                </View>
-                <View>
-                  <Text style={styles.text}>140.00</Text>
-                </View>
-              </View>
-            </View>
-            <View style={styles.sectionContentContainer}>
-              <View>
-                <Text style={styles.title}>Taxes & Fee</Text>
-              </View>
-              <View style={commonStyle.rowSpaceBetween}>
-                <View style={commonStyle.marginHorizontal(5)}>
-                  <Text style={styles.textHelper}>QAR</Text>
-                </View>
-                <View>
-                  <Text style={styles.text}>30.00</Text>
-                </View>
-              </View>
-            </View>
-          </View>
-        )}
-      </View>
-
-      <View>
-        <View
-          style={[
-            commonStyle.rowSpaceBetween,
-            commonStyle.marginHorizontal(10),
-          ]}>
-          <View style={styles.rowFlexStartBaseline}>
-            <View>
-              <Text style={styles.headTitle}>Infant 1</Text>
-            </View>
-            <View style={commonStyle.marginHorizontal(5)}>
-              <Icon
-                name={adultOpen ? 'up' : 'down'}
-                onPress={() => setInfantOpen(!infantOpen)}
-                type={'antdesign'}
-                size={16}
-                color={Colors.primary}
-              />
-            </View>
-          </View>
-          <View style={commonStyle.rowSpaceBetween}>
-            <View style={commonStyle.marginHorizontal(5)}>
-              <Text style={styles.textHelper}>QAR</Text>
-            </View>
-            <View>
-              <Text style={styles.textBold}>170.00</Text>
-            </View>
-          </View>
-        </View>
-        <View style={styles.divider} />
-        {infantOpen && (
-          <View style={styles.blueBackground}>
-            <View style={styles.sectionContentContainer}>
-              <View>
-                <Text style={styles.title}>Fare</Text>
-              </View>
-              <View style={commonStyle.rowSpaceBetween}>
-                <View style={commonStyle.marginHorizontal(5)}>
-                  <Text style={styles.textHelper}>QAR</Text>
-                </View>
-                <View>
-                  <Text style={styles.text}>140.00</Text>
-                </View>
-              </View>
-            </View>
-            <View style={styles.sectionContentContainer}>
-              <View>
-                <Text style={styles.title}>Taxes & Fee</Text>
-              </View>
-              <View style={commonStyle.rowSpaceBetween}>
-                <View style={commonStyle.marginHorizontal(5)}>
-                  <Text style={styles.textHelper}>QAR</Text>
-                </View>
-                <View>
-                  <Text style={styles.text}>30.00</Text>
-                </View>
-              </View>
-            </View>
-          </View>
-        )}
-      </View>
-
-      <View style={styles.totalContainer}>
         <View>
-          <Text style={styles.textBold}>Grand Total</Text>
+          <Text style={styles.sectionTitle}>Fare Summery</Text>
+        </View>
+      </View>
+
+      <View>
+        {list &&
+          list.map((item, index) => {
+            return <FareCard item={item} key={index} />;
+          })}
+      </View>
+
+      <View style={commonStyle.rowSpaceBetween}>
+        <View>
+          <Text style={styles.discountTitle}>Promo Discount</Text>
+        </View>
+        <View style={commonStyle.rowSpaceBetween}>
+          <View style={commonStyle.marginHorizontal(5)}>
+            <Text style={styles.discountCurrency}>- QAR</Text>
+          </View>
+          <View>
+            <Text style={styles.discountPrice}>300.00</Text>
+          </View>
+        </View>
+      </View>
+      <View style={styles.divider} />
+
+      <View style={commonStyle.rowSpaceBetween}>
+        <View>
+          <Text style={styles.totalTitle}>Grand Total</Text>
           <Text style={styles.title}>Taxes and fees Included</Text>
         </View>
-        <Text style={styles.textBold}>
-          <Text style={styles.textHelper}>QAR</Text> 300.00
-        </Text>
+        <View style={commonStyle.rowSpaceBetween}>
+          <View style={commonStyle.marginHorizontal(5)}>
+            <Text style={styles.textHelper}>QAR</Text>
+          </View>
+          <View>
+            <Text style={styles.price}>300.00</Text>
+          </View>
+        </View>
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: Colors.background,
+  card: {
+    padding: 15,
+    width: '100%',
+    backgroundColor: Colors.white,
   },
-  headTitle: {
-    fontFamily: Font.AvenirMedium,
+  divider: {
+    width: '100%',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: '#D9D9D9',
+    marginVertical: 10,
+    marginHorizontal: 10,
+  },
+  sectionTitle: {
+    fontFamily: Font.AvenirBlack,
     fontSize: 14,
-    color: '#26698E',
+    color: '#242A37',
   },
-  title: {
-    fontFamily: Font.AvenirMedium,
-    fontSize: 14,
-    color: '#0B151F',
-  },
+
   textHelper: {
     fontFamily: Font.AvenirMedium,
     fontSize: 14,
     color: '#94979D',
   },
-  text: {
-    fontFamily: Font.AvenirMedium,
+  price: {
+    fontFamily: Font.AvenirBlack,
     fontSize: 14,
     color: '#0B151F',
   },
-  divider: {
-    borderWidth: 0.5,
-    borderColor: '#D9D9D9',
-    marginVertical: 10,
-    marginHorizontal: 10,
-  },
 
-  item: {
-    borderBottomWidth: 1.2,
-    borderColor: Colors.primary,
-    paddingBottom: 10,
-    marginRight: 15,
-    marginTop: 10,
-  },
-  textBold: {
-    fontFamily: Font.AvenirBlack,
-    fontSize: 18,
+  totalTitle: {
+    fontFamily: Font.AvenirHeavy,
+    fontSize: 14,
     color: 'black',
   },
-  blueBackground: {
-    backgroundColor: 'rgba(61, 181, 255, 0.05)',
-    marginHorizontal: 10,
-    borderRadius: 5,
-    paddingHorizontal: 5,
-    marginBottom: 10,
+  discountTitle: {
+    fontFamily: Font.AvenirHeavy,
+    fontSize: 14,
+    color: '#13A869',
   },
-  rowFlexStartBaseline: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'baseline',
+  discountCurrency: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 14,
+    color: '#13A869',
   },
-
-  sectionContentContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginVertical: 5,
-  },
-  totalContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginHorizontal: 10,
+  discountPrice: {
+    fontFamily: Font.AvenirBlack,
+    fontSize: 14,
+    color: '#13A869',
   },
 });
 export default FairDetail;

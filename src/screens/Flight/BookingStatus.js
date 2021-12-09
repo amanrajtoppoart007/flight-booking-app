@@ -21,11 +21,13 @@ import Colors from '../../layout/Colors';
 import BookingDetailCard from '../../components/Flight/Booking/BookingDetailCard';
 import Accordion from '../../components/Flight/Booking/Accordion';
 import FairDetail from '../../components/Flight/Booking/FareDetail';
+import SendRequestModal from '../../components/Flight/Booking/SendRequestModal';
+import TicketList from '../../components/Flight/Booking/TicketList';
+
 import CallSvg from '../../components/Svg/Call.svg';
 import CallBackSvg from '../../components/Svg/CallBack.svg';
 import EmailSvg from '../../components/Svg/Email.svg';
-import SendRequestModal from '../../components/Flight/Booking/SendRequestModal';
-import TicketList from '../../components/Flight/Booking/TicketList';
+import VisaCardSvg from '../../components/Svg/VisaCard.svg';
 
 function AssistanceCard({isVisible, setIsSendRequestVisible}) {
   return (
@@ -154,7 +156,7 @@ function BookingStatus() {
                 <Accordion
                   title={'Payment Details'}
                   Content={
-                    <View>
+                    <View style={commonStyle.paddingHorizontal(15)}>
                       <View
                         style={[
                           commonStyle.rowSpaceBetween,
@@ -162,23 +164,31 @@ function BookingStatus() {
                         ]}>
                         <View style={commonStyle.rowFlexStart}>
                           <View>
-                            <Text>Credit Card</Text>
+                            <Text style={styles.creditCardTitle}>
+                              Credit Card
+                            </Text>
                           </View>
-                          <View style={commonStyle.rowFlexStart}>
+                          <View
+                            style={[
+                              commonStyle.rowFlexStart,
+                              commonStyle.marginHorizontal(5),
+                            ]}>
                             <View>
-                              <Text>Visa image here</Text>
+                              <VisaCardSvg />
                             </View>
                             <View>
-                              <Text>*****3434</Text>
+                              <Text style={styles.creditCardNumber}>
+                                *****3434
+                              </Text>
                             </View>
                           </View>
                         </View>
                         <View style={commonStyle.rowFlexStart}>
                           <View>
-                            <Text>QAR</Text>
+                            <Text style={styles.creditCardCurrency}>QAR</Text>
                           </View>
                           <View>
-                            <Text> 300.00</Text>
+                            <Text style={styles.creditCardAmount}> 300.00</Text>
                           </View>
                         </View>
                       </View>
@@ -251,6 +261,26 @@ const styles = StyleSheet.create({
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: Colors.lightText,
     alignSelf: 'center',
+  },
+  creditCardTitle: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 14,
+    color: '#26698E',
+  },
+  creditCardNumber: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 14,
+    color: '#26698E',
+  },
+  creditCardCurrency: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 14,
+    color: '#6C6C6C',
+  },
+  creditCardAmount: {
+    fontFamily: Font.AvenirHeavy,
+    fontSize: 16,
+    color: '#0B151F',
   },
 });
 
