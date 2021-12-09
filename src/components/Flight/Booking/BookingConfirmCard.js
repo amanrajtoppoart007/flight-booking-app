@@ -12,10 +12,10 @@ function BookingConfirmCard() {
   return (
     <View style={styles.card}>
       <View style={styles.cardBody}>
-        <View style={[commonStyle.padding(10), commonStyle.rowSpaceBetween]}>
+        <View style={commonStyle.rowSpaceBetween}>
           <View style={commonStyle.rowFlexStart}>
             <View>
-              <DepartureSvg style={{width: 20, height: 20}} />
+              <DepartureSvg />
             </View>
             <View style={commonStyle.marginHorizontal(8)}>
               <Text style={styles.journeyTitle}>Departing</Text>
@@ -91,7 +91,7 @@ function BookingConfirmCard() {
               <Text style={styles.place}>Doha (DOH)</Text>
             </View>
             <View>
-              <AirPlaneDepartureSvg style={{width: 55, height: 20}} />
+              <AirPlaneDepartureSvg />
             </View>
             <View>
               <Text style={styles.place}>Amman (AMM)</Text>
@@ -154,7 +154,7 @@ function BookingConfirmCard() {
               <Text style={styles.place}>Doha (DOH)</Text>
             </View>
             <View>
-              <AirPlaneDepartureSvg style={{width: 55, height: 20}} />
+              <AirPlaneDepartureSvg />
             </View>
             <View>
               <Text style={styles.place}>Amman (AMM)</Text>
@@ -301,7 +301,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   cardBody: {
-    borderBottomWidth: StyleSheet.hairlineWidth5,
+    borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: Colors.lightText,
     marginVertical: 8,
     paddingVertical: 8,

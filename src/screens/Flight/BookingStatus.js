@@ -26,7 +26,7 @@ import CallBackSvg from '../../components/Svg/CallBack.svg';
 import EmailSvg from '../../components/Svg/Email.svg';
 import SendRequestModal from '../../components/Flight/Booking/SendRequestModal';
 
-function AssistanceCard({isVisible, setIsVisible, setIsSendRequestVisible}) {
+function AssistanceCard({isVisible, setIsSendRequestVisible}) {
   return (
     <>
       {isVisible && (
@@ -247,7 +247,6 @@ const styles = StyleSheet.create({
     height: 40,
   },
   headerSection: {
-    marginHorizontal: 20,
     marginVertical: 20,
     flexDirection: 'row',
     justifyContent: 'flex-end',
@@ -274,7 +273,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: Colors.primary,
     height: 40,
-    paddingHorizontal: 15,
   },
   cardBody: {},
   headTitle: {
