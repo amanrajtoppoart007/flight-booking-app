@@ -7,116 +7,146 @@ import {Icon} from 'react-native-elements';
 import Colors from '../../../../layout/Colors';
 import Deer from '../../../Svg/Deer.svg';
 import Bag from '../../../Svg/Bag.svg';
-import Running from '../../../Svg/Running.svg';
 import MoreOptions from '../../FlightBy/MoreOptions';
 import {useNavigation} from '@react-navigation/native';
 
-function FlightCard({isSelected, onPress, onPressSelect}) {
+function FlightCard({onPressSelect}) {
   const navigation = useNavigation();
 
   const [isMoreOptionVisible, setIsMoreOptionVisible] = useState(false);
   return (
-    <TouchableOpacity onPress={onPress} style={styles.card(isSelected)}>
+    <View style={styles.card(isMoreOptionVisible)}>
       <View style={styles.cardHeader}>
         <View style={[styles.rowFlexCenter]}>
           <Deer />
           <View style={commonStyle.marginHorizontal(8)}>
-            <Text style={styles.cardHeaderText}>
-              Qatar Airways |<Text style={styles.smallText}> QR - 3413</Text>
-            </Text>
-            <Text style={styles.cardSubHeaderText}>Operated by FlyDubai</Text>
+            <Text style={styles.cardHeaderText}>Qatar Airways</Text>
           </View>
         </View>
         <View style={styles.colFlexEnd}>
-          <Text style={styles.qarText}>
+          <Text style={styles.LightText}>
             QAR <Text style={styles.price}>170.00</Text>
           </Text>
           <View style={commonStyle.rowSpaceBetween}>
-            <View style={styles.Running}>
-              <Running />
-            </View>
-
-            <View style={commonStyle.marginHorizontal(3)} />
+            <View style={commonStyle.marginHorizontal(5)} />
             <Text style={styles.RedText}>4 Seats Left</Text>
-            <View style={commonStyle.marginHorizontal(3)} />
+            <View style={commonStyle.marginHorizontal(5)} />
             <Text style={styles.GreenText}>Refundable</Text>
           </View>
         </View>
       </View>
       <View style={styles.divider} />
-      <View
-        style={[
-          commonStyle.paddingHorizontal(12),
-          commonStyle.marginVertical(6),
-        ]}>
-        <View style={commonStyle.rowSpaceBetween}>
-          <View>
-            <Text style={styles.TimeText}>10:00</Text>
-            <Text style={styles.qarText}>DOH</Text>
+      <View style={styles.cardBody}>
+        <View style={[commonStyle.flex(0.47)]}>
+          <View
+            style={[commonStyle.rowSpaceBetween, commonStyle.marginBottom(6)]}>
+            <View style={commonStyle.rowFlexStart}>
+              <Icon
+                name={'flight-takeoff'}
+                type={'material'}
+                size={20}
+                color={'red'}
+              />
+              <Text
+                style={[styles.DepartingText, commonStyle.marginHorizontal(4)]}>
+                Departing
+              </Text>
+            </View>
+            <Text style={styles.LightText}>QR - 3801</Text>
           </View>
-          <View style={commonStyle.rowFlexStart}>
-            <View style={styles.alignItemsCenter}>
-              <Text style={styles.qarText}>AMM</Text>
-              <View style={commonStyle.rowFlexStart}>
-                <Icon
-                  name={'circle'}
-                  type={'entypo'}
-                  size={12}
-                  color={'#D9D9D9'}
-                />
-                <View style={styles.Line} />
-                <Icon
-                  name={'circle'}
-                  type={'entypo'}
-                  size={12}
-                  color={'#D9D9D9'}
-                />
-              </View>
-              <Text style={[styles.qarText]}>2h 30m</Text>
+          <View
+            style={[
+              commonStyle.rowSpaceBetween,
+              commonStyle.marginVertical(6),
+            ]}>
+            <Text style={[styles.HeavyText]}>10:00 → 12:15</Text>
+            <Text style={styles.LightText}>5h 30m</Text>
+          </View>
+          <View style={commonStyle.rowSpaceBetween}>
+            <Text style={styles.LightText}>DOH</Text>
+            <Text style={styles.LightText}>DXB</Text>
+            <View style={commonStyle.rowFlexStart}>
+              <Bag />
+              <View style={commonStyle.marginHorizontal(2)} />
+              <Text style={[styles.LightText]}>23 Kgs</Text>
             </View>
           </View>
-          <View style={styles.alignItemsEnd}>
-            <Text style={styles.TimeText}>10:00</Text>
-            <Text style={styles.qarText}>DOH</Text>
+          <View
+            style={[commonStyle.rowSpaceBetween, commonStyle.marginTop(17)]}>
+            <Text style={styles.LightText}>1 Stop</Text>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Review')}
+              style={commonStyle.rowFlexStart}>
+              <Text style={styles.BlueText}>Details</Text>
+              <View style={commonStyle.marginHorizontal(1)} />
+              <Icon
+                name={'caretright'}
+                type={'antdesign'}
+                size={14}
+                color={Colors.primary}
+              />
+            </TouchableOpacity>
           </View>
-          <View style={styles.alignItemsEnd}>
-            <Text style={styles.smallText}>Total Duration</Text>
-            <Text style={styles.qarText}>5h 30m</Text>
+        </View>
+        <View style={styles.VDivider} />
+        <View style={[commonStyle.flex(0.47)]}>
+          <View
+            style={[commonStyle.rowSpaceBetween, commonStyle.marginBottom(6)]}>
+            <View style={commonStyle.rowFlexStart}>
+              <Icon
+                name={'flight-takeoff'}
+                type={'material'}
+                size={20}
+                color={'red'}
+              />
+              <Text
+                style={[styles.DepartingText, commonStyle.marginHorizontal(4)]}>
+                Returning
+              </Text>
+            </View>
+            <Text style={styles.LightText}>QR - 3802</Text>
+          </View>
+          <View
+            style={[
+              commonStyle.rowSpaceBetween,
+              commonStyle.marginVertical(6),
+            ]}>
+            <Text style={[styles.HeavyText]}>15:45 → 16:00</Text>
+            <Text style={styles.LightText}>5h 30m</Text>
+          </View>
+          <View style={commonStyle.rowSpaceBetween}>
+            <Text style={styles.LightText}>DOH</Text>
+            <Text style={styles.LightText}>DXB</Text>
+            <View style={commonStyle.rowFlexStart}>
+              <Bag />
+              <View style={commonStyle.marginHorizontal(2)} />
+              <Text style={[styles.LightText]}>23 Kgs</Text>
+            </View>
+          </View>
+          <View
+            style={[commonStyle.rowSpaceBetween, commonStyle.marginTop(17)]}>
+            <Text style={styles.LightText}>1 Stop</Text>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Review')}
+              style={commonStyle.rowFlexStart}>
+              <Text style={styles.BlueText}>Details</Text>
+              <View style={commonStyle.marginHorizontal(1)} />
+              <Icon
+                name={'caretright'}
+                type={'antdesign'}
+                size={14}
+                color={Colors.primary}
+              />
+            </TouchableOpacity>
           </View>
         </View>
       </View>
-      <View
-        style={[
-          commonStyle.rowSpaceBetween,
-          commonStyle.marginVertical(6),
-          commonStyle.marginHorizontal(12),
-        ]}>
-        <View style={commonStyle.rowFlexStart}>
-          <Text style={styles.qarText}>1 Stop |</Text>
-          <Bag style={commonStyle.marginHorizontal(8)} />
-          <Text style={styles.qarText}>
-            Check In: <Text style={styles.LightHeavyText}>1 piece</Text>
-          </Text>
-        </View>
-        <Text style={styles.qarText}>Cabin: 7 Kg</Text>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('Review')}
-          style={commonStyle.rowCenter}>
-          <Text style={styles.BlueText}>Details</Text>
-          <Icon
-            name={'caretright'}
-            type={'antdesign'}
-            size={15}
-            color={Colors.primary}
-          />
-        </TouchableOpacity>
-      </View>
-      <View style={[commonStyle.rowSpaceAround, commonStyle.marginTop(10)]}>
+      <View style={[commonStyle.rowSpaceAround, commonStyle.marginTop(6)]}>
         <TouchableOpacity
           onPress={() => setIsMoreOptionVisible(!isMoreOptionVisible)}
           style={styles.MoreOptionsButton}>
-          <Text style={styles.qarText}>More Flight Options</Text>
-          <View style={commonStyle.marginHorizontal(4)} />
+          <Text style={styles.LightText}>More Flight Options</Text>
+          <View style={commonStyle.marginHorizontal(3)} />
           <Icon
             name={isMoreOptionVisible ? 'angle-double-up' : 'angle-double-down'}
             type={'font-awesome'}
@@ -152,17 +182,17 @@ function FlightCard({isSelected, onPress, onPressSelect}) {
           </View>
         </>
       )}
-    </TouchableOpacity>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   card(value) {
     return {
-      backgroundColor: value ? 'rgba(29,140,204,0.1)' : Colors.white,
-      marginVertical: 6,
-      borderWidth: value ? 1 : 0,
-      borderColor: '#1D8CCC',
+      marginBottom: 12,
+      borderWidth: value ? 2 : 0,
+      borderColor: '#F15922',
+      borderRadius: value ? 8 : 0,
     };
   },
   Running: {
@@ -218,15 +248,15 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     fontFamily: Font.AvenirHeavy,
   },
-  qarText: {
+  LightText: {
     fontFamily: Font.AvenirMedium,
     fontSize: 12,
     color: '#50555F',
   },
-  LightHeavyText: {
+  HeavyText: {
     fontFamily: Font.AvenirHeavy,
-    fontSize: 12,
-    color: '#50555F',
+    fontSize: 14,
+    color: '#242A37',
   },
   GreenText: {
     fontFamily: Font.AvenirMedium,
@@ -237,6 +267,11 @@ const styles = StyleSheet.create({
     fontFamily: Font.AvenirMedium,
     fontSize: 12,
     color: '#FF0000',
+  },
+  DepartingText: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 14,
+    color: '#F15922',
   },
   smallText: {
     fontFamily: Font.AvenirRoman,
@@ -257,6 +292,10 @@ const styles = StyleSheet.create({
   },
   cardBody: {
     paddingHorizontal: 12,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginVertical: 6,
   },
   airlineName: {
     fontFamily: Font.AvenirRoman,
@@ -288,6 +327,11 @@ const styles = StyleSheet.create({
     borderBottomColor: '#707070',
     width: '100%',
     marginVertical: 6,
+  },
+  VDivider: {
+    borderRightWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: '#707070',
+    alignSelf: 'stretch',
   },
   cardFooter: {
     justifyContent: 'center',

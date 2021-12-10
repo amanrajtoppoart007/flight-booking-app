@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {FlatList, View} from 'react-native';
 import FlightCard from './FlightCard';
-import commonStyle from '../../../../layout/Style';
 import {useNavigation} from '@react-navigation/native';
+import commonStyle from '../../../../layout/Style';
 
 function SearchResult() {
   const [flights] = useState([
@@ -34,7 +34,7 @@ function SearchResult() {
   return (
     <View>
       <FlatList
-        style={{height: '88%'}}
+        contentContainerStyle={commonStyle.width('100%')}
         keyExtractor={item => item?.id?.toString()}
         data={flights}
         renderItem={_renderItem}

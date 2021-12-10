@@ -21,10 +21,13 @@ import Colors from '../../../layout/Colors';
 import BookingDetailCard from '../../../components/Flight/Booking/BookingDetailCard';
 import Accordion from '../../../components/Flight/Booking/Accordion';
 import FairDetail from '../../../components/Flight/Booking/FareDetail';
+import SendRequestModal from '../../../components/Flight/Booking/SendRequestModal';
+import TicketList from '../../../components/Flight/Booking/TicketList';
+
 import CallSvg from '../../../components/Svg/Call.svg';
 import CallBackSvg from '../../../components/Svg/CallBack.svg';
 import EmailSvg from '../../../components/Svg/Email.svg';
-import SendRequestModal from '../../../components/Flight/Booking/SendRequestModal';
+import VisaCardSvg from '../../../components/Svg/VisaCard.svg';
 
 function AssistanceCard({isVisible, setIsSendRequestVisible}) {
   return (
@@ -73,10 +76,6 @@ function BookingStatus() {
       id: 'list-id-one',
       type: 'Departure',
     },
-    {
-      id: 'list-id-two',
-      type: 'Departure',
-    },
   ]);
 
   return (
@@ -90,7 +89,6 @@ function BookingStatus() {
                 colors={['#13A869', '#025A35']}
                 style={styles.canvas}>
                 <View style={styles.headerSection}>
-                  <View />
                   <View style={commonStyle.marginHorizontal(14)}>
                     <TouchableOpacity
                       onPress={() =>
@@ -144,42 +142,7 @@ function BookingStatus() {
               <View style={commonStyle.marginVertical(8)}>
                 <Accordion
                   title={'Passenger Details'}
-                  Content={
-                    <View>
-                      <View style={commonStyle.rowSpaceBetween}>
-                        <View>
-                          <Text>John Doe (ADT)</Text>
-                        </View>
-                        <View>
-                          <Text>Ticket# - 157-48822596</Text>
-                        </View>
-                      </View>
-                      <View style={commonStyle.marginVertical(5)}>
-                        <Text>Special Request +</Text>
-                      </View>
-                      <View style={styles.divider} />
-                      <View style={commonStyle.rowSpaceBetween}>
-                        <View>
-                          <Text>John Doe (ADT)</Text>
-                        </View>
-                        <View>
-                          <Text>Ticket# - 157-48822596</Text>
-                        </View>
-                      </View>
-                      <View style={commonStyle.marginVertical(5)}>
-                        <Text>Special Request +</Text>
-                      </View>
-                      <View style={commonStyle.marginVertical(5)}>
-                        <Text>Special Assistance: Meet & Assist</Text>
-                      </View>
-                      <View style={commonStyle.marginVertical(5)}>
-                        <Text>Seat Preference: Window</Text>
-                      </View>
-                      <View style={commonStyle.marginVertical(5)}>
-                        <Text>Meal Preference: Indian Meal</Text>
-                      </View>
-                    </View>
-                  }
+                  Content={<TicketList />}
                 />
               </View>
               <View style={commonStyle.marginVertical(8)}>
@@ -189,7 +152,7 @@ function BookingStatus() {
                 <Accordion
                   title={'Payment Details'}
                   Content={
-                    <View>
+                    <View style={commonStyle.paddingHorizontal(15)}>
                       <View
                         style={[
                           commonStyle.rowSpaceBetween,
@@ -197,23 +160,31 @@ function BookingStatus() {
                         ]}>
                         <View style={commonStyle.rowFlexStart}>
                           <View>
-                            <Text>Credit Card</Text>
+                            <Text style={styles.creditCardTitle}>
+                              Credit Card
+                            </Text>
                           </View>
-                          <View style={commonStyle.rowFlexStart}>
+                          <View
+                            style={[
+                              commonStyle.rowFlexStart,
+                              commonStyle.marginHorizontal(5),
+                            ]}>
                             <View>
-                              <Text>Visa image here</Text>
+                              <VisaCardSvg />
                             </View>
                             <View>
-                              <Text>*****3434</Text>
+                              <Text style={styles.creditCardNumber}>
+                                *****3434
+                              </Text>
                             </View>
                           </View>
                         </View>
                         <View style={commonStyle.rowFlexStart}>
                           <View>
-                            <Text>QAR</Text>
+                            <Text style={styles.creditCardCurrency}>QAR</Text>
                           </View>
                           <View>
-                            <Text> 300.00</Text>
+                            <Text style={styles.creditCardAmount}> 300.00</Text>
                           </View>
                         </View>
                       </View>
@@ -247,11 +218,11 @@ const styles = StyleSheet.create({
     height: 40,
   },
   headerSection: {
-    marginHorizontal: 20,
     marginVertical: 20,
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
+    paddingHorizontal: 20,
   },
   title: {
     fontFamily: Font.AvenirHeavy,
@@ -274,20 +245,38 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: Colors.primary,
     height: 40,
-    paddingHorizontal: 15,
+    paddingHorizontal: 23,
   },
-  cardBody: {},
   headTitle: {
     fontFamily: Font.AvenirMedium,
-    fontSize: 15,
+    fontSize: 14,
     color: Colors.white,
   },
   divider: {
-    width: '95%',
-    borderWidth: 0.3,
+    width: '100%',
+    borderWidth: StyleSheet.hairlineWidth,
     borderColor: Colors.lightText,
     alignSelf: 'center',
-    marginVertical: 18,
+  },
+  creditCardTitle: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 14,
+    color: '#26698E',
+  },
+  creditCardNumber: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 14,
+    color: '#26698E',
+  },
+  creditCardCurrency: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 14,
+    color: '#6C6C6C',
+  },
+  creditCardAmount: {
+    fontFamily: Font.AvenirHeavy,
+    fontSize: 16,
+    color: '#0B151F',
   },
 });
 
