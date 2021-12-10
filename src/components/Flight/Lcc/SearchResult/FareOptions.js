@@ -107,7 +107,7 @@ function FareOptions({isVisible, setIsVisible}) {
             </View>
             <View>
               <TouchableOpacity
-                onPress={() => navigation.navigate('LccAddServices')}
+                onPress={() => setIsVisible(!isVisible)}
                 style={styles.continueButton}>
                 <Text style={styles.continueButtonText}>QAR 400.00</Text>
               </TouchableOpacity>
@@ -205,8 +205,7 @@ const styles = StyleSheet.create({
     color: '#AAAAAA',
   },
   continueButton: {
-    width: 92,
-    height: 35,
+    padding: 5,
     borderRadius: 6,
     backgroundColor: '#F15922',
     justifyContent: 'center',

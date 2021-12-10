@@ -9,7 +9,7 @@ import ClockSvg from '../../../Svg/Flight/Clock.svg';
 import Baggage from '../../../Svg/Flight/Baggage.svg';
 import Arrow from '../../../Svg/Flight/Arrow.svg';
 import ArrowRight from '../../../Svg/Flight/ArrowRight.svg';
-function TimeCard({title}) {
+function TimeCard({isFareOptionVisible, setIsFareOptionVisible}) {
   return (
     <View>
       <View style={styles.contentSection}>
@@ -81,7 +81,9 @@ function TimeCard({title}) {
         </View>
       </View>
       <View style={styles.contentSection}>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          onPress={() => setIsFareOptionVisible(!isFareOptionVisible)}
+          style={styles.button}>
           <View style={commonStyle.marginHorizontal(5)}>
             <Text style={styles.buttonText}>Standard</Text>
           </View>

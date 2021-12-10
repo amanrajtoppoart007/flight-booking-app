@@ -9,8 +9,10 @@ import {Icon} from 'react-native-elements';
 import Colors from '../../../../layout/Colors';
 import MoreOptions from './MoreOptions';
 import FareOptions from './FareOptions';
+import {useNavigation} from '@react-navigation/native';
 
 function FlightCard() {
+  const navigation = useNavigation();
   const [isMoreOptionVisible, setIsMoreOptionVisible] = useState(false);
   const [isFareOptionsVisible, setIsFareOptionsVisible] = useState(false);
   return (
@@ -39,13 +41,19 @@ function FlightCard() {
           </View>
           <View style={commonStyle.rowSpaceBetween}>
             <View style={commonStyle.width('48%')}>
-              <TimeCard />
+              <TimeCard
+                isFareOptionVisible={isFareOptionsVisible}
+                setIsFareOptionVisible={setIsFareOptionsVisible}
+              />
             </View>
             <View>
               <View style={styles.itemSeparator} />
             </View>
             <View style={commonStyle.width('48%')}>
-              <TimeCard />
+              <TimeCard
+                isFareOptionVisible={isFareOptionsVisible}
+                setIsFareOptionVisible={setIsFareOptionsVisible}
+              />
             </View>
           </View>
         </View>
@@ -81,7 +89,7 @@ function FlightCard() {
           </View>
           <View>
             <TouchableOpacity
-              onPress={() => setIsFareOptionsVisible(!isFareOptionsVisible)}
+              onPress={() => navigation.navigate('LccCheckout')}
               style={styles.selectButton}>
               <Text style={styles.selectButtonText}>Select</Text>
             </TouchableOpacity>

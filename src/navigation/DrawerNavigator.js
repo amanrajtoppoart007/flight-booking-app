@@ -17,6 +17,7 @@ import Welcome from '../screens/Welcome';
 import Privacy from '../screens/Privacy';
 import About from '../screens/About';
 import Contact from '../screens/Contact';
+import LccNavigator from './LccNavigator';
 
 const Drawer = createDrawerNavigator();
 
@@ -97,6 +98,11 @@ const DrawerNavigator = () => {
         options={{drawerPosition: 'right'}}
         name={'FlightResult'}
         component={FlightResult}
+      />
+      <Drawer.Screen
+        options={{drawerPosition: 'right'}}
+        name={'LccNavigator'}
+        component={LccNavigator}
       />
     </Drawer.Navigator>
   );

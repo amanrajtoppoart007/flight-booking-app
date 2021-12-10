@@ -33,37 +33,38 @@ const SideBar = props => {
     {
       key: 'menu-item-one',
       title: 'About Us',
-      image: require('../../assets/icons/sideBar/terms.png'),
       svg: AboutSvg,
       route: 'Terms',
     },
     {
       key: 'menu-item-two',
       title: 'Contact Us',
-      image: require('../../assets/icons/sideBar/faq.png'),
       svg: CallSvg,
       route: 'Faq',
     },
     {
       key: 'menu-item-three',
       title: 'Privacy & Policy',
-      image: require('../../assets/icons/sideBar/social.png'),
       svg: PolicySvg,
       route: 'Privacy',
     },
     {
       key: 'menu-item-four',
       title: 'Terms & Conditions',
-      image: require('../../assets/icons/sideBar/social.png'),
       svg: TermsSvg,
       route: 'Terms',
     },
     {
       key: 'menu-item-five',
       title: 'Social',
-      image: require('../../assets/icons/sideBar/social.png'),
       svg: SocialSvg,
       route: 'Social',
+    },
+    {
+      key: 'menu-item-six',
+      title: 'Lcc Navigator',
+      svg: SocialSvg,
+      route: 'LccNavigator',
     },
   ]);
 

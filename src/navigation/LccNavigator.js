@@ -7,6 +7,7 @@ import AddSeats from '../screens/Flight/Lcc/AddSeats';
 import ScreenSettings from './ScreenSettings';
 import ReviewItinerary from '../screens/Flight/Lcc/ReviewItinerary';
 import BookingStatus from '../screens/Flight/Lcc/BookingStatus';
+import Checkout from '../screens/Flight/Lcc/Checkout';
 const Stack = createStackNavigator();
 
 const LccNavigator = () => (
@@ -20,6 +21,7 @@ const LccNavigator = () => (
     <Stack.Screen name={'LccSearchResult'} component={SearchResult} />
     <Stack.Screen name={'LccAddSeats'} component={AddSeats} />
     <Stack.Screen name={'LccAddServices'} component={AddServices} />
+    <Stack.Screen name={'LccCheckout'} component={Checkout} />
 
     <Stack.Screen name={'LccBookingStatus'} component={BookingStatus} />
     <Stack.Screen name={'LccReviewItinerary'} component={ReviewItinerary} />

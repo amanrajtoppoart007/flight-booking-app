@@ -3,7 +3,7 @@ import {FlatList, View} from 'react-native';
 import FlightCard from './FlightCard';
 import commonStyle from '../../../../layout/Style';
 
-function Best() {
+function FlightResult() {
   const [flights] = useState([
     {
       id: 'flight-list-id-one',
@@ -35,4 +35,4 @@ function Best() {
   );
 }
 
-export default Best;
+export default FlightResult;

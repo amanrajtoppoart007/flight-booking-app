@@ -74,7 +74,7 @@ function AddSeats({navigation}) {
               <View
                 style={[commonStyle.center, commonStyle.marginVertical(20)]}>
                 <TouchableOpacity
-                  onPress={() => navigation.navigate('LccReviewItinerary')}
+                  onPress={() => navigation.navigate('LccBookingStatus')}
                   style={styles.button}>
                   <Text style={styles.buttonText}>Confirm Selection</Text>
                 </TouchableOpacity>
