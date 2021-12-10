@@ -18,27 +18,22 @@ import CustomStatusBar from '../../../components/CustomStatusBar';
 import LinearGradient from 'react-native-linear-gradient';
 import {Icon} from 'react-native-elements';
 
+import FlightRoute from '../../../components/Flight/MultiCity/FlightResult/FlightRoute';
+import flightRoutes from '../../../utils/flights';
 import FlightSvg from '../../../components/Svg/Flight/FlightWhite.svg';
-import FlightCard from '../../../components/Flight/MultiCity/FlightResult/FlightCard';
+import DeerSvg from '../../../components/Svg/Deer.svg';
 
 function FlightResult({navigation}) {
-  const [shortVisible, setShortVisible] = useState(false);
+  const [flightRouteList] = useState(flightRoutes);
 
-  const [flights] = useState([
-    {
-      id: 'flight-list-id-one',
-    },
-    {
-      id: 'flight-list-id-two',
-    },
-  ]);
-
-  const _renderItem = () => <FlightCard />;
+  const _renderItem = ({item}) => <FlightRoute item={item} />;
 
   return (
-    <SafeAreaView style={commonStyle.container}>
+    <SafeAreaView style={styles.container}>
       <CustomStatusBar backgroundColor={Colors.primary} />
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}>
         <View style={[commonStyle.flex(1), commonStyle.wrapper]}>
           <View style={[commonStyle.flex(1), commonStyle.content]}>
             <LinearGradient
@@ -96,7 +91,7 @@ function FlightResult({navigation}) {
                     </View>
                     <View style={commonStyle.marginHorizontal(5)}>
                       <Icon
-                        onPress={() => setShortVisible(true)}
+                        onPress={() => {}}
                         name={'filter-variant'}
                         type={'material-community'}
                         size={18}
@@ -135,13 +130,61 @@ function FlightResult({navigation}) {
             <View>
               <FlatList
                 keyExtractor={item => item?.id?.toString()}
-                data={flights}
+                data={flightRouteList}
                 renderItem={_renderItem}
               />
             </View>
           </View>
         </View>
       </ScrollView>
+      <View style={styles.bottomSection}>
+        <View style={commonStyle.width('70%')}>
+          <View
+            style={[commonStyle.rowFlexStart, commonStyle.marginVertical(6)]}>
+            <FlightSvg />
+            <View style={commonStyle.marginHorizontal(5)}>
+              <Text style={styles.bottomHelperTitle}>Your Selection </Text>
+            </View>
+            <Text style={styles.bottomHelperText}>(For 4 Travellers)</Text>
+          </View>
+          <View style={styles.bottomFlightSection}>
+            {flightRouteList &&
+              flightRouteList.map(item => {
+                return (
+                  <View
+                    style={[
+                      commonStyle.rowSpaceBetween,
+                      commonStyle.margin(5),
+                    ]}>
+                    <View style={styles.brand}>
+                      <DeerSvg />
+                    </View>
+                    <View style={commonStyle.marginHorizontal(5)}>
+                      <Text style={styles.bottomPlaceText}>
+                        {item?.from}→{item?.to}
+                      </Text>
+                      <Text style={styles.stoppageText}>1 stop</Text>
+                    </View>
+                  </View>
+                );
+              })}
+          </View>
+        </View>
+        <View>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('MultiCityReviewItinerary')}
+            style={styles.button}>
+            <View style={commonStyle.rowSpaceBetween}>
+              <View>
+                <Text style={styles.buttonCurrencyText}>QAR</Text>
+              </View>
+              <View style={commonStyle.marginHorizontal(5)}>
+                <Text style={styles.buttonAmountText}>350.00</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+        </View>
+      </View>
     </SafeAreaView>
   );
 }
@@ -149,7 +192,10 @@ function FlightResult({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5F7FB',
+    backgroundColor: 'white',
+  },
+  scrollContent: {
+    paddingBottom: 150,
   },
   wrapper: {
     justifyContent: 'center',
@@ -160,7 +206,8 @@ const styles = StyleSheet.create({
   },
   canvas: {
     width: '100%',
-    height: hp('14%'),
+    height: hp('15%'),
+    justifyContent: 'center',
   },
   topSection: {
     flexDirection: 'row',
@@ -207,13 +254,12 @@ const styles = StyleSheet.create({
     color: '#6C6C6C',
   },
   price: {
-    fontFamily: Font.AvenirHeavy,
-    fontSize: 14,
+    fontFamily: Font.AvenirBlack,
+    fontSize: 16,
     color: '#242A37',
   },
   priceButton: {
-    width: 70,
-    height: 30,
+    padding: 8,
     borderRadius: 6,
     justifyContent: 'center',
     alignItems: 'center',
@@ -223,6 +269,68 @@ const styles = StyleSheet.create({
     fontFamily: Font.AvenirHeavy,
     fontSize: 14,
     color: '#13A869',
+  },
+  bottomSection: {
+    height: 140,
+    width: '100%',
+    position: 'absolute',
+    bottom: 0,
+    backgroundColor: '#242A37',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 10,
+  },
+  brand: {
+    width: 30,
+    height: 30,
+    backgroundColor: Colors.white,
+    borderRadius: 4,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  bottomHelperTitle: {
+    fontFamily: Font.AvenirHeavy,
+    fontSize: 14,
+    color: '#FFFFFF',
+  },
+  bottomHelperText: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 12,
+    color: '#AAAAAA',
+  },
+  bottomFlightSection: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+  },
+  button: {
+    padding: 5,
+    backgroundColor: Colors.secondary,
+    borderRadius: 6,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonCurrencyText: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 14,
+    color: '#FFFFFF',
+  },
+  buttonAmountText: {
+    fontFamily: Font.AvenirHeavy,
+    fontSize: 14,
+    color: '#FFFFFF',
+  },
+  bottomPlaceText: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 12,
+    color: '#FFFFFF',
+  },
+  stoppageText: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 12,
+    color: '#AAAAAA',
   },
 });
 
