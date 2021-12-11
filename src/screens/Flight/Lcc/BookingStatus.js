@@ -18,7 +18,8 @@ import ShareSvg from '../../../assets/icons/svg/Share.svg';
 import ConfirmSvg from '../../../assets/icons/svg/Confirm.svg';
 import Font from '../../../layout/Font';
 import Colors from '../../../layout/Colors';
-import BookingDetailCard from '../../../components/Flight/Booking/BookingDetailCard';
+import BookingDetailCard from '../../../components/Flight/Lcc/BookingStatus/BookingDetailCard';
+import BookingDetails from '../../../components/Flight/Booking/BookingDetailCard';
 import Accordion from '../../../components/Flight/Booking/Accordion';
 import FairDetail from '../../../components/Flight/Booking/FareDetail';
 import SendRequestModal from '../../../components/Flight/Booking/SendRequestModal';
@@ -138,10 +139,19 @@ function BookingStatus() {
                 </View>
               </View>
               <View>
-                {list &&
-                  list.map((item, index) => (
-                    <BookingDetailCard key={index?.toString()} item={item} />
-                  ))}
+                <BookingDetailCard />
+              </View>
+              <View style={commonStyle.marginVertical(8)}>
+                <Accordion
+                  title={'Passenger Details'}
+                  Content={<TicketList />}
+                />
+              </View>
+              <View style={commonStyle.marginVertical(8)}>
+                <Accordion title={'Fare Summery'} Content={<FairDetail />} />
+              </View>
+              <View>
+                <BookingDetails />
               </View>
               <View style={commonStyle.marginVertical(8)}>
                 <Accordion

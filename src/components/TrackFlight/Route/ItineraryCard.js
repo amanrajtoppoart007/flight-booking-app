@@ -10,17 +10,17 @@ import BusySvg from '../../Svg/Busy.svg';
 import BaggageSvg from '../../Svg/Baggage.svg';
 import ClockSvg from '../../../components/Svg/Flight/Clock.svg';
 
-function ItineraryCard() {
+function ItineraryCard({icon, name}) {
   return (
     <>
       <View
         style={[commonStyle.rowSpaceBetween, commonStyle.marginVertical(8)]}>
         <View style={commonStyle.rowFlexStart}>
-          <View>
-            <DeerSvg />
-          </View>
+          <View>{icon ? icon : <DeerSvg />}</View>
           <View style={commonStyle.marginHorizontal(8)}>
-            <Text style={styles.airlineName}>Qatar Airways |</Text>
+            <Text style={styles.airlineName}>
+              {name ? name : 'Qatar Airways |'}
+            </Text>
           </View>
           <View>
             <Text style={styles.airlineNumber}>QR - 3801</Text>

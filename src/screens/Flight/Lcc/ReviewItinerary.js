@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import AirArabia from '../../../components/Svg/AirArabia.svg';
 import commonStyle from '../../../layout/Style';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import LinearGradient from 'react-native-linear-gradient';
@@ -58,7 +59,7 @@ function ReviewItinerary({navigation}) {
               <Accordion
                 title={'Departing'}
                 itinerary={'DOH - DXB'}
-                Content={<FlightCard />}
+                Content={<FlightCard icon={<AirArabia />} />}
                 isCollapsed={true}
               />
             </View>
@@ -66,7 +67,7 @@ function ReviewItinerary({navigation}) {
               <Accordion
                 title={'Returning '}
                 itinerary={'DXB - DOH'}
-                Content={<FlightCard />}
+                Content={<FlightCard icon={<AirArabia />} />}
                 isCollapsed={true}
               />
             </View>
