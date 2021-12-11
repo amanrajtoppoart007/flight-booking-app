@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Platform,
   SafeAreaView,
   ScrollView,
   StyleSheet,
@@ -49,7 +48,7 @@ function Account({navigation}) {
       title: 'Sign Out',
       Svg: SignOut,
       type: 'link',
-      action: 'SignOut',
+      action: 'Auth',
     },
   ];
   return (

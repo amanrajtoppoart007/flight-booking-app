@@ -49,8 +49,6 @@ function Register({jumpTo}) {
   };
 
   const register = async () => {
-    navigation.navigate('HomeStack');
-    return false;
     //navigation.navigate('HomeStack');
     if (!title) {
       Toast.bottomToast('Please select title');
@@ -110,7 +108,8 @@ function Register({jumpTo}) {
   };
 
   return (
-    <SafeAreaView style={commonStyle.container}>
+    <SafeAreaView
+      style={[commonStyle.container, commonStyle.backgroundColor('white')]}>
       <View style={commonStyle.wrapper}>
         <View style={commonStyle.content}>
           <View style={styles.container}>
