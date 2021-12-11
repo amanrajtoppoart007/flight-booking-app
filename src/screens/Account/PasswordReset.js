@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -10,32 +10,13 @@ import {
 import commonStyle from '../../layout/Style';
 import Font from '../../layout/Font';
 import Colors from '../../layout/Colors';
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import LinearGradient from 'react-native-linear-gradient';
 import CustomStatusBar from '../../components/CustomStatusBar';
 import {Icon, Input} from 'react-native-elements';
 import Info from '../../components/Svg/Info.svg';
 
-function Label({title}) {
-  return (
-    <View style={commonStyle.rowFlexStart}>
-      <View>
-        <Text style={styles.label}>{title}</Text>
-      </View>
-      <View style={commonStyle.marginHorizontal(4)}>
-        <Text style={styles.required}>*</Text>
-      </View>
-    </View>
-  );
-}
-
 function PasswordReset({navigation}) {
-  const [phoneCode, setPhoneCode] = useState('+974');
-  const [title, setTitle] = useState('');
-  const [mobile, setMobile] = useState(null);
   return (
     <SafeAreaView style={commonStyle.container}>
       <CustomStatusBar backgroundColor={Colors.primary} />
@@ -174,7 +155,9 @@ const styles = StyleSheet.create({
     color: '#242A37',
   },
   inputContainerStyle: {
-    height: 35,
+    height: 45,
+    borderBottomWidth: 1,
+    borderBottomColor: '#D9D9D9',
   },
   inputTextStyle: {
     fontFamily: Font.AvenirMedium,
