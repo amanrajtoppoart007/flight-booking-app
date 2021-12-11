@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Platform, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Colors from '../../layout/Colors';
 import Font from '../../layout/Font';
 
@@ -48,20 +48,24 @@ function ChipSection() {
 
 const styles = StyleSheet.create({
   card: {
+    width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginVertical: 10,
-    marginHorizontal: 10,
   },
   chip: {
     height: 45,
-    padding: 10,
+    padding: 8,
     borderWidth: 1,
     borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: Colors.white,
+    ...Platform.select({
+      android: {
+        elevation: 3,
+      },
+    }),
   },
   toggleChipStatus(isActive) {
     const color = isActive ? '#F15922' : '#242A37';

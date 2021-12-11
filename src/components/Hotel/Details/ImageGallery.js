@@ -10,8 +10,10 @@ import {
 import {widthPercentageToDP} from 'react-native-responsive-screen';
 import Font from '../../../layout/Font';
 import Colors from '../../../layout/Colors';
+import {useNavigation} from '@react-navigation/native';
 
 function ImageGallery() {
+  const navigation = useNavigation();
   return (
     <View style={styles.card}>
       <View>
@@ -39,7 +41,9 @@ function ImageGallery() {
           <ImageBackground
             style={styles.miniImage}
             source={require('../../../assets/images/temp/slider/slider-mini-image-three.png')}>
-            <TouchableOpacity style={styles.extraImageSection}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('GalleryView')}
+              style={styles.extraImageSection}>
               <Text style={styles.extraImageCounter}>+20</Text>
             </TouchableOpacity>
           </ImageBackground>

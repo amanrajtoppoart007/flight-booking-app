@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Platform,
   SafeAreaView,
   ScrollView,
   StyleSheet,
@@ -62,11 +63,7 @@ function Account({navigation}) {
               style={styles.canvas}>
               <View style={styles.contentWrapper}>
                 <View style={styles.canvasContent}>
-                  <View
-                    style={[
-                      commonStyle.marginVertical(10),
-                      commonStyle.marginHorizontal(10),
-                    ]}>
+                  <View style={[commonStyle.marginVertical(10)]}>
                     <View style={commonStyle.rowSpaceBetween}>
                       <View>
                         <View>
@@ -83,11 +80,7 @@ function Account({navigation}) {
                       </View>
                     </View>
                   </View>
-                  <View
-                    style={[
-                      commonStyle.marginVertical(15),
-                      commonStyle.marginHorizontal(10),
-                    ]}>
+                  <View style={[commonStyle.marginVertical(15)]}>
                     <View style={styles.infoSection}>
                       <View
                         style={[
@@ -114,12 +107,8 @@ function Account({navigation}) {
               </View>
             </LinearGradient>
             <View style={styles.contentWrapper}>
-              <View
-                style={[
-                  commonStyle.marginVertical(15),
-                  commonStyle.marginHorizontal(10),
-                ]}>
-                <Text>Account details</Text>
+              <View style={[commonStyle.marginVertical(15)]}>
+                <Text style={styles.menuSectionTitle}>Account details</Text>
               </View>
               <View style={commonStyle.marginVertical(4)}>
                 <View style={styles.menuRow}>
@@ -145,9 +134,7 @@ function Account({navigation}) {
                 </View>
               </View>
               <View style={commonStyle.marginVertical(15)}>
-                <View style={commonStyle.marginHorizontal(10)}>
-                  <ChipSection />
-                </View>
+                <ChipSection />
               </View>
               <View style={styles.sliderSection}>
                 <OfferSlider />
@@ -162,8 +149,8 @@ function Account({navigation}) {
 
 const styles = StyleSheet.create({
   contentWrapper: {
-    paddingHorizontal: 15,
     width: '100%',
+    paddingHorizontal: 20,
   },
   canvas: {
     width: '100%',
@@ -173,6 +160,11 @@ const styles = StyleSheet.create({
   },
   canvasContent: {
     width: '100%',
+  },
+  menuSectionTitle: {
+    fontFamily: Font.AvenirHeavy,
+    fontSize: 16,
+    color: '#242A37',
   },
   title: {
     fontFamily: Font.AvenirHeavy,
@@ -238,11 +230,11 @@ const styles = StyleSheet.create({
   menuRow: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-between',
     alignItems: 'center',
   },
   menuWrapper: {
-    margin: 10,
+    marginVertical: 8,
   },
   menu: {
     width: wp('40%'),
@@ -250,7 +242,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 1,
+    borderWidth: StyleSheet.hairlineWidth,
     borderColor: '#DDDDDD',
   },
   menuTitleSection: {
