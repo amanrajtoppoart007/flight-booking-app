@@ -1,8 +1,9 @@
 import React from 'react';
 import {ImageBackground, StyleSheet, Text, View} from 'react-native';
 import commonStyle from '../../../layout/Style';
-
-function GalleryItem({item}) {
+import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
+import Gallery from '../../../components/Svg/Gallery.svg';
+function GalleryItem({item, index, size}) {
   return (
     <View style={styles.card}>
       <ImageBackground
@@ -11,8 +12,10 @@ function GalleryItem({item}) {
         source={item?.image}>
         <View style={styles.sliderContent}>
           <View style={commonStyle.rowFlexEnd}>
+            <Gallery />
+            <View style={commonStyle.marginHorizontal(3)} />
             <View>
-              <Text>2/2</Text>
+              <Text>{index + 1 + '/' + size}</Text>
             </View>
           </View>
         </View>
@@ -23,8 +26,7 @@ function GalleryItem({item}) {
 
 const styles = StyleSheet.create({
   card: {
-    width: '100%',
-    height: '100%',
+    width: wp('100%'),
     justifyContent: 'center',
     alignItems: 'center',
   },

@@ -9,7 +9,7 @@ import ClockRedSvg from '../../Svg/ClockRed.svg';
 
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
-function FlightCard() {
+function FlightCard({icon}) {
   return (
     <View>
       <View style={styles.container}>
@@ -42,7 +42,7 @@ function FlightCard() {
           <View style={styles.divider} />
         </View>
         <View>
-          <ItineraryCard />
+          <ItineraryCard icon={icon} name={'Air Arabia |'} />
         </View>
       </View>
 

@@ -9,14 +9,15 @@ import {
 } from 'react-native';
 import commonStyle from '../../layout/Style';
 import Font from '../../layout/Font';
-
+import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import GalleryItem from '../../components/Hotel/Gallery/GalleryItem';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import StarRating from '../../components/StarRating';
-
 import CloseSvg from '../../components/Svg/Close.svg';
 import MapSvg from '../../components/Svg/Hotel/Map.svg';
+import Colors from '../../layout/Colors';
 function GalleryView({navigation}) {
+  const [itemIndex, setItemIndex] = useState(0);
   const [sliders] = useState([
     {
       image: require('../../assets/images/hotel/gallery/hotel-image-one.png'),
@@ -50,7 +51,16 @@ function GalleryView({navigation}) {
     },
   ]);
 
-  const _renderItem = ({item}) => <GalleryItem item={item} />;
+  const _renderItem = ({item, index}) => (
+    <GalleryItem item={item} index={index} size={sliders.length} />
+  );
+  function _handleScroll(event) {
+    const xOffset = event.nativeEvent.contentOffset.x;
+    const width = event.nativeEvent.contentSize.width;
+    if (Math.round((xOffset / width) * 10) !== itemIndex) {
+      setItemIndex(Math.round((xOffset / width) * 10));
+    }
+  }
   return (
     <SafeAreaView style={commonStyle.container}>
       <View style={commonStyle.wrapper}>
@@ -65,13 +75,20 @@ function GalleryView({navigation}) {
           </View>
           <View style={styles.gallerySection}>
             <FlatList
-              contentContainerStyle={commonStyle.flex(1)}
-              pagingEnabled={true}
-              horizontal={true}
+              onScroll={_handleScroll}
+              pagingEnabled
+              decelerationRate={'fast'}
+              snapToInterval={wp('100%')}
               data={sliders}
+              horizontal
               keyExtractor={(item, index) => index?.toString()}
               renderItem={_renderItem}
             />
+            <View style={styles.paginationContainer}>
+              {sliders.map((_, index) => (
+                <View style={styles.paginationCircle(itemIndex === index)} />
+              ))}
+            </View>
           </View>
           <View style={styles.detailSection}>
             <View>
@@ -110,6 +127,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 20,
   },
+  paginationContainer: {
+    position: 'absolute',
+    width: '95%',
+    top: 360,
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  paginationCircle(val) {
+    return {
+      height: 8,
+      width: 8,
+      borderRadius: 6,
+      borderColor: 'white',
+      borderWidth: 1,
+      marginHorizontal: 1,
+      backgroundColor: val ? '#F15922' : Colors.transparent,
+    };
+  },
   pageTitle: {
     fontFamily: Font.AvenirHeavy,
     fontSize: 18,
@@ -117,6 +152,8 @@ const styles = StyleSheet.create({
   },
   gallerySection: {
     height: hp('70%'),
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   detailSection: {
     height: hp('20%'),

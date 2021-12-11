@@ -49,7 +49,7 @@ function Accordion({title, subTitle, visible, Content}) {
               onPress={() => setExpanded(!expanded)}
               type={'font-awesome'}
               size={16}
-              color={Colors.primary}
+              color={Colors.secondary}
             />
           </View>
         </View>

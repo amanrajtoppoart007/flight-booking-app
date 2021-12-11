@@ -22,7 +22,6 @@ const LccNavigator = () => (
     <Stack.Screen name={'LccAddSeats'} component={AddSeats} />
     <Stack.Screen name={'LccAddServices'} component={AddServices} />
     <Stack.Screen name={'LccCheckout'} component={Checkout} />
-
     <Stack.Screen name={'LccBookingStatus'} component={BookingStatus} />
     <Stack.Screen name={'LccReviewItinerary'} component={ReviewItinerary} />
   </Stack.Navigator>
