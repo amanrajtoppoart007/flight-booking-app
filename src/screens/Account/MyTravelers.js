@@ -11,17 +11,15 @@ import {
 import commonStyle from '../../layout/Style';
 import Font from '../../layout/Font';
 import Colors from '../../layout/Colors';
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import LinearGradient from 'react-native-linear-gradient';
 import CustomStatusBar from '../../components/CustomStatusBar';
 import {Icon, Input} from 'react-native-elements';
 import CalenderSvg from '../../components/Svg/Calender.svg';
-import PhoneTextInput from '../../components/Common/PhoneTextInput';
 import SelectBox from '../../components/Common/SelectBox';
 import Info from '../../components/Svg/Info.svg';
+import SelectDropdown from 'react-native-select-dropdown';
+import country from '../../utils/country';
 
 function Label({title}) {
   return (
@@ -37,9 +35,58 @@ function Label({title}) {
 }
 
 function MyTravelers({navigation}) {
+  const countries = [
+    {
+      name: 'Issuing Country',
+      code: '',
+    },
+    ...country,
+  ];
+  const nationality = [
+    {
+      name: 'Nationality',
+      code: '',
+    },
+    ...country,
+  ];
   const [phoneCode, setPhoneCode] = useState('+974');
   const [title, setTitle] = useState('');
   const [mobile, setMobile] = useState(null);
+
+  const titles = [
+    {
+      title: 'Mr.',
+      value: 'mr',
+    },
+    {
+      title: 'Mrs.',
+      value: 'mrs',
+    },
+    {
+      title: 'Mis',
+      value: 'mis',
+    },
+  ];
+
+  const [documentTypes] = useState([
+    {
+      title: 'Document Type',
+      value: '',
+    },
+    {
+      title: 'Passport',
+      value: 'passport',
+    },
+    {
+      title: 'Driving License',
+      value: 'driving-license',
+    },
+    {
+      title: 'Govt. Issued Document',
+      value: 'govt-issued-doc',
+    },
+  ]);
+
   return (
     <SafeAreaView style={commonStyle.container}>
       <CustomStatusBar backgroundColor={Colors.primary} />
@@ -90,20 +137,16 @@ function MyTravelers({navigation}) {
                 </View>
                 <View>
                   <View style={commonStyle.marginVertical(8)}>
-                    <View
-                      style={[
-                        commonStyle.rowSpaceBetween,
-                        commonStyle.paddingHorizontal(8),
-                      ]}>
-                      <View>
+                    <View style={[commonStyle.rowSpaceBetween]}>
+                      <View style={commonStyle.width('30%')}>
                         <SelectBox
-                          title={'Mr.'}
+                          title={'Title'}
                           setValue={setTitle}
                           value={title}
-                          items={[{title: 'value one', value: 'value-one'}]}
+                          items={titles}
                         />
                       </View>
-                      <View>
+                      <View style={commonStyle.width('70%')}>
                         <TextInput
                           placeholder={'First Name'}
                           style={styles.inputContainerStyle}
@@ -121,45 +164,145 @@ function MyTravelers({navigation}) {
                   <View
                     style={[
                       commonStyle.marginVertical(8),
-                      commonStyle.width('50%'),
+                      commonStyle.rowSpaceBetween,
                     ]}>
-                    <Input
-                      label={<Label title={'Date of Birth'} />}
-                      inputContainerStyle={styles.inputContainerStyle}
-                      inputStyle={styles.inputTextStyle}
-                      rightIcon={<CalenderSvg />}
-                    />
+                    <View style={commonStyle.width('50%')}>
+                      <Input
+                        placeholder={'Date of Birth'}
+                        inputContainerStyle={styles.inputContainerStyle}
+                        inputStyle={styles.inputTextStyle}
+                        rightIcon={<CalenderSvg />}
+                      />
+                    </View>
+                    <View style={commonStyle.width('50%')}>
+                      <SelectDropdown
+                        defaultValueByIndex={0}
+                        defaultButtonText={'Nationality'}
+                        buttonStyle={styles.dropDownButtonStyle}
+                        buttonTextStyle={styles.dropDownButtonTextStyle}
+                        renderDropdownIcon={() => {
+                          return (
+                            <Icon
+                              type={'font-awesome'}
+                              name="chevron-down"
+                              color={'#898989'}
+                              size={14}
+                            />
+                          );
+                        }}
+                        rowTextStyle={styles.dropDownButtonTextStyle}
+                        renderCustomizedButtonChild={item => {
+                          return (
+                            <View style={commonStyle.marginHorizontal(8)}>
+                              <Text style={styles.dropDownButtonTextStyle}>
+                                {item?.name}
+                              </Text>
+                            </View>
+                          );
+                        }}
+                        data={nationality}
+                        onSelect={() => {}}
+                        buttonTextAfterSelection={selectedItem => {
+                          return selectedItem?.name;
+                        }}
+                        rowTextForSelection={item => {
+                          return item?.name;
+                        }}
+                      />
+                    </View>
                   </View>
                 </View>
               </View>
               <View style={styles.formCard}>
-                <View
-                  style={[
-                    commonStyle.marginHorizontal(5),
-                    commonStyle.marginVertical(10),
-                  ]}>
+                <View style={[commonStyle.margin(10)]}>
                   <Text style={styles.headerTitle}>Travel Document</Text>
                 </View>
-                <View>
-                  <View style={commonStyle.marginVertical(8)}>
-                    <Input
-                      label={<Label title={'E-mail ID'} />}
-                      inputContainerStyle={styles.inputContainerStyle}
-                      inputStyle={styles.inputTextStyle}
-                    />
-                  </View>
-                  <View style={styles.phoneNumberSection}>
-                    <PhoneTextInput
-                      cardStyle={styles.inputStyle}
-                      title={'Country Code'}
-                      setPhoneCode={setPhoneCode}
-                      phoneCode={'+974'}
-                      value={mobile}
-                      setValue={setMobile}
-                      type={'mobile'}
-                      placeholder={'Contact.js No'}
-                    />
-                  </View>
+                <View style={commonStyle.marginVertical(8)}>
+                  <SelectDropdown
+                    defaultValueByIndex={0}
+                    defaultButtonText={'Request Type'}
+                    buttonStyle={styles.dropDownButtonStyle}
+                    buttonTextStyle={styles.dropDownButtonTextStyle}
+                    renderDropdownIcon={() => {
+                      return (
+                        <Icon
+                          type={'font-awesome'}
+                          name="chevron-down"
+                          color={'#898989'}
+                          size={14}
+                        />
+                      );
+                    }}
+                    rowTextStyle={styles.dropDownButtonTextStyle}
+                    renderCustomizedButtonChild={item => {
+                      return (
+                        <View style={commonStyle.marginHorizontal(8)}>
+                          <Text style={styles.dropDownButtonTextStyle}>
+                            {item?.title}
+                          </Text>
+                        </View>
+                      );
+                    }}
+                    data={documentTypes}
+                    onSelect={() => {}}
+                    buttonTextAfterSelection={selectedItem => {
+                      return selectedItem?.title;
+                    }}
+                    rowTextForSelection={item => {
+                      return item?.title;
+                    }}
+                  />
+                </View>
+                <View style={commonStyle.marginVertical(8)}>
+                  <Input
+                    placeholder={'Passport Number'}
+                    inputContainerStyle={styles.inputContainerStyle}
+                    inputStyle={styles.inputTextStyle}
+                  />
+                </View>
+                <View style={commonStyle.marginVertical(8)}>
+                  <SelectDropdown
+                    defaultValueByIndex={0}
+                    defaultButtonText={'Issuing Country'}
+                    buttonStyle={styles.dropDownButtonStyle}
+                    buttonTextStyle={styles.dropDownButtonTextStyle}
+                    renderDropdownIcon={() => {
+                      return (
+                        <Icon
+                          type={'font-awesome'}
+                          name="chevron-down"
+                          color={'#898989'}
+                          size={14}
+                        />
+                      );
+                    }}
+                    rowTextStyle={styles.dropDownButtonTextStyle}
+                    renderCustomizedButtonChild={item => {
+                      return (
+                        <View style={commonStyle.marginHorizontal(8)}>
+                          <Text style={styles.dropDownButtonTextStyle}>
+                            {item?.name}
+                          </Text>
+                        </View>
+                      );
+                    }}
+                    data={countries}
+                    onSelect={() => {}}
+                    buttonTextAfterSelection={selectedItem => {
+                      return selectedItem?.name;
+                    }}
+                    rowTextForSelection={item => {
+                      return item?.name;
+                    }}
+                  />
+                </View>
+                <View style={[commonStyle.marginVertical(8)]}>
+                  <Input
+                    placeholder={'Expiry Date'}
+                    inputContainerStyle={styles.inputContainerStyle}
+                    inputStyle={styles.inputTextStyle}
+                    rightIcon={<CalenderSvg />}
+                  />
                 </View>
               </View>
             </View>
@@ -251,11 +394,13 @@ const styles = StyleSheet.create({
   },
   inputContainerStyle: {
     height: 35,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: '#D9D9D9',
   },
   inputTextStyle: {
     fontFamily: Font.AvenirMedium,
     fontSize: 14,
-    color: Colors.black,
+    color: '#898989',
   },
   label: {
     fontFamily: Font.AvenirMedium,
@@ -268,10 +413,10 @@ const styles = StyleSheet.create({
     color: '#FF0000',
   },
   formCard: {
-    borderWidth: 0.5,
+    borderWidth: StyleSheet.hairlineWidth,
     borderRadius: 8,
     borderColor: '#707070',
-    paddingHorizontal: 4,
+    paddingHorizontal: 8,
     marginVertical: 15,
     backgroundColor: Colors.white,
     alignSelf: 'stretch',
@@ -298,6 +443,21 @@ const styles = StyleSheet.create({
   },
   inputStyle: {
     marginHorizontal: 20,
+  },
+  dropDownButtonStyle: {
+    width: '100%',
+    height: 35,
+    backgroundColor: 'white',
+    borderBottomColor: '#D9D9D9',
+    borderWidth: 0,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    paddingHorizontal: 5,
+  },
+  dropDownButtonTextStyle: {
+    fontFamily: Font.AvenirMedium,
+    fontSize: 14,
+    color: '#898989',
+    textAlign: 'left',
   },
 });
 

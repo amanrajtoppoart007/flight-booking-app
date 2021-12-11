@@ -10,15 +10,14 @@ import {
 import commonStyle from '../../layout/Style';
 import Font from '../../layout/Font';
 import Colors from '../../layout/Colors';
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import LinearGradient from 'react-native-linear-gradient';
 import CustomStatusBar from '../../components/CustomStatusBar';
 import {Input} from 'react-native-elements';
 import CalenderSvg from '../../components/Svg/Calender.svg';
 import PhoneTextInput from '../../components/Common/PhoneTextInput';
+
+import AppToast from '../../layout/AppToast';
 
 function Label({title}) {
   return (
@@ -36,6 +35,38 @@ function Label({title}) {
 function EditProfile() {
   const [phoneCode, setPhoneCode] = useState('+974');
   const [mobile, setMobile] = useState(null);
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [dob, setDob] = useState('');
+  const [email, setEmail] = useState('');
+
+  const submit = () => {
+    if (!phoneCode) {
+      AppToast.topToast('Please enter phone number');
+      return false;
+    }
+    if (!mobile) {
+      AppToast.topToast('Please enter mobile');
+      return false;
+    }
+    if (!firstName) {
+      AppToast.topToast('Please enter firstName');
+      return false;
+    }
+    if (!lastName) {
+      AppToast.topToast('Please enter lastName');
+      return false;
+    }
+    if (!dob) {
+      AppToast.topToast('Please enter dob');
+      return false;
+    }
+    if (!email) {
+      AppToast.topToast('Please enter valid email');
+      return false;
+    }
+  };
+
   return (
     <SafeAreaView style={commonStyle.container}>
       <CustomStatusBar backgroundColor={Colors.primary} />
@@ -133,7 +164,7 @@ function EditProfile() {
                       value={mobile}
                       setValue={setMobile}
                       type={'mobile'}
-                      placeholder={'Contact.js No'}
+                      placeholder={'Contact No'}
                     />
                   </View>
                 </View>
@@ -145,7 +176,7 @@ function EditProfile() {
                 commonStyle.marginVertical(20),
                 commonStyle.backgroundColor('transparent'),
               ]}>
-              <TouchableOpacity style={styles.button}>
+              <TouchableOpacity onPress={() => submit()} style={styles.button}>
                 <Text style={styles.buttonText}>Save Details</Text>
               </TouchableOpacity>
             </View>
@@ -212,6 +243,8 @@ const styles = StyleSheet.create({
   },
   inputContainerStyle: {
     height: 35,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: '#D9D9D9',
   },
   inputTextStyle: {
     fontFamily: Font.AvenirMedium,
@@ -229,7 +262,7 @@ const styles = StyleSheet.create({
     color: '#FF0000',
   },
   formCard: {
-    borderWidth: 0.5,
+    borderWidth: StyleSheet.hairlineWidth,
     borderRadius: 8,
     borderColor: '#707070',
     paddingHorizontal: 4,

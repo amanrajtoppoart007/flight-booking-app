@@ -27,7 +27,7 @@ import OfferSlider from '../../components/Account/OfferSlider';
 function Account({navigation}) {
   const menus = [
     {
-      title: 'My Account',
+      title: 'My Profile',
       Svg: EditProfileSvg,
       type: 'function',
       action: 'EditProfile',

@@ -1,6 +1,5 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
-import Colors from '../../layout/Colors';
+import {StyleSheet, Text, View} from 'react-native';
 import {Icon} from 'react-native-elements';
 import SelectDropdown from 'react-native-select-dropdown';
 import Font from '../../layout/Font';
@@ -12,8 +11,7 @@ function SelectBox({items, value, setValue, title = ''}) {
         <View>
           {items && (
             <SelectDropdown
-              placeholder={title}
-              defaultButtonText={title}
+              defaultValueByIndex={0}
               buttonStyle={styles.dropDownButtonStyle}
               buttonTextStyle={styles.dropDownButtonTextStyle}
               renderDropdownIcon={() => {
@@ -26,6 +24,16 @@ function SelectBox({items, value, setValue, title = ''}) {
                   />
                 );
               }}
+              renderCustomizedButtonChild={item => {
+                return (
+                  <View>
+                    <Text style={styles.dropDownButtonTextStyle}>
+                      {item?.title}
+                    </Text>
+                  </View>
+                );
+              }}
+              rowTextStyle={styles.dropDownButtonTextStyle}
               dropdownIconPosition={'right'}
               data={items}
               onSelect={selectedItem => {
@@ -57,15 +65,19 @@ const styles = StyleSheet.create({
     color: '#163D68',
   },
   dropDownButtonStyle: {
-    height: 45,
+    width: '100%',
+    height: 35,
     backgroundColor: '#FFFFFF',
     borderRadius: 8,
     borderBottomColor: '#D9D9D9',
-    borderBottomWidth: 1,
+    borderWidth: 0,
+    borderBottomWidth: StyleSheet.hairlineWidth,
   },
   dropDownButtonTextStyle: {
-    fontSize: 18,
-    color: Colors.lightText,
+    fontFamily: Font.AvenirMedium,
+    fontSize: 14,
+    color: '#6C6C6C',
+    textAlign: 'left',
   },
 });
 

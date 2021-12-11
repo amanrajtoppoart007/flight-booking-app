@@ -86,7 +86,7 @@ function SendRequestModal({visible, setVisible}) {
                 );
               }}
               data={types}
-              onSelect={selectedItem => {}}
+              onSelect={() => {}}
               buttonTextAfterSelection={selectedItem => {
                 return selectedItem?.title;
               }}
