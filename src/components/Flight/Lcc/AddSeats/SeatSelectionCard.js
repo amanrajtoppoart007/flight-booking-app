@@ -5,6 +5,7 @@ import Font from '../../../../layout/Font';
 import Colors from '../../../../layout/Colors';
 
 import SeatSvg from '../../../Svg/Flight/Seat.svg';
+import FlightDeck from './FlightDeck';
 
 function SeatSelectionCard() {
   const [visible, setVisible] = useState(false);
@@ -34,7 +35,7 @@ function SeatSelectionCard() {
           </TouchableOpacity>
         </View>
       </TouchableOpacity>
-      <>{visible && <View />}</>
+      <View>{visible && <FlightDeck />}</View>
     </View>
   );
 }
