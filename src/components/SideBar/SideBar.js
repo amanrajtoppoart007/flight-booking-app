@@ -24,6 +24,8 @@ import ArrowRightSvg from '../Svg/SideBar/ArrowRight.svg';
 import QatarSvg from '../Svg/SideBar/Qatar.svg';
 import SaudiSvg from '../Svg/SideBar/Saudi.svg';
 import UAESvg from '../Svg/SideBar/UAE.svg';
+import {useRtlContext} from 'react-native-easy-localization-and-rtl';
+import {strings} from '../../Localization/LocalizedConstants';
 
 import Font from '../../layout/Font';
 import Accordion from './Accordion';
@@ -134,6 +136,31 @@ const SideBar = props => {
       </View>
     );
   };
+  const LanguageSection = () => {
+    return (
+      <View style={styles.currencyMenuWrapper}>
+        {currencies &&
+          currencies.map((item, index) => {
+            return (
+              <TouchableOpacity
+                onPress={() =>
+                  language === 'en' ? setLanguage('ar') : setLanguage('en')
+                }
+                key={index}
+                style={styles.currencyMenu(index, currencies?.length)}>
+                <View>
+                  <item.svg />
+                </View>
+                <View>
+                  <Text style={styles.title}>{item.name}</Text>
+                </View>
+              </TouchableOpacity>
+            );
+          })}
+      </View>
+    );
+  };
+  const {RtlStyles, isRtl, language, setLanguage} = useRtlContext();
 
   const keyExtractor = item => item.key.toString();
   return (
@@ -151,9 +178,9 @@ const SideBar = props => {
           <View style={commonStyle.marginVertical(15)}>
             <Accordion
               SvgIcon={LanguageSvg}
-              title={'Languages'}
+              title={strings.Languages}
               visible={false}
-              Content={<CurrencySection />}
+              Content={<LanguageSection />}
             />
           </View>
           <View style={commonStyle.marginVertical(15)}>

@@ -16,7 +16,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import {Icon} from 'react-native-elements';
 import ChipSection from '../components/Account/ChipSection';
 import OfferSlider from '../components/Account/OfferSlider';
-
+import {strings} from '../Localization/LocalizedConstants';
 import TimaticSvg from '../components/Svg/Timatic.svg';
 import ArrowRightSvg from '../components/Svg/ArrowRight.svg';
 import TimaticFeature from '../components/Home/TimaticFeature';
@@ -25,6 +25,7 @@ import CustomStatusBar from '../components/CustomStatusBar';
 import StickyMenu from '../components/Home/StickyMenu';
 import Header from '../components/Home/Header';
 import {heightPercentageToDP} from 'react-native-responsive-screen';
+import {useRtlContext} from 'react-native-easy-localization-and-rtl';
 
 if (
   Platform.OS === 'android' &&
@@ -121,6 +122,8 @@ function Home({navigation}) {
       useNativeDriver: true,
     },
   );
+  const {RtlStyles, isRtl, language, setLanguage} = useRtlContext();
+  console.log(language);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -164,8 +167,12 @@ function Home({navigation}) {
                 colors={['#FFFFFF', '#E2F2FF', '#FFFFFF', '#F5F7FB']}>
                 <View style={styles.contentSection}>
                   <View>
-                    <Text style={styles.routeTitle}>Popular</Text>
-                    <Text style={styles.routeTitle}>Routes</Text>
+                    <Text style={[styles.routeTitle, RtlStyles.text]}>
+                      {strings.Popular}
+                    </Text>
+                    <Text style={[styles.routeTitle, RtlStyles.text]}>
+                      {strings.Routes}
+                    </Text>
                   </View>
                   <View style={styles.routeWrapper}>
                     {popularRoutes &&
