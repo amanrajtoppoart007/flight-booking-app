@@ -16,7 +16,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import {Icon} from 'react-native-elements';
 import ChipSection from '../components/Account/ChipSection';
 import OfferSlider from '../components/Account/OfferSlider';
-
+import PackageModal from '../components/Home/PackageModal';
 import TimaticSvg from '../components/Svg/Timatic.svg';
 import ArrowRightSvg from '../components/Svg/ArrowRight.svg';
 import TimaticFeature from '../components/Home/TimaticFeature';
@@ -33,6 +33,7 @@ if (
   UIManager.setLayoutAnimationEnabledExperimental(true);
 }
 function Home({navigation}) {
+  const [offerModelVisible, setOfferModelVisible] = useState(false);
   const [popularRoutes] = useState([
     {
       id: 'popular-route-item-one',
@@ -158,7 +159,7 @@ function Home({navigation}) {
             <Animated.View
               style={{transform: [{translateY: contentTranslateY}]}}>
               <View>
-                <OfferSlider />
+                <OfferSlider onPress={() => setOfferModelVisible(true)} />
               </View>
               <LinearGradient
                 colors={['#FFFFFF', '#E2F2FF', '#FFFFFF', '#F5F7FB']}>
@@ -270,6 +271,10 @@ function Home({navigation}) {
           </View>
         </View>
       </Animated.ScrollView>
+      <PackageModal
+        isVisible={offerModelVisible}
+        setIsVisible={setOfferModelVisible}
+      />
     </SafeAreaView>
   );
 }

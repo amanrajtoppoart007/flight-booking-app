@@ -1,7 +1,6 @@
 import React from 'react';
 import {BottomSheet, Icon} from 'react-native-elements';
 import Colors from '../../layout/Colors';
-
 import {
   Animated,
   Pressable,
@@ -103,11 +102,11 @@ function PackageModal({isVisible, setIsVisible}) {
               Discover Dubai! {'\n'}A jewel in the Arabian desert
             </Text>
           </View>
-          <View>
-            <Pressable onPress={() => setIsVisible(false)}>
-              <CloseDarkSvg />
-            </Pressable>
-          </View>
+          <TouchableOpacity
+            style={styles.zIndex}
+            onPress={() => setIsVisible(false)}>
+            <CloseDarkSvg />
+          </TouchableOpacity>
         </View>
         <HotelImg />
         <View style={commonStyle.marginVertical(10)}>
@@ -172,6 +171,9 @@ const styles = StyleSheet.create({
     return {
       marginRight: m,
     };
+  },
+  zIndex: {
+    zIndex: 1,
   },
   smallText: {
     fontFamily: Font.AvenirMedium,
