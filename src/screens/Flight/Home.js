@@ -15,6 +15,7 @@ import {Icon} from 'react-native-elements';
 import SearchHistorySlider from '../../components/Flight/SearchHistorySlider';
 import DateRangePicker from '../../components/Hotel/Home/DateRangePicker';
 import DateRangePickerMultiCity from '../../components/Flight/MultiCity/DateRangePicker';
+import DatePicker from '../../components/Flight/OneWay/DatePicker';
 import TravellerAndClass from '../../components/Flight/TravellerAndClass';
 import RoundTripCard from '../../components/Flight/SearchFlights/RoundTripCard';
 import OneWayTripCard from '../../components/Flight/SearchFlights/OneWayTrip';
@@ -28,6 +29,8 @@ export default function Home({navigation}) {
   const [guestEntryModal, setGuestEntryModal] = useState(false);
   const [flightType, setFlightType] = useState('round-trip');
   const [isDateRangeVisible, setIsDateRangeVisible] = useState(false);
+  const [isDatePickerVisible, setIsDatePickerVisible] = useState(false);
+
   const [isDateRangeMultiCityVisible, setIsDateRangeMultiCityVisible] =
     useState(-1);
 
@@ -200,7 +203,7 @@ export default function Home({navigation}) {
                 setIsLocationSelectorVisible={() =>
                   navigation.navigate('Search')
                 }
-                setIsDateRangeVisible={setIsDateRangeVisible}
+                setIsDateRangeVisible={setIsDatePickerVisible}
                 setGuestEntryModal={setGuestEntryModal}
                 Location={Location[0]}
                 onSwap={_onSwap}
@@ -258,6 +261,11 @@ export default function Home({navigation}) {
                 setIsDateRangeVisible={setIsDateRangeMultiCityVisible}
                 editDate={editDate}
                 index={isDateRangeMultiCityVisible}
+              />
+              <DatePicker
+                isDatePickerVisible={isDatePickerVisible}
+                setIsDatePickerVisible={setIsDatePickerVisible}
+                editDate={setDateFrom}
               />
             </View>
           </View>

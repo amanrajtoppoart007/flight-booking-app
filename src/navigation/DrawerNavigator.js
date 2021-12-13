@@ -18,6 +18,7 @@ import Privacy from '../screens/Privacy';
 import About from '../screens/About';
 import Contact from '../screens/Contact';
 import LccNavigator from './LccNavigator';
+import FlightByNavigator from './FlightByNavigator';
 
 const Drawer = createDrawerNavigator();
 
@@ -103,6 +104,11 @@ const DrawerNavigator = () => {
         options={{drawerPosition: 'right'}}
         name={'LccNavigator'}
         component={LccNavigator}
+      />
+      <Drawer.Screen
+        options={{drawerPosition: 'right'}}
+        name={'FlightByNavigator'}
+        component={FlightByNavigator}
       />
     </Drawer.Navigator>
   );

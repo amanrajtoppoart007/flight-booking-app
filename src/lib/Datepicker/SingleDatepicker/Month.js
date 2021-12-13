@@ -29,7 +29,7 @@ export default class Month extends React.Component {
     let res = [];
     let currMonth = moment(month).month(); //get this month
     let currDate = moment(month).startOf('month'); //get first day in this month
-
+    let SelectedDate = moment(this.props.date);
     let dayColumn = [];
     let dayRow = [];
     let dayObject = {};
@@ -42,7 +42,15 @@ export default class Month extends React.Component {
           type: null,
           date: null,
         };
+
         if (i == currDate.days() && currDate.month() == currMonth) {
+          if (
+            currDate.days() == SelectedDate.days() &&
+            SelectedDate.month() == currMonth
+          ) {
+            dayObject.type = 'single';
+            console.log(SelectedDate, 'ok', i, SelectedDate.days());
+          }
           if (
             minDate &&
             minDate.format('YYYYMMDD') &&
@@ -56,6 +64,7 @@ export default class Month extends React.Component {
             currDate.format('YYYYMMDD') > maxDate.format('YYYYMMDD')
           ) {
             dayObject.type = 'disabled';
+            console.log(SelectedDate, 'ok', i, SelectedDate.days());
           }
           if (
             availableDates &&

@@ -66,6 +66,12 @@ const SideBar = props => {
       svg: SocialSvg,
       route: 'LccNavigator',
     },
+    {
+      key: 'menu-item-seven',
+      title: 'Flight by Flight Navigator',
+      svg: SocialSvg,
+      route: 'FlightByNavigator',
+    },
   ]);
 
   const [currencies] = useState([

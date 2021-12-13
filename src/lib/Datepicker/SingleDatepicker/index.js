@@ -40,6 +40,7 @@ export default class RangeDatepicker extends Component {
       borderRadius: 20,
       alignSelf: 'flex-end',
     },
+    startDate: moment().add(1, 'days'),
   };
 
   static propTypes = {
@@ -58,6 +59,7 @@ export default class RangeDatepicker extends Component {
     infoText: PropTypes.string,
     infoStyle: PropTypes.object,
     infoContainerStyle: PropTypes.object,
+    startDate: PropTypes.string,
   };
 
   componentWillReceiveProps(nextProps) {
@@ -112,6 +114,7 @@ export default class RangeDatepicker extends Component {
         ignoreMinDate={ignoreMinDate}
         dayProps={{selectedBackgroundColor, selectedTextColor, todayColor}}
         month={month}
+        date={this.props.startDate}
       />
     );
   }
