@@ -14,7 +14,6 @@ import Font from '../layout/Font';
 import Colors from '../layout/Colors';
 import LinearGradient from 'react-native-linear-gradient';
 import {Icon} from 'react-native-elements';
-import ChipSection from '../components/Account/ChipSection';
 import OfferSlider from '../components/Account/OfferSlider';
 import PackageModal from '../components/Home/PackageModal';
 import TimaticSvg from '../components/Svg/Timatic.svg';
@@ -24,7 +23,6 @@ import RouteItem from '../components/Home/RouteItem';
 import CustomStatusBar from '../components/CustomStatusBar';
 import StickyMenu from '../components/Home/StickyMenu';
 import Header from '../components/Home/Header';
-import {heightPercentageToDP} from 'react-native-responsive-screen';
 
 if (
   Platform.OS === 'android' &&
@@ -58,56 +56,20 @@ function Home({navigation}) {
   ]);
   const {diffClamp} = Animated;
   const navbarHeight = 70;
-  const headerHeight = heightPercentageToDP('40%');
-
   const ref = useRef(null);
 
   const scrollY = useRef(new Animated.Value(0));
   const navbarScrollYClamped = diffClamp(scrollY.current, 0, navbarHeight);
-
-  const headerScrollYClamped = diffClamp(scrollY.current, 0, headerHeight);
-
-  const chipSectionScrollYClamped = diffClamp(scrollY.current, 0, headerHeight);
-
-  const contentScrollYClamped = diffClamp(scrollY.current, 0, headerHeight);
 
   const navBarTranslateY = navbarScrollYClamped.interpolate({
     inputRange: [0, navbarHeight],
     outputRange: [-navbarHeight, 0],
   });
 
-  const headerTranslateY = headerScrollYClamped.interpolate({
-    inputRange: [0, headerHeight],
-    outputRange: [0, -headerHeight],
-  });
-
-  const chipSectionScaleY = chipSectionScrollYClamped.interpolate({
-    inputRange: [0, headerHeight / 2, headerHeight],
-    outputRange: [0, 0, 1],
-  });
-
-  const contentTranslateY = contentScrollYClamped.interpolate({
-    inputRange: [0, headerHeight],
-    outputRange: [-70, 0],
-  });
-
   const navbarTranslateYNumber = useRef();
-  const headerTranslateYNumber = useRef();
-  const chipSectionTranslateYNumber = useRef();
-  const contentTranslateYNumber = useRef();
 
   navBarTranslateY.addListener(({value}) => {
     navbarTranslateYNumber.current = value;
-  });
-
-  headerTranslateY.addListener(({value}) => {
-    headerTranslateYNumber.current = value;
-  });
-  chipSectionScaleY.addListener(({value}) => {
-    chipSectionTranslateYNumber.current = value;
-  });
-  contentTranslateY.addListener(({value}) => {
-    contentTranslateYNumber.current = value;
   });
 
   const handleScroll = Animated.event(
@@ -142,29 +104,15 @@ function Home({navigation}) {
         showsVerticalScrollIndicator={false}>
         <View style={styles.wrapper}>
           <View style={styles.content}>
-            <Animated.View
-              style={[{transform: [{translateY: headerTranslateY}]}]}>
-              <Header />
-            </Animated.View>
-            <View style={styles.chipSectionWrapper}>
-              <Animated.View
-                style={[
-                  styles.contentSection,
-                  {transform: [{scaleY: chipSectionScaleY}]},
-                ]}>
-                <ChipSection />
-              </Animated.View>
-            </View>
-
-            <Animated.View
-              style={{transform: [{translateY: contentTranslateY}]}}>
+            <Header />
+            <View>
               <View>
                 <OfferSlider onPress={() => setOfferModelVisible(true)} />
               </View>
               <LinearGradient
                 colors={['#FFFFFF', '#E2F2FF', '#FFFFFF', '#F5F7FB']}>
                 <View style={styles.contentSection}>
-                  <View>
+                  <View style={commonStyle.marginTop(20)}>
                     <Text style={styles.routeTitle}>Popular</Text>
                     <Text style={styles.routeTitle}>Routes</Text>
                   </View>
@@ -267,7 +215,7 @@ function Home({navigation}) {
                   </View>
                 </View>
               </LinearGradient>
-            </Animated.View>
+            </View>
           </View>
         </View>
       </Animated.ScrollView>
@@ -296,7 +244,7 @@ const styles = StyleSheet.create({
 
   stickyNavBar: {
     position: 'absolute',
-    backgroundColor: Colors.green,
+    backgroundColor: Colors.white,
     zIndex: 999,
   },
   border: {

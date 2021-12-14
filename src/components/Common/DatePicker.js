@@ -9,9 +9,12 @@ import {SingleDatepicker} from '../../lib/Datepicker/index';
 import Colors from '../../layout/Colors';
 import commonStyle from '../../layout/Style';
 import Font from '../../layout/Font';
+import moment from 'moment';
 
 function DatePicker({isDatePickerVisible, setIsDatePickerVisible}) {
   const currentMonth = new Date().getMonth();
+
+  const currentDate = moment(new Date()).format('YYYYMMDD');
   function setDate() {
     setIsDatePickerVisible(false);
   }
@@ -40,7 +43,7 @@ function DatePicker({isDatePickerVisible, setIsDatePickerVisible}) {
             <SingleDatepicker
               initialMonth={currentMonth}
               showSelectionInfo={false}
-              minDate={''}
+              minDate={currentDate}
               maxDate={''}
               onClose={() => {
                 setIsDatePickerVisible(false);

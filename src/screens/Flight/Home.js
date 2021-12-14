@@ -29,6 +29,7 @@ export default function Home({navigation}) {
   const [guestEntryModal, setGuestEntryModal] = useState(false);
   const [flightType, setFlightType] = useState('round-trip');
   const [isDateRangeVisible, setIsDateRangeVisible] = useState(false);
+
   const [isDatePickerVisible, setIsDatePickerVisible] = useState(false);
 
   const [isDateRangeMultiCityVisible, setIsDateRangeMultiCityVisible] =
@@ -189,7 +190,6 @@ export default function Home({navigation}) {
                 setIsLocationSelectorVisible={() =>
                   navigation.navigate('Search')
                 }
-                setIsDateRangeVisible={setIsDateRangeMultiCityVisible}
                 setGuestEntryModal={setGuestEntryModal}
                 Location={Location}
                 onSwap={_onSwap}
@@ -197,6 +197,7 @@ export default function Home({navigation}) {
                 handleDelete={_handleDelete}
                 Travellers={travellersClass}
                 dates={dateMultiCity}
+                editDate={editDate}
               />
             ) : (
               <OneWayTripCard
@@ -256,6 +257,7 @@ export default function Home({navigation}) {
                 setDateFrom={setDateFrom}
                 setDateUpto={setDateUpto}
               />
+
               <DateRangePickerMultiCity
                 isDateRangeVisible={!(isDateRangeMultiCityVisible === -1)}
                 setIsDateRangeVisible={setIsDateRangeMultiCityVisible}
