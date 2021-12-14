@@ -269,7 +269,7 @@ export default function Home({navigation}) {
                 isDatePickerVisible={isDatePickerVisible}
                 setIsDatePickerVisible={setIsDatePickerVisible}
                 editDate={setDateFrom}
-                Date={dateFrom}
+                date={dateFrom}
               />
             </View>
           </View>

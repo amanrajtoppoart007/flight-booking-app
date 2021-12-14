@@ -11,12 +11,17 @@ import commonStyle from '../../layout/Style';
 import Font from '../../layout/Font';
 import moment from 'moment';
 
-function DatePicker({isDatePickerVisible, setIsDatePickerVisible, getDate}) {
+function MultiCityDatePicker({
+  isDatePickerVisible,
+  setIsDatePickerVisible,
+  getDate,
+  index,
+}) {
   const currentMonth = new Date().getMonth();
   function setDate(date) {
     setIsDatePickerVisible(false);
     date = moment(date).format('YYYYMMDD');
-    getDate(date);
+    getDate(index, date);
   }
 
   return (
@@ -100,4 +105,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DatePicker;
+export default MultiCityDatePicker;
