@@ -14,7 +14,6 @@ import CustomStatusBar from '../../components/CustomStatusBar';
 import {Icon} from 'react-native-elements';
 import SearchHistorySlider from '../../components/Flight/SearchHistorySlider';
 import DateRangePicker from '../../components/Hotel/Home/DateRangePicker';
-import DateRangePickerMultiCity from '../../components/Flight/MultiCity/DateRangePicker';
 import TravellerAndClass from '../../components/Flight/TravellerAndClass';
 import RoundTripCard from '../../components/Flight/SearchFlights/RoundTripCard';
 import OneWayTripCard from '../../components/Flight/SearchFlights/OneWayTrip';
@@ -28,8 +27,6 @@ export default function Home({navigation}) {
   const [guestEntryModal, setGuestEntryModal] = useState(false);
   const [flightType, setFlightType] = useState('round-trip');
   const [isDateRangeVisible, setIsDateRangeVisible] = useState(false);
-  const [isDateRangeMultiCityVisible, setIsDateRangeMultiCityVisible] =
-    useState(-1);
 
   const date = new Date();
   const dateFromTimeStamp = moment(date).format('YYYYMMDD');
@@ -186,7 +183,6 @@ export default function Home({navigation}) {
                 setIsLocationSelectorVisible={() =>
                   navigation.navigate('Search')
                 }
-                setIsDateRangeVisible={setIsDateRangeMultiCityVisible}
                 setGuestEntryModal={setGuestEntryModal}
                 Location={Location}
                 onSwap={_onSwap}
@@ -194,6 +190,7 @@ export default function Home({navigation}) {
                 handleDelete={_handleDelete}
                 Travellers={travellersClass}
                 dates={dateMultiCity}
+                editDate={editDate}
               />
             ) : (
               <OneWayTripCard
@@ -252,12 +249,6 @@ export default function Home({navigation}) {
                 dateFrom={dateFrom}
                 setDateFrom={setDateFrom}
                 setDateUpto={setDateUpto}
-              />
-              <DateRangePickerMultiCity
-                isDateRangeVisible={!(isDateRangeMultiCityVisible === -1)}
-                setIsDateRangeVisible={setIsDateRangeMultiCityVisible}
-                editDate={editDate}
-                index={isDateRangeMultiCityVisible}
               />
             </View>
           </View>

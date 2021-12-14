@@ -1,14 +1,20 @@
-import React from 'react';
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import React, {useState} from 'react';
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import Colors from '../../../layout/Colors';
 import {Icon} from 'react-native-elements';
 import commonStyle from '../../../layout/Style';
 import Font from '../../../layout/Font';
 import moment from 'moment';
+import DatePicker from '../../Common/DatePicker';
 
 export default function MultiCity({
   setIsLocationSelectorVisible,
-  setIsDateRangeVisible,
   setGuestEntryModal,
   Location,
   onSwap,
@@ -17,112 +23,125 @@ export default function MultiCity({
   Travellers,
   dates,
 }) {
+  const [isDatePickerVisible, setIsDatePickerVisible] = useState(false);
+
   return (
-    <View style={styles.card}>
-      <View style={styles.subSection}>
-        {Location.map((_, index) => (
-          <View
-            key={index}
-            style={[styles.dataContainer(index === Location.length - 1)]}>
-            <View style={styles.fromContainer}>
-              <View style={commonStyle.marginBottom(7)}>
-                <Text style={styles.helperText}>From</Text>
-              </View>
-              <View style={commonStyle.marginBottom(7)}>
-                <Pressable onPress={() => setIsLocationSelectorVisible(true)}>
-                  <Text style={styles.searchText}>
-                    {Location[index].fromText}
-                  </Text>
-                </Pressable>
-              </View>
-              <View style={commonStyle.marginBottom(10)}>
-                <Text style={styles.helperText}>{Location[index].from}</Text>
-              </View>
-            </View>
-            <Icon
-              name={'swap'}
-              type={'antdesign'}
-              size={20}
-              color={Colors.primary}
-              onPress={() => onSwap(index)}
-            />
-            <View style={styles.toContainer}>
-              <View style={commonStyle.marginBottom(7)}>
-                <Text style={styles.helperText}>To</Text>
-              </View>
-              <View style={commonStyle.marginBottom(7)}>
-                <Pressable onPress={() => setIsLocationSelectorVisible(true)}>
-                  <Text style={styles.searchText}>
-                    {Location[index].toText}
-                  </Text>
-                </Pressable>
-              </View>
-              <View style={commonStyle.marginBottom(10)}>
-                <Text style={styles.helperText}>{Location[index].to}</Text>
-              </View>
-            </View>
-            <View style={styles.verticalLine} />
-            <View>
-              {index > 1 ? (
-                <View style={styles.AlignSelfEnd}>
-                  <Icon
-                    name={'closecircle'}
-                    type={'antdesign'}
-                    size={16}
-                    color={Colors.lightText}
-                    onPress={() => handleDelete(index)}
-                  />
+    <>
+      <View style={styles.card}>
+        <View style={styles.subSection}>
+          {Location.map((_, index) => (
+            <View
+              key={index}
+              style={[styles.dataContainer(index === Location.length - 1)]}>
+              <View style={styles.fromContainer}>
+                <View style={commonStyle.marginBottom(7)}>
+                  <Text style={styles.helperText}>From</Text>
                 </View>
-              ) : null}
-              <View style={commonStyle.marginBottom(10)}>
-                <Text style={styles.Departure}>Departure</Text>
+                <View style={commonStyle.marginBottom(7)}>
+                  <Pressable onPress={() => setIsLocationSelectorVisible(true)}>
+                    <Text style={styles.searchText}>
+                      {Location[index].fromText}
+                    </Text>
+                  </Pressable>
+                </View>
+                <View style={commonStyle.marginBottom(10)}>
+                  <Text style={styles.helperText}>{Location[index].from}</Text>
+                </View>
               </View>
+              <Icon
+                name={'swap'}
+                type={'antdesign'}
+                size={20}
+                color={Colors.primary}
+                onPress={() => onSwap(index)}
+              />
+              <View style={styles.toContainer}>
+                <View style={commonStyle.marginBottom(7)}>
+                  <Text style={styles.helperText}>To</Text>
+                </View>
+                <View style={commonStyle.marginBottom(7)}>
+                  <Pressable onPress={() => setIsLocationSelectorVisible(true)}>
+                    <Text style={styles.searchText}>
+                      {Location[index].toText}
+                    </Text>
+                  </Pressable>
+                </View>
+                <View style={commonStyle.marginBottom(10)}>
+                  <Text style={styles.helperText}>{Location[index].to}</Text>
+                </View>
+              </View>
+              <View style={styles.verticalLine} />
               <View>
-                <Pressable onPress={() => setIsDateRangeVisible(index)}>
-                  <Text style={styles.dateFilterText}>
-                    {moment(dates[index]).format('ddd, D MMM')}
-                  </Text>
-                </Pressable>
+                {index > 1 ? (
+                  <View style={styles.AlignSelfEnd}>
+                    <Icon
+                      name={'closecircle'}
+                      type={'antdesign'}
+                      size={16}
+                      color={Colors.lightText}
+                      onPress={() => handleDelete(index)}
+                    />
+                  </View>
+                ) : null}
+                <View style={commonStyle.marginBottom(10)}>
+                  <Text style={styles.Departure}>Departure</Text>
+                </View>
+                <View>
+                  <TouchableOpacity
+                    onPress={() =>
+                      setIsDatePickerVisible(!isDatePickerVisible)
+                    }>
+                    <Text style={styles.dateFilterText}>
+                      {moment(dates[index]).format('ddd, D MMM')}
+                    </Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             </View>
+          ))}
+        </View>
+        <Pressable
+          onPress={() => handleAddFlight()}
+          style={styles.addFlightContainer}>
+          <Icon
+            name={'plus'}
+            type={'antdesign'}
+            size={20}
+            color={Colors.secondary}
+          />
+          <Text style={styles.addFlightText}>Add Flight</Text>
+        </Pressable>
+        <View style={styles.bottomContainer}>
+          <View style={commonStyle.marginBottom(8)}>
+            <Text style={styles.helperText}>Travellers & Class</Text>
           </View>
-        ))}
-      </View>
-      <Pressable
-        onPress={() => handleAddFlight()}
-        style={styles.addFlightContainer}>
-        <Icon
-          name={'plus'}
-          type={'antdesign'}
-          size={20}
-          color={Colors.secondary}
-        />
-        <Text style={styles.addFlightText}>Add Flight</Text>
-      </Pressable>
-      <View style={styles.bottomContainer}>
-        <View style={commonStyle.marginBottom(8)}>
-          <Text style={styles.helperText}>Travellers & Class</Text>
+          <View style={commonStyle.marginBottom(8)}>
+            <Pressable onPress={() => setGuestEntryModal(true)}>
+              <Text style={styles.roomFilterText}>
+                {(Travellers?.adult > 0 ? `${Travellers?.adult} Adult` : '') +
+                  (Travellers?.child > 0
+                    ? `${Travellers?.adult > 0 ? ', ' : ''}` +
+                      `${Travellers?.child} Children`
+                    : '') +
+                  (Travellers?.infant > 0
+                    ? `${
+                        Travellers?.child > 0 || Travellers?.adult > 0
+                          ? ', '
+                          : ''
+                      }` + `${Travellers?.infant} Infant`
+                    : '') +
+                  `, ${Travellers.class}`}
+              </Text>
+            </Pressable>
+          </View>
+          <View style={styles.divider} />
         </View>
-        <View style={commonStyle.marginBottom(8)}>
-          <Pressable onPress={() => setGuestEntryModal(true)}>
-            <Text style={styles.roomFilterText}>
-              {(Travellers?.adult > 0 ? `${Travellers?.adult} Adult` : '') +
-                (Travellers?.child > 0
-                  ? `${Travellers?.adult > 0 ? ', ' : ''}` +
-                    `${Travellers?.child} Children`
-                  : '') +
-                (Travellers?.infant > 0
-                  ? `${
-                      Travellers?.child > 0 || Travellers?.adult > 0 ? ', ' : ''
-                    }` + `${Travellers?.infant} Infant`
-                  : '') +
-                `, ${Travellers.class}`}
-            </Text>
-          </Pressable>
-        </View>
-        <View style={styles.divider} />
       </View>
-    </View>
+      <DatePicker
+        isDateRangeVisible={isDatePickerVisible}
+        setIsDateRangeVisible={setIsDatePickerVisible}
+      />
+    </>
   );
 }
 
