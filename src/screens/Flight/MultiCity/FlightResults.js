@@ -149,9 +149,10 @@ function FlightResult({navigation}) {
           </View>
           <View style={styles.bottomFlightSection}>
             {flightRouteList &&
-              flightRouteList.map(item => {
+              flightRouteList.map((item, index) => {
                 return (
                   <View
+                    key={index}
                     style={[
                       commonStyle.rowSpaceBetween,
                       commonStyle.margin(5),
