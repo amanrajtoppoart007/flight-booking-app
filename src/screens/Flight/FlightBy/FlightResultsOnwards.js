@@ -92,7 +92,7 @@ function SearchResult({navigation}) {
             />
             <Footer
               data={[{title: 'DOH → DXB', subtext: '1 stop'}]}
-              onPress={() => navigation.navigate('FlightResultsReturn')}
+              onPress={() => navigation.navigate('FlightByFlightResultsReturn')}
               price={'175.00'}
             />
           </View>

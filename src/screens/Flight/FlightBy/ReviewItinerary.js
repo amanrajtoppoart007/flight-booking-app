@@ -124,7 +124,9 @@ function ReviewItinerary({navigation}) {
                   </View>
                   <View>
                     <TouchableOpacity
-                      onPress={() => navigation.navigate('Payment')}
+                      onPress={() =>
+                        navigation.navigate('FlightByFlightPayment')
+                      }
                       style={styles.checkOutBtn}>
                       <Text style={styles.checkOutBtnText}>Continue</Text>
                     </TouchableOpacity>

@@ -125,7 +125,7 @@ function FlexibleFlight({navigation}) {
         </View>
       </View>
       <TouchableOpacity
-        onPress={() => navigation.navigate('FlightResultsOnwards')}
+        onPress={() => navigation.navigate('FlightByFlightResultsOnwards')}
         style={styles.flexibleButton}>
         <FlightTicket style={commonStyle.marginRight(5)} />
         <Text style={styles.whiteText}>Flexible Flight Option</Text>

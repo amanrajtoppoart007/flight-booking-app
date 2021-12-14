@@ -116,6 +116,7 @@ function EditProfile() {
                       label={<Label title={'First Name'} />}
                       inputContainerStyle={styles.inputContainerStyle}
                       inputStyle={styles.inputTextStyle}
+                      onChangeText={text => setFirstName(text)}
                     />
                   </View>
                   <View style={commonStyle.marginVertical(8)}>
@@ -123,6 +124,7 @@ function EditProfile() {
                       label={<Label title={'Last Name'} />}
                       inputContainerStyle={styles.inputContainerStyle}
                       inputStyle={styles.inputTextStyle}
+                      onChangeText={text => setLastName(text)}
                     />
                   </View>
                   <View
@@ -135,6 +137,7 @@ function EditProfile() {
                       inputContainerStyle={styles.inputContainerStyle}
                       inputStyle={styles.inputTextStyle}
                       rightIcon={<CalenderSvg />}
+                      onChangeText={text => setDob(text)}
                     />
                   </View>
                 </View>
@@ -153,6 +156,7 @@ function EditProfile() {
                       label={<Label title={'E-mail ID'} />}
                       inputContainerStyle={styles.inputContainerStyle}
                       inputStyle={styles.inputTextStyle}
+                      onChangeText={text => setEmail(text)}
                     />
                   </View>
                   <View style={styles.phoneNumberSection}>
