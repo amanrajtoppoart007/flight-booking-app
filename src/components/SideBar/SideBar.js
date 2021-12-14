@@ -70,7 +70,7 @@ const SideBar = props => {
       key: 'menu-item-seven',
       title: 'Flight By Flight',
       svg: SocialSvg,
-      route: 'FlightByFlight',
+      route: 'FlightByNavigator',
     },
   ]);
 

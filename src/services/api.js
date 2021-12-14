@@ -14,6 +14,11 @@ export const UPDATE_TRAVELER = BASE_URL + 'updatetraveller/';
 export const FETCH_TRAVELER = BASE_URL + 'fetchtraveller/';
 export const DELETE_TRAVELER = BASE_URL + 'deletetraveller/';
 
+//Profile section api
+export const PROFILE_BASE_URL = 'http://65.0.46.253:3005/att/booking/profile/';
+export const GET_PROFILE =
+  PROFILE_BASE_URL + 'profile?butype=ta_user&companyid=232';
+
 //Hotel section api
 
 export const HOTEL_API_BASE_URL = 'http://65.0.46.253:3008/ezytrip/';

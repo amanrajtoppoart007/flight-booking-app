@@ -62,14 +62,7 @@ function ReviewItinerary({navigation}) {
                 isCollapsed={true}
               />
             </View>
-            <View>
-              <Accordion
-                title={'Returning '}
-                itinerary={'DXB - DOH'}
-                Content={<FlightCard />}
-                isCollapsed={true}
-              />
-            </View>
+
             <View style={styles.couponSection}>
               <View style={commonStyle.rowSpaceBetween}>
                 <View style={commonStyle.rowSpaceBetween}>

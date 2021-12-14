@@ -98,7 +98,7 @@ function SearchResult({navigation}) {
               ]}
               buttonText={'QAR 350.00'}
               buttonIcon={false}
-              onPress={() => navigation.navigate('ReviewItinerary')}
+              onPress={() => navigation.navigate('ReviewItineraryFlightBy')}
             />
           </View>
           <View />

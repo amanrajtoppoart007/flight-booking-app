@@ -10,29 +10,28 @@ import Colors from '../../../layout/Colors';
 import moment from 'moment';
 import commonStyle from '../../../layout/Style';
 
-function DateRangePicker({
-  isDateRangeVisible,
-  setIsDateRangeVisible,
+function DatePicker({
+  isDatePickerVisible,
+  setIsDatePickerVisible,
   editDate,
-  index,
-  dates,
+  Date,
 }) {
   function setDate(startDate) {
     const dateFromTimeStamp = moment(startDate).format('YYYYMMDD');
-    editDate(index, dateFromTimeStamp);
-    setIsDateRangeVisible(-1);
+    editDate(dateFromTimeStamp);
+    setIsDatePickerVisible(-1);
   }
 
   return (
     <BottomSheet
       containerStyle={{backgroundColor: Colors.primary}}
-      isVisible={isDateRangeVisible}>
+      isVisible={isDatePickerVisible}>
       <View style={styles.bottomSheet}>
         <View>
           <View style={styles.cardHeader}>
             <View>
               <Icon
-                onPress={() => setIsDateRangeVisible(-1)}
+                onPress={() => setIsDatePickerVisible(false)}
                 name={'close'}
                 type={'font-awesome'}
                 size={18}
@@ -51,7 +50,7 @@ function DateRangePicker({
               todayColor={'#F15922'}
               infoText={''}
               infoStyle={styles.infoStyle}
-              startDate={dates[index]}
+              startDate={Date}
             />
           </View>
         </View>
@@ -88,4 +87,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DateRangePicker;
+export default DatePicker;

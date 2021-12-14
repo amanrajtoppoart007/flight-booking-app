@@ -107,7 +107,7 @@ const DrawerNavigator = () => {
       />
       <Drawer.Screen
         options={{drawerPosition: 'right'}}
-        name={'FlightByFlight'}
+        name={'FlightByNavigator'}
         component={FlightByNavigator}
       />
     </Drawer.Navigator>

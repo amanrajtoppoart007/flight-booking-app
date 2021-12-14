@@ -86,8 +86,6 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
   },
   bottomCanvas: {
-    position: 'absolute',
-    bottom: 0,
     width: '100%',
     minHeight: hp('10%'),
     flexDirection: 'row',

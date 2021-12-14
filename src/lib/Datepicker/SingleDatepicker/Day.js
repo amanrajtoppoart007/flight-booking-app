@@ -28,6 +28,14 @@ export default class Day extends React.Component {
     let textDayStyle = {color: 'black'};
 
     switch (day.type) {
+      case 'single':
+        dayStyle = {
+          backgroundColor: dayProps.selectedBackgroundColor,
+          borderRadius: 6,
+          width: '14.28%',
+        };
+        textDayStyle = {color: dayProps.selectedTextColor};
+        break;
       case 'disabled':
       case 'blockout':
         textDayStyle = {color: '#ccc'};
