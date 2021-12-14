@@ -261,11 +261,13 @@ export default function Home({navigation}) {
                 setIsDateRangeVisible={setIsDateRangeMultiCityVisible}
                 editDate={editDate}
                 index={isDateRangeMultiCityVisible}
+                dates={dateMultiCity}
               />
               <DatePicker
                 isDatePickerVisible={isDatePickerVisible}
                 setIsDatePickerVisible={setIsDatePickerVisible}
                 editDate={setDateFrom}
+                Date={dateFrom}
               />
             </View>
           </View>

@@ -10,7 +10,12 @@ import Colors from '../../../layout/Colors';
 import moment from 'moment';
 import commonStyle from '../../../layout/Style';
 
-function DatePicker({isDatePickerVisible, setIsDatePickerVisible, editDate}) {
+function DatePicker({
+  isDatePickerVisible,
+  setIsDatePickerVisible,
+  editDate,
+  Date,
+}) {
   function setDate(startDate) {
     const dateFromTimeStamp = moment(startDate).format('YYYYMMDD');
     editDate(dateFromTimeStamp);
@@ -45,6 +50,7 @@ function DatePicker({isDatePickerVisible, setIsDatePickerVisible, editDate}) {
               todayColor={'#F15922'}
               infoText={''}
               infoStyle={styles.infoStyle}
+              startDate={Date}
             />
           </View>
         </View>

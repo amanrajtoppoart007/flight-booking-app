@@ -34,7 +34,6 @@ export default class Month extends React.Component {
     let dayRow = [];
     let dayObject = {};
     let {availableDates, minDate, maxDate} = this.props;
-
     do {
       dayColumn = [];
       for (let i = 0; i < 7; i++) {
@@ -44,12 +43,8 @@ export default class Month extends React.Component {
         };
 
         if (i == currDate.days() && currDate.month() == currMonth) {
-          if (
-            currDate.days() == SelectedDate.days() &&
-            SelectedDate.month() == currMonth
-          ) {
+          if (currDate.format('YYYYMMDD') === SelectedDate.format('YYYYMMDD')) {
             dayObject.type = 'single';
-            console.log(SelectedDate, 'ok', i, SelectedDate.days());
           }
           if (
             minDate &&
