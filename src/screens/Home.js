@@ -112,7 +112,7 @@ function Home({navigation}) {
               <LinearGradient
                 colors={['#FFFFFF', '#E2F2FF', '#FFFFFF', '#F5F7FB']}>
                 <View style={styles.contentSection}>
-                  <View>
+                  <View style={commonStyle.marginTop(20)}>
                     <Text style={styles.routeTitle}>Popular</Text>
                     <Text style={styles.routeTitle}>Routes</Text>
                   </View>

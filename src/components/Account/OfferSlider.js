@@ -37,7 +37,7 @@ function OfferSlider({onPress}) {
   return (
     <>
       {brands && (
-        <View style={commonStyle.marginVertical(10)}>
+        <View>
           <FlatList
             style={styles.sliderContainer}
             showsHorizontalScrollIndicator={false}
@@ -55,15 +55,19 @@ function OfferSlider({onPress}) {
 
 const styles = StyleSheet.create({
   sliderContainer: {
-    width: wp('90%'),
+    width: wp('91%'),
     alignSelf: 'center',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: '#dcdbdb',
+    paddingTop: 10,
+    paddingBottom: 20,
   },
   card: {
     width: 160,
     height: 160,
     borderRadius: 8,
     marginHorizontal: 5,
-    backgroundColor: Colors.transparent,
+    backgroundColor: Colors.white,
   },
   image: {
     width: 160,
