@@ -1,13 +1,14 @@
 import React from 'react';
-import {FlatList, Image, StyleSheet, View} from 'react-native';
+import {
+  FlatList,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
-import Colors from '../../layout/Colors';
 
-import HotelImageOne from '../Svg/Slider/HotelImageOne.svg';
-import HotelImageTwo from '../Svg/Slider/HotelImageTwo.svg';
-import commonStyle from '../../layout/Style';
-
-function OfferSlider() {
+function OfferSlider({setOfferModalVisible, offerModalVisible}) {
   const brands = [
     {
       id: 'offer-slider-item-one',
@@ -28,22 +29,24 @@ function OfferSlider() {
   ];
 
   const renderItem = ({item}) => (
-    <View style={styles.card}>
+    <TouchableOpacity
+      onPress={() => setOfferModalVisible(!offerModalVisible)}
+      style={styles.card}>
       <Image
         source={item?.image}
         style={styles.image}
         borderRadius={8}
         resizeMode={'cover'}
       />
-    </View>
+    </TouchableOpacity>
   );
 
   return (
     <>
       {brands && (
-        <View style={styles.sliderWrapper}>
+        <View>
           <FlatList
-            style={styles.slider}
+            style={styles.sliderContainer}
             showsHorizontalScrollIndicator={false}
             initialNumToRender={4}
             horizontal={true}
@@ -58,14 +61,13 @@ function OfferSlider() {
 }
 
 const styles = StyleSheet.create({
-  sliderWrapper: {
-    width: '100%',
-    paddingVertical: 20,
-    backgroundColor: Colors.white,
-    borderTopWidth: StyleSheet.hairlineWidth,
+  sliderContainer: {
+    width: wp('91%'),
+    alignSelf: 'center',
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderTopColor: '#707070',
-    borderBottomColor: '#707070',
+    borderBottomColor: '#dcdbdb',
+    paddingTop: 10,
+    paddingBottom: 20,
   },
   slider: {
     width: wp('100%'),
