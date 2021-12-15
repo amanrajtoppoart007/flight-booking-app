@@ -16,15 +16,16 @@ import Font from '../layout/Font';
 import Colors from '../layout/Colors';
 import commonStyle from '../layout/Style';
 import CustomStatusBar from '../components/CustomStatusBar';
-import AppInfo from '../storage/intro';
-function Welcome({navigation}) {
+import {setAppIntro} from '../reducers/Intro.slice';
+import {useDispatch} from 'react-redux';
+
+function Welcome() {
+  const dispatch = useDispatch();
   const slider = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const onDone = () => {
-    AppInfo.setIntro().then(() => {
-      navigation.navigate('AuthStack');
-    });
+    dispatch(setAppIntro(true));
   };
 
   const slides = [
