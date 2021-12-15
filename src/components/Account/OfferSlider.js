@@ -26,10 +26,8 @@ function OfferSlider({onPress}) {
   ];
 
   const renderItem = ({item}) => (
-    <TouchableOpacity onPress={onPress}>
-      <View style={styles.card}>
-        <item.SvgImg style={styles.image} resizeMode={'cover'} />
-      </View>
+    <TouchableOpacity onPress={onPress} style={styles.card}>
+      <item.SvgImg style={styles.image} resizeMode={'cover'} />
     </TouchableOpacity>
   );
 
