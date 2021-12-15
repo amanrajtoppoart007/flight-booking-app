@@ -16,10 +16,17 @@ import Font from '../layout/Font';
 import Colors from '../layout/Colors';
 import commonStyle from '../layout/Style';
 import CustomStatusBar from '../components/CustomStatusBar';
-
+import AppInfo from '../storage/intro';
 function Welcome({navigation}) {
   const slider = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const onDone = () => {
+    AppInfo.setIntro().then(() => {
+      navigation.navigate('AuthStack');
+    });
+  };
+
   const slides = [
     {
       key: 'welcome-screen-slider-item-one',
@@ -93,9 +100,7 @@ function Welcome({navigation}) {
 
   const RenderDoneButton = () => {
     return (
-      <TouchableOpacity
-        onPress={() => navigation.navigate('AppNavigator')}
-        style={styles.controlButton}>
+      <TouchableOpacity onPress={() => onDone()} style={styles.controlButton}>
         <Text style={styles.controlButtonText}>Done</Text>
       </TouchableOpacity>
     );

@@ -17,7 +17,7 @@ import Font from '../../layout/Font';
 import {useNavigation} from '@react-navigation/native';
 import Toast from '../../layout/AppToast';
 import axios from 'axios';
-import {REGISTER_URL} from '../../services/api';
+import {REGISTER_URL} from '../../redux/api';
 import SimpleTextInput from '../Common/SimpleTextInput';
 
 function Register({jumpTo}) {
