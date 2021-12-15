@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {getToken} from './storage';
+import {getToken} from '../storage';
 
 export const BASE_URL = 'http://65.0.46.253:3005/att/userb2c/';
 export const SEARCH_API_BASE_URL = 'https://hotel-content.ezytrip.com/ezytrip/';
@@ -59,3 +59,7 @@ export const api = {
   },
   endpoints: {},
 };
+
+export class UPDATE_USER_URL {}
+
+export class FETCH_USER_URL {}

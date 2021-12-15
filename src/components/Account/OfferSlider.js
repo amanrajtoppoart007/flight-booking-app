@@ -3,7 +3,6 @@ import {FlatList, StyleSheet, View, TouchableOpacity} from 'react-native';
 import Colors from '../../layout/Colors';
 import HotelImageOne from '../Svg/Slider/HotelImageOne.svg';
 import HotelImageTwo from '../Svg/Slider/HotelImageTwo.svg';
-import commonStyle from '../../layout/Style';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 function OfferSlider({onPress}) {
@@ -27,10 +26,8 @@ function OfferSlider({onPress}) {
   ];
 
   const renderItem = ({item}) => (
-    <TouchableOpacity onPress={onPress}>
-      <View style={styles.card}>
-        <item.SvgImg style={styles.image} resizeMode={'cover'} />
-      </View>
+    <TouchableOpacity onPress={onPress} style={styles.card}>
+      <item.SvgImg style={styles.image} resizeMode={'cover'} />
     </TouchableOpacity>
   );
 

@@ -17,7 +17,7 @@ import CustomTextInput from '../Common/CustomTextInput';
 import Font from '../../layout/Font';
 import Toast from '../../layout/AppToast';
 
-import {LOGIN_URL} from '../../services/api';
+import {LOGIN_URL} from '../../redux/api';
 
 function Login({jumpTo}) {
   const navigation = useNavigation();

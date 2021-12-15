@@ -17,7 +17,7 @@ function AmenitiesList() {
       title: 'ATM/banking',
     },
     {
-      title: 'Concierge services',
+      title: 'Concierge redux',
     },
     {
       title: 'Breakfast available',
