@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {FlatList, View} from 'react-native';
 import FlightCard from './FlightCard';
 import {useNavigation} from '@react-navigation/native';
+import commonStyle from '../../../../layout/Style';
 
 function SearchResult() {
   const [flights] = useState([
@@ -32,7 +33,7 @@ function SearchResult() {
   );
   return (
     <View>
-      <View>
+      <View style={commonStyle.marginBottom(160)}>
         <FlatList
           keyExtractor={item => item?.id?.toString()}
           data={flights}
