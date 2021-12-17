@@ -80,13 +80,13 @@ function EditProfile() {
         if (result?.suc) {
           AppToast.topToast('Updated Successfully');
         } else {
-          Alert.alert(result?.err);
+          AppToast.topToast(result?.err);
         }
       } else {
-        console.error(response?.message);
+        AppToast.topToast(response?.message);
       }
     } catch (e) {
-      console.error(e);
+      AppToast.topToast(e?.toString());
     }
   };
 
