@@ -20,7 +20,9 @@ import SelectBox from '../../components/Common/SelectBox';
 import Info from '../../components/Svg/Info.svg';
 import SelectDropdown from 'react-native-select-dropdown';
 import country from '../../utils/country';
+import {ADD_TRAVELER} from '../../redux/api';
 import AppToast from '../../layout/AppToast';
+import axios from 'axios';
 
 function Label({title}) {
   return (
@@ -55,6 +57,8 @@ function MyTravelers({navigation}) {
   const [lastName, setLastName] = useState('');
   const [dob, setDob] = useState('');
   const [documentType, setDocumentType] = useState('');
+  const [passportNumber, setPassportNumber] = useState('');
+  const [expiryDate, setExpiryDate] = useState('');
 
   const titles = [
     {
@@ -92,7 +96,7 @@ function MyTravelers({navigation}) {
 
   const submit = async () => {
     if (title === '') {
-      AppToast.topToast('Please fill the document type');
+      AppToast.topToast('Please enter the title');
       return false;
     }
     if (firstName === '') {
@@ -110,6 +114,42 @@ function MyTravelers({navigation}) {
     if (documentType === '') {
       AppToast.topToast('Please fill the document type');
       return false;
+    }
+    if (passportNumber === '') {
+      AppToast.topToast('Please enter the passport number');
+      return false;
+    }
+    if (expiryDate === '') {
+      AppToast.topToast('Please enter the expiry date');
+      return false;
+    }
+    const params = {
+      tl: title,
+      ufn: firstName,
+      uln: lastName,
+      dob: dob,
+      docs: [
+        {
+          type: documentType,
+          number: passportNumber,
+          expdt: expiryDate,
+        },
+      ],
+    };
+    try {
+      const response = await axios.post(ADD_TRAVELER, params);
+      if (response.status === 200) {
+        const result = response?.data;
+        if (result?.suc) {
+          AppToast.topToast('Updated Successfully');
+        } else {
+          Alert.alert(result?.err);
+        }
+      } else {
+        console.error(response?.message);
+      }
+    } catch (e) {
+      console.error(e);
     }
   };
   return (
@@ -290,6 +330,8 @@ function MyTravelers({navigation}) {
                     placeholder={'Passport Number'}
                     inputContainerStyle={styles.inputContainerStyle}
                     inputStyle={styles.inputTextStyle}
+                    value={passportNumber}
+                    onChangeText={t => setPassportNumber(t)}
                   />
                 </View>
                 <View style={commonStyle.marginVertical(8)}>
@@ -334,6 +376,8 @@ function MyTravelers({navigation}) {
                     inputContainerStyle={styles.inputContainerStyle}
                     inputStyle={styles.inputTextStyle}
                     rightIcon={<CalenderSvg />}
+                    value={expiryDate}
+                    onChangeText={t => setExpiryDate(t)}
                   />
                 </View>
               </View>
