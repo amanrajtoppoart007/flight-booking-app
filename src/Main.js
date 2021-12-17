@@ -13,7 +13,6 @@ function MainNavigator({token}) {
 function Main() {
   const {appIntro} = useSelector(state => state?.intro);
   const {token} = useSelector(state => state?.auth);
-  console.log(appIntro);
   return (
     <>{appIntro ? <MainNavigator token={token} /> : <AppIntroNavigator />}</>
   );
