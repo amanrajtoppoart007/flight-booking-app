@@ -12,6 +12,8 @@ import {useNavigation} from '@react-navigation/native';
 
 function FlightCard({onPressSelect}) {
   const navigation = useNavigation();
+  const [isSelectedDeparting, setIsSelectedDeparting] = useState(false);
+  const [isSelectedReturning, setIsSelectedReturning] = useState(false);
 
   const [isMoreOptionVisible, setIsMoreOptionVisible] = useState(false);
   return (
@@ -37,7 +39,9 @@ function FlightCard({onPressSelect}) {
       </View>
       <View style={styles.divider} />
       <View style={styles.cardBody}>
-        <View style={[commonStyle.flex(0.47)]}>
+        <TouchableOpacity
+          onPress={() => setIsSelectedDeparting(!isSelectedDeparting)}
+          style={styles.DepartingSection(isSelectedDeparting)}>
           <View
             style={[commonStyle.rowSpaceBetween, commonStyle.marginBottom(6)]}>
             <View style={commonStyle.rowFlexStart}>
@@ -87,9 +91,11 @@ function FlightCard({onPressSelect}) {
               />
             </TouchableOpacity>
           </View>
-        </View>
+        </TouchableOpacity>
         <View style={styles.VDivider} />
-        <View style={[commonStyle.flex(0.47)]}>
+        <TouchableOpacity
+          onPress={() => setIsSelectedReturning(!isSelectedReturning)}
+          style={styles.DepartingSection(isSelectedReturning)}>
           <View
             style={[commonStyle.rowSpaceBetween, commonStyle.marginBottom(6)]}>
             <View style={commonStyle.rowFlexStart}>
@@ -139,7 +145,7 @@ function FlightCard({onPressSelect}) {
               />
             </TouchableOpacity>
           </View>
-        </View>
+        </TouchableOpacity>
       </View>
       <View style={[commonStyle.rowSpaceAround, commonStyle.marginTop(6)]}>
         <TouchableOpacity
@@ -193,6 +199,12 @@ const styles = StyleSheet.create({
       borderWidth: value ? 2 : 0,
       borderColor: '#F15922',
       borderRadius: value ? 8 : 0,
+    };
+  },
+  DepartingSection(isSelected) {
+    return {
+      flex: 0.47,
+      backgroundColor: !isSelected ? null : '#E8E8E8',
     };
   },
   Running: {

@@ -11,7 +11,6 @@ import {Icon} from 'react-native-elements';
 import commonStyle from '../../../layout/Style';
 import Font from '../../../layout/Font';
 import moment from 'moment';
-import MultiCityDatePicker from '../../Common/MultiCityDatePicker';
 
 export default function MultiCity({
   setIsLocationSelectorVisible,
@@ -22,18 +21,8 @@ export default function MultiCity({
   handleDelete,
   Travellers,
   dates,
+  setIsDatePickerVisible,
 }) {
-  const [isDatePickerVisible, setIsDatePickerVisible] = useState(false);
-
-  const [datePickerIndex, setDatePickerIndex] = useState(-1);
-
-  const setDate = (index, date) => {
-    if (index === -1) {
-      return false;
-    }
-    dates[index] = date;
-  };
-
   return (
     <>
       <View style={styles.card}>
@@ -98,8 +87,7 @@ export default function MultiCity({
                 <View>
                   <TouchableOpacity
                     onPress={() => {
-                      setDatePickerIndex(index);
-                      setIsDatePickerVisible(!isDatePickerVisible);
+                      setIsDatePickerVisible(index);
                     }}>
                     <Text style={styles.dateFilterText}>
                       {moment(dates[index]).format('ddd, D MMM')}
@@ -147,12 +135,6 @@ export default function MultiCity({
           <View style={styles.divider} />
         </View>
       </View>
-      <MultiCityDatePicker
-        isDatePickerVisible={isDatePickerVisible}
-        setIsDatePickerVisible={setIsDatePickerVisible}
-        index={datePickerIndex}
-        getDate={setDate}
-      />
     </>
   );
 }

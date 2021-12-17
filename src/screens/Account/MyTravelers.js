@@ -20,6 +20,9 @@ import SelectBox from '../../components/Common/SelectBox';
 import Info from '../../components/Svg/Info.svg';
 import SelectDropdown from 'react-native-select-dropdown';
 import country from '../../utils/country';
+import {ADD_TRAVELER} from '../../redux/api';
+import AppToast from '../../layout/AppToast';
+import axios from 'axios';
 
 function Label({title}) {
   return (
@@ -49,9 +52,13 @@ function MyTravelers({navigation}) {
     },
     ...country,
   ];
-  const [phoneCode, setPhoneCode] = useState('+974');
   const [title, setTitle] = useState('');
-  const [mobile, setMobile] = useState(null);
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [dob, setDob] = useState('');
+  const [documentType, setDocumentType] = useState('');
+  const [passportNumber, setPassportNumber] = useState('');
+  const [expiryDate, setExpiryDate] = useState('');
 
   const titles = [
     {
@@ -87,6 +94,64 @@ function MyTravelers({navigation}) {
     },
   ]);
 
+  const submit = async () => {
+    if (title === '') {
+      AppToast.topToast('Please enter the title');
+      return false;
+    }
+    if (firstName === '') {
+      AppToast.topToast('Please enter your first name');
+      return false;
+    }
+    if (lastName === '') {
+      AppToast.topToast('Please enter your last name');
+      return false;
+    }
+    if (dob === '') {
+      AppToast.topToast('Please enter your date of birth');
+      return false;
+    }
+    if (documentType === '') {
+      AppToast.topToast('Please fill the document type');
+      return false;
+    }
+    if (passportNumber === '') {
+      AppToast.topToast('Please enter the passport number');
+      return false;
+    }
+    if (expiryDate === '') {
+      AppToast.topToast('Please enter the expiry date');
+      return false;
+    }
+    const params = {
+      tl: title,
+      ufn: firstName,
+      uln: lastName,
+      dob: dob,
+      docs: [
+        {
+          type: documentType,
+          number: passportNumber,
+          expdt: expiryDate,
+        },
+      ],
+    };
+    try {
+      const response = await axios.post(ADD_TRAVELER, params);
+      if (response.status === 200) {
+        const result = response?.data;
+        if (result?.suc) {
+          AppToast.topToast('Updated Successfully');
+        } else {
+          Alert.alert(result?.err);
+        }
+      } else {
+        console.error(response?.message);
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
   return (
     <SafeAreaView style={commonStyle.container}>
       <CustomStatusBar backgroundColor={Colors.primary} />
@@ -150,6 +215,9 @@ function MyTravelers({navigation}) {
                         <TextInput
                           placeholder={'First Name'}
                           style={styles.inputContainerStyle}
+                          placeholderTextColor="#898989"
+                          value={firstName}
+                          onChangeText={t => setFirstName(t)}
                         />
                       </View>
                     </View>
@@ -159,6 +227,8 @@ function MyTravelers({navigation}) {
                       placeholder={'Last Name'}
                       inputContainerStyle={styles.inputContainerStyle}
                       inputStyle={styles.inputTextStyle}
+                      value={lastName}
+                      onChangeText={t => setLastName(t)}
                     />
                   </View>
                   <View
@@ -172,6 +242,8 @@ function MyTravelers({navigation}) {
                         inputContainerStyle={styles.inputContainerStyle}
                         inputStyle={styles.inputTextStyle}
                         rightIcon={<CalenderSvg />}
+                        value={dob}
+                        onChangeText={t => setDob(t)}
                       />
                     </View>
                     <View style={commonStyle.width('50%')}>
@@ -244,7 +316,7 @@ function MyTravelers({navigation}) {
                       );
                     }}
                     data={documentTypes}
-                    onSelect={() => {}}
+                    onSelect={t => setDocumentType(t.value.charAt(0))}
                     buttonTextAfterSelection={selectedItem => {
                       return selectedItem?.title;
                     }}
@@ -258,6 +330,8 @@ function MyTravelers({navigation}) {
                     placeholder={'Passport Number'}
                     inputContainerStyle={styles.inputContainerStyle}
                     inputStyle={styles.inputTextStyle}
+                    value={passportNumber}
+                    onChangeText={t => setPassportNumber(t)}
                   />
                 </View>
                 <View style={commonStyle.marginVertical(8)}>
@@ -302,6 +376,8 @@ function MyTravelers({navigation}) {
                     inputContainerStyle={styles.inputContainerStyle}
                     inputStyle={styles.inputTextStyle}
                     rightIcon={<CalenderSvg />}
+                    value={expiryDate}
+                    onChangeText={t => setExpiryDate(t)}
                   />
                 </View>
               </View>
@@ -312,7 +388,7 @@ function MyTravelers({navigation}) {
                 commonStyle.marginVertical(20),
                 commonStyle.backgroundColor('transparent'),
               ]}>
-              <TouchableOpacity style={styles.button}>
+              <TouchableOpacity onPress={() => submit()} style={styles.button}>
                 <Text style={styles.buttonText}>Save Details</Text>
               </TouchableOpacity>
             </View>
@@ -396,6 +472,9 @@ const styles = StyleSheet.create({
     height: 35,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: '#D9D9D9',
+    fontFamily: Font.AvenirMedium,
+    fontSize: 14,
+    color: '#6C6C6C',
   },
   inputTextStyle: {
     fontFamily: Font.AvenirMedium,
