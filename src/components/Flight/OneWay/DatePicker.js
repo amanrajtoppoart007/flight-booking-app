@@ -14,14 +14,13 @@ function DatePicker({
   isDatePickerVisible,
   setIsDatePickerVisible,
   editDate,
-  Date,
+  date,
 }) {
   function setDate(startDate) {
     const dateFromTimeStamp = moment(startDate).format('YYYYMMDD');
     editDate(dateFromTimeStamp);
-    setIsDatePickerVisible(-1);
+    setIsDatePickerVisible(false);
   }
-
   return (
     <BottomSheet
       containerStyle={{backgroundColor: Colors.primary}}
@@ -50,7 +49,7 @@ function DatePicker({
               todayColor={'#F15922'}
               infoText={''}
               infoStyle={styles.infoStyle}
-              startDate={Date}
+              startDate={date}
             />
           </View>
         </View>

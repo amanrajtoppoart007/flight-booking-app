@@ -10,11 +10,14 @@ import Colors from '../../../../layout/Colors';
 import MoreOptions from './MoreOptions';
 import FareOptions from './FareOptions';
 import {useNavigation} from '@react-navigation/native';
+import {widthPercentageToDP} from 'react-native-responsive-screen';
 
 function FlightCard() {
   const navigation = useNavigation();
   const [isMoreOptionVisible, setIsMoreOptionVisible] = useState(false);
   const [isFareOptionsVisible, setIsFareOptionsVisible] = useState(false);
+  const [isSelectedDeparting, setIsSelectedDeparting] = useState(false);
+  const [isSelectedReturning, setIsSelectedReturning] = useState(false);
   return (
     <>
       <View style={styles.card}>
@@ -40,21 +43,25 @@ function FlightCard() {
             <View style={styles.divider} />
           </View>
           <View style={commonStyle.rowSpaceBetween}>
-            <View style={commonStyle.width('48%')}>
+            <TouchableOpacity
+              onPress={() => setIsSelectedDeparting(!isSelectedDeparting)}
+              style={styles.DepartingSection(isSelectedDeparting)}>
               <TimeCard
                 isFareOptionVisible={isFareOptionsVisible}
                 setIsFareOptionVisible={setIsFareOptionsVisible}
               />
-            </View>
+            </TouchableOpacity>
             <View>
               <View style={styles.itemSeparator} />
             </View>
-            <View style={commonStyle.width('48%')}>
+            <TouchableOpacity
+              onPress={() => setIsSelectedReturning(!isSelectedReturning)}
+              style={styles.DepartingSection(isSelectedReturning)}>
               <TimeCard
                 isFareOptionVisible={isFareOptionsVisible}
                 setIsFareOptionVisible={setIsFareOptionsVisible}
               />
-            </View>
+            </TouchableOpacity>
           </View>
         </View>
         <View style={styles.cardFooter}>
@@ -124,6 +131,12 @@ const styles = StyleSheet.create({
   },
   cardBody: {
     paddingHorizontal: 12,
+  },
+  DepartingSection(isSelected) {
+    return {
+      width: '48%',
+      backgroundColor: !isSelected ? null : '#E8E8E8',
+    };
   },
   airlineName: {
     fontFamily: Font.AvenirRoman,

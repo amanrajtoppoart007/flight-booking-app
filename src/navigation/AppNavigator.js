@@ -13,8 +13,8 @@ const AppNavigator = () => (
       gestureEnabled: true,
       ...ScreenSettings,
     }}>
-    <Stack.Screen name={'HomeStack'} component={HomeNavigator} />
     <Stack.Screen name={'Auth'} component={Auth} />
+    <Stack.Screen name={'HomeStack'} component={HomeNavigator} />
   </Stack.Navigator>
 );
 

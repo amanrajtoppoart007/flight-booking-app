@@ -32,7 +32,7 @@ function SearchResult() {
     />
   );
   return (
-    <View>
+    <View style={commonStyle.marginBottom(160)}>
       <FlatList
         contentContainerStyle={commonStyle.width('100%')}
         keyExtractor={item => item?.id?.toString()}

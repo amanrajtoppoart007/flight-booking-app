@@ -40,7 +40,7 @@ export default class RangeDatepicker extends Component {
       borderRadius: 20,
       alignSelf: 'flex-end',
     },
-    startDate: moment(),
+    startDate: moment().format('YYYYMM'),
   };
 
   static propTypes = {
