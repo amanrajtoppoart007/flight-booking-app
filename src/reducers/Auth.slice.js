@@ -30,7 +30,7 @@ export const authSlice = createSlice({
   reducers: {
     setAuthUser: (state, action) => {
       state.user = action.payload;
-      state.token = action.payload?.access_token;
+      state.token = action.payload?.token;
     },
     setTokenAction: (state, action) => {
       state.token = action.payload;
@@ -45,7 +45,7 @@ export const authSlice = createSlice({
       state.user = action.payload?.data;
       state.loading = false;
     },
-    [fetchUser.rejected]: (state, action) => {
+    [fetchUser.rejected]: state => {
       state.token = null;
       state.user = null;
       state.loading = false;

@@ -9,7 +9,6 @@ import {
   View,
 } from 'react-native';
 import axios from 'axios';
-import {useNavigation} from '@react-navigation/native';
 import commonStyle from '../../layout/Style';
 import Colors from '../../layout/Colors';
 import {CheckBox} from 'react-native-elements';
@@ -19,8 +18,11 @@ import Toast from '../../layout/AppToast';
 
 import {LOGIN_URL} from '../../redux/api';
 
+import {setAuthUser, setTokenAction} from '../../reducers/Auth.slice';
+import {useDispatch} from 'react-redux';
+
 function Login({jumpTo}) {
-  const navigation = useNavigation();
+  const dispatch = useDispatch();
   const [checked, setChecked] = useState('email');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -44,8 +46,6 @@ function Login({jumpTo}) {
   };
 
   const login = async () => {
-    navigation.navigate('HomeStack');
-    return false;
     if (checked === 'email' && !email) {
       Toast.bottomToast('Please enter valid email');
       return false;
@@ -78,7 +78,8 @@ function Login({jumpTo}) {
       if (response.status === 200) {
         const result = response?.data;
         if (result?.suc) {
-          navigation.navigate('HomeStack');
+          dispatch(setAuthUser(result?.res));
+          dispatch(setTokenAction(result?.res?.token));
         } else {
           Alert.alert(result?.err);
         }
