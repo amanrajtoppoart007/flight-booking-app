@@ -16,8 +16,9 @@ import CustomStatusBar from '../../components/CustomStatusBar';
 import {Input} from 'react-native-elements';
 import CalenderSvg from '../../components/Svg/Calender.svg';
 import PhoneTextInput from '../../components/Common/PhoneTextInput';
-
+import {UPDATE_PROFILE} from '../../redux/api';
 import AppToast from '../../layout/AppToast';
+import axios from 'axios';
 
 function Label({title}) {
   return (
@@ -40,7 +41,7 @@ function EditProfile() {
   const [dob, setDob] = useState('');
   const [email, setEmail] = useState('');
 
-  const submit = () => {
+  const submit = async () => {
     if (!phoneCode) {
       AppToast.topToast('Please enter phone number');
       return false;
@@ -64,6 +65,28 @@ function EditProfile() {
     if (!email) {
       AppToast.topToast('Please enter valid email');
       return false;
+    }
+    const params = {
+      fname: firstName,
+      lname: lastName,
+      email: email,
+      phno: mobile,
+      phc: phoneCode,
+    };
+    try {
+      const response = await axios.post(UPDATE_PROFILE, params);
+      if (response.status === 200) {
+        const result = response?.data;
+        if (result?.suc) {
+          AppToast.topToast('Updated Successfully');
+        } else {
+          Alert.alert(result?.err);
+        }
+      } else {
+        console.error(response?.message);
+      }
+    } catch (e) {
+      console.error(e);
     }
   };
 
