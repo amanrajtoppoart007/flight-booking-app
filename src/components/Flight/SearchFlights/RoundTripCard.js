@@ -6,7 +6,8 @@ import {
   Text,
   View,
 } from 'react-native';
-
+import {strings} from '../../../Localization/LocalizedConstants';
+import {useRtlContext} from 'react-native-easy-localization-and-rtl';
 import Colors from '../../../layout/Colors';
 import {Icon} from 'react-native-elements';
 import commonStyle from '../../../layout/Style';
@@ -23,13 +24,17 @@ export default function RoundTripCard({
   dateFrom,
   dateUpTo,
 }) {
+  const {RtlStyles, language} = useRtlContext();
+
   return (
     <View style={styles.card}>
-      <View style={styles.subSection}>
-        <View style={commonStyle.rowCenter}>
-          <View style={[styles.underlineRight]}>
+      <View style={[styles.subSection]}>
+        <View style={[commonStyle.rowCenter, RtlStyles.containerRow]}>
+          <View style={[styles.underlineRight, RtlStyles.containerColumn]}>
             <View style={commonStyle.marginBottom(6)}>
-              <Text style={styles.helperText}>From</Text>
+              <Text style={[styles.helperText, styles.alignText]}>
+                {strings.From}
+              </Text>
             </View>
             <View style={commonStyle.marginBottom(6)}>
               <Pressable onPress={() => setIsLocationSelectorVisible(true)}>
@@ -47,9 +52,10 @@ export default function RoundTripCard({
             color={Colors.primary}
             onPress={() => onSwap()}
           />
-          <View style={[styles.underlineLeft]}>
+          <View
+            style={[styles.underlineLeft, RtlStyles.containerColumnInverse]}>
             <View style={commonStyle.marginBottom(6)}>
-              <Text style={styles.helperText}>To</Text>
+              <Text style={styles.helperText}>{strings.To}</Text>
             </View>
             <View style={commonStyle.marginBottom(6)}>
               <Pressable onPress={() => setIsLocationSelectorVisible(true)}>
@@ -63,10 +69,12 @@ export default function RoundTripCard({
         </View>
       </View>
       <View style={styles.subSection}>
-        <View style={commonStyle.rowSpaceBetween}>
-          <View style={styles.underlineRight}>
+        <View style={[commonStyle.rowSpaceBetween, RtlStyles.containerRow]}>
+          <View style={[styles.underlineRight, RtlStyles.containerColumn]}>
             <View style={commonStyle.marginBottom(8)}>
-              <Text style={styles.helperText}>Departure</Text>
+              <Text style={[styles.helperText, styles.alignText]}>
+                {strings.Departure}
+              </Text>
             </View>
             <View style={commonStyle.marginBottom(8)}>
               <Pressable onPress={() => setIsDateRangeVisible(true)}>
@@ -76,9 +84,10 @@ export default function RoundTripCard({
               </Pressable>
             </View>
           </View>
-          <View style={[styles.underlineLeft]}>
+          <View
+            style={[styles.underlineLeft, RtlStyles.containerColumnInverse]}>
             <View style={commonStyle.marginBottom(8)}>
-              <Text style={styles.helperText}>X Return</Text>
+              <Text style={styles.helperText}>{strings.Return}</Text>
             </View>
             <View style={commonStyle.marginBottom(8)}>
               <Pressable onPress={() => setIsDateRangeVisible(true)}>
@@ -92,20 +101,22 @@ export default function RoundTripCard({
       </View>
       <View style={styles.subSection}>
         <View style={commonStyle.marginBottom(8)}>
-          <Text style={styles.helperText}>Travellers & Class</Text>
+          <Text style={styles.helperText}>{strings.TravellersClass}</Text>
         </View>
         <View style={commonStyle.marginBottom(15)}>
           <TouchableOpacity onPress={() => setGuestEntryModal(true)}>
             <Text style={styles.roomFilterText}>
-              {(Travellers?.adult > 0 ? `${Travellers?.adult} Adult` : '') +
+              {(Travellers?.adult > 0
+                ? `${Travellers?.adult} ${strings.Adult}`
+                : '') +
                 (Travellers?.child > 0
                   ? `${Travellers?.adult > 0 ? ', ' : ''}` +
-                    `${Travellers?.child} Children`
+                    `${Travellers?.child} ${strings.Children}`
                   : '') +
                 (Travellers?.infant > 0
                   ? `${
                       Travellers?.child > 0 || Travellers?.adult > 0 ? ', ' : ''
-                    }` + `${Travellers?.infant} Infant`
+                    }` + `${Travellers?.infant} ${strings.Infant}`
                   : '') +
                 `, ${Travellers.class}`}
             </Text>
@@ -141,6 +152,11 @@ const styles = StyleSheet.create({
   titleSection: {
     marginVertical: 20,
     paddingHorizontal: 20,
+  },
+  temp: {
+    flexDirection: 'row-reverse',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   card: {
     flexDirection: 'column',
@@ -197,5 +213,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: Colors.black,
     fontFamily: Font.AvenirHeavy,
+  },
+  alignText: {
+    textAlign: 'left',
   },
 });

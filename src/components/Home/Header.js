@@ -8,9 +8,12 @@ import ChipSection from './ChipSection';
 import Font from '../../layout/Font';
 import {useNavigation} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
+import {strings} from '../../Localization/LocalizedConstants';
+import {useRtlContext} from 'react-native-easy-localization-and-rtl';
 
 const Header = () => {
   const navigation = useNavigation();
+  const {RtlStyles} = useRtlContext();
 
   return (
     <View>
@@ -31,7 +34,9 @@ const Header = () => {
         </View>
         <View style={styles.menuHeader}>
           <View style={commonStyle.marginVertical(8)}>
-            <Text style={styles.title}>Welcome Faiyaz !</Text>
+            <Text style={[styles.title, RtlStyles.text]}>
+              {strings.WelcomeFaiyaz}
+            </Text>
           </View>
           <View style={commonStyle.marginVertical(8)}>
             <Menu />

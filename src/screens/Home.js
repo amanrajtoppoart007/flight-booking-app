@@ -14,7 +14,6 @@ import Font from '../layout/Font';
 import Colors from '../layout/Colors';
 import LinearGradient from 'react-native-linear-gradient';
 import {Icon} from 'react-native-elements';
-import {strings} from '../Localization/LocalizedConstants';
 import OfferSlider from '../components/Home/OfferSlider';
 import PackageModal from '../components/Home/PackageModal';
 import TimaticSvg from '../components/Svg/Timatic.svg';
@@ -24,6 +23,7 @@ import RouteItem from '../components/Home/RouteItem';
 import CustomStatusBar from '../components/CustomStatusBar';
 import StickyMenu from '../components/Home/StickyMenu';
 import Header from '../components/Home/Header';
+import {strings} from '../Localization/LocalizedConstants';
 import {useRtlContext} from 'react-native-easy-localization-and-rtl';
 
 if (
@@ -86,8 +86,7 @@ function Home({navigation}) {
       useNativeDriver: true,
     },
   );
-  const {RtlStyles, isRtl, language, setLanguage} = useRtlContext();
-  console.log(language);
+  const {RtlStyles, language} = useRtlContext();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -137,10 +136,10 @@ function Home({navigation}) {
                   </View>
                   <View style={commonStyle.marginVertical(10)}>
                     <View style={styles.card}>
-                      <View style={commonStyle.rowSpaceBetween}>
+                      <View style={[commonStyle.rowSpaceBetween]}>
                         <View>
-                          <Text style={styles.cardTitle}>
-                            Track your flight
+                          <Text style={[styles.cardTitle, RtlStyles.text]}>
+                            {strings.TrackYourFlight}
                           </Text>
                         </View>
                         <View>
@@ -193,24 +192,23 @@ function Home({navigation}) {
                       </View>
                       <View style={commonStyle.marginVertical(5)}>
                         <Text style={styles.timaticSectionHelperText}>
-                          Timatic delivers airlines accurate information based
-                          on the passenger’s
+                          {strings.Timatic}
                         </Text>
                       </View>
                       <View style={styles.timaticFeatures}>
                         <View style={styles.timaticFeatureSection}>
                           <View>
-                            <TimaticFeature title="Nationality" />
+                            <TimaticFeature title={strings.Nationality} />
                             <View style={commonStyle.marginVertical(7.5)} />
-                            <TimaticFeature title="Destination" />
+                            <TimaticFeature title={strings.Destination} />
                           </View>
                           <View>
-                            <TimaticFeature title="Passport" />
+                            <TimaticFeature title={strings.Passport} />
                             <View style={commonStyle.marginVertical(7.5)} />
-                            <TimaticFeature title="Transit Points" />
+                            <TimaticFeature title={strings.TransitPoints} />
                           </View>
                           <View>
-                            <TimaticFeature title="Visas" />
+                            <TimaticFeature title={strings.Visas} />
                           </View>
                           <View style={commonStyle.justifyContent('flex-end')}>
                             <TouchableOpacity

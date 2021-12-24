@@ -4,12 +4,13 @@ import commonStyle from '../../layout/Style';
 import Colors from '../../layout/Colors';
 import {useNavigation} from '@react-navigation/native';
 import Font from '../../layout/Font';
-
+import {strings} from '../../Localization/LocalizedConstants';
 import PlaneSvg from '../Svg/Plane.svg';
 import HotelSvg from '../Svg/Hotel.svg';
 import AssistanceSvg from '../Svg/Assistance.svg';
 function Menu() {
   const navigation = useNavigation();
+
   return (
     <View style={commonStyle.rowSpaceEven}>
       <View>
@@ -20,7 +21,7 @@ function Menu() {
             <PlaneSvg style={styles.menuIcon} />
           </View>
           <View style={commonStyle.marginVertical(10)}>
-            <Text style={styles.title}>Flight</Text>
+            <Text style={styles.title}>{strings.Flight}</Text>
           </View>
         </Pressable>
       </View>
@@ -32,7 +33,7 @@ function Menu() {
             <HotelSvg style={styles.menuIcon} />
           </View>
           <View style={commonStyle.marginVertical(10)}>
-            <Text style={styles.title}>Hotels</Text>
+            <Text style={styles.title}>{strings.Hotels}</Text>
           </View>
         </Pressable>
       </View>
@@ -42,7 +43,7 @@ function Menu() {
             <AssistanceSvg style={styles.menuIcon} />
           </View>
           <View style={commonStyle.marginVertical(10)}>
-            <Text style={styles.title}>Assistance</Text>
+            <Text style={styles.title}>{strings.Assistance}</Text>
           </View>
         </Pressable>
       </View>

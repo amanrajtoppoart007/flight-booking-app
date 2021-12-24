@@ -24,6 +24,8 @@ import Font from '../../layout/Font';
 import commonStyle from '../../layout/Style';
 import Back from '../../assets/icons/svg/Back.svg';
 import moment from 'moment';
+import {strings} from '../../Localization/LocalizedConstants';
+import {useRtlContext} from 'react-native-easy-localization-and-rtl';
 
 export default function Home({navigation}) {
   const [guestEntryModal, setGuestEntryModal] = useState(false);
@@ -42,6 +44,7 @@ export default function Home({navigation}) {
     dateFromTimeStamp,
     dateUptoTimeStamp,
   ]);
+  const {RtlStyles, language} = useRtlContext();
 
   const [Location, setLocation] = useState([
     {
@@ -132,38 +135,47 @@ export default function Home({navigation}) {
               <LinearGradient
                 colors={['#1C8CCC', '#015F95']}
                 style={styles.canvas}>
-                <View style={[styles.titleSection, styles.rowCenter]}>
+                <View
+                  style={[
+                    styles.titleSection,
+                    styles.rowCenter,
+                    RtlStyles.containerRow,
+                  ]}>
                   <View>
-                    <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <TouchableOpacity
+                      style={RtlStyles.flipHorizontal}
+                      onPress={() => navigation.goBack()}>
                       <Back />
                     </TouchableOpacity>
                   </View>
-                  <View style={commonStyle.marginHorizontal(10)}>
-                    <Text style={styles.title}>Search flights</Text>
+                  <View style={[commonStyle.marginHorizontal(10)]}>
+                    <Text style={[styles.title, RtlStyles.text]}>
+                      {strings.SearchFlights}
+                    </Text>
                   </View>
                 </View>
 
                 <View style={styles.headerContainer}>
-                  <View style={styles.topBar}>
+                  <View style={[styles.topBar, RtlStyles.containerRow]}>
                     <Pressable
                       onPress={() => setFlightType('round-trip')}
                       style={styles.topBarElements(flightType, 'round-trip')}>
                       <Text style={styles.topBarText(flightType, 'round-trip')}>
-                        Round Trip
+                        {strings.RoundTrip}
                       </Text>
                     </Pressable>
                     <Pressable
                       onPress={() => setFlightType('one-way')}
                       style={styles.topBarElements(flightType, 'one-way')}>
                       <Text style={styles.topBarText(flightType, 'one-way')}>
-                        One Way
+                        {strings.OneWay}
                       </Text>
                     </Pressable>
                     <Pressable
                       onPress={() => setFlightType('multi-city')}
                       style={styles.topBarElements(flightType, 'multi-city')}>
                       <Text style={styles.topBarText(flightType, 'multi-city')}>
-                        Multi-City
+                        {strings.MultiCity}
                       </Text>
                     </Pressable>
                   </View>
@@ -216,7 +228,7 @@ export default function Home({navigation}) {
             <View style={[commonStyle.center]}>
               <Pressable
                 onPress={_handleSearchFlight}
-                style={styles.searchButton}>
+                style={[styles.searchButton, RtlStyles.containerRow]}>
                 <Icon
                   name={'search'}
                   type={'font-awesome'}
@@ -228,14 +240,16 @@ export default function Home({navigation}) {
                     styles.searchButtonText,
                     commonStyle.marginHorizontal(5),
                   ]}>
-                  Search flights
+                  {strings.SearchFlights}
                 </Text>
               </Pressable>
             </View>
 
             <View style={commonStyle.paddingHorizontal(20)}>
               <View style={commonStyle.marginVertical(15)}>
-                <Text style={styles.recentSearchTitle}>Recently Searched</Text>
+                <Text style={styles.recentSearchTitle}>
+                  {strings.RecentlySearched}
+                </Text>
               </View>
               <View>
                 <SearchHistorySlider />
