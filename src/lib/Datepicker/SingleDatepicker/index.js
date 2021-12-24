@@ -1,7 +1,7 @@
 'use strict';
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Text, View, FlatList, StyleSheet, Dimensions} from 'react-native';
+import {Text, View, FlatList, StyleSheet} from 'react-native';
 import Month from './Month';
 // import styles from './styles';
 import moment from 'moment';
@@ -40,6 +40,7 @@ export default class RangeDatepicker extends Component {
       borderRadius: 20,
       alignSelf: 'flex-end',
     },
+    startDate: moment().format('YYYYMM'),
   };
 
   static propTypes = {
@@ -58,6 +59,7 @@ export default class RangeDatepicker extends Component {
     infoText: PropTypes.string,
     infoStyle: PropTypes.object,
     infoContainerStyle: PropTypes.object,
+    startDate: PropTypes.string,
   };
 
   componentWillReceiveProps(nextProps) {
@@ -73,7 +75,7 @@ export default class RangeDatepicker extends Component {
     let res = [];
     const {maxMonth, initialMonth} = this.props;
     let initMonth = moment();
-    if (initialMonth && initialMonth != '') {
+    if (initialMonth && initialMonth !== '') {
       initMonth = moment(initialMonth, 'YYYYMM');
     }
 
@@ -112,6 +114,7 @@ export default class RangeDatepicker extends Component {
         ignoreMinDate={ignoreMinDate}
         dayProps={{selectedBackgroundColor, selectedTextColor, todayColor}}
         month={month}
+        date={this.props.startDate}
       />
     );
   }
@@ -135,7 +138,7 @@ export default class RangeDatepicker extends Component {
             )}
           </View>
         ) : null}
-        {this.props.infoText != '' && (
+        {this.props.infoText !== '' && (
           <View style={this.props.infoContainerStyle}>
             <Text style={this.props.infoStyle}>{this.props.infoText}</Text>
           </View>

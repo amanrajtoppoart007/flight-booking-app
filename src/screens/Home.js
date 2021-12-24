@@ -14,9 +14,9 @@ import Font from '../layout/Font';
 import Colors from '../layout/Colors';
 import LinearGradient from 'react-native-linear-gradient';
 import {Icon} from 'react-native-elements';
-import ChipSection from '../components/Account/ChipSection';
-import OfferSlider from '../components/Account/OfferSlider';
 import {strings} from '../Localization/LocalizedConstants';
+import OfferSlider from '../components/Home/OfferSlider';
+import PackageModal from '../components/Home/PackageModal';
 import TimaticSvg from '../components/Svg/Timatic.svg';
 import ArrowRightSvg from '../components/Svg/ArrowRight.svg';
 import TimaticFeature from '../components/Home/TimaticFeature';
@@ -24,7 +24,6 @@ import RouteItem from '../components/Home/RouteItem';
 import CustomStatusBar from '../components/CustomStatusBar';
 import StickyMenu from '../components/Home/StickyMenu';
 import Header from '../components/Home/Header';
-import {heightPercentageToDP} from 'react-native-responsive-screen';
 import {useRtlContext} from 'react-native-easy-localization-and-rtl';
 
 if (
@@ -34,6 +33,7 @@ if (
   UIManager.setLayoutAnimationEnabledExperimental(true);
 }
 function Home({navigation}) {
+  const [offerModalVisible, setOfferModalVisible] = useState(false);
   const [popularRoutes] = useState([
     {
       id: 'popular-route-item-one',
@@ -58,56 +58,20 @@ function Home({navigation}) {
   ]);
   const {diffClamp} = Animated;
   const navbarHeight = 70;
-  const headerHeight = heightPercentageToDP('40%');
-
   const ref = useRef(null);
 
   const scrollY = useRef(new Animated.Value(0));
   const navbarScrollYClamped = diffClamp(scrollY.current, 0, navbarHeight);
-
-  const headerScrollYClamped = diffClamp(scrollY.current, 0, headerHeight);
-
-  const chipSectionScrollYClamped = diffClamp(scrollY.current, 0, headerHeight);
-
-  const contentScrollYClamped = diffClamp(scrollY.current, 0, headerHeight);
 
   const navBarTranslateY = navbarScrollYClamped.interpolate({
     inputRange: [0, navbarHeight],
     outputRange: [-navbarHeight, 0],
   });
 
-  const headerTranslateY = headerScrollYClamped.interpolate({
-    inputRange: [0, headerHeight],
-    outputRange: [0, -headerHeight],
-  });
-
-  const chipSectionScaleY = chipSectionScrollYClamped.interpolate({
-    inputRange: [0, headerHeight / 2, headerHeight],
-    outputRange: [0, 0, 1],
-  });
-
-  const contentTranslateY = contentScrollYClamped.interpolate({
-    inputRange: [0, headerHeight],
-    outputRange: [-70, 0],
-  });
-
   const navbarTranslateYNumber = useRef();
-  const headerTranslateYNumber = useRef();
-  const chipSectionTranslateYNumber = useRef();
-  const contentTranslateYNumber = useRef();
 
   navBarTranslateY.addListener(({value}) => {
     navbarTranslateYNumber.current = value;
-  });
-
-  headerTranslateY.addListener(({value}) => {
-    headerTranslateYNumber.current = value;
-  });
-  chipSectionScaleY.addListener(({value}) => {
-    chipSectionTranslateYNumber.current = value;
-  });
-  contentTranslateY.addListener(({value}) => {
-    contentTranslateYNumber.current = value;
   });
 
   const handleScroll = Animated.event(
@@ -144,29 +108,18 @@ function Home({navigation}) {
         showsVerticalScrollIndicator={false}>
         <View style={styles.wrapper}>
           <View style={styles.content}>
-            <Animated.View
-              style={[{transform: [{translateY: headerTranslateY}]}]}>
-              <Header />
-            </Animated.View>
-            <View style={styles.chipSectionWrapper}>
-              <Animated.View
-                style={[
-                  styles.contentSection,
-                  {transform: [{scaleY: chipSectionScaleY}]},
-                ]}>
-                <ChipSection />
-              </Animated.View>
-            </View>
-
-            <Animated.View
-              style={{transform: [{translateY: contentTranslateY}]}}>
+            <Header />
+            <View>
               <View>
-                <OfferSlider />
+                <OfferSlider
+                  setOfferModalVisible={setOfferModalVisible}
+                  offerModalVisible={offerModalVisible}
+                />
               </View>
               <LinearGradient
                 colors={['#FFFFFF', '#E2F2FF', '#FFFFFF', '#F5F7FB']}>
                 <View style={styles.contentSection}>
-                  <View>
+                  <View style={commonStyle.marginTop(20)}>
                     <Text style={[styles.routeTitle, RtlStyles.text]}>
                       {strings.Popular}
                     </Text>
@@ -273,10 +226,14 @@ function Home({navigation}) {
                   </View>
                 </View>
               </LinearGradient>
-            </Animated.View>
+            </View>
           </View>
         </View>
       </Animated.ScrollView>
+      <PackageModal
+        isVisible={offerModalVisible}
+        setIsVisible={setOfferModalVisible}
+      />
     </SafeAreaView>
   );
 }
@@ -298,7 +255,7 @@ const styles = StyleSheet.create({
 
   stickyNavBar: {
     position: 'absolute',
-    backgroundColor: Colors.green,
+    backgroundColor: Colors.white,
     zIndex: 999,
   },
   border: {

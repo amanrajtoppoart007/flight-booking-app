@@ -68,6 +68,12 @@ const SideBar = props => {
       svg: SocialSvg,
       route: 'LccNavigator',
     },
+    {
+      key: 'menu-item-seven',
+      title: 'Flight By Flight',
+      svg: SocialSvg,
+      route: 'FlightByNavigator',
+    },
   ]);
 
   const [currencies] = useState([
@@ -107,7 +113,7 @@ const SideBar = props => {
           <Text style={styles.title}>{item.title}</Text>
         </View>
       </View>
-      <View>
+      <View style={commonStyle.marginHorizontal(8)}>
         <TouchableOpacity onPress={() => navigate(item?.route)}>
           <ArrowRightSvg />
         </TouchableOpacity>
@@ -170,9 +176,11 @@ const SideBar = props => {
           <View>
             <Text style={styles.moreText}>More</Text>
           </View>
-          <TouchableOpacity onPress={() => props.navigation.toggleDrawer()}>
-            <CloseSvg />
-          </TouchableOpacity>
+          <View style={commonStyle.marginHorizontal(8)}>
+            <TouchableOpacity onPress={() => props.navigation.toggleDrawer()}>
+              <CloseSvg />
+            </TouchableOpacity>
+          </View>
         </View>
         <View style={commonStyle.marginVertical(10)}>
           <View style={commonStyle.marginVertical(15)}>
@@ -214,6 +222,7 @@ const styles = StyleSheet.create({
   headerSection: {
     ...commonStyle.rowSpaceBetween,
     ...commonStyle.marginVertical(10),
+    marginTop: 20,
   },
   moreText: {
     fontFamily: Font.AvenirMedium,

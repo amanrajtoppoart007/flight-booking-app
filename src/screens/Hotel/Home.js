@@ -98,7 +98,7 @@ function Home({navigation}) {
                             onPress={() => setIsDateRangeVisible(true)}>
                             <Text style={styles.dateFilterText}>
                               {moment(dateFrom, 'YYYYMMDD').format(
-                                'DD-MM-YYYY',
+                                'ddd, D MMM',
                               )}
                             </Text>
                           </Pressable>
@@ -132,7 +132,7 @@ function Home({navigation}) {
                             onPress={() => setIsDateRangeVisible(true)}>
                             <Text style={styles.dateFilterText}>
                               {moment(dateUpto, 'YYYYMMDD').format(
-                                'DD-MM-YYYY',
+                                'ddd, D MMM',
                               )}
                             </Text>
                           </Pressable>

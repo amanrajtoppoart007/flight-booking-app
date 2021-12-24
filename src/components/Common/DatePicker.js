@@ -9,11 +9,14 @@ import {SingleDatepicker} from '../../lib/Datepicker/index';
 import Colors from '../../layout/Colors';
 import commonStyle from '../../layout/Style';
 import Font from '../../layout/Font';
+import moment from 'moment';
 
-function DatePicker({isDatePickerVisible, setIsDatePickerVisible}) {
+function DatePicker({isDatePickerVisible, setIsDatePickerVisible, getDate}) {
   const currentMonth = new Date().getMonth();
-  function setDate() {
+  function setDate(date) {
     setIsDatePickerVisible(false);
+    date = moment(date).format('YYYYMMDD');
+    getDate(date);
   }
 
   return (
@@ -39,14 +42,17 @@ function DatePicker({isDatePickerVisible, setIsDatePickerVisible}) {
           <View style={styles.card}>
             <SingleDatepicker
               initialMonth={currentMonth}
+              dayHeadings={['S', 'M', 'T', 'W', 'T', 'F', 'S']}
               showSelectionInfo={false}
+              maxMonth={12}
+              showClose={true}
               minDate={''}
               maxDate={''}
               onClose={() => {
-                setIsDatePickerVisible(false);
+                setIsDatePickerVisible(!isDatePickerVisible);
               }}
-              onSelect={() => {
-                setDate();
+              onSelect={date => {
+                setDate(date);
               }}
               buttonColor={'#F15922'}
               showButton={true}

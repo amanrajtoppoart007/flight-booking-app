@@ -19,7 +19,7 @@ function Accordion({title, SvgIcon, visible, Content}) {
             <Text style={styles.title}>{title}</Text>
           </View>
         </View>
-        <View>
+        <View style={commonStyle.marginHorizontal(8)}>
           <TouchableOpacity onPress={() => setExpanded(!expanded)}>
             {expanded ? <ArrowUpSvg /> : <ArrowDownSvg />}
           </TouchableOpacity>

@@ -6,7 +6,6 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Pressable,
 } from 'react-native';
 import commonStyle from '../../../layout/Style';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
@@ -21,49 +20,8 @@ import Colors from '../../../layout/Colors';
 import BookingDetailCard from '../../../components/Flight/Booking/BookingDetailCard';
 import Accordion from '../../../components/Flight/Booking/Accordion';
 import FairDetail from '../../../components/Flight/Booking/FareDetail';
-import CallSvg from '../../../components/Svg/Call.svg';
-import CallBackSvg from '../../../components/Svg/CallBack.svg';
-import EmailSvg from '../../../components/Svg/Email.svg';
 import SendRequestModal from '../../../components/Flight/Booking/SendRequestModal';
-
-function AssistanceCard({isVisible, setIsSendRequestVisible}) {
-  return (
-    <>
-      {isVisible && (
-        <View style={cardStyle.card}>
-          <View
-            style={[commonStyle.rowFlexStart, commonStyle.marginVertical(8)]}>
-            <View>
-              <CallSvg />
-            </View>
-            <View style={commonStyle.marginHorizontal(8)}>
-              <Text>Call</Text>
-            </View>
-          </View>
-          <Pressable
-            onPress={() => setIsSendRequestVisible(true)}
-            style={[commonStyle.rowFlexStart, commonStyle.marginVertical(8)]}>
-            <View>
-              <EmailSvg />
-            </View>
-            <View style={commonStyle.marginHorizontal(8)}>
-              <Text>Send a request</Text>
-            </View>
-          </Pressable>
-          <View
-            style={[commonStyle.rowFlexStart, commonStyle.marginVertical(8)]}>
-            <View>
-              <CallBackSvg />
-            </View>
-            <View style={commonStyle.marginHorizontal(8)}>
-              <Text>Request call back</Text>
-            </View>
-          </View>
-        </View>
-      )}
-    </>
-  );
-}
+import AssistanceCard from '../../../components/Common/AssistanceCard';
 
 function BookingStatus() {
   const [isAssistanceEnabled, setIsAssistanceEnabled] = useState(false);
@@ -102,7 +60,6 @@ function BookingStatus() {
                       <AssistanceCard
                         isVisible={isAssistanceEnabled}
                         setIsVisible={setIsAssistanceEnabled}
-                        setIsSendRequestVisible={setIsSendRequestVisible}
                       />
                     </View>
                   </View>
@@ -276,7 +233,6 @@ const styles = StyleSheet.create({
     height: 40,
     paddingHorizontal: 15,
   },
-  cardBody: {},
   headTitle: {
     fontFamily: Font.AvenirMedium,
     fontSize: 15,
@@ -288,20 +244,6 @@ const styles = StyleSheet.create({
     borderColor: Colors.lightText,
     alignSelf: 'center',
     marginVertical: 18,
-  },
-});
-
-const cardStyle = StyleSheet.create({
-  card: {
-    position: 'absolute',
-    zIndex: 1,
-    width: 165,
-    height: 120,
-    backgroundColor: Colors.white,
-    borderRadius: 8,
-    right: -10,
-    top: 5,
-    padding: 10,
   },
 });
 

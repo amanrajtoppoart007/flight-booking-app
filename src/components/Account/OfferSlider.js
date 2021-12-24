@@ -1,13 +1,11 @@
 import React from 'react';
-import {FlatList, StyleSheet, View} from 'react-native';
+import {FlatList, StyleSheet, View, TouchableOpacity} from 'react-native';
 import Colors from '../../layout/Colors';
-
 import HotelImageOne from '../Svg/Slider/HotelImageOne.svg';
 import HotelImageTwo from '../Svg/Slider/HotelImageTwo.svg';
-import commonStyle from '../../layout/Style';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
-function OfferSlider() {
+function OfferSlider({onPress}) {
   const brands = [
     {
       id: 'offer-slider-item-one',
@@ -28,17 +26,15 @@ function OfferSlider() {
   ];
 
   const renderItem = ({item}) => (
-    <View>
-      <View style={styles.card}>
-        <item.SvgImg style={styles.image} resizeMode={'cover'} />
-      </View>
-    </View>
+    <TouchableOpacity onPress={onPress} style={styles.card}>
+      <item.SvgImg style={styles.image} resizeMode={'cover'} />
+    </TouchableOpacity>
   );
 
   return (
     <>
       {brands && (
-        <View style={commonStyle.marginVertical(10)}>
+        <View>
           <FlatList
             style={styles.sliderContainer}
             showsHorizontalScrollIndicator={false}
@@ -56,15 +52,19 @@ function OfferSlider() {
 
 const styles = StyleSheet.create({
   sliderContainer: {
-    width: wp('90%'),
+    width: wp('91%'),
     alignSelf: 'center',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: '#dcdbdb',
+    paddingTop: 10,
+    paddingBottom: 20,
   },
   card: {
     width: 160,
     height: 160,
     borderRadius: 8,
     marginHorizontal: 5,
-    backgroundColor: Colors.transparent,
+    backgroundColor: Colors.white,
   },
   image: {
     width: 160,

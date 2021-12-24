@@ -8,49 +8,46 @@ import ChipSection from './ChipSection';
 import Font from '../../layout/Font';
 import {useNavigation} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
-import {heightPercentageToDP} from 'react-native-responsive-screen';
 
 const Header = () => {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.header}>
-      <View>
-        <LinearGradient colors={['#FFFFFF', '#FFFFFF', '#E2F2FF']}>
-          <View style={styles.navbarSection}>
-            <View>
-              <LogoSvg style={styles.logo} resizeMode={'contain'} />
-            </View>
-            <View>
-              <TouchableOpacity
-                onPress={() => {
-                  navigation?.toggleDrawer();
-                }}
-                style={styles.drawerToggleButton}>
-                <DrawerSvg />
-              </TouchableOpacity>
-            </View>
+    <View>
+      <LinearGradient colors={['#FFFFFF', '#FFFFFF', '#E2F2FF']}>
+        <View style={styles.navbarSection}>
+          <View>
+            <LogoSvg style={styles.logo} resizeMode={'contain'} />
           </View>
-          <View style={styles.menuHeader}>
-            <View style={commonStyle.marginVertical(8)}>
-              <Text style={styles.title}>Welcome Faiyaz !</Text>
-            </View>
-            <View style={commonStyle.marginVertical(8)}>
-              <Menu />
-            </View>
+          <View>
+            <TouchableOpacity
+              onPress={() => {
+                navigation?.toggleDrawer();
+              }}
+              style={styles.drawerToggleButton}>
+              <DrawerSvg />
+            </TouchableOpacity>
           </View>
-          <View style={styles.contentSection}>
-            <ChipSection />
+        </View>
+        <View style={styles.menuHeader}>
+          <View style={commonStyle.marginVertical(8)}>
+            <Text style={styles.title}>Welcome Faiyaz !</Text>
           </View>
-        </LinearGradient>
-      </View>
+          <View style={commonStyle.marginVertical(8)}>
+            <Menu />
+          </View>
+        </View>
+        <View style={styles.contentSection}>
+          <ChipSection />
+        </View>
+      </LinearGradient>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   header: {
-    height: heightPercentageToDP('50%'),
+    backgroundColor: 'pink',
   },
   contentSection: {
     marginHorizontal: 20,

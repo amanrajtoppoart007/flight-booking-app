@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -15,8 +15,51 @@ import LinearGradient from 'react-native-linear-gradient';
 import CustomStatusBar from '../../components/CustomStatusBar';
 import {Icon, Input} from 'react-native-elements';
 import Info from '../../components/Svg/Info.svg';
+import AppToast from '../../layout/AppToast';
+import axios from 'axios';
+import {CHANGE_PASSWORD} from '../../redux/api';
 
 function PasswordReset({navigation}) {
+  const [password, setPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmNewPassword, setConfirmNewPassword] = useState('');
+
+  const submit = async () => {
+    if (password === '') {
+      AppToast.topToast('Please enter your current password');
+      return false;
+    }
+    if (newPassword === '') {
+      AppToast.topToast('Please enter your new password');
+      return false;
+    }
+    if (confirmNewPassword === '') {
+      AppToast.topToast('Please confirm your new password');
+      return false;
+    }
+
+    const params = {
+      pwd: password,
+      newpwd: newPassword,
+      confirmPwd: confirmNewPassword,
+    };
+    try {
+      const response = await axios.post(CHANGE_PASSWORD, params);
+      if (response.status === 200) {
+        const result = response?.data;
+        if (result?.suc) {
+          AppToast.topToast('Updated Successfully');
+        } else {
+          Alert.alert(result?.err);
+        }
+      } else {
+        console.error(response?.message);
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   return (
     <SafeAreaView style={commonStyle.container}>
       <CustomStatusBar backgroundColor={Colors.primary} />
@@ -64,6 +107,8 @@ function PasswordReset({navigation}) {
                       placeholder={'Current Password'}
                       inputContainerStyle={styles.inputContainerStyle}
                       inputStyle={styles.inputTextStyle}
+                      value={password}
+                      onChangeText={t => setPassword(t)}
                     />
                   </View>
                   <View style={commonStyle.marginVertical(5)}>
@@ -71,6 +116,8 @@ function PasswordReset({navigation}) {
                       placeholder={'New Password'}
                       inputContainerStyle={styles.inputContainerStyle}
                       inputStyle={styles.inputTextStyle}
+                      value={newPassword}
+                      onChangeText={t => setNewPassword(t)}
                     />
                   </View>
                   <View style={commonStyle.marginVertical(5)}>
@@ -78,6 +125,8 @@ function PasswordReset({navigation}) {
                       placeholder={'Confirm Password'}
                       inputContainerStyle={styles.inputContainerStyle}
                       inputStyle={styles.inputTextStyle}
+                      value={confirmNewPassword}
+                      onChangeText={t => setConfirmNewPassword(t)}
                     />
                   </View>
                 </View>
@@ -89,7 +138,7 @@ function PasswordReset({navigation}) {
                 commonStyle.marginVertical(20),
                 commonStyle.backgroundColor('transparent'),
               ]}>
-              <TouchableOpacity style={styles.button}>
+              <TouchableOpacity onPress={submit} style={styles.button}>
                 <Text style={styles.buttonText}>Change Password</Text>
               </TouchableOpacity>
             </View>

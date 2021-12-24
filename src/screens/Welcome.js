@@ -16,10 +16,18 @@ import Font from '../layout/Font';
 import Colors from '../layout/Colors';
 import commonStyle from '../layout/Style';
 import CustomStatusBar from '../components/CustomStatusBar';
+import {setAppIntro} from '../reducers/Intro.slice';
+import {useDispatch} from 'react-redux';
 
-function Welcome({navigation}) {
+function Welcome() {
+  const dispatch = useDispatch();
   const slider = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const onDone = () => {
+    dispatch(setAppIntro(true));
+  };
+
   const slides = [
     {
       key: 'welcome-screen-slider-item-one',
@@ -93,9 +101,7 @@ function Welcome({navigation}) {
 
   const RenderDoneButton = () => {
     return (
-      <TouchableOpacity
-        onPress={() => navigation.navigate('AppNavigator')}
-        style={styles.controlButton}>
+      <TouchableOpacity onPress={() => onDone()} style={styles.controlButton}>
         <Text style={styles.controlButtonText}>Done</Text>
       </TouchableOpacity>
     );

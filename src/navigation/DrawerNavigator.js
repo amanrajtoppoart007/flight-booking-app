@@ -12,12 +12,11 @@ import FareRules from '../screens/Flight/FareRules';
 import Search from '../screens/Flight/Search';
 import FlightResult from '../screens/Flight/FlightResults';
 import AppNavigator from './AppNavigator';
-
-import Welcome from '../screens/Welcome';
 import Privacy from '../screens/Privacy';
 import About from '../screens/About';
 import Contact from '../screens/Contact';
 import LccNavigator from './LccNavigator';
+import FlightByNavigator from './FlightByNavigator';
 
 const Drawer = createDrawerNavigator();
 
@@ -27,11 +26,6 @@ const DrawerNavigator = () => {
       screenOptions={{headerShown: false}}
       drawerContent={props => <SideBar {...props} />}
       drawerPosition="right">
-      <Drawer.Screen
-        options={{drawerPosition: 'right'}}
-        name={'Welcome'}
-        component={Welcome}
-      />
       <Drawer.Screen
         options={{drawerPosition: 'right'}}
         name={'AppNavigator'}
@@ -103,6 +97,11 @@ const DrawerNavigator = () => {
         options={{drawerPosition: 'right'}}
         name={'LccNavigator'}
         component={LccNavigator}
+      />
+      <Drawer.Screen
+        options={{drawerPosition: 'right'}}
+        name={'FlightByNavigator'}
+        component={FlightByNavigator}
       />
     </Drawer.Navigator>
   );

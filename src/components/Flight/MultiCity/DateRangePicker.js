@@ -15,6 +15,7 @@ function DateRangePicker({
   setIsDateRangeVisible,
   editDate,
   index,
+  dates,
 }) {
   function setDate(startDate) {
     const dateFromTimeStamp = moment(startDate).format('YYYYMMDD');
@@ -31,7 +32,7 @@ function DateRangePicker({
           <View style={styles.cardHeader}>
             <View>
               <Icon
-                onPress={() => setIsDateRangeVisible(false)}
+                onPress={() => setIsDateRangeVisible(-1)}
                 name={'close'}
                 type={'font-awesome'}
                 size={18}
@@ -50,6 +51,7 @@ function DateRangePicker({
               todayColor={'#F15922'}
               infoText={''}
               infoStyle={styles.infoStyle}
+              startDate={dates[index]}
             />
           </View>
         </View>
