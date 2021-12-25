@@ -150,7 +150,7 @@ export default function Home({navigation}) {
                   </View>
                   <View style={[commonStyle.marginHorizontal(10)]}>
                     <Text style={[styles.title, RtlStyles.text]}>
-                      {strings.SearchFlights}
+                      {strings.searchFlights}
                     </Text>
                   </View>
                 </View>
@@ -161,21 +161,21 @@ export default function Home({navigation}) {
                       onPress={() => setFlightType('round-trip')}
                       style={styles.topBarElements(flightType, 'round-trip')}>
                       <Text style={styles.topBarText(flightType, 'round-trip')}>
-                        {strings.RoundTrip}
+                        {strings.roundTrip}
                       </Text>
                     </Pressable>
                     <Pressable
                       onPress={() => setFlightType('one-way')}
                       style={styles.topBarElements(flightType, 'one-way')}>
                       <Text style={styles.topBarText(flightType, 'one-way')}>
-                        {strings.OneWay}
+                        {strings.oneWay}
                       </Text>
                     </Pressable>
                     <Pressable
                       onPress={() => setFlightType('multi-city')}
                       style={styles.topBarElements(flightType, 'multi-city')}>
                       <Text style={styles.topBarText(flightType, 'multi-city')}>
-                        {strings.MultiCity}
+                        {strings.multiCity}
                       </Text>
                     </Pressable>
                   </View>
@@ -240,7 +240,7 @@ export default function Home({navigation}) {
                     styles.searchButtonText,
                     commonStyle.marginHorizontal(5),
                   ]}>
-                  {strings.SearchFlights}
+                  {strings.searchFlights}
                 </Text>
               </Pressable>
             </View>
@@ -248,7 +248,7 @@ export default function Home({navigation}) {
             <View style={commonStyle.paddingHorizontal(20)}>
               <View style={commonStyle.marginVertical(15)}>
                 <Text style={styles.recentSearchTitle}>
-                  {strings.RecentlySearched}
+                  {strings.recentlySearched}
                 </Text>
               </View>
               <View>

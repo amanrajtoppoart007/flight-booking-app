@@ -33,7 +33,7 @@ export default function RoundTripCard({
           <View style={[styles.underlineRight, RtlStyles.containerColumn]}>
             <View style={commonStyle.marginBottom(6)}>
               <Text style={[styles.helperText, styles.alignText]}>
-                {strings.From}
+                {strings.from}
               </Text>
             </View>
             <View style={commonStyle.marginBottom(6)}>
@@ -55,7 +55,7 @@ export default function RoundTripCard({
           <View
             style={[styles.underlineLeft, RtlStyles.containerColumnInverse]}>
             <View style={commonStyle.marginBottom(6)}>
-              <Text style={styles.helperText}>{strings.To}</Text>
+              <Text style={styles.helperText}>{strings.to}</Text>
             </View>
             <View style={commonStyle.marginBottom(6)}>
               <Pressable onPress={() => setIsLocationSelectorVisible(true)}>
@@ -73,7 +73,7 @@ export default function RoundTripCard({
           <View style={[styles.underlineRight, RtlStyles.containerColumn]}>
             <View style={commonStyle.marginBottom(8)}>
               <Text style={[styles.helperText, styles.alignText]}>
-                {strings.Departure}
+                {strings.departure}
               </Text>
             </View>
             <View style={commonStyle.marginBottom(8)}>
@@ -87,7 +87,7 @@ export default function RoundTripCard({
           <View
             style={[styles.underlineLeft, RtlStyles.containerColumnInverse]}>
             <View style={commonStyle.marginBottom(8)}>
-              <Text style={styles.helperText}>{strings.Return}</Text>
+              <Text style={styles.helperText}>{strings.return}</Text>
             </View>
             <View style={commonStyle.marginBottom(8)}>
               <Pressable onPress={() => setIsDateRangeVisible(true)}>
@@ -101,22 +101,22 @@ export default function RoundTripCard({
       </View>
       <View style={styles.subSection}>
         <View style={commonStyle.marginBottom(8)}>
-          <Text style={styles.helperText}>{strings.TravellersClass}</Text>
+          <Text style={styles.helperText}>{strings.travellersClass}</Text>
         </View>
         <View style={commonStyle.marginBottom(15)}>
           <TouchableOpacity onPress={() => setGuestEntryModal(true)}>
             <Text style={styles.roomFilterText}>
               {(Travellers?.adult > 0
-                ? `${Travellers?.adult} ${strings.Adult}`
+                ? `${Travellers?.adult} ${strings.adult}`
                 : '') +
                 (Travellers?.child > 0
                   ? `${Travellers?.adult > 0 ? ', ' : ''}` +
-                    `${Travellers?.child} ${strings.Children}`
+                    `${Travellers?.child} ${strings.children}`
                   : '') +
                 (Travellers?.infant > 0
                   ? `${
                       Travellers?.child > 0 || Travellers?.adult > 0 ? ', ' : ''
-                    }` + `${Travellers?.infant} ${strings.Infant}`
+                    }` + `${Travellers?.infant} ${strings.infant}`
                   : '') +
                 `, ${Travellers.class}`}
             </Text>

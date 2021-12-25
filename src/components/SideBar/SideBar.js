@@ -186,7 +186,7 @@ const SideBar = props => {
           <View style={commonStyle.marginVertical(15)}>
             <Accordion
               SvgIcon={LanguageSvg}
-              title={strings.Languages}
+              title={strings.languages}
               visible={false}
               Content={<LanguageSection />}
             />

@@ -35,7 +35,7 @@ const Header = () => {
         <View style={styles.menuHeader}>
           <View style={commonStyle.marginVertical(8)}>
             <Text style={[styles.title, RtlStyles.text]}>
-              {strings.WelcomeFaiyaz}
+              {strings.welcomeFaiyaz}
             </Text>
           </View>
           <View style={commonStyle.marginVertical(8)}>

@@ -120,10 +120,10 @@ function Home({navigation}) {
                 <View style={styles.contentSection}>
                   <View style={commonStyle.marginTop(20)}>
                     <Text style={[styles.routeTitle, RtlStyles.text]}>
-                      {strings.Popular}
+                      {strings.popular}
                     </Text>
                     <Text style={[styles.routeTitle, RtlStyles.text]}>
-                      {strings.Routes}
+                      {strings.routes}
                     </Text>
                   </View>
                   <View style={styles.routeWrapper}>
@@ -139,7 +139,7 @@ function Home({navigation}) {
                       <View style={[commonStyle.rowSpaceBetween]}>
                         <View>
                           <Text style={[styles.cardTitle, RtlStyles.text]}>
-                            {strings.TrackYourFlight}
+                            {strings.trackYourFlight}
                           </Text>
                         </View>
                         <View>
@@ -192,23 +192,23 @@ function Home({navigation}) {
                       </View>
                       <View style={commonStyle.marginVertical(5)}>
                         <Text style={styles.timaticSectionHelperText}>
-                          {strings.Timatic}
+                          {strings.timatic}
                         </Text>
                       </View>
                       <View style={styles.timaticFeatures}>
                         <View style={styles.timaticFeatureSection}>
                           <View>
-                            <TimaticFeature title={strings.Nationality} />
+                            <TimaticFeature title={strings.nationality} />
                             <View style={commonStyle.marginVertical(7.5)} />
-                            <TimaticFeature title={strings.Destination} />
+                            <TimaticFeature title={strings.destination} />
                           </View>
                           <View>
-                            <TimaticFeature title={strings.Passport} />
+                            <TimaticFeature title={strings.passport} />
                             <View style={commonStyle.marginVertical(7.5)} />
-                            <TimaticFeature title={strings.TransitPoints} />
+                            <TimaticFeature title={strings.transitPoints} />
                           </View>
                           <View>
-                            <TimaticFeature title={strings.Visas} />
+                            <TimaticFeature title={strings.visas} />
                           </View>
                           <View style={commonStyle.justifyContent('flex-end')}>
                             <TouchableOpacity

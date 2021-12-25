@@ -21,7 +21,7 @@ function Menu() {
             <PlaneSvg style={styles.menuIcon} />
           </View>
           <View style={commonStyle.marginVertical(10)}>
-            <Text style={styles.title}>{strings.Flight}</Text>
+            <Text style={styles.title}>{strings.flight}</Text>
           </View>
         </Pressable>
       </View>
@@ -33,7 +33,7 @@ function Menu() {
             <HotelSvg style={styles.menuIcon} />
           </View>
           <View style={commonStyle.marginVertical(10)}>
-            <Text style={styles.title}>{strings.Hotels}</Text>
+            <Text style={styles.title}>{strings.hotels}</Text>
           </View>
         </Pressable>
       </View>
@@ -43,7 +43,7 @@ function Menu() {
             <AssistanceSvg style={styles.menuIcon} />
           </View>
           <View style={commonStyle.marginVertical(10)}>
-            <Text style={styles.title}>{strings.Assistance}</Text>
+            <Text style={styles.title}>{strings.assistance}</Text>
           </View>
         </Pressable>
       </View>

@@ -14,9 +14,13 @@ import {
 } from 'react-native-responsive-screen';
 import Font from '../../layout/Font';
 import commonStyle from '../../layout/Style';
+import {strings} from '../../Localization/LocalizedConstants';
+import {useRtlContext} from 'react-native-easy-localization-and-rtl';
 const Button = ({count, setCount}) => {
+  const {RtlStyles} = useRtlContext();
+
   return (
-    <View style={styles.card}>
+    <View style={[styles.card, RtlStyles.containerRow]}>
       <View>
         <Icon
           onPress={() => (count <= 0 ? null : setCount(count - 1))}
@@ -43,11 +47,18 @@ const Button = ({count, setCount}) => {
 };
 
 function Item({title, subtitle, count, setCount}) {
+  const {RtlStyles} = useRtlContext();
+
   return (
-    <View style={[commonStyle.rowSpaceBetween, commonStyle.marginVertical(10)]}>
+    <View
+      style={[
+        commonStyle.rowSpaceBetween,
+        commonStyle.marginVertical(10),
+        RtlStyles.containerRow,
+      ]}>
       <View>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.subTitle}>{subtitle}</Text>
+        <Text style={[styles.title, RtlStyles.text]}>{title}</Text>
+        <Text style={[styles.subTitle, RtlStyles.text]}>{subtitle}</Text>
       </View>
       <Button count={count} setCount={setCount} />
     </View>
@@ -55,19 +66,21 @@ function Item({title, subtitle, count, setCount}) {
 }
 
 function TravellerAndClass({Visible, setVisible, data, setData}) {
-  const [Class, setClass] = useState('Economy');
+  const [Class, setClass] = useState(strings.economy);
   const [child, setChild] = useState(data?.child);
   const [adult, setAdult] = useState(data?.adult);
   const [infant, setInfant] = useState(data?.infant);
-  console.log(data.class);
+  const {RtlStyles} = useRtlContext();
 
   return (
     <BottomSheet isVisible={Visible}>
       <View style={styles.bottomSheet}>
         <View style={[commonStyle.flex(1), commonStyle.marginTop(5)]}>
-          <View style={commonStyle.rowSpaceBetween}>
+          <View style={[commonStyle.rowSpaceBetween, RtlStyles.containerRow]}>
             <View>
-              <Text style={styles.title}>Select Travellers & Class</Text>
+              <Text style={[styles.title, RtlStyles.text]}>
+                {strings.select} {strings.travellersClass}
+              </Text>
             </View>
             <View>
               <Icon
@@ -81,19 +94,19 @@ function TravellerAndClass({Visible, setVisible, data, setData}) {
           </View>
           <View style={[commonStyle.flex(1), commonStyle.marginTop(30)]}>
             <Item
-              title="Adults"
+              title={strings.adult}
               subtitle="12 yrs & above"
               count={adult}
               setCount={setAdult}
             />
             <Item
-              title="Children"
+              title={strings.children}
               subtitle="2-12 yrs"
               count={child}
               setCount={setChild}
             />
             <Item
-              title="Infant"
+              title={strings.infant}
               subtitle="Below 2 yrs"
               count={infant}
               setCount={setInfant}
@@ -104,29 +117,30 @@ function TravellerAndClass({Visible, setVisible, data, setData}) {
                   styles.title,
                   commonStyle.marginTop(30),
                   commonStyle.marginBottom(20),
+                  RtlStyles.text,
                 ]}>
-                Select Cabin Class
+                {strings.select} {strings.cabinClass}
               </Text>
-              <View style={commonStyle.rowFlexStart}>
+              <View style={[commonStyle.rowFlexStart, RtlStyles.containerRow]}>
                 <Pressable
-                  onPress={() => setClass('Economy')}
-                  style={styles.selectContainer(Class === 'Economy')}>
-                  <Text style={styles.selectText(Class === 'Economy')}>
-                    Economy
+                  onPress={() => setClass(strings.economy)}
+                  style={styles.selectContainer(Class === strings.economy)}>
+                  <Text style={styles.selectText(Class === strings.economy)}>
+                    {strings.economy}
                   </Text>
                 </Pressable>
                 <Pressable
-                  onPress={() => setClass('Business')}
-                  style={styles.selectContainer(Class === 'Business')}>
-                  <Text style={styles.selectText(Class === 'Business')}>
-                    Business
+                  onPress={() => setClass(strings.business)}
+                  style={styles.selectContainer(Class === strings.business)}>
+                  <Text style={styles.selectText(Class === strings.business)}>
+                    {strings.business}
                   </Text>
                 </Pressable>
                 <Pressable
-                  onPress={() => setClass('First Class')}
-                  style={styles.selectContainer(Class === 'First Class')}>
-                  <Text style={styles.selectText(Class === 'First Class')}>
-                    First Class
+                  onPress={() => setClass(strings.firstClass)}
+                  style={styles.selectContainer(Class === strings.firstClass)}>
+                  <Text style={styles.selectText(Class === strings.firstClass)}>
+                    {strings.firstClass}
                   </Text>
                 </Pressable>
               </View>
@@ -146,7 +160,7 @@ function TravellerAndClass({Visible, setVisible, data, setData}) {
               setVisible(false);
             }}
             style={styles.button}>
-            <Text style={styles.buttonText}>Done</Text>
+            <Text style={styles.buttonText}>{strings.done}</Text>
           </TouchableOpacity>
         </View>
       </View>
