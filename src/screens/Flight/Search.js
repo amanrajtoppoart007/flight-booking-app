@@ -12,6 +12,8 @@ import CustomStatusBar from '../../components/CustomStatusBar';
 import {Icon} from 'react-native-elements';
 import {useNavigation} from '@react-navigation/native';
 import Font from '../../layout/Font';
+import {strings} from '../../Localization/LocalizedConstants';
+import {useRtlContext} from 'react-native-easy-localization-and-rtl';
 
 function Search() {
   const navigation = useNavigation();
@@ -100,19 +102,22 @@ function Search() {
     setSearchText(t);
     setData(d);
   }
+  const {RtlStyles, language} = useRtlContext();
 
   return (
     <SafeAreaView style={styles.container}>
       <CustomStatusBar />
       <View style={styles.TopContainer}>
-        <View style={styles.inputContainer}>
-          <Icon
-            onPress={() => navigation.goBack()}
-            name={'arrowleft'}
-            type={'antdesign'}
-            size={20}
-            color={'black'}
-          />
+        <View style={[styles.inputContainer, RtlStyles.containerRow]}>
+          <View style={RtlStyles.flipHorizontal}>
+            <Icon
+              onPress={() => navigation.goBack()}
+              name={'arrowleft'}
+              type={'antdesign'}
+              size={20}
+              color={'black'}
+            />
+          </View>
           <Icon
             style={styles.marginH}
             name={'flight-takeoff'}
@@ -128,7 +133,7 @@ function Search() {
             placeholderTextColor="gray"
           />
         </View>
-        <View style={styles.inputContainer}>
+        <View style={[styles.inputContainer, RtlStyles.containerRow]}>
           <Icon
             name={'flight-land'}
             type={'material'}
@@ -148,21 +153,22 @@ function Search() {
         ListHeaderComponent={
           !(searchText.length > 0) && (
             <View style={styles.TopOriginContainer}>
-              <Text style={styles.headerText}>Top Origins</Text>
+              <Text style={styles.headerText}>{strings.topOrigins}</Text>
             </View>
           )
         }
         renderItem={({item}) => {
           return (
             <View>
-              <View style={styles.itemContainer}>
+              <View style={[styles.itemContainer, RtlStyles.containerRow]}>
                 <Icon
                   name={'flight-takeoff'}
                   type={'material'}
                   size={20}
                   color={'gray'}
                 />
-                <View style={styles.itemTextContainer}>
+                <View
+                  style={[styles.itemTextContainer, RtlStyles.containerColumn]}>
                   <Text style={styles.itemText}>{item.name}</Text>
                   <Text style={styles.itemSmallText}>{item.address}</Text>
                 </View>

@@ -11,6 +11,7 @@ import {Icon} from 'react-native-elements';
 import commonStyle from '../../../layout/Style';
 import Font from '../../../layout/Font';
 import moment from 'moment';
+import {strings} from '../../../Localization/LocalizedConstants';
 
 export default function MultiCity({
   setIsLocationSelectorVisible,
@@ -33,7 +34,7 @@ export default function MultiCity({
               style={[styles.dataContainer(index === Location.length - 1)]}>
               <View style={styles.fromContainer}>
                 <View style={commonStyle.marginBottom(7)}>
-                  <Text style={styles.helperText}>From</Text>
+                  <Text style={styles.helperText}>{strings.from}</Text>
                 </View>
                 <View style={commonStyle.marginBottom(7)}>
                   <Pressable onPress={() => setIsLocationSelectorVisible(true)}>
@@ -55,7 +56,7 @@ export default function MultiCity({
               />
               <View style={styles.toContainer}>
                 <View style={commonStyle.marginBottom(7)}>
-                  <Text style={styles.helperText}>To</Text>
+                  <Text style={styles.helperText}>{strings.to}</Text>
                 </View>
                 <View style={commonStyle.marginBottom(7)}>
                   <Pressable onPress={() => setIsLocationSelectorVisible(true)}>
@@ -82,7 +83,7 @@ export default function MultiCity({
                   </View>
                 ) : null}
                 <View style={commonStyle.marginBottom(10)}>
-                  <Text style={styles.Departure}>Departure</Text>
+                  <Text style={styles.Departure}>{strings.departure}</Text>
                 </View>
                 <View>
                   <TouchableOpacity
@@ -100,33 +101,35 @@ export default function MultiCity({
         </View>
         <Pressable
           onPress={() => handleAddFlight()}
-          style={styles.addFlightContainer}>
+          style={[styles.addFlightContainer]}>
           <Icon
             name={'plus'}
             type={'antdesign'}
             size={20}
             color={Colors.secondary}
           />
-          <Text style={styles.addFlightText}>Add Flight</Text>
+          <Text style={styles.addFlightText}>{strings.addFlight}</Text>
         </Pressable>
         <View style={styles.bottomContainer}>
           <View style={commonStyle.marginBottom(8)}>
-            <Text style={styles.helperText}>Travellers & Class</Text>
+            <Text style={styles.helperText}>{strings.travellersClass}</Text>
           </View>
           <View style={commonStyle.marginBottom(8)}>
             <Pressable onPress={() => setGuestEntryModal(true)}>
               <Text style={styles.roomFilterText}>
-                {(Travellers?.adult > 0 ? `${Travellers?.adult} Adult` : '') +
+                {(Travellers?.adult > 0
+                  ? `${Travellers?.adult} ${strings.adult}`
+                  : '') +
                   (Travellers?.child > 0
                     ? `${Travellers?.adult > 0 ? ', ' : ''}` +
-                      `${Travellers?.child} Children`
+                      `${Travellers?.child} ${strings.children}`
                     : '') +
                   (Travellers?.infant > 0
                     ? `${
                         Travellers?.child > 0 || Travellers?.adult > 0
                           ? ', '
                           : ''
-                      }` + `${Travellers?.infant} Infant`
+                      }` + `${Travellers?.infant} ${strings.infant}`
                     : '') +
                   `, ${Travellers.class}`}
               </Text>

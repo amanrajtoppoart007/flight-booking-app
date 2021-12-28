@@ -40,6 +40,9 @@ const strings = LocalizationString({
     select: 'Select',
     cabinClass: 'Cabin Class',
     done: 'Done',
+    addFlight: 'Add Flight',
+    addReturn: 'Add Return?',
+    topOrigins: 'Top Origins',
   },
   ar: {
     languages: 'اللغات',
@@ -79,6 +82,9 @@ const strings = LocalizationString({
     select: 'يختار',
     cabinClass: 'فئة المقصورة',
     done: 'فعله',
+    addFlight: 'أضف رحلة',
+    addReturn: 'إضافة العودة؟',
+    topOrigins: 'أعلى الأصول',
   },
 });
 

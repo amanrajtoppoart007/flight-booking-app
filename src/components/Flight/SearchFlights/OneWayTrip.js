@@ -6,6 +6,8 @@ import {Icon} from 'react-native-elements';
 import commonStyle from '../../../layout/Style';
 import Font from '../../../layout/Font';
 import moment from 'moment';
+import {strings} from '../../../Localization/LocalizedConstants';
+import {useRtlContext} from 'react-native-easy-localization-and-rtl';
 
 export default function OneWayTrip({
   setIsLocationSelectorVisible,
@@ -17,13 +19,17 @@ export default function OneWayTrip({
   Travellers,
   date,
 }) {
+  const {RtlStyles, language} = useRtlContext();
+
   return (
     <View style={styles.card}>
       <View style={styles.subSection}>
-        <View style={commonStyle.rowCenter}>
+        <View style={[commonStyle.rowCenter]}>
           <View style={[styles.underlineRight]}>
             <View style={commonStyle.marginBottom(6)}>
-              <Text style={styles.helperText}>From</Text>
+              <Text style={[styles.helperText, styles.alignText]}>
+                {strings.from}
+              </Text>
             </View>
             <View style={commonStyle.marginBottom(6)}>
               <Pressable onPress={() => setIsLocationSelectorVisible(true)}>
@@ -43,7 +49,7 @@ export default function OneWayTrip({
           />
           <View style={[styles.underlineLeft]}>
             <View style={commonStyle.marginBottom(6)}>
-              <Text style={styles.helperText}>To</Text>
+              <Text style={styles.helperText}>{strings.to}</Text>
             </View>
             <View style={commonStyle.marginBottom(6)}>
               <Pressable onPress={() => setIsLocationSelectorVisible(true)}>
@@ -58,9 +64,11 @@ export default function OneWayTrip({
       </View>
       <View style={styles.subSection}>
         <View style={commonStyle.rowSpaceBetween}>
-          <View style={styles.underlineRight}>
+          <View style={[styles.underlineRight]}>
             <View style={commonStyle.marginBottom(8)}>
-              <Text style={styles.helperText}>Departure</Text>
+              <Text style={[styles.helperText, styles.alignText]}>
+                {strings.departure}
+              </Text>
             </View>
             <View style={commonStyle.marginBottom(8)}>
               <Pressable onPress={() => setIsDateRangeVisible(true)}>
@@ -72,7 +80,7 @@ export default function OneWayTrip({
           </View>
           <View style={[styles.underlineLeft]}>
             <View style={commonStyle.marginBottom(8)}>
-              <Text style={styles.helperText}>Add Return?</Text>
+              <Text style={styles.helperText}>{strings.addReturn}</Text>
             </View>
             <View style={commonStyle.marginBottom(8)}>
               <Pressable
@@ -93,20 +101,22 @@ export default function OneWayTrip({
       </View>
       <View style={styles.subSection}>
         <View style={commonStyle.marginBottom(8)}>
-          <Text style={styles.helperText}>Travellers & Class</Text>
+          <Text style={styles.helperText}>{strings.travellersClass}</Text>
         </View>
         <View style={commonStyle.marginBottom(15)}>
           <Pressable onPress={() => setGuestEntryModal(true)}>
             <Text style={styles.roomFilterText}>
-              {(Travellers?.adult > 0 ? `${Travellers?.adult} Adult` : '') +
+              {(Travellers?.adult > 0
+                ? `${Travellers?.adult} ${strings.adult}`
+                : '') +
                 (Travellers?.child > 0
                   ? `${Travellers?.adult > 0 ? ', ' : ''}` +
-                    `${Travellers?.child} Children`
+                    `${Travellers?.child} ${strings.children}`
                   : '') +
                 (Travellers?.infant > 0
                   ? `${
                       Travellers?.child > 0 || Travellers?.adult > 0 ? ', ' : ''
-                    }` + `${Travellers?.infant} Infant`
+                    }` + `${Travellers?.infant} ${strings.infant}`
                   : '') +
                 `, ${Travellers.class}`}
             </Text>
@@ -224,5 +234,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#EAF1F9',
     borderRadius: 8,
     padding: 5,
+  },
+  alignText: {
+    textAlign: 'left',
   },
 });
