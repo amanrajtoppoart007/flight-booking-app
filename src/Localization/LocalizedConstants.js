@@ -55,6 +55,9 @@ const strings = LocalizationString({
     moreFlightOptions: 'More Flight Options',
     clear: 'Clear',
     sortFilterYourResults: 'Sort & Filter Your Results',
+    sortBy: 'SortBy',
+    filter: 'Filter',
+    modifySearch: 'Modify Search',
   },
   ar: {
     languages: 'اللغات',
@@ -109,6 +112,9 @@ const strings = LocalizationString({
     moreFlightOptions: 'المزيد من خيارات الطيران',
     clear: 'صافي',
     sortFilterYourResults: 'فرز وتصفية النتائج الخاصة بك',
+    sortBy: 'صنف حسب',
+    filter: 'منقي',
+    modifySearch: 'تعديل البحث',
   },
 });
 

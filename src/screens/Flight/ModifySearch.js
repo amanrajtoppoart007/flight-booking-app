@@ -8,14 +8,14 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
 import Colors from '../../layout/Colors';
 import LinearGradient from 'react-native-linear-gradient';
 import CustomStatusBar from '../../components/CustomStatusBar';
+import {Icon} from 'react-native-elements';
+import SearchHistorySlider from '../../components/Flight/SearchHistorySlider';
 import DateRangePicker from '../../components/Hotel/Home/DateRangePicker';
+import DateRangePickerMultiCity from '../../components/Flight/MultiCity/DateRangePicker';
+import DatePicker from '../../components/Flight/OneWay/DatePicker';
 import TravellerAndClass from '../../components/Flight/TravellerAndClass';
 import RoundTripCard from '../../components/Flight/SearchFlights/RoundTripCard';
 import OneWayTripCard from '../../components/Flight/SearchFlights/OneWayTrip';
@@ -24,12 +24,14 @@ import Font from '../../layout/Font';
 import commonStyle from '../../layout/Style';
 import Back from '../../assets/icons/svg/Back.svg';
 import moment from 'moment';
-import DateRangePickerMultiCity from '../../components/Flight/MultiCity/DateRangePicker';
+import {strings} from '../../Localization/LocalizedConstants';
+import {useRtlContext} from 'react-native-easy-localization-and-rtl';
 
-export default function Home({navigation}) {
+export default function ModifySearch({navigation}) {
   const [guestEntryModal, setGuestEntryModal] = useState(false);
   const [flightType, setFlightType] = useState('round-trip');
   const [isDateRangeVisible, setIsDateRangeVisible] = useState(false);
+  const [isDatePickerVisible, setIsDatePickerVisible] = useState(false);
   const [isDateRangeMultiCityVisible, setIsDateRangeMultiCityVisible] =
     useState(-1);
 
@@ -42,6 +44,7 @@ export default function Home({navigation}) {
     dateFromTimeStamp,
     dateUptoTimeStamp,
   ]);
+  const {RtlStyles, language} = useRtlContext();
 
   const [Location, setLocation] = useState([
     {
@@ -114,12 +117,12 @@ export default function Home({navigation}) {
     temp[index].toText = ele;
     setLocation(temp);
   }
-  function editDate(index, date) {
+  function editDate(index, editDateItem) {
     if (index === -1) {
       return;
     }
     let t = [...dateMultiCity];
-    t[index] = moment(date).format('YYYYMMDD');
+    t[index] = moment(editDateItem).format('YYYYMMDD');
     setMultiCity(t);
   }
   return (
@@ -128,108 +131,110 @@ export default function Home({navigation}) {
       <ScrollView>
         <View style={styles.wrapper}>
           <View style={styles.content}>
-            <View
-              style={{
-                height: hp(
-                  `${
-                    flightType === 'multi-city' && Location.length > 2
-                      ? Location.length * 16.7 + 48.5
-                      : 74
-                  }%`,
-                ),
-              }}>
+            <View>
               <LinearGradient
                 colors={['#1C8CCC', '#015F95']}
-                style={styles.canvas(Location.length)}>
-                <View style={[styles.titleSection, styles.rowCenter]}>
+                style={styles.canvas}>
+                <View
+                  style={[
+                    styles.titleSection,
+                    styles.rowCenter,
+                    RtlStyles.containerRow,
+                  ]}>
                   <View>
-                    <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <TouchableOpacity
+                      style={RtlStyles.flipHorizontal}
+                      onPress={() => navigation.goBack()}>
                       <Back />
                     </TouchableOpacity>
                   </View>
-                  <View style={commonStyle.marginHorizontal(10)}>
-                    <Text style={styles.title}>Search flights</Text>
+                  <View style={[commonStyle.marginHorizontal(10)]}>
+                    <Text style={[styles.title, RtlStyles.text]}>
+                      {strings.searchFlights}
+                    </Text>
                   </View>
                 </View>
 
-                <View style={styles.HeaderContainer(Location.length)}>
-                  <View style={styles.topBar}>
+                <View style={styles.headerContainer}>
+                  <View style={[styles.topBar, RtlStyles.containerRow]}>
                     <Pressable
                       onPress={() => setFlightType('round-trip')}
                       style={styles.topBarElements(flightType, 'round-trip')}>
                       <Text style={styles.topBarText(flightType, 'round-trip')}>
-                        Round Trip
+                        {strings.roundTrip}
                       </Text>
                     </Pressable>
                     <Pressable
                       onPress={() => setFlightType('one-way')}
                       style={styles.topBarElements(flightType, 'one-way')}>
                       <Text style={styles.topBarText(flightType, 'one-way')}>
-                        One Way
+                        {strings.oneWay}
                       </Text>
                     </Pressable>
                     <Pressable
                       onPress={() => setFlightType('multi-city')}
                       style={styles.topBarElements(flightType, 'multi-city')}>
                       <Text style={styles.topBarText(flightType, 'multi-city')}>
-                        Multi-City
+                        {strings.multiCity}
                       </Text>
                     </Pressable>
                   </View>
-                  {flightType === 'round-trip' ? (
-                    <RoundTripCard
-                      setIsLocationSelectorVisible={() =>
-                        navigation.navigate('Search')
-                      }
-                      setIsDateRangeVisible={setIsDateRangeVisible}
-                      setGuestEntryModal={setGuestEntryModal}
-                      Location={Location[0]}
-                      onSwap={_onSwap}
-                      Travellers={travellersClass}
-                      dateFrom={dateFrom}
-                      dateUpTo={dateUpto}
-                    />
-                  ) : flightType === 'multi-city' ? (
-                    <MultiCityCard
-                      setIsLocationSelectorVisible={() =>
-                        navigation.navigate('Search')
-                      }
-                      setIsDateRangeVisible={setIsDateRangeMultiCityVisible}
-                      setGuestEntryModal={setGuestEntryModal}
-                      Location={Location}
-                      onSwap={_onSwap}
-                      handleAddFlight={_handleAddFlight}
-                      handleDelete={_handleDelete}
-                      Travellers={travellersClass}
-                      dates={dateMultiCity}
-                    />
-                  ) : (
-                    <OneWayTripCard
-                      setIsLocationSelectorVisible={() =>
-                        navigation.navigate('Search')
-                      }
-                      setIsDateRangeVisible={setIsDateRangeVisible}
-                      setGuestEntryModal={setGuestEntryModal}
-                      Location={Location[0]}
-                      onSwap={_onSwap}
-                      handleAddReturn={() => setFlightType('round-trip')}
-                      Travellers={travellersClass}
-                      date={dateFrom}
-                    />
-                  )}
                 </View>
               </LinearGradient>
             </View>
-            <View style={commonStyle.center}>
+            {flightType === 'round-trip' ? (
+              <RoundTripCard
+                setIsLocationSelectorVisible={() =>
+                  navigation.navigate('Search')
+                }
+                setIsDateRangeVisible={setIsDateRangeVisible}
+                setGuestEntryModal={setGuestEntryModal}
+                Location={Location[0]}
+                onSwap={_onSwap}
+                Travellers={travellersClass}
+                dateFrom={dateFrom}
+                dateUpTo={dateUpto}
+              />
+            ) : flightType === 'multi-city' ? (
+              <MultiCityCard
+                setIsLocationSelectorVisible={() =>
+                  navigation.navigate('Search')
+                }
+                setGuestEntryModal={setGuestEntryModal}
+                Location={Location}
+                onSwap={_onSwap}
+                handleAddFlight={_handleAddFlight}
+                handleDelete={_handleDelete}
+                Travellers={travellersClass}
+                dates={dateMultiCity}
+                editDate={editDate}
+                setIsDatePickerVisible={setIsDateRangeMultiCityVisible}
+              />
+            ) : (
+              <OneWayTripCard
+                setIsLocationSelectorVisible={() =>
+                  navigation.navigate('Search')
+                }
+                setIsDateRangeVisible={setIsDatePickerVisible}
+                setGuestEntryModal={setGuestEntryModal}
+                Location={Location[0]}
+                onSwap={_onSwap}
+                handleAddReturn={() => setFlightType('round-trip')}
+                Travellers={travellersClass}
+                date={dateFrom}
+              />
+            )}
+
+            <View style={[commonStyle.center]}>
               <Pressable
                 onPress={_handleSearchFlight}
-                style={styles.searchButton}>
+                style={[styles.searchButton, RtlStyles.containerRow]}>
                 <Text
                   style={[
                     styles.searchButtonText,
                     commonStyle.marginHorizontal(5),
                   ]}>
-                  Modify Search
+                  {strings.modifySearch}
                 </Text>
               </Pressable>
             </View>
@@ -254,6 +259,13 @@ export default function Home({navigation}) {
                 setIsDateRangeVisible={setIsDateRangeMultiCityVisible}
                 editDate={editDate}
                 index={isDateRangeMultiCityVisible}
+                dates={dateMultiCity}
+              />
+              <DatePicker
+                isDatePickerVisible={isDatePickerVisible}
+                setIsDatePickerVisible={setIsDatePickerVisible}
+                editDate={setDateFrom}
+                date={dateFrom}
               />
             </View>
           </View>
@@ -271,25 +283,24 @@ const styles = StyleSheet.create({
   margin: {
     marginVertical: 5,
   },
+  cardContainer: {
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
   wrapper: {
     justifyContent: 'center',
     alignItems: 'center',
   },
   content: {
+    alignSelf: 'stretch',
+  },
+  canvas: {
     width: '100%',
   },
-  canvas(lo) {
-    return {
-      width: '100%',
-      height: hp(`${lo > 2 ? lo / 2 + 21.5 : 21}%`),
-    };
-  },
-  HeaderContainer(length) {
-    return {
-      top: hp(`${length > 2 ? length * 4.2 : 9}%`),
-      justifyContent: 'center',
-      alignItems: 'center',
-    };
+  headerContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 60,
   },
   rowCenter: {
     flexDirection: 'row',
@@ -307,17 +318,16 @@ const styles = StyleSheet.create({
   },
 
   topBar: {
-    height: 50,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    width: wp('90%'),
+    alignSelf: 'stretch',
+    marginHorizontal: 20,
     backgroundColor: Colors.white,
     borderRadius: 8,
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: Colors.border,
     elevation: 5,
     paddingVertical: 5,
-    marginBottom: 15,
     paddingHorizontal: 2,
   },
   topBarElements(type, name) {
@@ -328,6 +338,7 @@ const styles = StyleSheet.create({
       marginHorizontal: 3,
       justifyContent: 'center',
       alignItems: 'center',
+      paddingVertical: 12,
     };
   },
   topBarText(type, name) {
@@ -338,18 +349,19 @@ const styles = StyleSheet.create({
     };
   },
   searchButton: {
-    width: 335,
-    height: 56,
+    alignSelf: 'stretch',
     borderRadius: 8,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: Colors.secondary,
+    marginHorizontal: 20,
   },
   searchButtonText: {
     fontSize: 16,
     color: Colors.white,
     fontFamily: Font.AvenirHeavy,
+    marginVertical: 17,
   },
   searchHistoryCard: {
     width: 218,

@@ -41,7 +41,7 @@ function SortFilter({onClose}) {
 
   const _renderTabBar = props => {
     return (
-      <View style={styles.tabBar}>
+      <View style={[styles.tabBar, RtlStyles.containerRowInverse]}>
         {props.navigationState.routes.map((route, i) => {
           return (
             <TouchableOpacity
@@ -49,7 +49,7 @@ function SortFilter({onClose}) {
               style={styles.tabItem}
               onPress={() => setIndex(i)}>
               <Animated.Text style={styles.tabTitle(i === index)}>
-                {route.title}
+                {route.key === 'SortBy' ? strings.sortBy : strings.filter}
               </Animated.Text>
               {i === index ? (
                 <View style={styles.underline} />
