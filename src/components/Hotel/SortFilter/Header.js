@@ -3,13 +3,17 @@ import {Icon} from 'react-native-elements';
 import React from 'react';
 import Colors from '../../../layout/Colors';
 import Font from '../../../layout/Font';
+import {strings} from '../../../Localization/LocalizedConstants';
+import {useRtlContext} from 'react-native-easy-localization-and-rtl';
 
 const Header = ({onClose}) => {
+  const {RtlStyles, language} = useRtlContext();
+
   return (
     <View style={styles.HeaderContainer}>
-      <View style={styles.subContainer}>
-        <Text style={styles.sortTitle}>Sort & Filter Your Results</Text>
-        <Text style={styles.sortClear}>Clear</Text>
+      <View style={[styles.subContainer, RtlStyles.containerRow]}>
+        <Text style={styles.sortTitle}>{strings.sortFilterYourResults}</Text>
+        <Text style={styles.sortClear}>{strings.clear}</Text>
         <Icon
           onPress={onClose}
           name={'close'}

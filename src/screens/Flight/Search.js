@@ -119,7 +119,7 @@ function Search() {
             />
           </View>
           <Icon
-            style={styles.marginH}
+            style={[styles.marginH]}
             name={'flight-takeoff'}
             type={'material'}
             size={20}
@@ -129,7 +129,7 @@ function Search() {
             style={styles.input}
             onChangeText={t => handleTextInput(t)}
             value={searchText}
-            placeholder="From"
+            placeholder={strings.from}
             placeholderTextColor="gray"
           />
         </View>
@@ -142,7 +142,7 @@ function Search() {
           />
           <TextInput
             style={styles.input}
-            placeholder="To"
+            placeholder={strings.to}
             placeholderTextColor="gray"
           />
         </View>

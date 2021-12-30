@@ -9,36 +9,40 @@ import Deer from '../../../Svg/Deer.svg';
 import Bag from '../../../Svg/Bag.svg';
 import MoreOptions from '../../FlightBy/MoreOptions';
 import {useNavigation} from '@react-navigation/native';
+import {strings} from '../../../../Localization/LocalizedConstants';
+import {useRtlContext} from 'react-native-easy-localization-and-rtl';
 
 function FlightCard({onPressSelect}) {
   const navigation = useNavigation();
   const [isSelectedDeparting, setIsSelectedDeparting] = useState(false);
   const [isSelectedReturning, setIsSelectedReturning] = useState(false);
-
+  const {RtlStyles, language} = useRtlContext();
   const [isMoreOptionVisible, setIsMoreOptionVisible] = useState(false);
   return (
     <View style={styles.card(isMoreOptionVisible)}>
-      <View style={styles.cardHeader}>
-        <View style={[styles.rowFlexCenter]}>
+      <View style={[styles.cardHeader, RtlStyles.containerRow]}>
+        <View style={[styles.rowFlexCenter, RtlStyles.containerRow]}>
           <Deer />
           <View style={commonStyle.marginHorizontal(8)}>
             <Text style={styles.cardHeaderText}>Qatar Airways</Text>
           </View>
         </View>
-        <View style={styles.colFlexEnd}>
+        <View style={[RtlStyles.containerColumnInverse]}>
           <Text style={styles.LightText}>
             QAR <Text style={styles.price}>170.00</Text>
           </Text>
-          <View style={commonStyle.rowSpaceBetween}>
+          <View style={[commonStyle.rowSpaceBetween, RtlStyles.containerRow]}>
             <View style={commonStyle.marginHorizontal(5)} />
-            <Text style={styles.RedText}>4 Seats Left</Text>
+            <Text style={styles.RedText}>
+              4 {strings.seats} {strings.left}
+            </Text>
             <View style={commonStyle.marginHorizontal(5)} />
-            <Text style={styles.GreenText}>Refundable</Text>
+            <Text style={styles.GreenText}>{strings.refundable}</Text>
           </View>
         </View>
       </View>
       <View style={styles.divider} />
-      <View style={styles.cardBody}>
+      <View style={[styles.cardBody, RtlStyles.containerRow]}>
         <TouchableOpacity
           onPress={() => setIsSelectedDeparting(!isSelectedDeparting)}
           style={styles.DepartingSection(isSelectedDeparting)}>
@@ -53,7 +57,7 @@ function FlightCard({onPressSelect}) {
               />
               <Text
                 style={[styles.DepartingText, commonStyle.marginHorizontal(4)]}>
-                Departing
+                {strings.departing}
               </Text>
             </View>
             <Text style={styles.LightText}>QR - 3801</Text>
@@ -81,7 +85,7 @@ function FlightCard({onPressSelect}) {
             <TouchableOpacity
               onPress={() => navigation.navigate('Review')}
               style={commonStyle.rowFlexStart}>
-              <Text style={styles.BlueText}>Details</Text>
+              <Text style={styles.BlueText}>{strings.details}</Text>
               <View style={commonStyle.marginHorizontal(1)} />
               <Icon
                 name={'caretright'}
@@ -107,7 +111,7 @@ function FlightCard({onPressSelect}) {
               />
               <Text
                 style={[styles.DepartingText, commonStyle.marginHorizontal(4)]}>
-                Returning
+                {strings.returning}
               </Text>
             </View>
             <Text style={styles.LightText}>QR - 3802</Text>
@@ -135,7 +139,7 @@ function FlightCard({onPressSelect}) {
             <TouchableOpacity
               onPress={() => navigation.navigate('Review')}
               style={commonStyle.rowFlexStart}>
-              <Text style={styles.BlueText}>Details</Text>
+              <Text style={styles.BlueText}>{strings.details}</Text>
               <View style={commonStyle.marginHorizontal(1)} />
               <Icon
                 name={'caretright'}
@@ -151,7 +155,7 @@ function FlightCard({onPressSelect}) {
         <TouchableOpacity
           onPress={() => setIsMoreOptionVisible(!isMoreOptionVisible)}
           style={styles.MoreOptionsButton}>
-          <Text style={styles.LightText}>More Flight Options</Text>
+          <Text style={styles.LightText}>{strings.moreFlightOptions}</Text>
           <View style={commonStyle.marginHorizontal(3)} />
           <Icon
             name={isMoreOptionVisible ? 'angle-double-up' : 'angle-double-down'}
@@ -182,7 +186,7 @@ function FlightCard({onPressSelect}) {
               <TouchableOpacity
                 style={styles.selectButton}
                 onPress={onPressSelect}>
-                <Text style={styles.selectButtonText}>Select</Text>
+                <Text style={styles.selectButtonText}>{strings.select}</Text>
               </TouchableOpacity>
             </View>
           </View>

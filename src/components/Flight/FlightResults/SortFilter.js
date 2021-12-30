@@ -16,6 +16,8 @@ import {
 import Header from '../../Hotel/SortFilter/Header';
 import SortBy from './SortBy';
 import Filter from './Filter';
+import {strings} from '../../../Localization/LocalizedConstants';
+import {useRtlContext} from 'react-native-easy-localization-and-rtl';
 
 function SortFilter({onClose}) {
   const [index, setIndex] = React.useState(0);
@@ -23,6 +25,7 @@ function SortFilter({onClose}) {
     {key: 'SortBy', title: 'Sort by'},
     {key: 'Filter', title: 'Filters'},
   ]);
+  const {RtlStyles, isRtl} = useRtlContext();
 
   const renderScene = ({route, jumpTo}) => {
     switch (route.key) {
@@ -61,7 +64,7 @@ function SortFilter({onClose}) {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container(isRtl)]}>
       <Header onClose={onClose} />
       <View style={styles.subContainer}>
         <TabView
@@ -94,14 +97,16 @@ const styles = StyleSheet.create({
     };
   },
 
-  container: {
-    width: wp('100%'),
-    height: hp('100%'),
-    position: 'absolute',
-    backgroundColor: 'rgba(100,100,100,0.5)',
-    top: 0,
-    right: 0,
-    alignItems: 'flex-end',
+  container(isRTL) {
+    return {
+      width: wp('100%'),
+      height: hp('100%'),
+      position: 'absolute',
+      backgroundColor: 'rgba(100,100,100,0.5)',
+      top: 0,
+      right: 0,
+      alignItems: isRTL ? 'flex-start' : 'flex-end',
+    };
   },
   subContainer: {
     backgroundColor: 'white',
