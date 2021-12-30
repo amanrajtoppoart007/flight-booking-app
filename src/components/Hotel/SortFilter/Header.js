@@ -7,7 +7,7 @@ import {strings} from '../../../Localization/LocalizedConstants';
 import {useRtlContext} from 'react-native-easy-localization-and-rtl';
 
 const Header = ({onClose}) => {
-  const {RtlStyles, language} = useRtlContext();
+  const {RtlStyles} = useRtlContext();
 
   return (
     <View style={styles.HeaderContainer}>
