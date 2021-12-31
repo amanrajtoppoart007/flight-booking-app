@@ -7,7 +7,6 @@ import SortList from './SortList';
 const SortBy = () => {
   const [Selected, setSelected] = useState(0);
   useRtlContext();
-
   const list = [
     strings.departureEarliest,
     strings.departureLatest,
