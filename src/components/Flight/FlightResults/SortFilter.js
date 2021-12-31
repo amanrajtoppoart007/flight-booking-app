@@ -41,7 +41,11 @@ function SortFilter({onClose}) {
 
   const _renderTabBar = props => {
     return (
-      <View style={[styles.tabBar]}>
+      <View
+        style={[
+          styles.tabBar,
+          isRtl ? RtlStyles.containerRowInverse : RtlStyles.containerRow,
+        ]}>
         {props.navigationState.routes.map((route, i) => {
           return (
             <TouchableOpacity
