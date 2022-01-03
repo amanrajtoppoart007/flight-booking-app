@@ -69,6 +69,7 @@ const strings = LocalizationString({
     totalDuration: 'Total Duration',
     checkIn: 'Check In',
     cabin: 'Cabin',
+    flexibleFlightOption: 'Flexible Flight Option',
   },
   ar: {
     languages: 'اللغات',
@@ -137,6 +138,7 @@ const strings = LocalizationString({
     totalDuration: 'المدة الإجمالية',
     checkIn: 'تحقق في',
     cabin: 'الطائرة',
+    flexibleFlightOption: 'خيار طيران مرن',
   },
 });
 

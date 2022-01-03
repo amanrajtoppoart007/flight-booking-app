@@ -20,10 +20,13 @@ import SearchResult from '../../../components/Flight/RoundTrip/SearchResults/Sea
 import RoundTrip from '../../../components/Svg/RoundTripFlight.svg';
 import FlightTicket from '../../../components/Svg/FlightTicket.svg';
 import SortFilter from '../../../components/Flight/FlightResults/SortFilter';
+import {strings} from '../../../Localization/LocalizedConstants';
+import {useRtlContext} from 'react-native-easy-localization-and-rtl';
 
 function FlexibleFlight({navigation}) {
   const [shortVisible, setShortVisible] = useState(false);
   const [index, setIndex] = React.useState(0);
+  const {RtlStyles, language} = useRtlContext();
   const [routes] = React.useState([
     {key: 'cheapest', title: 'SearchResult', price: 'QAR 170'},
     {key: 'fastest', title: 'Fastest', price: 'QAR 273'},
@@ -32,7 +35,7 @@ function FlexibleFlight({navigation}) {
 
   const RenderTabs = props => {
     return (
-      <View style={styles.tabBar}>
+      <View style={[styles.tabBar, RtlStyles.containerRow]}>
         {props.routes.map((route, i) => {
           const isActive = i === index;
           return (
@@ -41,7 +44,11 @@ function FlexibleFlight({navigation}) {
               style={styles.tabItem(isActive)}
               onPress={() => setIndex(i)}>
               <Animated.Text style={styles.tabTitle}>
-                {route.title}
+                {route.key === 'cheapest'
+                  ? strings.cheapest
+                  : route.key === 'fastest'
+                  ? strings.fastest
+                  : strings.best}
               </Animated.Text>
               <View>
                 <Text style={styles.price}>{route?.price}</Text>
@@ -65,9 +72,14 @@ function FlexibleFlight({navigation}) {
         <View style={[commonStyle.flex(1), commonStyle.content]}>
           <LinearGradient colors={['#1C8CCC', '#015F95']} style={styles.canvas}>
             <View style={styles.header}>
-              <View style={[styles.titleSection, styles.rowSpaceBetween]}>
-                <View style={commonStyle.rowCenter}>
-                  <View>
+              <View
+                style={[
+                  styles.titleSection,
+                  styles.rowSpaceBetween,
+                  RtlStyles.containerRow,
+                ]}>
+                <View style={[commonStyle.rowCenter, RtlStyles.containerRow]}>
+                  <View style={RtlStyles.flipHorizontal}>
                     <Icon
                       onPress={() => navigation.goBack()}
                       name={'arrow-back'}
@@ -76,7 +88,7 @@ function FlexibleFlight({navigation}) {
                       color={Colors.white}
                     />
                   </View>
-                  <View style={styles.titleWrapper}>
+                  <View style={[styles.titleWrapper, RtlStyles.containerRow]}>
                     <View>
                       <Text style={styles.title}>Doha</Text>
                     </View>
@@ -109,9 +121,9 @@ function FlexibleFlight({navigation}) {
                   </View>
                 </View>
               </View>
-              <View style={styles.subTitleSection}>
+              <View style={[styles.subTitleSection, RtlStyles.containerRow]}>
                 <Text style={styles.subTitle}>
-                  15 Sep - 20 Sep | 4 Travellers | Economy
+                  15 Sep - 20 Sep | 4 Travellers | {strings.economy}
                 </Text>
               </View>
             </View>
@@ -126,9 +138,10 @@ function FlexibleFlight({navigation}) {
       </View>
       <TouchableOpacity
         onPress={() => navigation.navigate('FlightByFlightResultsOnwards')}
-        style={styles.flexibleButton}>
-        <FlightTicket style={commonStyle.marginRight(5)} />
-        <Text style={styles.whiteText}>Flexible Flight Option</Text>
+        style={[styles.flexibleButton, RtlStyles.containerRow]}>
+        <FlightTicket />
+        <View style={commonStyle.marginHorizontal(3)} />
+        <Text style={styles.whiteText}>{strings.flexibleFlightOption}</Text>
       </TouchableOpacity>
       {shortVisible && <SortFilter onClose={() => setShortVisible(false)} />}
     </SafeAreaView>
