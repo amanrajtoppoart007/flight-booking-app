@@ -7,15 +7,19 @@ import Colors from '../../../layout/Colors';
 import Bag from '../../Svg/Flight/Bag.svg';
 import DeerSvg from '../../Svg/Deer.svg';
 import Font from '../../../layout/Font';
+import {strings} from '../../../Localization/LocalizedConstants';
+import {useRtlContext} from 'react-native-easy-localization-and-rtl';
 
 function OptionCard({item, setSelected, parentIndex, index}) {
   const navigation = useNavigation();
+  const {RtlStyles, language} = useRtlContext();
+
   return (
     <TouchableOpacity
       onPress={() => setSelected(parentIndex, index)}
       style={styles.card(item?.isSelected)}>
-      <View style={commonStyle.rowSpaceBetween}>
-        <View style={commonStyle.rowSpaceBetween}>
+      <View style={[commonStyle.rowSpaceBetween, RtlStyles.containerRow]}>
+        <View style={[commonStyle.rowSpaceBetween, RtlStyles.containerRow]}>
           <View>
             <Icon
               name={item?.isSelected ? 'dot-circle-o' : 'circle-o'}
@@ -28,8 +32,8 @@ function OptionCard({item, setSelected, parentIndex, index}) {
             <DeerSvg />
           </View>
           <View>
-            <Text style={commonStyle.rowSpaceBetween}>
-              <Text style={styles.airlineName}>Qatar Airways</Text>
+            <Text style={[commonStyle.rowSpaceBetween, RtlStyles.containerRow]}>
+              <Text style={[styles.airlineName]}>Qatar Airways</Text>
               <Text style={styles.flightNumber}> | QR - 3801 </Text>
             </Text>
             <View style={commonStyle.marginVertical(3)}>
@@ -37,7 +41,8 @@ function OptionCard({item, setSelected, parentIndex, index}) {
             </View>
           </View>
         </View>
-        <View style={commonStyle.alignFlexEnd}>
+        <View
+          style={[commonStyle.alignFlexEnd, RtlStyles.containerColumnInverse]}>
           <Text style={styles.flightOption}>Economy</Text>
           <Text style={styles.refundPolicy}>Refundable</Text>
         </View>

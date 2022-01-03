@@ -6,7 +6,11 @@ import Colors from '../../../layout/Colors';
 import Font from '../../../layout/Font';
 import OptionCard from './OptionCard';
 
+import {strings} from '../../../Localization/LocalizedConstants';
+import {useRtlContext} from 'react-native-easy-localization-and-rtl';
+
 function MoreOptions() {
+  const {RtlStyles, language} = useRtlContext();
   const [flightOptions, setFlightOptions] = useState([
     {
       id: 'flight-option-id-one',
@@ -58,7 +62,6 @@ function MoreOptions() {
         options: newOptions,
       };
     });
-    console.log(flightOptionList);
     setFlightOptions(flightOptionList);
   };
   return (
@@ -67,8 +70,9 @@ function MoreOptions() {
         flightOptions.map((item, parentIndex) => {
           return (
             <View key={parentIndex} style={styles.card}>
-              <View style={styles.cardHeader}>
-                <View style={commonStyle.rowFlexStart}>
+              <View style={[styles.cardHeader, RtlStyles.containerRow]}>
+                <View
+                  style={[commonStyle.rowFlexStart, RtlStyles.containerRow]}>
                   <Icon
                     name={'flight-takeoff'}
                     type={'material'}
@@ -76,7 +80,11 @@ function MoreOptions() {
                     color={'red'}
                   />
                   <View style={commonStyle.marginHorizontal(2)} />
-                  <Text style={styles.redTextBig}>{item?.title}</Text>
+                  <Text style={styles.redTextBig}>
+                    {item?.title === 'Returning'
+                      ? strings.returning
+                      : strings.departing}
+                  </Text>
                   <View
                     style={[
                       commonStyle.rowCenter,
