@@ -66,6 +66,9 @@ const strings = LocalizationString({
     durationLongest: 'Duration (Longest)',
     priceHighest: 'Price (Highest)',
     priceLowest: 'Price (Lowest)',
+    totalDuration: 'Total Duration',
+    checkIn: 'Check In',
+    cabin: 'Cabin',
   },
   ar: {
     languages: 'اللغات',
@@ -131,6 +134,9 @@ const strings = LocalizationString({
     durationLongest: 'المدة (الأطول)',
     priceHighest: 'السعر (الاعلى)',
     priceLowest: 'السعر (الأدنى)',
+    totalDuration: 'المدة الإجمالية',
+    checkIn: 'تحقق في',
+    cabin: 'الطائرة',
   },
 });
 

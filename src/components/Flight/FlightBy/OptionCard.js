@@ -43,12 +43,12 @@ function OptionCard({item, setSelected, parentIndex, index}) {
         </View>
         <View
           style={[commonStyle.alignFlexEnd, RtlStyles.containerColumnInverse]}>
-          <Text style={styles.flightOption}>Economy</Text>
-          <Text style={styles.refundPolicy}>Refundable</Text>
+          <Text style={styles.flightOption}>{strings.economy}</Text>
+          <Text style={styles.refundPolicy}>{strings.refundable}</Text>
         </View>
       </View>
 
-      <View style={styles.scheduleSection}>
+      <View style={[styles.scheduleSection, RtlStyles.containerRow]}>
         <View>
           <Text style={styles.time}>10:00</Text>
           <Text style={styles.text}>DOH</Text>
@@ -69,7 +69,7 @@ function OptionCard({item, setSelected, parentIndex, index}) {
           <Text style={styles.text}>DXB</Text>
         </View>
         <View style={commonStyle.alignFlexEnd}>
-          <Text style={styles.text}>Total Duration</Text>
+          <Text style={styles.text}>{strings.totalDuration}</Text>
           <Text style={styles.text}>5h 30m</Text>
         </View>
       </View>
@@ -78,13 +78,13 @@ function OptionCard({item, setSelected, parentIndex, index}) {
         <View style={commonStyle.rowFlexStart}>
           <Text style={styles.dartText}>1 Stop |</Text>
           <Bag style={commonStyle.marginHorizontal(8)} />
-          <Text style={styles.dartText}>Check In: 1 piece</Text>
+          <Text style={styles.dartText}>{strings.checkIn}: 1 piece</Text>
         </View>
-        <Text style={styles.dartText}>Cabin: 7 Kg</Text>
+        <Text style={styles.dartText}>{strings.cabin}: 7 Kg</Text>
         <TouchableOpacity
           onPress={() => navigation.navigate('Review')}
           style={commonStyle.rowCenter}>
-          <Text style={styles.detailsText}>Details</Text>
+          <Text style={styles.detailsText}>{strings.details}</Text>
           <Icon
             name={'caretright'}
             type={'antdesign'}
