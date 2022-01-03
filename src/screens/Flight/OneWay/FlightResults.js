@@ -17,20 +17,23 @@ import LinearGradient from 'react-native-linear-gradient';
 import {Icon} from 'react-native-elements';
 import SearchResult from '../../../components/Flight/OneWay/SearchResults/SearchResult';
 import PlaneSmall from '../../../components/Svg/PlaneSmall.svg';
-
+import {useRtlContext} from 'react-native-easy-localization-and-rtl';
 import SortFilter from '../../../components/Flight/FlightResults/SortFilter';
+import {strings} from '../../../Localization/LocalizedConstants';
+
 function FlightResult({navigation}) {
   const [shortVisible, setShortVisible] = useState(false);
   const [index, setIndex] = React.useState(0);
+  const {RtlStyles, language} = useRtlContext();
+
   const [routes] = React.useState([
     {key: 'cheapest', title: 'Cheapest', price: 'QAR 170'},
     {key: 'fastest', title: 'Fastest', price: 'QAR 273'},
     {key: 'best', title: 'Best', price: 'QAR 170'},
   ]);
-
   const RenderTabs = props => {
     return (
-      <View style={styles.tabBar}>
+      <View style={[styles.tabBar, RtlStyles.containerRow]}>
         {props.routes.map((route, i) => {
           const isActive = i === index;
           return (
@@ -39,7 +42,11 @@ function FlightResult({navigation}) {
               style={styles.tabItem(isActive)}
               onPress={() => setIndex(i)}>
               <Animated.Text style={styles.tabTitle}>
-                {route.title}
+                {route.key === 'cheapest'
+                  ? strings.cheapest
+                  : route.key === 'fastest'
+                  ? strings.fastest
+                  : strings.best}
               </Animated.Text>
               <View>
                 <Text style={styles.price}>{route?.price}</Text>
@@ -62,9 +69,14 @@ function FlightResult({navigation}) {
         <View style={[commonStyle.flex(1), commonStyle.content]}>
           <LinearGradient colors={['#1C8CCC', '#015F95']} style={styles.canvas}>
             <View style={styles.header}>
-              <View style={[styles.titleSection, styles.rowSpaceBetween]}>
-                <View style={commonStyle.rowCenter}>
-                  <View>
+              <View
+                style={[
+                  styles.titleSection,
+                  styles.rowSpaceBetween,
+                  RtlStyles.containerRow,
+                ]}>
+                <View style={[commonStyle.rowCenter, RtlStyles.containerRow]}>
+                  <View style={RtlStyles.flipHorizontal}>
                     <Icon
                       onPress={() => navigation.goBack()}
                       name={'arrow-back'}
@@ -73,7 +85,7 @@ function FlightResult({navigation}) {
                       color={Colors.white}
                     />
                   </View>
-                  <View style={styles.titleWrapper}>
+                  <View style={[styles.titleWrapper, RtlStyles.containerRow]}>
                     <View>
                       <Text style={styles.title}>Doha</Text>
                     </View>
@@ -105,9 +117,9 @@ function FlightResult({navigation}) {
                   </View>
                 </View>
               </View>
-              <View style={styles.subTitleSection}>
+              <View style={[styles.subTitleSection, RtlStyles.containerRow]}>
                 <Text style={styles.subTitle}>
-                  15 Sep - 20 Sep | 4 Travellers | Economy
+                  15 Sep - 20 Sep | 4 Travellers | {strings.economy}
                 </Text>
               </View>
             </View>
