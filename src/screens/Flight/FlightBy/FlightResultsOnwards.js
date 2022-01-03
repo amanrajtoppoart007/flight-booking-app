@@ -13,9 +13,13 @@ import Departure from '../../../components/Svg/Departure.svg';
 import FlightCard from '../../../components/Flight/FlightBy/FlightCard';
 import Footer from '../../../components/Flight/Footer';
 import SortFilter from '../../../components/Flight/FlightResults/SortFilter';
+import {useRtlContext} from 'react-native-easy-localization-and-rtl';
+import {strings} from '../../../Localization/LocalizedConstants';
+
 function SearchResult({navigation}) {
   const [shortVisible, setShortVisible] = useState(false);
   const [SelectedIndex, setSelectedIndex] = useState(0);
+  const {RtlStyles, language} = useRtlContext();
 
   return (
     <SafeAreaView style={commonStyle.container}>
@@ -24,9 +28,14 @@ function SearchResult({navigation}) {
         <View style={[commonStyle.flex(1), commonStyle.content]}>
           <LinearGradient colors={['#1C8CCC', '#015F95']} style={styles.canvas}>
             <View style={styles.header}>
-              <View style={[styles.titleSection, styles.rowSpaceBetween]}>
-                <View style={commonStyle.rowCenter}>
-                  <View>
+              <View
+                style={[
+                  styles.titleSection,
+                  styles.rowSpaceBetween,
+                  RtlStyles.containerRow,
+                ]}>
+                <View style={[commonStyle.rowCenter, RtlStyles.containerRow]}>
+                  <View style={RtlStyles.flipHorizontal}>
                     <Icon
                       onPress={() => navigation.goBack()}
                       name={'arrow-back'}
@@ -35,7 +44,7 @@ function SearchResult({navigation}) {
                       color={Colors.white}
                     />
                   </View>
-                  <View style={styles.titleWrapper}>
+                  <View style={[styles.titleWrapper, RtlStyles.containerRow]}>
                     <View>
                       <Text style={styles.title}>Doha</Text>
                     </View>
@@ -68,9 +77,9 @@ function SearchResult({navigation}) {
                   </View>
                 </View>
               </View>
-              <View style={styles.subTitleSection}>
+              <View style={[styles.subTitleSection, RtlStyles.containerRow]}>
                 <Text style={styles.subTitle}>
-                  15 Sep - 20 Sep | 4 Travellers | Economy
+                  15 Sep - 20 Sep | 4 Travellers | {strings.economy}
                 </Text>
               </View>
             </View>
