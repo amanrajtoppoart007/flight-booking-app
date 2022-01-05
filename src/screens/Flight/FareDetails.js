@@ -4,11 +4,14 @@ import Colors from '../../layout/Colors';
 import {Icon} from 'react-native-elements';
 import commonStyle from '../../layout/Style';
 import Font from '../../layout/Font';
+import {strings} from '../../Localization/LocalizedConstants';
+import {useRtlContext} from 'react-native-easy-localization-and-rtl';
 
 export default function FairDetails() {
   const [AdultOpen, setAdultOpen] = useState(false);
   const [ChildOpen, setChildOpen] = useState(false);
   const [InfantOpen, setInfantOpen] = useState(false);
+  const {RtlStyles, isRtl} = useRtlContext();
 
   return (
     <View style={commonStyle.flex(1)}>
@@ -17,10 +20,11 @@ export default function FairDetails() {
           style={[
             commonStyle.rowSpaceBetween,
             commonStyle.marginHorizontal(15),
+            RtlStyles.containerRow,
             commonStyle.marginTop(18),
           ]}>
-          <View style={styles.rowFlexStartBaseline}>
-            <Text style={styles.header}>Adult 1</Text>
+          <View style={[styles.rowFlexStartBaseline, RtlStyles.containerRow]}>
+            <Text style={styles.header}>{strings.adult} 1</Text>
             <View style={commonStyle.marginHorizontal(2)} />
             <Icon
               name={AdultOpen ? 'up' : 'down'}
@@ -36,15 +40,17 @@ export default function FairDetails() {
         </View>
         <View style={styles.divider} />
         {AdultOpen && (
-          <View style={styles.blueBackground}>
-            <View style={styles.sectionContentContainer}>
-              <Text style={styles.subHeading}>Fare</Text>
+          <View style={[styles.blueBackground]}>
+            <View
+              style={[styles.sectionContentContainer, RtlStyles.containerRow]}>
+              <Text style={styles.subHeading}>{strings.fare}</Text>
               <Text style={styles.MoneyText}>
                 <Text style={styles.qarText}>QAR</Text> 140.00
               </Text>
             </View>
-            <View style={styles.sectionContentContainer}>
-              <Text style={styles.subHeading}>Taxes & Fee</Text>
+            <View
+              style={[styles.sectionContentContainer, RtlStyles.containerRow]}>
+              <Text style={styles.subHeading}>{strings.taxesFee}</Text>
               <Text style={styles.MoneyText}>
                 <Text style={styles.qarText}>QAR</Text> 30.00
               </Text>
@@ -57,9 +63,10 @@ export default function FairDetails() {
           style={[
             commonStyle.rowSpaceBetween,
             commonStyle.marginHorizontal(15),
+            RtlStyles.containerRow,
           ]}>
-          <View style={styles.rowFlexStartBaseline}>
-            <Text style={styles.header}>Child 1</Text>
+          <View style={[styles.rowFlexStartBaseline, RtlStyles.containerRow]}>
+            <Text style={styles.header}>{strings.child} 1</Text>
             <View style={commonStyle.marginHorizontal(2)} />
 
             <Icon
@@ -77,14 +84,16 @@ export default function FairDetails() {
         <View style={styles.divider} />
         {ChildOpen && (
           <View style={styles.blueBackground}>
-            <View style={styles.sectionContentContainer}>
-              <Text style={styles.subHeading}>Fare</Text>
+            <View
+              style={[styles.sectionContentContainer, RtlStyles.containerRow]}>
+              <Text style={styles.subHeading}>{strings.fare}</Text>
               <Text style={styles.MoneyText}>
                 <Text style={styles.qarText}>QAR</Text> 60.00
               </Text>
             </View>
-            <View style={styles.sectionContentContainer}>
-              <Text style={styles.subHeading}>Taxes & Fee</Text>
+            <View
+              style={[styles.sectionContentContainer, RtlStyles.containerRow]}>
+              <Text style={styles.subHeading}>{strings.taxesFee}</Text>
               <Text style={styles.MoneyText}>
                 <Text style={styles.qarText}>QAR</Text> 20.00
               </Text>
@@ -97,11 +106,11 @@ export default function FairDetails() {
           style={[
             commonStyle.rowSpaceBetween,
             commonStyle.marginHorizontal(15),
+            RtlStyles.containerRow,
           ]}>
-          <View style={styles.rowFlexStartBaseline}>
-            <Text style={styles.header}>Infant 1</Text>
+          <View style={[styles.rowFlexStartBaseline, RtlStyles.containerRow]}>
+            <Text style={styles.header}>{strings.infant} 1</Text>
             <View style={commonStyle.marginHorizontal(2)} />
-
             <Icon
               name={InfantOpen ? 'up' : 'down'}
               onPress={() => setInfantOpen(!InfantOpen)}
@@ -117,14 +126,16 @@ export default function FairDetails() {
         <View style={styles.divider} />
         {InfantOpen && (
           <View style={styles.blueBackground}>
-            <View style={styles.sectionContentContainer}>
-              <Text style={styles.subHeading}>Fare</Text>
+            <View
+              style={[styles.sectionContentContainer, RtlStyles.containerRow]}>
+              <Text style={styles.subHeading}>{strings.fare}</Text>
               <Text style={styles.MoneyText}>
                 <Text style={styles.qarText}>QAR</Text> 40.00
               </Text>
             </View>
-            <View style={styles.sectionContentContainer}>
-              <Text style={styles.subHeading}>Taxes & Fee</Text>
+            <View
+              style={[styles.sectionContentContainer, RtlStyles.containerRow]}>
+              <Text style={styles.subHeading}>{strings.taxesFee}</Text>
               <Text style={styles.MoneyText}>
                 <Text style={styles.qarText}>QAR</Text> 10.00
               </Text>
@@ -132,11 +143,11 @@ export default function FairDetails() {
           </View>
         )}
       </View>
-      <View style={styles.totalContainer}>
-        <View>
-          <Text style={styles.subHeading}>Grand Total</Text>
+      <View style={[styles.totalContainer, RtlStyles.containerRow]}>
+        <View style={RtlStyles.containerColumn}>
+          <Text style={styles.subHeading}>{strings.grandTotal}</Text>
           <Text style={[styles.text, {color: Colors.lightText}]}>
-            Taxes and fees Included
+            {strings.taxesFeesIncluded}
           </Text>
         </View>
         <Text style={styles.BlackText}>

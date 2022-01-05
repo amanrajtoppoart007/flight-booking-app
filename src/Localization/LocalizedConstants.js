@@ -76,6 +76,10 @@ const strings = LocalizationString({
     fareDetails: 'Fare Details',
     fareRules: 'Fare Rules',
     terminal: 'Terminal',
+    fare: 'Fare',
+    taxesFee: 'Taxes & Fee',
+    grandTotal: 'Grand Total',
+    taxesFeesIncluded: 'Taxes and fees Included',
   },
   ar: {
     languages: 'اللغات',
@@ -151,6 +155,10 @@ const strings = LocalizationString({
     fareDetails: 'تفاصيل الأجرة',
     fareRules: 'قوانين عادلة',
     terminal: 'صالة',
+    fare: 'أجرة',
+    taxesFee: 'الضرائب والرسوم',
+    grandTotal: 'المجموع الإجمالي',
+    taxesFeesIncluded: 'شامل الضرائب والرسوم',
   },
 });
 
