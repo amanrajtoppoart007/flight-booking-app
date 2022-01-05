@@ -75,6 +75,7 @@ const strings = LocalizationString({
     flightDetails: 'Flight Details',
     fareDetails: 'Fare Details',
     fareRules: 'Fare Rules',
+    terminal: 'Terminal',
   },
   ar: {
     languages: 'اللغات',
@@ -149,6 +150,7 @@ const strings = LocalizationString({
     flightDetails: 'تفاصيل الرحلة',
     fareDetails: 'تفاصيل الأجرة',
     fareRules: 'قوانين عادلة',
+    terminal: 'صالة',
   },
 });
 

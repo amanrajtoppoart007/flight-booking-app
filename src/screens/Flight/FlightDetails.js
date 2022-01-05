@@ -6,46 +6,51 @@ import commonStyle from '../../layout/Style';
 import Font from '../../layout/Font';
 import Deer from '../../components/Svg/Deer.svg';
 import Bag from '../../components/Svg/Bag.svg';
+import {strings} from '../../Localization/LocalizedConstants';
+import {useRtlContext} from 'react-native-easy-localization-and-rtl';
 
 function FlightDetails() {
+  const {RtlStyles, isRtl} = useRtlContext();
+
   return (
     <View style={commonStyle.flex(1)}>
-      <View style={styles.DetailHeader}>
-        <View>
+      <View style={[styles.DetailHeader, RtlStyles.containerRow]}>
+        <View style={RtlStyles.containerColumn}>
           <View style={[commonStyle.rowCenter, commonStyle.marginVertical(5)]}>
             <Text style={styles.titleText}>Doha (DOH) → Dubai (DXB)</Text>
           </View>
           <Text style={styles.Roman(12)}>Wed, 15 Sep</Text>
         </View>
-        <View style={styles.flexEnd}>
-          <Text style={styles.Roman(12)}>Total Duration</Text>
+        <View style={[styles.flexEnd, RtlStyles.containerColumnInverse]}>
+          <Text style={styles.Roman(12)}>{strings.totalDuration}</Text>
           <Text style={styles.text}>5h 30m</Text>
         </View>
       </View>
       <View style={styles.divider} />
       <View>
-        <View style={commonStyle.rowSpaceBetween}>
+        <View style={[commonStyle.rowSpaceBetween, RtlStyles.containerRow]}>
           <View style={styles.contentContainer}>
             <Deer width={25} />
-            <View>
+            <View style={RtlStyles.containerColumn}>
               <Text style={styles.header}>
                 Qatar Airways
                 <Text style={styles.LightRoman}> | QR - 3801</Text>
               </Text>
               <Text style={styles.subHeader}>Operated by FlyDubai</Text>
               <Text style={styles.text}>
-                Economy |<Text style={styles.greenText}> Refundable</Text>
+                {strings.economy} |
+                <Text style={styles.greenText}> {strings.refundable}</Text>
               </Text>
             </View>
           </View>
-          <View style={styles.rowHLeft}>
+          <View style={[styles.rowHLeft, RtlStyles.containerRow]}>
             <Bag style={commonStyle.margin(6)} />
             <View style={commonStyle.marginHorizontal(5)}>
-              <Text style={styles.HeavyText}>Check in</Text>
+              <Text style={styles.HeavyText}>{strings.checkIn}</Text>
               <Text style={styles.text}>1 piece</Text>
             </View>
             <View style={commonStyle.marginHorizontal(5)}>
-              <Text style={styles.HeavyText}>Cabin</Text>
+              <Text style={styles.HeavyText}>{strings.cabin}</Text>
               <Text style={styles.text}>7 Kg</Text>
             </View>
           </View>
@@ -55,15 +60,17 @@ function FlightDetails() {
           style={[
             commonStyle.rowSpaceBetween,
             commonStyle.marginHorizontal(15),
+            RtlStyles.containerRow,
           ]}>
-          <View style={commonStyle.marginVertical(10)}>
+          <View
+            style={[commonStyle.marginVertical(10), RtlStyles.containerColumn]}>
             <Text style={styles.timeText}>07:55</Text>
             <Text style={[styles.blueText, commonStyle.marginVertical(3)]}>
               Doha (DOH)
             </Text>
             <Text style={styles.Roman(12)}>Hamad Int Airport</Text>
             <Text style={[styles.blueText, commonStyle.marginVertical(3)]}>
-              Terminal: 1
+              {strings.terminal}: 1
             </Text>
           </View>
           <View style={styles.center}>
@@ -77,14 +84,15 @@ function FlightDetails() {
             <Text style={styles.text}>2h 30m</Text>
           </View>
 
-          <View style={styles.flexEndColumn}>
+          <View
+            style={[styles.flexEndColumn, RtlStyles.containerColumnInverse]}>
             <Text style={styles.timeText}>08:20</Text>
             <Text style={[styles.blueText, commonStyle.marginVertical(3)]}>
               Amman (AMM)
             </Text>
             <Text style={styles.text}>Queen Alia Int Airport</Text>
             <Text style={[styles.blueText, commonStyle.marginVertical(3)]}>
-              Terminal: 1
+              {strings.terminal}: 1
             </Text>
           </View>
         </View>
@@ -95,29 +103,30 @@ function FlightDetails() {
         </Text>
       </View>
       <View>
-        <View style={commonStyle.rowSpaceBetween}>
-          <View style={styles.contentContainer}>
+        <View style={[commonStyle.rowSpaceBetween, RtlStyles.containerRow]}>
+          <View style={[styles.contentContainer]}>
             <Deer width={25} />
-            <View>
+            <View style={RtlStyles.containerColumn}>
               <Text style={styles.header}>
                 Qatar Airways
                 <Text style={styles.LightRoman}> | QR - 3802</Text>
               </Text>
               <Text style={styles.subHeader}>Operated by FlyDubai</Text>
               <Text style={styles.text}>
-                Economy |<Text style={styles.greenText}> Refundable</Text>
+                {strings.economy} |
+                <Text style={styles.greenText}> {strings.refundable}</Text>
               </Text>
             </View>
           </View>
-          <View style={styles.rowHLeft}>
+          <View style={[styles.rowHLeft, RtlStyles.containerRow]}>
             <Bag style={commonStyle.margin(6)} />
 
             <View style={commonStyle.marginHorizontal(5)}>
-              <Text style={styles.HeavyText}>Check in</Text>
+              <Text style={styles.HeavyText}>{strings.checkIn}</Text>
               <Text style={styles.text}>1 piece</Text>
             </View>
             <View style={commonStyle.marginHorizontal(5)}>
-              <Text style={styles.HeavyText}>Cabin</Text>
+              <Text style={styles.HeavyText}>{strings.cabin}</Text>
               <Text style={styles.text}>7 Kg</Text>
             </View>
           </View>
@@ -135,7 +144,7 @@ function FlightDetails() {
             </Text>
             <Text style={styles.text}>Queen Alia Int Airport</Text>
             <Text style={[styles.blueText, commonStyle.marginVertical(3)]}>
-              Terminal: 1
+              {strings.terminal}: 1
             </Text>
           </View>
           <View style={styles.center}>
@@ -162,7 +171,7 @@ function FlightDetails() {
             </Text>
             <Text style={styles.text}>Dubai Int Airport</Text>
             <Text style={[styles.blueText, commonStyle.marginVertical(3)]}>
-              Terminal: 3
+              {strings.terminal}: 3
             </Text>
           </View>
         </View>
