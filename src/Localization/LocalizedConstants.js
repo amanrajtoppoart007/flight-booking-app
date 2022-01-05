@@ -70,6 +70,7 @@ const strings = LocalizationString({
     checkIn: 'Check In',
     cabin: 'Cabin',
     flexibleFlightOption: 'Flexible Flight Option',
+    selectYourOnwardFlight: 'Select your onward flight',
   },
   ar: {
     languages: 'اللغات',
@@ -139,6 +140,7 @@ const strings = LocalizationString({
     checkIn: 'تحقق في',
     cabin: 'الطائرة',
     flexibleFlightOption: 'خيار طيران مرن',
+    selectYourOnwardFlight: 'حدد رحلتك القادمة',
   },
 });
 

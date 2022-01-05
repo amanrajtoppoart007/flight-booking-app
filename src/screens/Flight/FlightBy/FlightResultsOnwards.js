@@ -84,10 +84,12 @@ function SearchResult({navigation}) {
               </View>
             </View>
           </LinearGradient>
-          <View style={styles.topBarContainer}>
+          <View style={[styles.topBarContainer, RtlStyles.containerRow]}>
             <Departure />
             <View style={commonStyle.marginHorizontal(5)} />
-            <Text style={styles.topBarText}>Select your onward flight</Text>
+            <Text style={styles.topBarText}>
+              {strings.selectYourOnwardFlight}
+            </Text>
           </View>
           <View style={commonStyle.flex(1)}>
             <FlatList
