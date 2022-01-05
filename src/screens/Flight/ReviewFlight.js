@@ -18,6 +18,8 @@ import CustomStatusBar from '../../components/CustomStatusBar';
 import {Icon} from 'react-native-elements';
 import {useNavigation} from '@react-navigation/native';
 import {TabView} from 'react-native-tab-view';
+import {strings} from '../../Localization/LocalizedConstants';
+import {useRtlContext} from 'react-native-easy-localization-and-rtl';
 
 function ReviewFlight() {
   const navigation = useNavigation();
@@ -27,6 +29,7 @@ function ReviewFlight() {
     {key: 'FareDetails', title: 'Fare Details'},
     {key: 'FareRules', title: 'Fare Rules'},
   ]);
+  const {RtlStyles, isRtl} = useRtlContext();
 
   const renderScene = ({route, jumpTo}) => {
     switch (route.key) {
@@ -44,7 +47,7 @@ function ReviewFlight() {
 
   const _renderTabBar = props => {
     return (
-      <View style={styles.tabBar}>
+      <View style={[styles.tabBar(isRtl)]}>
         {props.navigationState.routes.map((route, i) => {
           return (
             <TouchableOpacity
@@ -52,7 +55,11 @@ function ReviewFlight() {
               style={styles.tabItem}
               onPress={() => setIndex(i)}>
               <Animated.Text style={styles.tabTitle(i === index)}>
-                {route.title}
+                {route.key === 'FlightDetails'
+                  ? strings.flightDetails
+                  : route.key === 'FareDetails'
+                  ? strings.fareDetails
+                  : strings.fareRules}
               </Animated.Text>
               {i === index ? (
                 <View style={styles.underline} />
@@ -74,8 +81,9 @@ function ReviewFlight() {
           commonStyle.rowSpaceBetween,
           commonStyle.margin(10),
           commonStyle.marginHorizontal(15),
+          RtlStyles.containerRow,
         ]}>
-        <Text style={styles.textBold}>Review your flight to Dubai</Text>
+        <Text style={styles.textBold}>{strings.reviewYourFlightToDubai}</Text>
         <Icon
           onPress={() => navigation.goBack()}
           name={'close'}
@@ -128,13 +136,15 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
   },
 
-  tabBar: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    borderBottomWidth: StyleSheet.hairlineWidth5,
-    borderBottomColor: '#DDDDDD',
-    marginBottom: 10,
+  tabBar(isRTL) {
+    return {
+      flexDirection: 'row',
+      justifyContent: isRTL ? 'flex-end' : 'flex-start',
+      alignItems: 'center',
+      borderBottomWidth: StyleSheet.hairlineWidth5,
+      borderBottomColor: '#DDDDDD',
+      marginBottom: 10,
+    };
   },
   underline: {
     width: '90%',

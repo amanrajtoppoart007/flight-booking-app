@@ -71,6 +71,10 @@ const strings = LocalizationString({
     cabin: 'Cabin',
     flexibleFlightOption: 'Flexible Flight Option',
     selectYourOnwardFlight: 'Select your onward flight',
+    reviewYourFlightToDubai: 'Review your flight to Dubai',
+    flightDetails: 'Flight Details',
+    fareDetails: 'Fare Details',
+    fareRules: 'Fare Rules',
   },
   ar: {
     languages: 'اللغات',
@@ -141,6 +145,10 @@ const strings = LocalizationString({
     cabin: 'الطائرة',
     flexibleFlightOption: 'خيار طيران مرن',
     selectYourOnwardFlight: 'حدد رحلتك القادمة',
+    reviewYourFlightToDubai: 'راجع رحلتك إلى دبي',
+    flightDetails: 'تفاصيل الرحلة',
+    fareDetails: 'تفاصيل الأجرة',
+    fareRules: 'قوانين عادلة',
   },
 });
 
