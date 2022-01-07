@@ -4,12 +4,16 @@ import Colors from '../../layout/Colors';
 import {Icon} from 'react-native-elements';
 import Font from '../../layout/Font';
 import commonStyle from '../../layout/Style';
+import {strings} from '../../Localization/LocalizedConstants';
+import {useRtlContext} from 'react-native-easy-localization-and-rtl';
 
 function ExpandableSection({children, name}) {
   const [open, setOpen] = useState(false);
+  const {RtlStyles} = useRtlContext();
+
   return (
     <View>
-      <View style={styles.expandableSections}>
+      <View style={[styles.expandableSections, RtlStyles.containerRow]}>
         <Text style={styles.expandableSectionsText}>{name}</Text>
         <Icon
           name={open ? 'up' : 'down'}
@@ -27,35 +31,36 @@ function ExpandableSection({children, name}) {
 
 export default function FareRules() {
   const [tabBar, setTabBar] = useState('DOH-DXB');
+  const {RtlStyles} = useRtlContext();
+
   const d = [
-    'Penalties',
-    'Minimum Stay',
-    'Maximum Stay',
-    'Seasonality',
-    'Blackout Date',
+    strings.penalties,
+    strings.minimumStay,
+    strings.maximumStay,
+    strings.seasonality,
+    strings.blackoutDate,
   ];
   return (
     <ScrollView>
       <View style={[commonStyle.flex(1)]}>
         <Text style={[styles.textBold, commonStyle.marginHorizontal(15)]}>
-          Flight Long Fare Rules
+          {strings.flightLongFareRules}
         </Text>
         <View style={styles.warningBackground}>
           <Text style={[styles.redText, commonStyle.marginBottom(8)]}>
-            Tickets are non-refundable
+            {strings.ticketsNonRefundable}
           </Text>
           <Text style={[styles.text]}>
-            We Kindly remind that you may need visa for the following countries:
-            United Arab Emirates.+
+            {strings.fareRulesText1}
             {'\n\n'}
-            Additional baggage fee may apply,{' '}
-            <Text style={{color: Colors.primary}}>click here</Text> for more
-            information.
+            {strings.fareRulesText2}{' '}
+            <Text style={{color: Colors.primary}}> {strings.clickHere} </Text>{' '}
+            {strings.forMoreInfo}
           </Text>
         </View>
-        <View style={styles.termsContainer}>
+        <View style={[styles.termsContainer, RtlStyles.containerRow]}>
           <Text style={[styles.textBold, {color: Colors.primary}]}>
-            Terms & Policies
+            {strings.termsPolicies}
           </Text>
           <Icon
             name={'minus'}
@@ -64,7 +69,7 @@ export default function FareRules() {
             color={Colors.primary}
           />
         </View>
-        <View style={styles.itemContainer}>
+        <View style={[styles.itemContainer, RtlStyles.containerRow]}>
           <Pressable
             onPress={() => setTabBar('DOH-DXB')}
             style={styles.item(tabBar, 'DOH-DXB')}>
@@ -156,8 +161,8 @@ const styles = StyleSheet.create({
       borderBottomWidth: value === name ? 1.2 : 0,
       borderColor: Colors.primary,
       paddingBottom: 10,
-      marginRight: 15,
       marginTop: 10,
+      marginHorizontal: 10,
     };
   },
   textBold: {

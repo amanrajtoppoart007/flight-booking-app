@@ -29,7 +29,7 @@ function FlightDetails() {
       <View style={styles.divider} />
       <View>
         <View style={[commonStyle.rowSpaceBetween, RtlStyles.containerRow]}>
-          <View style={styles.contentContainer}>
+          <View style={[styles.contentContainer]}>
             <Deer width={25} />
             <View style={RtlStyles.containerColumn}>
               <Text style={styles.header}>
