@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Text,
   View,
+  TouchableOpacity,
 } from 'react-native';
 
 import {
@@ -24,12 +25,15 @@ import LocationSelector from '../../components/Hotel/Home/LocationSelector';
 import commonStyle from '../../layout/Style';
 import Font from '../../layout/Font';
 import moment from 'moment';
+import {strings} from '../../Localization/LocalizedConstants';
+import {useRtlContext} from 'react-native-easy-localization-and-rtl';
 
 function Home({navigation}) {
   const [guestEntryModal, setGuestEntryModal] = useState(false);
   const [isDateRangeVisible, setIsDateRangeVisible] = useState(false);
   const [isLocationSelectorVisible, setIsLocationSelectorVisible] =
     useState(false);
+  const {RtlStyles} = useRtlContext();
 
   const date = new Date();
   const dateFromTimeStamp = moment(date).format('YYYYMMDD');
@@ -48,18 +52,28 @@ function Home({navigation}) {
               colors={['#1C8CCC', '#015F95']}
               style={styles.canvas}>
               <View style={commonStyle.marginHorizontal(20)}>
-                <View style={[styles.titleSection, styles.rowCenter]}>
+                <View
+                  style={[
+                    styles.titleSection,
+                    styles.rowCenter,
+                    RtlStyles.containerRow,
+                  ]}>
                   <View>
-                    <Icon
-                      onPress={() => navigation.goBack()}
-                      name={'md-arrow-back-sharp'}
-                      type={'ionicon'}
-                      size={18}
-                      color={Colors.white}
-                    />
+                    <TouchableOpacity
+                      style={RtlStyles.flipHorizontal}
+                      onPress={() => navigation.goBack()}>
+                      <Icon
+                        name={'md-arrow-back-sharp'}
+                        type={'ionicon'}
+                        size={18}
+                        color={Colors.white}
+                      />
+                    </TouchableOpacity>
                   </View>
                   <View style={commonStyle.marginHorizontal(10)}>
-                    <Text style={styles.title}>Search Hotels</Text>
+                    <Text style={[styles.title, RtlStyles.text]}>
+                      {strings.searchHotels}
+                    </Text>
                   </View>
                 </View>
               </View>
@@ -67,22 +81,25 @@ function Home({navigation}) {
                 <View style={styles.card}>
                   <View style={styles.subSection}>
                     <View style={styles.margin}>
-                      <Text style={styles.cardTitle}>Destination</Text>
+                      <Text style={styles.cardTitle}>
+                        {strings.destination}
+                      </Text>
                     </View>
                     <View style={styles.margin}>
                       <Pressable
                         onPress={() => setIsLocationSelectorVisible(true)}>
-                        <Text style={styles.searchText}>Doha, Qatar</Text>
+                        <Text style={[styles.searchText, RtlStyles.text]}>
+                          Doha, Qatar
+                        </Text>
                       </Pressable>
                     </View>
                     <View style={styles.margin}>
                       <Text style={styles.helperText}>
-                        Search Destination, City or Hotel Name
+                        {strings.searchDestinationName}
                       </Text>
                     </View>
                     <View style={styles.divider} />
                   </View>
-
                   <View style={styles.subSection}>
                     <View
                       style={[
@@ -91,7 +108,9 @@ function Home({navigation}) {
                       ]}>
                       <View>
                         <View style={styles.margin}>
-                          <Text style={styles.helperText}>Check-In</Text>
+                          <Text style={styles.helperText}>
+                            {strings.checkIn}
+                          </Text>
                         </View>
                         <View style={styles.margin}>
                           <Pressable
@@ -125,7 +144,9 @@ function Home({navigation}) {
                       </View>
                       <View>
                         <View style={[styles.margin, commonStyle.rowFlexEnd]}>
-                          <Text style={styles.helperText}>Check-Out</Text>
+                          <Text style={styles.helperText}>
+                            {strings.checkOut}
+                          </Text>
                         </View>
                         <View style={styles.margin}>
                           <Pressable
@@ -144,7 +165,9 @@ function Home({navigation}) {
 
                   <View style={styles.subSection}>
                     <View style={styles.margin}>
-                      <Text style={styles.helperText}>Rooms & Guests</Text>
+                      <Text style={styles.helperText}>
+                        {strings.roomsGuests}
+                      </Text>
                     </View>
                     <View style={styles.margin}>
                       <Pressable onPress={() => setGuestEntryModal(true)}>
@@ -163,7 +186,7 @@ function Home({navigation}) {
             <View style={[commonStyle.center, commonStyle.width('100%')]}>
               <Pressable
                 onPress={() => navigation.navigate('SearchResult')}
-                style={styles.searchButton}>
+                style={[styles.searchButton, RtlStyles.containerRow]}>
                 <Icon
                   name={'search'}
                   type={'font-awesome'}
@@ -171,13 +194,17 @@ function Home({navigation}) {
                   color={Colors.white}
                 />
                 <View style={commonStyle.marginHorizontal(5)}>
-                  <Text style={styles.searchButtonText}>Search Hotels</Text>
+                  <Text style={styles.searchButtonText}>
+                    {strings.searchHotels}
+                  </Text>
                 </View>
               </Pressable>
             </View>
             <View>
               <View style={commonStyle.marginVertical(15)}>
-                <Text style={styles.recentSearchTitle}>Recently Searched</Text>
+                <Text style={styles.recentSearchTitle}>
+                  {strings.recentlySearched}
+                </Text>
               </View>
               <View>
                 <SearchHistorySlider />

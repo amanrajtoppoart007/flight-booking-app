@@ -93,6 +93,10 @@ const strings = LocalizationString({
     maximumStay: 'Maximum Stay',
     seasonality: 'Seasonality',
     blackoutDate: 'Blackout Date',
+    searchHotels: 'Search Hotels',
+    searchDestinationName: 'Search Destination, City or Hotel Name',
+    checkOut: 'Check-Out',
+    roomsGuests: 'Rooms & Guests',
   },
   ar: {
     languages: 'اللغات',
@@ -185,6 +189,10 @@ const strings = LocalizationString({
     maximumStay: 'أقصى قدر من البقاء',
     seasonality: 'الموسمية',
     blackoutDate: 'تاريخ الحجب',
+    searchHotels: 'البحث عن الفنادق',
+    searchDestinationName: 'ابحث عن الوجهة أو المدينة أو اسم الفندق',
+    checkOut: 'الدفع',
+    roomsGuests: 'الغرف والضيوف',
   },
 });
 
