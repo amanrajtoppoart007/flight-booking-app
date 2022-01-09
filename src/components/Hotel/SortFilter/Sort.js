@@ -5,11 +5,15 @@ import ThumbsUp from '../../Svg/Hotel/ThumbsUp.svg';
 import Offer from '../../Svg/Hotel/Offer.svg';
 import Stars from '../../Svg/Hotel/Stars.svg';
 import HighPrice from '../../Svg/Hotel/HighPrice.svg';
+import LowPrice from '../../Svg/Hotel/LowPrice.svg';
 import Plane from '../../Svg/Hotel/Plane.svg';
 import {strings} from '../../../Localization/LocalizedConstants';
+import {useRtlContext} from 'react-native-easy-localization-and-rtl';
 
 const SortBy = () => {
   const [Selected, setSelected] = useState('Recommended');
+  useRtlContext();
+
   return (
     <ScrollView>
       <SortByButton

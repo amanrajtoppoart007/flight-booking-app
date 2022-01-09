@@ -5,16 +5,21 @@ import RatingButton from './RatingButton';
 import Colors from '../../../layout/Colors';
 import Font from '../../../layout/Font';
 
+import {strings} from '../../../Localization/LocalizedConstants';
+import {useRtlContext} from 'react-native-easy-localization-and-rtl';
 function Ratings() {
   const [Selected, setSelected] = useState();
+  const {RtlStyles} = useRtlContext();
+
   return (
     <View>
-      <Text style={styles.title}>Ratings</Text>
+      <Text style={styles.title}>{strings.ratings}</Text>
       <View
         style={[
           commonStyle.rowSpaceBetween,
           commonStyle.marginVertical(15),
           commonStyle.marginHorizontal(13),
+          RtlStyles.containerRow,
         ]}>
         <RatingButton
           selected={Selected === '5'}
@@ -54,6 +59,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: Colors.black,
     fontFamily: Font.AvenirMedium,
-    marginLeft: 15,
+    marginHorizontal: 15,
   },
 });
