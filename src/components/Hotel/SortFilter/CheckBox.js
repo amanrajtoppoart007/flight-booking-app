@@ -4,15 +4,20 @@ import commonStyle from '../../../layout/Style';
 import {Icon} from 'react-native-elements';
 import Colors from '../../../layout/Colors';
 import Font from '../../../layout/Font';
+import {strings} from '../../../Localization/LocalizedConstants';
+import {useRtlContext} from 'react-native-easy-localization-and-rtl';
 
 function ListCheckBox({text, svg = null}) {
   const [check, setCheck] = useState(false);
+  const {RtlStyles} = useRtlContext();
+
   return (
     <View
       style={[
         commonStyle.rowSpaceBetween,
         commonStyle.marginHorizontal(15),
         commonStyle.marginVertical(5),
+        RtlStyles.containerRow,
       ]}>
       <View style={commonStyle.rowFlexStart}>
         {svg && svg}
