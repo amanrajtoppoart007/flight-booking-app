@@ -16,9 +16,13 @@ import {
 import Header from './SortFilter/Header';
 import Filter from './SortFilter/Filter';
 import Sort from './SortFilter/Sort';
+import {strings} from '../../Localization/LocalizedConstants';
+import {useRtlContext} from 'react-native-easy-localization-and-rtl';
 
 function SortFilter({onClose}) {
   const [index, setIndex] = React.useState(0);
+  const {RtlStyles, isRtl} = useRtlContext();
+
   const [routes] = React.useState([
     {key: 'SortBy', title: 'Sort by'},
     {key: 'Filter', title: 'Filters'},
@@ -35,10 +39,13 @@ function SortFilter({onClose}) {
     }
   };
   const _handleIndexChange = i => setIndex(i);
-
   const _renderTabBar = props => {
     return (
-      <View style={styles.tabBar}>
+      <View
+        style={[
+          styles.tabBar,
+          isRtl ? RtlStyles.containerRowInverse : RtlStyles.containerRow,
+        ]}>
         {props.navigationState.routes.map((route, i) => {
           return (
             <TouchableOpacity
@@ -46,7 +53,7 @@ function SortFilter({onClose}) {
               style={styles.tabItem}
               onPress={() => setIndex(i)}>
               <Animated.Text style={styles.tabTitle(i === index)}>
-                {route.title}
+                {route.key === 'SortBy' ? strings.sortBy : strings.filter}
               </Animated.Text>
               {i === index ? (
                 <View style={styles.underline} />
@@ -61,7 +68,7 @@ function SortFilter({onClose}) {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container(isRtl)]}>
       <Header onClose={onClose} />
       <View style={styles.subContainer}>
         <TabView
@@ -86,15 +93,17 @@ const styles = StyleSheet.create({
       color: isActive ? Colors.primary : '#6C6C6C',
     };
   },
-  container: {
-    width: wp('100%'),
-    height: hp('100%'),
-    position: 'absolute',
-    backgroundColor: 'rgba(100,100,100,0.5)',
-    top: 0,
-    right: 0,
-    alignItems: 'flex-end',
-    zIndex: 0,
+
+  container(isRTL) {
+    return {
+      width: wp('100%'),
+      height: hp('100%'),
+      position: 'absolute',
+      backgroundColor: 'rgba(100,100,100,0.5)',
+      top: 0,
+      right: 0,
+      alignItems: isRTL ? 'flex-start' : 'flex-end',
+    };
   },
   subContainer: {
     backgroundColor: 'white',

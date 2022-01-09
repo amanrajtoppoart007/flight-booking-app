@@ -97,6 +97,10 @@ const strings = LocalizationString({
     searchDestinationName: 'Search Destination, City or Hotel Name',
     checkOut: 'Check-Out',
     roomsGuests: 'Rooms & Guests',
+    recommended: 'Recommended',
+    deals: 'Deals',
+    starsHighest: 'Stars (Highest)',
+    expediaRating: 'Expedia Rating',
   },
   ar: {
     languages: 'اللغات',
@@ -193,6 +197,10 @@ const strings = LocalizationString({
     searchDestinationName: 'ابحث عن الوجهة أو المدينة أو اسم الفندق',
     checkOut: 'الدفع',
     roomsGuests: 'الغرف والضيوف',
+    recommended: 'موصى به',
+    deals: 'صفقات',
+    starsHighest: 'النجوم (الأعلى)',
+    expediaRating: 'تصنيف اكسبيديا',
   },
 });
 

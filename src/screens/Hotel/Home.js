@@ -171,7 +171,7 @@ function Home({navigation}) {
                     </View>
                     <View style={styles.margin}>
                       <Pressable onPress={() => setGuestEntryModal(true)}>
-                        <Text style={styles.roomFilterText}>
+                        <Text style={[styles.roomFilterText, RtlStyles.text]}>
                           1 Room, 1 Guest(s)
                         </Text>
                       </Pressable>
