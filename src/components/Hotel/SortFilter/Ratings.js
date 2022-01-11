@@ -4,9 +4,9 @@ import commonStyle from '../../../layout/Style';
 import RatingButton from './RatingButton';
 import Colors from '../../../layout/Colors';
 import Font from '../../../layout/Font';
-
 import {strings} from '../../../Localization/LocalizedConstants';
 import {useRtlContext} from 'react-native-easy-localization-and-rtl';
+
 function Ratings() {
   const [Selected, setSelected] = useState();
   const {RtlStyles} = useRtlContext();

@@ -4,7 +4,6 @@ import commonStyle from '../../../layout/Style';
 import {Icon} from 'react-native-elements';
 import Colors from '../../../layout/Colors';
 import Font from '../../../layout/Font';
-import {strings} from '../../../Localization/LocalizedConstants';
 import {useRtlContext} from 'react-native-easy-localization-and-rtl';
 
 function ListCheckBox({text, svg = null}) {
