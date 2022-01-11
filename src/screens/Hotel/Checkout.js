@@ -31,9 +31,13 @@ import UserSvg from '../../components/Svg/Profile/User.svg';
 import CustomStatusBar from '../../components/CustomStatusBar';
 import BookingSummary from '../../components/Hotel/Checkout/BookingSummary';
 import Footer from '../../components/Hotel/GuestDetail/Footer';
+import {strings} from '../../Localization/LocalizedConstants';
+import {useRtlContext} from 'react-native-easy-localization-and-rtl';
 
 function Checkout({navigation}) {
   const [email, setEmail] = useState('');
+  const {RtlStyles} = useRtlContext();
+
   const [mobileNumber, setMobileNumber] = useState('');
   const [phoneCode, setPhoneCode] = useState('');
   const [isVisible, setIsVisible] = useState(false); // state for booking section is visible or not
@@ -49,14 +53,14 @@ function Checkout({navigation}) {
             <LinearGradient
               colors={['#1C8CCC', '#015F95']}
               style={styles.canvas}>
-              <View style={styles.headerSection}>
-                <View>
+              <View style={[styles.headerSection, RtlStyles.containerRow]}>
+                <View style={RtlStyles.flipHorizontal}>
                   <TouchableOpacity onPress={() => navigation.goBack()}>
                     <BackSvg />
                   </TouchableOpacity>
                 </View>
                 <View style={commonStyle.marginHorizontal(15)}>
-                  <Text style={styles.pageTitle}>Check Out</Text>
+                  <Text style={styles.pageTitle}>{strings.checkOut}</Text>
                 </View>
               </View>
               <View>
@@ -115,18 +119,18 @@ function Checkout({navigation}) {
               </View>
             </View>
             <View style={styles.section}>
-              <View style={styles.loginSection}>
+              <View style={[styles.loginSection, RtlStyles.containerRow]}>
                 <View>
                   <LockSvg />
                 </View>
                 <View>
                   <Text style={styles.loginHelperText}>
-                    Login to view your saved traveller list.
+                    {strings.loginToViewList}
                   </Text>
                 </View>
                 <View>
                   <TouchableOpacity style={styles.loginButton}>
-                    <Text style={styles.loginButtonText}>Login</Text>
+                    <Text style={styles.loginButtonText}>{strings.login}</Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -137,14 +141,13 @@ function Checkout({navigation}) {
                   <PhoneBookSvg />
                 </View>
                 <View style={commonStyle.marginHorizontal(8)}>
-                  <Text style={styles.sectionTitle}>Contact Details</Text>
+                  <Text style={styles.sectionTitle}>
+                    {strings.contactDetails}
+                  </Text>
                 </View>
               </View>
               <View style={commonStyle.marginVertical(7.5)}>
-                <Text>
-                  Booking details will be sent to this mobile number & Email
-                  address.
-                </Text>
+                <Text>{strings.bookingSentMobileNumber}</Text>
               </View>
               <View style={commonStyle.marginVertical(10)}>
                 <TextInput
@@ -176,7 +179,9 @@ function Checkout({navigation}) {
                     <UserSvg />
                   </View>
                   <View style={commonStyle.marginHorizontal(8)}>
-                    <Text style={styles.sectionTitle}>Add Guest Details</Text>
+                    <Text style={styles.sectionTitle}>
+                      {strings.addGuestDetails}
+                    </Text>
                   </View>
                 </View>
               </View>

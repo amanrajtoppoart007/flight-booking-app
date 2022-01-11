@@ -95,7 +95,7 @@ const strings = LocalizationString({
     blackoutDate: 'Blackout Date',
     searchHotels: 'Search Hotels',
     searchDestinationName: 'Search Destination, City or Hotel Name',
-    checkOut: 'Check-Out',
+    checkOut: 'Check Out',
     roomsGuests: 'Rooms & Guests',
     recommended: 'Recommended',
     deals: 'Deals',
@@ -113,6 +113,12 @@ const strings = LocalizationString({
     landmarks: 'Landmarks',
     searchLandmarks: 'Search by Landmarks',
     ratings: 'Ratings',
+    loginToViewList: 'Login to view your saved traveller list.',
+    login: 'Login',
+    contactDetails: 'Contact Details',
+    bookingSentMobileNumber:
+      'Booking details will be sent to this mobile number & Email address.',
+    addGuestDetails: 'Add Guest Details',
   },
   ar: {
     languages: 'اللغات',
@@ -225,6 +231,12 @@ const strings = LocalizationString({
     landmarks: 'معالم',
     searchLandmarks: 'البحث عن طريق المعالم',
     ratings: 'التقييمات',
+    loginToViewList: 'تسجيل الدخول لعرض قائمة المسافر المحفوظة الخاصة بك.',
+    login: 'تسجيل الدخول',
+    contactDetails: 'بيانات المتصل',
+    bookingSentMobileNumber:
+      'سيتم إرسال تفاصيل الحجز إلى رقم الهاتف المحمول هذا وعنوان البريد الإلكتروني.',
+    addGuestDetails: 'أضف تفاصيل الضيف',
   },
 });
 
