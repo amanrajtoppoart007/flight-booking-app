@@ -123,23 +123,23 @@ function TravellerAndClass({Visible, setVisible, data, setData}) {
               </Text>
               <View style={[commonStyle.rowFlexStart, RtlStyles.containerRow]}>
                 <Pressable
-                  onPress={() => setClass(strings.economy)}
-                  style={styles.selectContainer(Class === strings.economy)}>
-                  <Text style={styles.selectText(Class === strings.economy)}>
+                  onPress={() => setClass('Economy')}
+                  style={styles.selectContainer(Class === 'Economy')}>
+                  <Text style={styles.selectText(Class === 'Economy')}>
                     {strings.economy}
                   </Text>
                 </Pressable>
                 <Pressable
-                  onPress={() => setClass(strings.business)}
-                  style={styles.selectContainer(Class === strings.business)}>
-                  <Text style={styles.selectText(Class === strings.business)}>
+                  onPress={() => setClass('Business')}
+                  style={styles.selectContainer(Class === 'Business')}>
+                  <Text style={styles.selectText(Class === 'Business')}>
                     {strings.business}
                   </Text>
                 </Pressable>
                 <Pressable
-                  onPress={() => setClass(strings.firstClass)}
-                  style={styles.selectContainer(Class === strings.firstClass)}>
-                  <Text style={styles.selectText(Class === strings.firstClass)}>
+                  onPress={() => setClass('FirstClass')}
+                  style={styles.selectContainer(Class === 'FirstClass')}>
+                  <Text style={styles.selectText(Class === 'FirstClass')}>
                     {strings.firstClass}
                   </Text>
                 </Pressable>

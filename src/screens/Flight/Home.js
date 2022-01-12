@@ -44,7 +44,7 @@ export default function Home({navigation}) {
     dateFromTimeStamp,
     dateUptoTimeStamp,
   ]);
-  const {RtlStyles, language} = useRtlContext();
+  const {RtlStyles} = useRtlContext();
 
   const [Location, setLocation] = useState([
     {

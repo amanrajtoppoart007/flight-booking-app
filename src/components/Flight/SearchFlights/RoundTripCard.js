@@ -118,7 +118,13 @@ export default function RoundTripCard({
                       Travellers?.child > 0 || Travellers?.adult > 0 ? ', ' : ''
                     }` + `${Travellers?.infant} ${strings.infant}`
                   : '') +
-                `, ${Travellers.class}`}
+                `, ${
+                  Travellers.class === 'Economy'
+                    ? strings.economy
+                    : Travellers.class === 'Business'
+                    ? strings.business
+                    : strings.firstClass
+                }   `}
             </Text>
           </TouchableOpacity>
         </View>

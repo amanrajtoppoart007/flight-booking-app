@@ -131,7 +131,13 @@ export default function MultiCity({
                           : ''
                       }` + `${Travellers?.infant} ${strings.infant}`
                     : '') +
-                  `, ${Travellers.class}`}
+                  `, ${
+                    Travellers.class === 'Economy'
+                      ? strings.economy
+                      : Travellers.class === 'Business'
+                      ? strings.business
+                      : strings.firstClass
+                  }`}
               </Text>
             </Pressable>
           </View>
