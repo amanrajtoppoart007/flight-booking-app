@@ -119,6 +119,15 @@ const strings = LocalizationString({
     bookingSentMobileNumber:
       'Booking details will be sent to this mobile number & Email address.',
     addGuestDetails: 'Add Guest Details',
+    guestReviews: 'Guest Reviews',
+    excellent: 'Excellent',
+    cleanliness: 'Cleanliness',
+    staffService: 'Staff & service',
+    amenities: 'Amenities',
+    propertyConditionsFacilities: 'Property conditions & facilities',
+    reviewsTravellers: 'Reviews from travellers',
+    showLessReviews: 'Show less reviews',
+    readAllReviews: 'Read all reviews',
   },
   ar: {
     languages: 'اللغات',
@@ -237,6 +246,15 @@ const strings = LocalizationString({
     bookingSentMobileNumber:
       'سيتم إرسال تفاصيل الحجز إلى رقم الهاتف المحمول هذا وعنوان البريد الإلكتروني.',
     addGuestDetails: 'أضف تفاصيل الضيف',
+    guestReviews: 'آراء الضيوف',
+    excellent: 'ممتاز',
+    cleanliness: 'النظافة',
+    staffService: 'فريق العمل والخدمة',
+    amenities: 'وسائل الراحة',
+    propertyConditionsFacilities: 'شروط الملكية والمرافق',
+    reviewsTravellers: 'تعليقات من المسافرين',
+    showLessReviews: 'أظهر مراجعات أقل',
+    readAllReviews: 'قراءة جميع الاستعراضات',
   },
 });
 

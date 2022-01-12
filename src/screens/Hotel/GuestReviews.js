@@ -16,8 +16,13 @@ import {Icon} from 'react-native-elements';
 import commonStyle from '../../layout/Style';
 import {LinearProgress} from 'react-native-elements';
 import ReviewCard from '../../components/Hotel/ReviewCard';
+import {strings} from '../../Localization/LocalizedConstants';
+import {useRtlContext} from 'react-native-easy-localization-and-rtl';
+
 function GuestReviews({navigation}) {
   const [maxVisibleItemCount, setMaxVisibleItemCount] = useState(3);
+  const {RtlStyles} = useRtlContext();
+
   const [reviews] = useState([
     {
       name: 'Mohammad',
@@ -68,8 +73,8 @@ function GuestReviews({navigation}) {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={commonStyle.wrapper}>
           <View style={commonStyle.content}>
-            <View style={styles.header}>
-              <Text style={styles.pageTitle}>Guest Reviews</Text>
+            <View style={[styles.header, RtlStyles.containerRow]}>
+              <Text style={styles.pageTitle}>{strings.guestReviews}</Text>
               <Icon
                 onPress={() => navigation.goBack()}
                 name={'close'}
@@ -84,7 +89,9 @@ function GuestReviews({navigation}) {
                 <View
                   style={[commonStyle.rowSpaceBetween, commonStyle.flex(1)]}>
                   <View style={commonStyle.marginHorizontal(8)}>
-                    <Text style={styles.airBnbRatingText}>Excellent</Text>
+                    <Text style={styles.airBnbRatingText}>
+                      {strings.excellent}
+                    </Text>
                   </View>
                   <View>
                     <Text style={styles.verifiedReviewsText}>
@@ -94,46 +101,15 @@ function GuestReviews({navigation}) {
                 </View>
               </View>
               <View>
-                <Text style={styles.ratingParameterText}>Cleanliness</Text>
+                <Text style={styles.ratingParameterText}>
+                  {strings.cleanliness}
+                </Text>
                 <View
                   style={[
                     commonStyle.rowSpaceBetween,
                     commonStyle.marginVertical(5),
                     commonStyle.flex(1),
-                  ]}>
-                  <LinearProgress
-                    trackColor="#DDDDDD"
-                    color="#1DAD81"
-                    variant="determinate"
-                    value={4.7 / 5}
-                    style={styles.linearProgressBar}
-                  />
-                  <Text style={styles.progressBarRatingText}>4.7/5</Text>
-                </View>
-              </View>
-              <View>
-                <Text style={styles.ratingParameterText}>Staff & service</Text>
-                <View
-                  style={[
-                    commonStyle.rowSpaceBetween,
-                    commonStyle.marginVertical(5),
-                  ]}>
-                  <LinearProgress
-                    trackColor="#DDDDDD"
-                    color="#1DAD81"
-                    variant="determinate"
-                    value={4.6 / 5}
-                    style={styles.linearProgressBar}
-                  />
-                  <Text style={styles.progressBarRatingText}>4.6/5</Text>
-                </View>
-              </View>
-              <View>
-                <Text style={styles.ratingParameterText}>Amenities</Text>
-                <View
-                  style={[
-                    commonStyle.rowSpaceBetween,
-                    commonStyle.marginVertical(5),
+                    RtlStyles.containerRow,
                   ]}>
                   <LinearProgress
                     trackColor="#DDDDDD"
@@ -147,12 +123,53 @@ function GuestReviews({navigation}) {
               </View>
               <View>
                 <Text style={styles.ratingParameterText}>
-                  Property conditions & facilities
+                  {strings.staffService}
                 </Text>
                 <View
                   style={[
                     commonStyle.rowSpaceBetween,
                     commonStyle.marginVertical(5),
+                    RtlStyles.containerRow,
+                  ]}>
+                  <LinearProgress
+                    trackColor="#DDDDDD"
+                    color="#1DAD81"
+                    variant="determinate"
+                    value={4.6 / 5}
+                    style={styles.linearProgressBar}
+                  />
+                  <Text style={styles.progressBarRatingText}>4.6/5</Text>
+                </View>
+              </View>
+              <View>
+                <Text style={styles.ratingParameterText}>
+                  {strings.amenities}
+                </Text>
+                <View
+                  style={[
+                    commonStyle.rowSpaceBetween,
+                    commonStyle.marginVertical(5),
+                    RtlStyles.containerRow,
+                  ]}>
+                  <LinearProgress
+                    trackColor="#DDDDDD"
+                    color="#1DAD81"
+                    variant="determinate"
+                    value={4.7 / 5}
+                    style={styles.linearProgressBar}
+                  />
+                  <Text style={styles.progressBarRatingText}>4.7/5</Text>
+                </View>
+              </View>
+              <View>
+                <Text style={styles.ratingParameterText}>
+                  {strings.propertyConditionsFacilities}
+                </Text>
+                <View
+                  style={[
+                    commonStyle.rowSpaceBetween,
+                    commonStyle.marginVertical(5),
+                    RtlStyles.containerRow,
                   ]}>
                   <LinearProgress
                     trackColor="#DDDDDD"
@@ -166,7 +183,7 @@ function GuestReviews({navigation}) {
               </View>
               <View style={styles.divider} />
               <Text style={styles.reviewsTitleText}>
-                Reviews from travellers
+                {strings.reviewsTravellers}
               </Text>
               <View>
                 {reviews &&
@@ -181,7 +198,7 @@ function GuestReviews({navigation}) {
                 {maxVisibleItemCount > reviews?.length && (
                   <TouchableOpacity onPress={() => setMaxVisibleItemCount(3)}>
                     <Text style={styles.readAllReviewsText}>
-                      Show less reviews
+                      {strings.showLessReviews}
                     </Text>
                   </TouchableOpacity>
                 )}
@@ -189,7 +206,7 @@ function GuestReviews({navigation}) {
                   <TouchableOpacity
                     onPress={() => setMaxVisibleItemCount(reviews?.length + 1)}>
                     <Text style={styles.readAllReviewsText}>
-                      Read all reviews
+                      {strings.readAllReviews}
                     </Text>
                   </TouchableOpacity>
                 )}

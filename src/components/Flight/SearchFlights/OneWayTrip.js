@@ -19,7 +19,7 @@ export default function OneWayTrip({
   Travellers,
   date,
 }) {
-  const {RtlStyles, language} = useRtlContext();
+  useRtlContext();
 
   return (
     <View style={styles.card}>
