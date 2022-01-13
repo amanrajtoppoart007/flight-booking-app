@@ -4,15 +4,17 @@ import {Icon} from 'react-native-elements';
 import Font from '../../../layout/Font';
 import commonStyle from '../../../layout/Style';
 import DepartureSvg from '../../Svg/Departure.svg';
+import {useRtlContext} from 'react-native-easy-localization-and-rtl';
 
 function Accordion({title, itinerary, Content, isCollapsed}) {
   const [expanded, setExpanded] = useState(isCollapsed);
+  const {RtlStyles} = useRtlContext();
 
   return (
     <View>
       <View style={styles.card}>
-        <View style={commonStyle.rowSpaceBetween}>
-          <View style={commonStyle.rowSpaceBetween}>
+        <View style={[commonStyle.rowSpaceBetween, RtlStyles.containerRow]}>
+          <View style={[commonStyle.rowSpaceBetween]}>
             <View style={commonStyle.rowCenter}>
               <View>
                 <DepartureSvg />

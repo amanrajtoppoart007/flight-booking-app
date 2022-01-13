@@ -128,6 +128,11 @@ const strings = LocalizationString({
     reviewsTravellers: 'Reviews from travellers',
     showLessReviews: 'Show less reviews',
     readAllReviews: 'Read all reviews',
+    reviewItinerary: 'Review Itinerary',
+    promoCode: 'Promo Code',
+    apply: 'Apply',
+    fareSummery: 'Fare Summery',
+    continue: 'Continue',
   },
   ar: {
     languages: 'اللغات',
@@ -255,6 +260,11 @@ const strings = LocalizationString({
     reviewsTravellers: 'تعليقات من المسافرين',
     showLessReviews: 'أظهر مراجعات أقل',
     readAllReviews: 'قراءة جميع الاستعراضات',
+    reviewItinerary: 'مراجعة خط سير الرحلة',
+    promoCode: 'رمز ترويجي',
+    apply: 'يتقدم',
+    fareSummery: 'ملخص عادل',
+    continue: 'يكمل',
   },
 });
 

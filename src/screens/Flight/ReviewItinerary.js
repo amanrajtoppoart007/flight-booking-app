@@ -17,12 +17,14 @@ import CustomStatusBar from '../../components/CustomStatusBar';
 import Accordion from '../../components/Flight/ReviewItinerary/Accordion';
 import Font from '../../layout/Font';
 import FlightCard from '../../components/Flight/ReviewItinerary/FlightCard';
-
+import {useRtlContext} from 'react-native-easy-localization-and-rtl';
 import CouponSvg from '../../components/Svg/Coupon.svg';
 import FairDetail from '../../components/Flight/ReviewItinerary/FareDetail';
+import {strings} from '../../Localization/LocalizedConstants';
 
 function ReviewItinerary({navigation}) {
   const [isFareSectionVisible, setIsFareSectionVisible] = useState(true);
+  const {RtlStyles, isRtl} = useRtlContext();
   return (
     <SafeAreaView
       style={[
@@ -39,8 +41,8 @@ function ReviewItinerary({navigation}) {
             ]}>
             <LinearGradient
               colors={['#1C8CCC', '#015F95']}
-              style={styles.canvas}>
-              <View style={commonStyle.rowFlexStart}>
+              style={[styles.canvas]}>
+              <View style={[commonStyle.rowFlexStart]}>
                 <View style={commonStyle.center}>
                   <Icon
                     onPress={() => navigation.goBack()}
@@ -51,13 +53,13 @@ function ReviewItinerary({navigation}) {
                   />
                 </View>
                 <View style={commonStyle.marginHorizontal(10)}>
-                  <Text style={styles.title}>Review Itinerary</Text>
+                  <Text style={styles.title}>{strings.reviewItinerary}</Text>
                 </View>
               </View>
             </LinearGradient>
             <View>
               <Accordion
-                title={'Departing'}
+                title={strings.departing}
                 itinerary={'DOH - DXB'}
                 Content={<FlightCard />}
                 isCollapsed={true}
@@ -65,20 +67,21 @@ function ReviewItinerary({navigation}) {
             </View>
             <View>
               <Accordion
-                title={'Returning '}
+                title={strings.returning}
                 itinerary={'DXB - DOH'}
                 Content={<FlightCard />}
                 isCollapsed={true}
               />
             </View>
             <View style={styles.couponSection}>
-              <View style={commonStyle.rowSpaceBetween}>
+              <View
+                style={[commonStyle.rowSpaceBetween, RtlStyles.containerRow]}>
                 <View style={commonStyle.rowSpaceBetween}>
                   <View>
                     <CouponSvg />
                   </View>
                   <View style={commonStyle.marginHorizontal(4)}>
-                    <Text style={styles.couponTitle}>Promo Code</Text>
+                    <Text style={styles.couponTitle}>{strings.promoCode}</Text>
                   </View>
                 </View>
                 <View>
@@ -89,7 +92,7 @@ function ReviewItinerary({navigation}) {
                 </View>
                 <View>
                   <TouchableOpacity style={styles.couponBtn}>
-                    <Text style={styles.couponBtnText}>Apply</Text>
+                    <Text style={styles.couponBtnText}>{strings.apply}</Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -98,7 +101,7 @@ function ReviewItinerary({navigation}) {
             {isFareSectionVisible && (
               <View style={commonStyle.padding(8)}>
                 <View>
-                  <Text style={styles.sectionTitle}>Fare Summery</Text>
+                  <Text style={styles.sectionTitle}>{strings.fareSummery}</Text>
                 </View>
                 <View>
                   <FairDetail />
@@ -139,7 +142,9 @@ function ReviewItinerary({navigation}) {
                     <TouchableOpacity
                       onPress={() => navigation.navigate('Checkout')}
                       style={styles.checkOutBtn}>
-                      <Text style={styles.checkOutBtnText}>Continue</Text>
+                      <Text style={styles.checkOutBtnText}>
+                        {strings.continue}
+                      </Text>
                     </TouchableOpacity>
                   </View>
                 </View>
@@ -174,8 +179,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 15,
   },
+  titleSection(isRtl) {
+    return {
+      alignSelf: 'stretch',
+    };
+  },
   couponTitle: {
     fontFamily: Font.AvenirHeavy,
+
     fontSize: 14,
     color: Colors.black,
   },
